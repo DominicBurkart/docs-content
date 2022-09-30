@@ -13,18 +13,13 @@ dates:
 Making your container private allows you to restrict access to it which prevents unauthorized launch of the container. Contrary to private functions where the authorization process is built-in, it needs to be [configured inside the container](#validating-tokens-inside-your-container).
 
 <Message type="important">
-
-Be careful when you schedule automatic launching of private containers, as CRON jobs are not yet able to start private containers.
-
+  Be careful when you schedule automatic launching of private containers, as CRON jobs are not yet able to start private containers.
 </Message>
 
-
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have generated a Scaleway [API key](https://www.scaleway.com/en/docs/console/my-project/how-to/generate-api-key/)
   - You have either `curl`, [Postman](https://www.postman.com/), [Talend API tester](https://chrome.google.com/webstore/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm) or any tool to send HTTP requests
-
 </Message>
 
 ## Generating a JWT token
@@ -35,30 +30,26 @@ Privacy can be ensured via **J**SON **W**eb **T**okens. A JWT Token can be retri
 * `/issue-jwt?container_id=1`: issues a JWT valid only for container with ID 1.
 
 <Message type="tip">
-
-You may optionally provide an expiration date (formatted `yyyy-mm-ddT00:00:00Z`) for the token. 
-For example: `/issue-jwt?expires_at=2022-01-02T00:00:00Z&namespace_id=1` will generate a token, valid for all containers inside namespace with ID 1, and this token will be valid until January 2nd 2022.
-
+  You may optionally provide an expiration date (formatted `yyyy-mm-ddT00:00:00Z`) for the token. 
+  For example: `/issue-jwt?expires_at=2022-01-02T00:00:00Z&namespace_id=1` will generate a token, valid for all containers inside namespace with ID 1, and this token will be valid until January 2nd 2022.
 </Message>
 
 The token will have the following claims:
 
 ```yaml
 {
- "application_claim": [
-   {
-     "namespace_id": "string",
-     "application_id": "string" // optional: id of the container
-   }
- ]
+  "application_claim": [
+    {
+      "namespace_id": "string",
+      "application_id": "string" // optional: id of the container
+    }
+  ]
 }
 ```
 
 <Message type="important">
-
-* Tokens are not stored by Scaleway and can not be retrieved if lost. However, new tokens can be generated.
-* Token revocation is not yet supported. The best way to reset tokens is to destroy and recreate the namespaces and all of their containers.
-
+  * Tokens are not stored by Scaleway and can not be retrieved if lost. However, new tokens can be generated.
+  * Token revocation is not yet supported. The best way to reset tokens is to destroy and recreate the namespaces and all of their containers.
 </Message>
 
 ### Using curl
@@ -76,13 +67,13 @@ The following steps are designed for [Talend API tester](https://chrome.google.c
 1. Specify the `GET` method.
 2. Enter the API URL. 
     * For namespaces:
-      ```
-      https://api.scaleway.com/containers/v1beta1/regions/fr-par/issue-jwt?namespace_id={your_namespace_id}&expires_at={expiration_date}
-      ```
+    ```
+    https://api.scaleway.com/containers/v1beta1/regions/fr-par/issue-jwt?namespace_id={your_namespace_id}&expires_at={expiration_date}
+    ```
     * For Containers:
-      ```
-      https://api.scaleway.com/containers/v1beta1/regions/fr-par/issue-jwt?container_id={your_container_id}&expires_at={expiration_date}
-      ```
+    ```
+    https://api.scaleway.com/containers/v1beta1/regions/fr-par/issue-jwt?container_id={your_container_id}&expires_at={expiration_date}
+    ```
 3. Add a `X-Auth-Token` header with your Scaleway API key as value.
 4. Send the request.
 5. Copy the returned token.
