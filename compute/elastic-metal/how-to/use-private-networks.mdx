@@ -96,7 +96,6 @@ The following commands show how to configure the network interface on an Elastic
   ```bash
   sudo ip link add link eno1 name eno1.1234 type vlan id 1234
   ```
-
 5. Enter the following command to bring up the virtual link. Make the necessary replacements for `eno1` and `1234` as you did previously.
   ```
   sudo ip link set eno1.1234 up
