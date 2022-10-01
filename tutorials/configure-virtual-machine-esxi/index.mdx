@@ -37,15 +37,11 @@ There are two ways to install EXSi on a Dedibox server: through the [Dedibox Con
 ### Via the Dedibox Console
 
 1. Access the server page of your Dedibox on the console and click **Install**:
-
-  <Lightbox src="scaleway-click-on-install.webp" width="800" alt="" />
-
+    <Lightbox src="scaleway-click-on-install.webp" width="800" alt="" />
 2. Click **VIRTUALIZATION DISTRIBUTIONS**:
-  <Lightbox src="scaleway-virtualizaton-distributions.webp" width="800" alt="" />
-
+    <Lightbox src="scaleway-virtualizaton-distributions.webp" width="800" alt="" />
 3. Select EXSi on the distribution menu, then **EXSi 7.0U1c 64BITS** under **Choose a Version** and click **Install EXSI**:
-  <Lightbox src="scaleway-install-exsi.webp" width="800" alt="" />
-
+    <Lightbox src="scaleway-install-exsi.webp" width="800" alt="" />
 4. Complete the next steps by including your **Partitioning** and **System Configuration** preferences when requested and conclude installation.
 
 ### Via KVM over IP
@@ -55,7 +51,6 @@ Your server can also be booted from an ESXi ISO file through a KVM over IP devic
 ESXi ISO images are available on VMWare's ["Evaluate Products"](https://www.vmware.com/try-vmware.html) page.
 
 1. To begin installation via KVM over IP, access the server page of your Dedibox on the console and click **Install**.
-
 2. Click **KVM over IP**:
 
   <Lightbox src="scaleway-kvm-over-ip.webp" width="800" alt="" />
@@ -83,11 +78,9 @@ The process from this step forward may differ according to the KVM model being u
 2. Log in with the user `root` and the password set during the installation of ESXi.
 
   <Lightbox src="scaleway-vmware_login.webp" width="800" alt="" />
-
 3. Click **Manage** (1), then **Licensing** (2) followed by **Assign License** and enter the license code for ESXi. A free ESXi license can be obtained directly [from VMware](https://my.vmware.com/en/group/vmware/evalcenter?p=free-esxi7&lp=default).
 
   <Lightbox src="scaleway-vmware_assign_license.webp" width="800" alt="" />
-
 4. Validate the license. The license details are shown:
 
   <Lightbox src="scaleway-vmware_license_added.webp" width="800" alt="" />
@@ -99,7 +92,6 @@ The VMware ESXi hypervisor uses full virtualisation for virtual machines. They c
 1. From the ESXi dashboard, click **Storage** to view the storage dashboard. Click **Datastore Browser** to display the datastore content:
 
   <Lightbox src="scaleway-vmware_datastore_dashboard.webp" width="800" alt="" />
-
 2. Click **Upload** and choose an ISO file on your local computer to upload it to the datastore:
 
   <Lightbox src="scaleway-vmware_datastore_upload.webp" width="800" alt="" />
@@ -109,11 +101,9 @@ The VMware ESXi hypervisor uses full virtualisation for virtual machines. They c
 1. Click **Virtual Machines** in the side menu to display the virtual machines dashboard. Click **Create / Register VM** to launch the virtual machine creation wizard:
 
   <Lightbox src="scaleway-vmware_create_vm.webp" width="800" alt="" />
-
 2. Select **Create a new virtual machine** and click **Next**:
 
   <Lightbox src="scaleway-vmware_create_vm_01.webp" width="800" alt="" />
-
 3. Select a **name** and the **guest OS type** for the virtual machine:
 
   <Lightbox src="scaleway-vmware_create_vm_02.webp" width="800" alt="" />
@@ -123,7 +113,6 @@ The VMware ESXi hypervisor uses full virtualisation for virtual machines. They c
     - **Compatability**: `ESXi 7.0 virtual machine`
     - **Guest OS family**: `Linux`
     - **Guest OS version**: `Ubuntu Linux (64-bit)`
-
 4. Select the datastore in which to store the configuration and disk files:
 
   <Lightbox src="scaleway-vmware_create_vm_04_add_cdrom.webp" width="800" alt="" />
@@ -131,7 +120,6 @@ The VMware ESXi hypervisor uses full virtualisation for virtual machines. They c
   The virtual machine settings display. 
   
 5. Set the amount of RAM and CPU cores according to your requirements. Click **Add other device** and choose **CD/DVD drive** from the list of options.
-
 6. Click the **Network Adapter 1** to display the advanced settings. Set the **Mac Address** settings to **Manual** (1) and enter the **virtual MAC address** (2) associated with the failover IP of the virtual machine. Click **New CD/DVD Drive** to display the advanced settings. Choose **Datastore ISO file** from the drop-down menu. Click **Browse** (3) in the **CD/DVD Media** section to select the ISO file containing the operating system installer.
 
   <Lightbox src="scaleway-vmware_create_vm_04_vmac_iso.webp" width="800" alt="" />
@@ -141,11 +129,9 @@ The VMware ESXi hypervisor uses full virtualisation for virtual machines. They c
 7. Click **Finish** to start the creation of the virtual machine and to leave the configuration wizard:
 
   <Lightbox src="scaleway-vmware_create_vm_05.webp" width="800" alt="" />
-
 8. Tick the checkbox of the VM (1) on the virtual machine dashboard, then click **Power On** (2) to boot the virtual machine from the ISO file.
 
   <Lightbox src="scaleway-vmware_start_vm.webp" width="800" alt="" />
-
 9. Double click the console preview to launch the console of the virtual machine. You can now run the installation of your operating system:
 
   <Lightbox src="scaleway-vmware_install_os.webp" width="800" alt="" />  

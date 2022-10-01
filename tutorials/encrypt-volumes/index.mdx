@@ -32,19 +32,16 @@ When storing data on your Instances, some of your data might be in the form of s
 ## Installing Cryptsetup
 
 1. [Connect to your Instance via SSH](/compute/instances/how-to/connect-to-instance/)
-
 2. Update the apt sources and the software already installed on the Instance:
 
   ```
   apt update && apt upgrade -y
   ```
-
 3. Install Cryptsetup on the Instance:
 
   ```
   apt install cryptsetup-bin
   ```
-
 4. Enter the command `lsblk`. This lists your volumes to help you to determine which is the additional volume to encrypt:
 
   ```
@@ -90,7 +87,6 @@ The name of your additional volume may be different, eg `sda` or other, dependin
 
   Are you sure? (Type uppercase yes):
   ```
-
 2. Type `YES` and press the Enter key, to confirm you want to overwrite the data.
 
   <Message type="important">
@@ -100,11 +96,9 @@ The name of your additional volume may be different, eg `sda` or other, dependin
   </Message>
 
   A message appears, asking you to configure a passphrase. A passphrase is the key to decrypt the data on the volume. 
-
 3. Type your passphrase and press Enter. For increased security, your passphrase should be a secure and random phrase. If required, you may use a [Passphrase generator](https://www.useapassphrase.com/).
 
   A message appears, asking you to verify your passphrase.
-
 4. Type your passphrase again to confirm it, then press Enter on your keyboard to encrypt the disk.
 
   <Message type="important">
@@ -122,13 +116,11 @@ Your volume is now encrypted.
   ```
   cryptsetup luksOpen /dev/vdb crypthome
   ```
-
 2. Enter your passphrase when requested, and press the Enter key on your keyboard:
 
   ```
   Enter passphrase for /dev/vdb:
   ```
-
 3. Run the following command to verify the status of the encrypted volume:
 
   ```
@@ -160,7 +152,6 @@ Start by writing zeros to the encrypted volume. This allocates zeros to block da
   ```
   apt install pv
   ```
-
 2. Launch the following command to run `dd`:
 
   ```
@@ -182,7 +173,6 @@ Start by writing zeros to the encrypted volume. This allocates zeros to block da
   56+64648 records out
   49997902848 bytes (50 GB, 47 GiB) copied, 331.56 s, 151 MB/s
   ```
-
 3. Create a filesystem on the encrypted volume by running the following command:
 
   ```
@@ -212,13 +202,11 @@ Start by writing zeros to the encrypted volume. This allocates zeros to block da
   ```
   mkdir /mnt/crypthome
   ```
-
 2. Mount the encrypted volume with the following command:
 
   ```
   mount /dev/mapper/crypthome /mnt/crypthome/
   ```
-
 3. Verify with `lsblk` that the volume is mounted:
 
   ```
@@ -239,13 +227,11 @@ Start by writing zeros to the encrypted volume. This allocates zeros to block da
   ```
   umount /mnt/crypthome
   ```
-
 2. Close the LUKS session with Cryptsetup:
 
   ```
   cryptsetup luksClose crypthome
   ```
-
 3. Verify that the volume has been unmounted with `lsblk`:
 
   ```
@@ -270,13 +256,11 @@ Start by writing zeros to the encrypted volume. This allocates zeros to block da
   ```
   cryptsetup luksOpen /dev/vdb crypthome
   ```
-
 2. Mount the volume in the Instance:
 
   ```
   mount /dev/mapper/crypthome /mnt/crypthome
   ```
-
 3. Verify that the volume appears with `lsblk` :
 
   ```
@@ -318,7 +302,6 @@ LUKS supports up to 8 passphrases for each encrypted volume. You may wish to cha
   ```
 
   As you can see 7 slots are available for the volume.
-
 2. Type the following command and enter any current passphrase:
 
   ```
@@ -331,7 +314,6 @@ LUKS supports up to 8 passphrases for each encrypted volume. You may wish to cha
   Enter new passphrase for key slot:
   Verify passphrase:
   ```
-
 3. Verify that the new passphrase has been taken into account by retrieving the LUKS headers:
 
   ```
@@ -350,7 +332,6 @@ LUKS supports up to 8 passphrases for each encrypted volume. You may wish to cha
   ```
 
   As you can see only 6 slots are available now, meaning that the new key has been configured.
-
 4. Remove the old passphrase with the following command:
 
   ```
@@ -358,7 +339,6 @@ LUKS supports up to 8 passphrases for each encrypted volume. You may wish to cha
   ```
 
   Enter the passphrase to delete and confirm by pressing Enter.
-
 5. Verify that the key has been removed by retrieving the LUKS headers:
 
   ```

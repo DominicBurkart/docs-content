@@ -37,7 +37,6 @@ Express is a minimal and flexible Node.js web application framework.
   mkdir myapp
   cd myapp
   ```
-
 2. Use `npm init` to create a package.json.
 
   ```
@@ -45,13 +44,11 @@ Express is a minimal and flexible Node.js web application framework.
   ```
 
   The `npm init` command creates an empty project with a `package.json` file. You can answer all the questions or press enter through all of them if you do not want to.
-
 3. Install Express and Socket.io using the `npm` package manager, and save them to our `package.json` file for later.
 
   ```
   npm install socket.io express --save
   ```
-
 4. Install jquery using `npm`.
 
   ```
@@ -65,7 +62,6 @@ Express is a minimal and flexible Node.js web application framework.
   ```
   nano app.js
   ```
-
 2. Paste the following code in the file, save and exit.
 
   ```js
@@ -88,13 +84,11 @@ Express is a minimal and flexible Node.js web application framework.
   We also use it to set the static folder to `/node_modules` since we use npm to serve-up jQuery and we want to be able to reference it in our HTML code.
 
   `App.get` routes HTTP requests to the specified path with a specific call-back function. The `res` object represents the HTTP response that an Express app sends when it gets a request. The `sendFile` sends the file to the specified path. The `server.listen` opens a port and listens for requests coming in.
-
 3. Create an `index.html` file in the `myapp` folder to display a `Hello World` message in the socket.
 
   ```
   nano index.html
   ```
-
 4. Paste the following content in the file:
 
   ```html
@@ -117,13 +111,11 @@ Express is a minimal and flexible Node.js web application framework.
   ```
 
   The src scripts point to files in our `node_modules` folder.
-
 5. Launch the server.
 
   ```
   node app.js
   ```
-
 6. Open a browser and enter `http://<IP_address>:4200`. It should display the following:
 
 <Lightbox src="scaleway-Hello_world.webp" alt="Hello World" />
@@ -146,7 +138,6 @@ In the next steps we connect the client to the server with Socket.io and have it
   ```
 
   The `socket.on('connect')` is an event fired upon a successful connection from the web browser. We then have a function callback that sends the `hello world` message to the server.
-
 2. Edit the `app.js` file to add the following configuration. Add the configuration before `server.listen`.
 
   ```js
@@ -164,7 +155,6 @@ In the next steps we connect the client to the server with Socket.io and have it
 
     - `io.on` - is listening for connections. When it receives one it will report to the console `client connected...`. 
     - `'client.on('join')` - waits for a message from the client to `join`. It will then log in to the console.
-
 3. Launch `node` again.
 
   ```
@@ -197,7 +187,6 @@ You must set up your server locally before following the next steps.
   ```
 
     - `client.emit` will send a message back to the client that just connected with a message using 'messages'.
-
 2. Add a new `socket.on` message event in the `index.html`.
 
   ```js
@@ -237,7 +226,6 @@ In the previous examples we learned that we can send a message to the server and
   We added in a new `JQuery .submit` event handler which prevents the form from submitting and instead sends a message to the server with the values of the input field in messages.
 
   Also, we added a new socket event listener for 'broad' which updates our div with the message returned.
-
 2. Update the `app.js` file.
 
   ```js

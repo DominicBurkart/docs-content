@@ -46,7 +46,6 @@ We use two Instances, one located in the `PAR-1` region, the other located in th
   ```
   ssh root@my.compute.instance.ip
   ```
-
 2. Update and upgrade your system, install the kernel headers for your version and install WireGuard using `apt`:
 
   ```
@@ -54,9 +53,7 @@ We use two Instances, one located in the `PAR-1` region, the other located in th
   apt install linux-headers-$(uname --kernel-release) # installs the right kernel headers for your version
   apt install wireguard
   ```
-
 3. Check that Wireguard is successfuly installed by running: `wg`. If you get no output, this indicates correct installation. In order to check that the WireGuard kernel module has loaded you can run `modprobe wireguard`. Depending on your system configuration, a reboot might be required to activate the `wireguard` module.
-
 4. Generate the public and private keys for WireGuard:
 
 ```
@@ -126,7 +123,6 @@ Create the file `/etc/wireguard/wg0.conf` with the following content. Replace th
   systemctl enable wg-quick@wg0
   systemctl start wg-quick@wg0
   ```
-
 2. Test the VPN connection on each Instance using the `ping` command:
 
   ```
@@ -178,20 +174,17 @@ You can carry out the following steps on your local machine, or any Instance:
   ```
   apt install git python3-pip python3 libncurses-dev -y
   ```
-
 2. Clone the GitHub repository of the configurator script:
 
   ```
   git clone https://github.com/k4yt3x/wg-meshconf
   ```
-
 3. Enter the script's directory and install the requirements for it:
 
   ```
   cd wg-meshconf
   pip3 install -r requirements.txt
   ```
-
 4. Launch the interactive WCG shell:
 
   ```
@@ -199,7 +192,6 @@ You can carry out the following steps on your local machine, or any Instance:
   ```
 
   Every profile created in the WireGuard Mesh Configurator (WCG) contains a complete network topology. Start by creating a new profile for the mesh network. Once a new profile is created, you will be prompted automatically to enroll new peers.
-
 5. Type `new` in the WCG shell to launch the creation of a new profile:
 
   ```
@@ -213,7 +205,6 @@ You can carry out the following steps on your local machine, or any Instance:
   [WGC]> new
   [!] WARNING: This will flush the currently loaded profile!
   ```
-
 6. Type `add` to add a new peer and enter the details of the new peer:
 
   ```
@@ -234,7 +225,6 @@ You can carry out the following steps on your local machine, or any Instance:
   ```
 
   Repeat these step for all peers in the mesh network.
-
 7. Export everything into Wireguard configuration files, using the following command to generate the configuration files and dump them in the `/tmp/wg-conf` directory:
 
   ```
@@ -270,9 +260,7 @@ You can carry out the following steps on your local machine, or any Instance:
   [WGC]> exit
   [!] WARNING: Exiting
   ```
-
 8. Copy the created Wireguard configuration files to each Instance using any method you like (SFTP, FTPS, plain copy & paste, etc.). Make sure to store the configuration at `/etc/wireguard/wg0.conf` to be able to use the `wg-quick` command for express configuration.
-
 9. SSH into each of the Instance peers and configure WireGuard. We use the `wg-quick` command to create an interface using our generated configuration and make it a service, so the interface will be configured aSticksutomatically duing system boot. Repeat these step on any of the peers.
 
   ```

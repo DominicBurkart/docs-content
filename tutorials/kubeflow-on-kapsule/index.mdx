@@ -30,9 +30,7 @@ In this tutorial you will learn how to deploy Kubeflow and its services on [Kube
 ## Creating a Kubernetes Kapsule cluster
 
 1. Log in into your [account](https://console.scaleway.com). 
-
 2. Click **Kubernetes** on the side menu. The Kubernetes section displays.
-
 3. Click **Create a cluster** to create a new Kubernetes cluster.
 
     - **Choose your cluster type**: Choose a Kubernetes Kapsule cluster.
@@ -52,7 +50,6 @@ In this tutorial you will learn how to deploy Kubeflow and its services on [Kube
     If you choose an under-dimensioned configuration for your base cluster, and you later add GPU nodes to your pool with autoscaling, you may have problems with automatic downscaling of the GPU nodes. This can happen when  Kubeflow system pods deployed on the GPU nodes prevent downscaling, due to the high CPU/memory pressure on the CPU nodes.
 
     </Message>
-
 4. Click **Create a cluster** to launch the cluster's creation. Once it is ready, your cluster's details display:
 
 ## Installing kubectl on your local computer
@@ -78,19 +75,16 @@ In this tutorial you will learn how to deploy Kubeflow and its services on [Kube
     ```
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
     ```
-
 2. Make the downloaded binary executable.
 
     ```
     chmod +x ./kubectl
     ```
-
 3. Move the `kubectl` in to your PATH.
 
     ```
     sudo mv ./kubectl /usr/local/bin/kubectl
     ```
-
 4. Test to ensure the version you installed is up-to-date:
 
     ```
@@ -104,9 +98,7 @@ A `.kubeconfig` file is generated during your cluster's creation. Download the f
 1. Click on **Download file** to download your `.kubeconfig` file in the cluster information page:
 
     <Lightbox src="scaleway-kubeflow_kapsule_console_kubeconfig.webp" alt="" />
-
 2. Set the downloaded file as configuration file for your cluster.
-
 3. Configure the `kubectl` program. Make sure you replace `/$HOME/Downloads/kubeconfig-ClusterName.yaml` with the path of your downloaded .kubeconfig file.
 
     ```
@@ -114,11 +106,9 @@ A `.kubeconfig` file is generated during your cluster's creation. Download the f
     cp $HOME/Downloads/Kubeconfig-ClusterName.yaml $HOME/.kube/config
     kubectl get nodes
     ```
-
 4. Click **Dashboard** in your cluster's **Overview** page, to open the Kubernetes dashboard of your cluster in a new browser window.
 
     <Lightbox src="scaleway-kubernetes-cluster.webp" alt="" />
-
 5. The Kubernetes dashboard displays. You can inspect the components and their status from it:
 
     <Lightbox src="scaleway-kubeflow_kubedash_overview.webp" alt="" />
@@ -139,13 +129,11 @@ A `.kubeconfig` file is generated during your cluster's creation. Download the f
     tar xvf ~/bin/kfctl_v1.2.0-0-gbc038f9_darwin.tar.gz -C ~/bin/
     chmod u+x ~/bin/kfctl
     ```
-
 2. Run a test to ensure you have installed the latest version of `kfctl`:
 
     ```
     kfctl version
     ```
-
 3. Set several environment variables to make the deployment easier:
 
     ```bash
@@ -164,7 +152,6 @@ A `.kubeconfig` file is generated during your cluster's creation. Download the f
     # The following configuration installs Istio by default.
     export CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/v1.2-branch/kfdef/kfctl_k8s_istio.v1.2.0.yaml"
     ```
-
 4. Deploy Kubeflow:
 
     ```
@@ -191,9 +178,7 @@ Kubeflow comes with a graphical interface that provides quick access to all Kube
     ```
     kubectl port-forward -n istio-system svc/istio-ingressgateway 8080:80
     ```
-
 2. Type the following URL in the address bar of your web browser to access the Kubeflow dashboard: http://localhost:8080/
-
 3. In order to use Kubeflow, a namespace for your account must be created the first time you access the Dashboard. Namespace. A namespace is a collection of Kubeflow services. Resources created within a namespace are isolated to that namespace. Upon your first connection you will be guided to create a new namespace. Click **Start Setup**:
 
     <Lightbox src="scaleway-kubeflow_kfdash_setup.webp" alt="" />
@@ -201,7 +186,6 @@ Kubeflow comes with a graphical interface that provides quick access to all Kube
     Enter a name for your new namespace, in our example we use `kubeflow-user` and click **Finish**:
 
     <Lightbox src="scaleway-kubeflow_kfdash_namespace.webp" alt="" />
-
 4. The Kubeflow dashboard displays. Select the `kubeflow-user` namespace from the drop-down list on the top left corner before continuing with the next step:
 
     <Lightbox src="scaleway-kubeflow_kfdash_overview.webp" alt="" />
@@ -211,9 +195,7 @@ Kubeflow comes with a graphical interface that provides quick access to all Kube
 1. Click **Notebook Servers** in the Kubeflow dashboard:
 
     <Lightbox src="scaleway-kubeflow_kfdash_notebook_server.webp" alt="" />
-
 2. A list of your Jupyter Notebook servers displays. Click **New Server** to launch the server creation wizard.
-
 3. Enter the details of your new Juypter Notebook server:
 
     - **Name:** A name for your server, for example `jupyter-server`
@@ -230,13 +212,10 @@ Kubeflow comes with a graphical interface that provides quick access to all Kube
     With Kubeflow Pipelines, the Jupyter server does not need to run on a GPU node (but the pipeline's task might be executed on GPU nodes). However if you want to add GPU to your server, don't forget to add a GPU node pool to your cluster.
 
     </Message>
-
 4. Click **Launch** to create the new Jupyter Notebook server.
-
 5. Once the server is ready, click **Connect** to open Jupyter Notebook in a new browser tab.
 
     <Lightbox src="scaleway-kubeflow_kfdash_connect.webp" alt="" />
-
 6. Check the Persistent Volumes section of your cluster from the Kubernetes Dashboard. You will notice that a new 300 Gi Block Storage volume has been created for Jupyter:
 
     <Lightbox src="scaleway-kubeflow_kubedash_pervolume.webp" alt="" />
@@ -252,11 +231,9 @@ Using a GPU pool configured with autoscaling from 0 nodes to the max number of n
 1. Click the **Pools** tab of your clusters information page in the [Scaleway Console](https://console.scaleway.com/kapsule/)
 
     <Lightbox src="scaleway-kubeflow_scwconsole_pools.webp" alt="" />
-
 2. Click **+ Add a pool** to add a new pool:
 
     <Lightbox src="scaleway-kubeflow_scwconsole_addpool.webp" alt="" />
-
 3. Enter the details of the new pool
 
     - **Pool name:** A name to identify the pool, we use `gpu-pool` in our example.
@@ -271,9 +248,7 @@ Using a GPU pool configured with autoscaling from 0 nodes to the max number of n
     Your configuration should look like the following example:
 
     <Lightbox src="scaleway-kubeflow_scwconsole_newpool.webp" alt="" />
-
 4. Click **Add a new pool** to confirm.
-
 5. The newly created pool `gpu-pool` displays in the list of your clusters pools. You can add it to Kubeflow now:
 
     <Lightbox src="scaleway-kubeflow_scwconsole_poollist.webp" alt="" />
@@ -307,7 +282,6 @@ In the following examples we assume our namespace is called `kubeflow`.
 
     kubectl create -f scw_pvc.yaml -n kubeflow
     ```
-
 2. Setup a nfs-server Replication Controller
 
     ```bash
@@ -348,7 +322,6 @@ In the following examples we assume our namespace is called `kubeflow`.
 
     kubectl create -f nfs-server-rc.yaml -n kubeflow
     ```
-
 3. Setup a `nfs-server` service
 
     ```bash
@@ -371,7 +344,6 @@ In the following examples we assume our namespace is called `kubeflow`.
 
     kubectl create -f nfs-server-service.yaml -n kubeflow
     ```
-
 4. Setup a nfs `PersistentVolume`
 
     ```bash
@@ -396,7 +368,6 @@ In the following examples we assume our namespace is called `kubeflow`.
 
     kubectl create -f nfs-pv.yaml -n kubeflow
     ```
-
 5. Configure a nfs `PersistentVolumeClaim`
 
     ```bash
@@ -418,14 +389,12 @@ In the following examples we assume our namespace is called `kubeflow`.
     ```
 
     The NFS server is configured now. In the next steps, configure Kubeflow to be able to write to this volume:
-
 6. Open a shell on the NFS server pod:
 
     ```bash
     NFSPOD=`kubectl -n kubeflow get pods --selector=role=nfs-server| tail -1 | awk '{print $1}'`
     kubectl -n kubeflow exec -it $NFSPOD -- bash
     ```
-
 7. Create and configure a data directory in the pod:
 
     ```bash
@@ -459,13 +428,11 @@ In the following examples we assume our namespace is called `kubeflow`.
           claimName: nfs
     EOF
     ```
-
 2. Create a Pod from this specifications:
 
     ```
     kubectl apply -f nfs_access.yaml -n kubeflow
     ```
-
 3.  Connect with a shell to this pod:
 
     ```bash
@@ -510,7 +477,6 @@ In the following examples we assume our namespace is called `kubeflow`.
     ```
 
     For more information on Kubeflow pipelines refer to the [official documentation](https://www.kubeflow.org/docs/pipelines/sdk/).
-
 4. Delete the data-access pods when you have finished
 
     ```

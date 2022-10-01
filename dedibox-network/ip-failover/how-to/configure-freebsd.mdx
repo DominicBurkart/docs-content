@@ -22,7 +22,6 @@ This page shows you how to configure a [failover IP](/dedibox-network/ip-failove
 ## Failover IP configuration on FreeBSD
 
 1. Connect to your server using SSH.
-
 2. Open the network configuration file in a text editor, for example `nano`:
 
     ```sh 
@@ -46,9 +45,7 @@ This page shows you how to configure a [failover IP](/dedibox-network/ip-failove
     fsck_y_enable="YES" 
     ifconfig_em0_alias0="inet FAILOVER_IP netmask 255.255.255.255"
     ```
-
 4. Save the file and exit the text editor.
-
 5. Restart the network to activate the new IP address: 
 
     ```

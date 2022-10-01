@@ -48,17 +48,13 @@ This tutorial is divided in two parts:
 </Message>
 
 1. Click the **Easy Deploy** tab on your clusters overview page. The Easy Deploy feature displays.
-
 2. Click **Deploy an Application**. The application deployment wizard displays.
-
 3. Select **Application Library**, type **Traefik** in the search bar and select the **Traefik 2 Ingress** application. 
 
 <Lightbox src="scaleway_choose_application.webp" alt="" />
-
 4. Enter the name `traefik` for the application and type the `kube-system` namespace name.
 
 <Lightbox src="scaleway_application_name.webp" alt="" />
-
 5. Click **Deploy an application** to deploy the Load Balancer on your cluster.
 
 
@@ -89,14 +85,12 @@ To expose Traefik 2 with a Scaleway LoadBalancer, deploy the following `yaml` fi
     selector:
       app.kubernetes.io/name: traefik
   ```
-
 2. Use `kubectl` to deploy the configuration:
 
   ```
   $ kubectl create -f traefik-loadbalancer.yml
   service/traefik-ingress created
   ```
-
 3. Verify that your LoadBalancer has been deployed correctly:
 
   ```
@@ -142,7 +136,6 @@ In this step, we deploy a test application called "tea coffee" which is only pri
   ```
   $ kubectl create -f https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/master/examples/complete-example/cafe.yaml
   ```
-
 2. Create an associated ingress object pointing to teacoffee.mytest.com by creating and editing the file `ingress-teacoffee.yml` in your favorite text editor:
 
   ```yaml
@@ -170,14 +163,12 @@ In this step, we deploy a test application called "tea coffee" which is only pri
                   port:
                     number: 80
   ```
-
 3. Run the following command to setup the configuration:
 
   ```
   $ kubectl create -f ingress-teacoffee.yml
   ingress.networking.k8s.io/cafe-ingress created
   ```
-
 4. You can now use `curl` to send a HTTP request this URL. Traefik 2 is working correctly with your wildcard DNS in plain, unencrypted HTTP (web unsecure).
 
   ```
@@ -188,7 +179,6 @@ In this step, we deploy a test application called "tea coffee" which is only pri
   URI: /tea
   Request ID: f3b7f1bcd5dd841d420236906146af9f
   ```
-
 5. To proceed with the tutorial, delete the ingress object created. It will be replaced in future steps.
 
   ```
@@ -229,13 +219,11 @@ Any modification to the Traefik2 deployed by Kapsule may be overwritten by the r
           - --providers.kubernetesingress
   []
   ```
-
 2. Delete the existing Traefik pods in order to get the new arguments.
 
   ```
   $ kubectl -n kube-system delete pod -l app.kubernetes.io/name=traefik
   ```
-
 3. Use the command below to install cert-manager and its needed CRD ([Custom Resource Definitions](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)):
 
   ```
@@ -311,7 +299,6 @@ Any modification to the Traefik2 deployed by Kapsule may be overwritten by the r
             ingress:
               class: traefik
   ```
-
 2. Use `kubectl` to apply the configuration:
 
   ```
@@ -344,14 +331,12 @@ In this step you will create the Let's Encrypt certificate by specifying:
       name: letsencrypt-prod
       kind: ClusterIssuer
   ```
-
 2. Apply the configuration using `kubectl`:
 
   ```
   $ kubectl create -f mycert.yaml
   certificate.cert-manager.io/teacoffee-cert created
   ```
-
 3. Check the certificate has been correctly created (you should see "Ready" in the condition):
 
   ```
@@ -381,7 +366,6 @@ In this step you will create the Let's Encrypt certificate by specifying:
     Normal  Requested  11m   cert-manager  Created new CertificateRequest resource "teacoffee-cert-4271191437"
     Normal  Issued     48s   cert-manager  Certificate issued successfully
   ```
-
 4. Create a Standard Ingress, with TLS enabled (with the name of the secret created by the creation of the certificate, in our case: `teacoffee-cert`). To do so create file `mysite.yaml`, copy the following content into it and run kubectl with the collowing command: `kubectl create -f mysite.yaml`
 
   ```
@@ -414,7 +398,6 @@ In this step you will create the Let's Encrypt certificate by specifying:
                   port:
                     number: 80
   ```
-
 5. Check your website is accessible in HTTPS:
 
     ```
@@ -447,13 +430,11 @@ In this step you will create the Let's Encrypt certificate by specifying:
     Request ID: b7a45b7b20bd712df75f8ce8596db50d
     * Connection #0 to host teacoffee.mytest.com left intact
     ```
-
 6. Access the Traefik 2 dashboard by using this command:
 
   ```
   $ kubectl port-forward -n kube-system $(kubectl get pods -n kube-system --selector "app.kubernetes.io/name=traefik" --output=name | head -n 1) 9000:9000
   ```
-
 7. You can then access the Traefik 2 dashboard with this address: `http://127.0.0.1:9000/dashboard/` (Note the trailing `/`.)
 
   <Lightbox src="scaleway-traefik_dashboard1.webp" alt="" />

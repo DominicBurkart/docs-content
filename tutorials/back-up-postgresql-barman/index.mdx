@@ -46,7 +46,6 @@ Barman is available in the official APT repositories of Ubuntu. Connect to the s
     ```
     sudo apt-get update && sudo apt-get upgrade -y
     ```
-
 2. Install Barman:
 
     ```
@@ -66,13 +65,11 @@ As Barman has been installed on the second server (`pgsql-backup`), it is requir
     ```
     sudo -i -u postgres
     ```
-
 2. Create the user and enter twice the desired password. When asked if the account should have superuser privileges, type **y** and press **Enter**:
 
     ```
     createuser --interactive -P barman
     ```
-
 3. Enable the connection to the server from `pgsql-backup` by editing the file **/etc/postgresql/9.5/postgresql.conf**. Change the value of `listen_addresses` to the new server, or use an asterisk to enable the connection from any IP.
 
     ```
@@ -84,7 +81,6 @@ As Barman has been installed on the second server (`pgsql-backup`), it is requir
     Note that the path to the `postgresql.conf` depends on your PostgreSQL version. Edit `9.5` to the corresponding version number of your PostgreSQL installation.
 
     </Message>
-
 4. Restart the service
 
     ```
@@ -106,13 +102,11 @@ During the installation of Barman on the server `pgsql-backup`, a system user ac
     ```
     sudo passwd barman
     ```
-
 2. Enter the user account:
 
     ```
     sudo -i -u barman
     ```
-
 3. Create the **.pgpass** file for the barman user:
 
     ```
@@ -138,7 +132,6 @@ In order to perform backups without user intervention, we need to set up and cop
     ```
     ssh-keygen -t rsa
     ```
-
 2. Copy the key to the user account **postgres** on `pgsql`:
 
     ```
@@ -153,26 +146,22 @@ In order to perform backups without user intervention, we need to set up and cop
     Now try logging into the machine, with:   "ssh 'postgres@pgsql'"
     and check to make sure that only the key(s) you wanted were added.
     ```
-
 3. Barman also requires access to the postgres account on the server `pgsql-backup`. Copy the key into the directory of the **postgres** user and test the connection:
 
     ```
     ssh-copy-id postgres@localhost
     ssh postgres@localhost -C true
     ```
-
 4. Once this is done, log in as **postgres** user on `pgsql` and generate an SSH key:
 
     ```
     ssh-keygen -t rsa
     ```
-
 5. Copy the generated key to the list of authorized keys of the user **barman** on `pgsql-backup`:
 
     ```
     ssh-copy-id barman@pgsql-backup
     ```
-
 6. Test the connection to the server:
 
     ```
@@ -188,13 +177,11 @@ The configuration of Barman is done on the server `pgsql-backup`.
     ```
     mkdir /etc/barman.d
     ```
-
 2. Open the file `/etc/barman.conf` and remove the leading semicolon (**;**) from the following line:
 
     ```
     ;configuration_files_directory = /etc/barman.d
     ```
-
 3. Enter the directory `/etc/barman.d` and create a file `pgsql.conf` with the following content:
 
     ```
@@ -216,7 +203,6 @@ The configuration of Barman is done on the server `pgsql-backup`.
     ```
 
     Where _10.55.66.77_ should be replaced with the IP of `pgsql-backup`.
-
 2. Open the file `/etc/postgresql/9.5/main/postgresql.conf` and edit the values as shown:
 
     ```
@@ -224,13 +210,11 @@ The configuration of Barman is done on the server `pgsql-backup`.
     archive_mode = on
     archive_command = 'rsync -a %p barman@10.55.66.77:/var/lib/barman/pgsql/incoming/%f'
     ```
-
 3. Restart the postgresql service:
 
     ```
     sudo systemctl restart postgresql
     ```
-
 4. Check if the connection to the server `pgsql` works from Barman, by runnning the command `barman check pgsql` after logging into the **barman** user account on `pgsql-backup`:
 
     ```
@@ -267,13 +251,11 @@ The configuration of Barman is done on the server `pgsql-backup`.
     Backup end at xlog location: 0/20000C0 (000000010000000000000002, 000000C0)
     Backup completed
     ```
-
 2. To view a list of all backups available of `pgsql`, use the command
 
     ```
     barman list-backup pgsql
     ```
-
 3. To view the details about a backup, use the following command:
 
     ```
@@ -291,7 +273,6 @@ It is possible to import the backup in the PostgreSQL server running on `pgsql-b
     ```
     sudo systemctl stop postgresql
     ```
-
 2. Load the backup into the database with the following command:
 
     ```
@@ -308,7 +289,6 @@ It is possible to import the backup in the PostgreSQL server running on `pgsql-b
     Generating archive status files
     Your PostgreSQL server has been successfully prepared for recovery!
     ```
-
 3. Once the backup has been imported, restart the postgresql service:
 
     ```
@@ -326,13 +306,11 @@ It is possible to run Barman automatically to backup the content of your databas
     ```
     sudo -i -u barman
     ```
-
 2. Edit the crontab of the user:
 
     ```
     crontab -e
     ```
-
 3. To run a backup daily at 3:30, add the following line to the cron tab and save it:
 
     ```

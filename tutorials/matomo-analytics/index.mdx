@@ -37,13 +37,11 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
   ```
   apt update && apt -y upgrade
   ```
-
 2. Install the required software via apt.
 
   ```
   apt install -y ufw nginx mariadb-server php-fpm php-mysql php-curl php-gd php-cli php-xml php-mbstring software-properties-common
   ```
-
 3. [Secure the MariaDB server](https://www.scaleway.com/en/docs/tutorials/mariadb-ubuntu-bionic/#securing-mariadb) by executing the following command.
 
   ```
@@ -51,7 +49,6 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
   ```
 
   When asked for the current MySQL root password, press **Enter** as no password is set by default.
-
 4. Install [Certbot](https://certbot.eff.org/) to manage the TLS/SSL certificate
 
   ```
@@ -65,19 +62,16 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
   ```
   cd /var/www/html
   ```
-
 2. Download the latest release of Matomo.
 
   ```
   wget https://builds.matomo.org/matomo-latest.tar.gz
   ```
-
 3. Unpack Matomo.
 
   ```
   tar xfz matomo-latest.tar.gz
   ```
-
 4. Set the ownership of the Matomo files to the `www-data` user.
 
   ```
@@ -97,7 +91,6 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
   ```
   nano /etc/nginx/sites-available/matomo.example.com
   ```
-
 2. Copy the following content into the configuration file.
 
   ```
@@ -121,25 +114,21 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
           }
   }
   ```
-
 3. Enable the newly created site by creating a symlink.
 
   ```
   ln -s /etc/nginx/sites-available/matomo.example.com /etc/nginx/sites-enabled/
   ```
-
 4. Check the Nginx configuration file for possible errors.
 
   ```
   nginx -t
   ```
-
 5. Reload Nginx to activate the new configuration.
 
   ```
   service nginx reload
   ```
-
 6. [Run Certbot](/tutorials/installation-lemp-ubuntu-bionic#configuring-ssl-with-let's-encrypt) with the `--nginx` flag to request a Let's Encrypt TLS/SSL certificate for the newly created server block.
 
   ```
@@ -159,7 +148,6 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
     The password of the MySQL root user is the one configured during the secure installation of MySQL.
 
   </Message>
-
 2. Run the following commands from the MySQL shell to create the database for Matomo.
 
   ```
@@ -177,7 +165,6 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
 
   Matomo launches some automatic checks if all pre-requirements are fulfilled.
 2. Click **Next** to continue with the installation, if all prerequisites are met.
-
 3. Proceed with the database configuration.
 
   Enter the following information for your database:
@@ -191,11 +178,9 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
   Click **Next** to proceed with the installation.
 
   Matomo verifies the MySQL/MariaDB credentials. If all is in order, the database structure is created automatically and a success message displays.
-
 4. Click **Next** to continue with the installation:
 
   <Lightbox src="scaleway-matomo-setup2.webp" alt="" />
-
 5. Configure a super-user (or admin user) for Matomo. This will be the main user who can configure all settings and can add additional users and sites:
 
   Enter the following credentials for your user:
@@ -207,7 +192,6 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
     - Tick the second box if you want to receive commercial information from Matomo by email (optional)
 
   Click **Next** to create the super user account and proceed with the installation.
-
 6. Set up the first website you want Matomo to track and analyze.
 
   Enter the following information for your website:
@@ -225,7 +209,6 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
   </Message>
 
   A tracking code appears. Ensure that the tracking code is on every page of your website. It is recommended to put it in the header-section of the website, immediately before the closing `</head>` tag.
-
 7. Copy the displayed tracking code and put it into your website header. The tracking code looks like the following example:
 
   ```js

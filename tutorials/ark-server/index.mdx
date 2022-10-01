@@ -58,19 +58,16 @@ Creating an ARK server can be done in a few steps on a [Scaleway Instance](https
 </Message>
 
 1. Connect to your Instance using [SSH](/compute/instances/how-to/connect-to-instance).
-
 2. Update the `apt` packet cache and upgrade the software already installed on the Instance:
 
     ```
     apt update && apt upgrade -y
     ```
-
 3. Create a new `steam` user account:
 
     ```
     useradd -m steam
     ```
-
 4. The ARK server application requires [SteamCMD](https://developer.valvesoftware.com/wiki/SteamCMD), a command-line version of the Steam client. To install it, the `multiverse` repository and the `i386` architecture are required. Configure these settings and update the `apt` package manager before installing the SteamCMD client:
 
     ```
@@ -83,7 +80,6 @@ Creating an ARK server can be done in a few steps on a [Scaleway Instance](https
     During installation, you are requested to agree to Steam's license agreement. Use the **Tab** key to move to **OK**, then press **Enter** to accept the terms:
 
     <Lightbox src="scaleway-steam_terms.webp" alt="" />
-
 5. Enter the `steam` user account and create a new directory for the ARK server.
 
     <Message type="note">
@@ -96,7 +92,6 @@ Creating an ARK server can be done in a few steps on a [Scaleway Instance](https
     su steam
     mkdir -p /home/steam/servers/ark
     ```
-
 6. Start the `steamcmd` client:
 
     ```
@@ -112,7 +107,6 @@ Creating an ARK server can be done in a few steps on a [Scaleway Instance](https
 
     Steam>
     ```
-
 7. Log in as `anonymous` user to the steam service, set the directory for the ARK server files (`/home/steam/servers/ark`), and download the application with the ID `376030` for "Ark: Survival Evolved". Then leave the Steam console using the `quit` command:
 
     ```
@@ -131,13 +125,11 @@ Creating an ARK server can be done in a few steps on a [Scaleway Instance](https
       ```
     
     </Message>
-
 8. Leave the `steam` user account:
 
     ```
     exit
     ```
-
 9. Create a symlink to the `steamcmd` application:
 
     ```
@@ -228,9 +220,7 @@ Creating an ARK server can be done in a few steps on a [Scaleway Instance](https
 After successfully completing the installation of your ARK server, you can connect to it by following these three steps:
 
 1. Start the "Ark: Survival Evolved" client on your local computer and click **Join ARK**.
-
 2. Use the server name filter to find your server and select it.
-
 3. Enter the server password and click **Accept** to connect to it.
 
 ## Conclusion

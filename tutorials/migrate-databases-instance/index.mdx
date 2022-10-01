@@ -46,17 +46,14 @@ This guide consists of two parts, depending on which database Engine your Instan
   ```
   ssh root@<virtual_instance_ip>
   ```
-
 2. Update the `apt` packet cache and upgrade the software already installed on the system:
   ```
   apt update && apt upgrade -y
   ```
-
 3. We use `pg_dump` to dump the content of the database to migrate. It is included in the package `postgresql-client-common`. Install it using apt:
   ```
   apt install postgresql-client-common
   ```
-
 4. Dump the content of the originating database into a local SQL file on the Instance:
   ```
   pg_dump –-host=<host> --port=<port> --username=<user> --dbname=<database_name> --file=<filename>.sql
@@ -89,29 +86,24 @@ In case you do not have a Database for PostgreSQL yet, [create a new one](/manag
 </Message>
 
 1. Enter the Database section of the [Scaleway Console](https://console.scaleway.com/rdb/instances).
-
 2. Select your Database Instance from the list.
-
 3. Click the **Managed Databases** tab, then on **+ Create Database** to create a new database in the instance.
-
 4. Enter the name of the new database and click **Create Database** to confirm the operation:
-<Lightbox src="scaleway-create_database.webp" alt="" />
-
+    <Lightbox src="scaleway-create_database.webp" alt="" />
 5. Click the **Users** tab to visualize a list of all your database users. To create a new user for your database, click **+ Add user**.
 
 6. Click the **Permissions** tab and grant `All` permissions to your database for the user:
-<Lightbox src="scaleway-user_permissions.webp" alt="" />
+    <Lightbox src="scaleway-user_permissions.webp" alt="" />
 
 7. Click the **User Information** tab and enter the credentials for the new user. Confirm by clicking on **Create a user**:
-<Lightbox src="scaleway-user_information.webp" alt="" />
+    <Lightbox src="scaleway-user_information.webp" alt="" />
 
 ### Importing the database
 
 Once you have created both, the destination database and its users, import your data from the SQL file to your Database Instance by using the `psql` command-line tool.
 
 1. Retrieve the database host and port from your Scaleway console. The **Endpoint** information is visible on your Database information page:
-<Lightbox src="scaleway-db_endpoint.webp" alt="" />
-
+    <Lightbox src="scaleway-db_endpoint.webp" alt="" />
 2. Use the `psql` command-line tool to import your database with the following command:
   ```
   psql --file=<filename>.sql --host=<managed_database_endpoint_ip> --port=<managed_database_endpoint_port> --username=<user> --dbname=<database_nme>
@@ -133,17 +125,14 @@ Once you have created both, the destination database and its users, import your 
   ```
   ssh root@<virtual_instance_ip>
   ```
-
 2. Update the `apt` packet cache and upgrade the software already installed on the system:
   ```
   apt update && apt upgrade -y
   ```
-
 3. We use `mysqldump` to dump the content of the database to migrate. It is included in the package `mysql-client`. Install it using apt:
   ```
   apt install mysql-client
   ```
-
 4. Dump the content of the originating database into a local SQL file on the Instance:
   ```
   mysqldump -P <port> -h <host> -u <user> -p <password> --opt <database_name> > <filename>.sql
@@ -166,42 +155,35 @@ In case you do not have a Database for MySQL yet, [create a new one](/managed-da
 </Message>
 
 1. Enter the Database section of the [Scaleway Console](https://console.scaleway.com/rdb/instances).
-
 2. Select your Database Instance from the list.
-
 3. Click the **Managed Databases** tab, then on **+ Create Database** to create a new database in the instance.
-
 4. Enter the name of the new database and click **Create Database** to confirm the operation:
-<Lightbox src="scaleway-create_mysql.webp" alt="" />
-
+    <Lightbox src="scaleway-create_mysql.webp" alt="" />
 5. Click the **Users** tab to visualize a list of all your database users. To create a new user for your database, click **+ Add user**.
-
 6. Click the **Permissions** tab and grant `All` permissions to your database for the user:
-<Lightbox src="scaleway-user_permissions.webp" alt="" />
-
+    <Lightbox src="scaleway-user_permissions.webp" alt="" />
 7. Click the **User Information** tab and enter the credentials for the new user. Confirm by clicking on **Create a user**:
-<Lightbox src="scaleway-user_information.webp" alt="" />
+    <Lightbox src="scaleway-user_information.webp" alt="" />
 
 ### Importing the database
 
 Once you have created both, the destination database and its users, import your data from the SQL file to your Database Instance by using the `psql` command-line tool.
 
 1. Retrieve the database host and port from your Scaleway console. The **Endpoint** information is visible on your Database information page:
-<Lightbox src="scaleway-endpoint_mysql.webp" alt="" />
-
+    <Lightbox src="scaleway-endpoint_mysql.webp" alt="" />
 2. Use the `mysql` command-line tool to import your database with the following command:
-  ```
-  mysql -P <managed_database_endpoint_port> -h <managed_database_endpoint_ip> -u <user> -p <password> <database_name> < <filename>.sql
-  ```
+    ```bash
+    mysql -P <managed_database_endpoint_port> -h <managed_database_endpoint_ip> -u <user> -p <password> <database_name> < <filename>.sql
+    ```
 
-  In the above command, replace the following values as follows:
+    In the above command, replace the following values as follows:
 
-  - `<managed_database_endpoint_port>`: The TCP port of the Endpoint of your Database Instance
-  - `<managed_database_endpoint_ip>`: The IP address of the Endpoint of your Database for MySQL
-  - `<user>`: The username for the Database
-  - `<password>`: The password for the database user
-  - `<database_name>`: The name of the Database
-  - `<filename>`: The file name of the exported database
+    - `<managed_database_endpoint_port>`: The TCP port of the Endpoint of your Database Instance
+    - `<managed_database_endpoint_ip>`: The IP address of the Endpoint of your Database for MySQL
+    - `<user>`: The username for the Database
+    - `<password>`: The password for the database user
+    - `<database_name>`: The name of the Database
+    - `<filename>`: The file name of the exported database
 
 ## Conclusion
 

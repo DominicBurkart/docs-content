@@ -71,7 +71,6 @@ This section is a continuation of to the [Iot Hub CLI quickstart](/iot/iot-hub/a
 	S3Config.Strategy      per_topic
 	UpdatedAt              now
 	```
-
 2. Publish and see the result.
 	```bash
 	sleep 5 # wait a little for the route to start
@@ -168,7 +167,6 @@ This tutorial covers the **PostgreSQL** database system. You can use a [Scaleway
 	DbConfig.Query     INSERT INTO messages VALUES (NOW(), $TOPIC, $PAYLOAD)
 	UpdatedAt          now
 	```
-
 2. Publish a message and check whether it is inserted into the `message` table.
 	```bash
 	sleep 5 # wait a little for the route to start
@@ -199,12 +197,10 @@ You can use a [Scaleway Instance](https://console.scaleway.com/instance/servers)
 	```bash
 	nc -p 80 -l
 	```
-
 2. Define a variable with the public IP address of your Instance.
 	```bash
 	RESTHOST=<the_public_ip_address>
 	```
-
 3. Create the route by running the following command:
 	```bash
 	# Create the IoT Hub Rest Route
@@ -216,7 +212,6 @@ You can use a [Scaleway Instance](https://console.scaleway.com/instance/servers)
 	  rest-config.uri="http://$RESTHOST/" \
 	  rest-config.headers.X-My-Header="Tutorial"
 	```
-
 4. Publish a message and check that it triggers a request on the Instance.
 	```bash
 	sleep 5 # wait a little for the route to start

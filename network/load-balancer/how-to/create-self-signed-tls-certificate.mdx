@@ -36,21 +36,16 @@ A self-signed certificate can be issued easily on any computer using the `openss
 	- `keyout`: This subcommand defines the location and file name of the private key file
 	- `out`: This specifies the path and file name of the generated certificate request.
 	- `sub`: The subject for the certficate. Modify the values of these subcommand to your requirements. The **Common Name** (CN) represents the domain name you are issuing the certificate for.
-
 2. Generate a file containing all **Subject Alternative Names** (SAN) for the certificate. They include websites, IP addresses, common names, etc. They are protected by a single SSL Certificate. 
-
 3. Create a new file called `alt_names.txt`, open it in a text editor and edit the file as follows. Make sure to add all domain names and IP addresses that should be protected by the certificate.
 	```
 	subjectAltName=DNS:example.com,DNS:www.example.com
 	```
-
 4. Save the file and exit the text editor.
-
 5. Generate the self-signed certficate using the `openssl` tool:
 	```
 	openssl x509 -req -extfile alt_names.txt -sha256 -days 365 -in csr.txt -signkey private_key.txt  -out certificate.txt
 	```
-
 6. Check that you have the following files in your folder with the `ls` command.
 	- `csr.txt`: The certficate request
 	- `private_key.txt`: The private key for the certificate

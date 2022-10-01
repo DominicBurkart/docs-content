@@ -31,9 +31,7 @@ In this tutorial you will learn how to deploy an Instance with Ubuntu 20.04 LTS 
 ## Deploying your Ubuntu Linux Instance from the Scaleway console
 
 1. Click **Instances** in the **Compute** section of the console side menu. The [Instances creation page](https://console.scaleway.com/instance/servers/) displays. 
-
 2. Click **Create an Instance**. The Instance creation wizard displays. 
-
 3. Configure your Instance:
     * Choose an Availability Zone
         * An Availability Zone refers to the geographical location in which your Instance will be created.
@@ -61,9 +59,7 @@ We recommend that you create a regular user account for daily operations. The st
 </Message>
 
 1. Click your Instance name on the Instances list. Your Instance's information displays. 
-
 2. Navigate to the **SSH command** section and click **Copy** to copy the command into the clipboard. 
-
 3. Open a terminal and paste the command in the terminal:
     ```
      ssh root@your_instance_id
@@ -83,7 +79,6 @@ The APT package index is a collection of available packages and it generates the
     ```
     apt update
     ```
-
 2. Upgrade the packages already installed on your Instance to the latest version available in Ubuntu's repositories by running the following command:
     ```
     apt upgrade 
@@ -109,13 +104,11 @@ As previously mentioned, we do not recommend always connecting to your Instance 
     adduser scaler
     ```
 2. Answer the questions, starting with the account password. Make sure to use a strong password and optionally fill in any of the other information. Confirm the response to each question by pressing Enter.
-
 3. Add the users to the **superdoers** group (sudo) to be able to launch administrative tasks from this user, without the need to log in as `root`.
     ```
     adduser scaler sudo
     ```
     You can now run commands with administrative permissions by prefixing your command with `sudo`. For example: `sudo apt upgrade`.
-
 4. Add the public SSH key information for the user by opening the file `~/.ssh/authorized_keys` in a text editor and pasting the public key: 
     ```
     nano ~/.ssh/authorized_keys

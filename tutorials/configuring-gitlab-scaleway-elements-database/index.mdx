@@ -35,22 +35,18 @@ Many large technology companies use this tool to manage their software developme
   ```
   ssh root@<your_instance_ip>
   ```
-
 2. Update the `apt` packet cache and upgrade the software already installed on the instance:
   ```
   apt update && apt upgrade -y
   ```
-
 3. Install the following packages using `apt`:
   ```
   apt install -y curl ca-certificates postfix
   ```
-
 4. Add the GitLab package repository and prepare the installation of GitLab Community Edition by running the script:
   ```
   curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | bash
   ```
-
 5. Set your domain name in the `EXTERNAL_URL` variable, then install GitLab using `apt`:
   ```
   EXTERNAL_URL="https://gitlab.example.com" apt install -y gitlab-ce
@@ -67,11 +63,8 @@ Many large technology companies use this tool to manage their software developme
 1. [Create a Managed PostgreSQL Database Instance](/managed-databases/postgresql-and-mysql/how-to/create-a-database/) from the Scaleway console. We name our database `gitlab_production`.
 
   You are taken to your Database's **Overview** page.
-
 2. Click the **Users** tab, then on **Add User**.
-
 3. Enter the username (`gitlab`) and a secure password. In the permission tab, give `ALL` permissions for the user on the `rdb` database.
-
 4. Retrieve the Database Instance **Endpoint** from the **Overview** tab, as it is required for the following steps. The first part, before the colon, is the IP address, and the second part is the port.
 
 ## Configuring the GitLab Database
@@ -79,7 +72,6 @@ Many large technology companies use this tool to manage their software developme
 For the following steps, you should be connected to the Ubuntu Bionic Beaver Instance on which you installed GitLab.
 
 1. Open the file `/etc/gitlab/gitlab.rb` in your favourite text editor (For example `nano` or `vim`).
-
 2. Add the following parameters to the GitLab configuration file:
     ```
     # Disable the built-in Postgres server
@@ -100,14 +92,11 @@ For the following steps, you should be connected to the Ubuntu Bionic Beaver Ins
     - `<SCALEWAY_DATABASE_PORT>`: The port of your Scaleway Database Instance
     - `<SCALEWAY_DATABASE_USERNAME>`: Your Scaleway Database user
     - `<SCALEWAY_DATABASE_PASSWORD>`: Password of your Scaleway Database user
-
 3. Once modified save the file and exit the text editor.
-
 4. Reconfigure GitLab:
   ```
   gitlab-ctl reconfigure
   ```
-
 5. Seed the GitLab database:
 
   <Message type="important">
@@ -131,9 +120,7 @@ For the following steps, you should be connected to the Ubuntu Bionic Beaver Ins
   ```
 
   Enter and confirm the password when prompted.
-
 2. Open your web browser and go to the URL you configured for GitLab (for example: `https://gitlab.example.com`)
-
 3. Log in using the user `root` and the password you defined in step 1.
 
   The GitLab dashboard displays. You can now configure your GitLab installation, add additional users and repositories. All data is stored securely on your Scaleway Database Instance:

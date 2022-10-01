@@ -26,7 +26,6 @@ You can find the API reference documentation at the following link: [IoT API](ht
 If you already have configured the Scaleway command-line interface, you can skip this section. However, we recommend checking it for updates.
 
 1. Follow the [CLI](https://github.com/scaleway/scaleway-cli#Installation) installation steps.
-
 2. Configure your CLI by running the following command and answering the questions:
     ```bash
     scw init
@@ -70,7 +69,6 @@ The Hub creation is done through the `scw iot hub create` command, your CLI conf
     }
 
     ```
-
 2. Poll the hub status until it is ready:
 
     ```bash
@@ -135,7 +133,6 @@ As this tutorial aims to be simple and straightforward, the following commands a
     }
     }
     ```
-
 2. Now create a second device:
 
     ```bash
@@ -160,7 +157,6 @@ Now that everything is set up, let's simulate 2 devices and send data.
     -i $(jq -r '.device.id' dev1.json) \
     -t mytopic/mysubtopic
     ```
-
 2. Run the publisher:
 
     ```bash
@@ -191,7 +187,6 @@ It is possible to connect to the Hub using TLS but without Mutual authentication
     sha1sum iot-hub-ca.pem
     # 13cf3e59ed52d4c4b6bc249e85539d5fd5d572fb  iot-hub-ca.pem
     ```
-
 2. Then extract the certificates from the device JSON files, so that the mosquitto clients may use them:
 
     ```bash
@@ -200,7 +195,6 @@ It is possible to connect to the Hub using TLS but without Mutual authentication
     jq -r '.certificate.crt' dev2.json > dev2.crt
     jq -r '.certificate.key' dev2.json > dev2.key
     ```
-
 3. Run the same test as before, but with the added security:
 
     ```bash

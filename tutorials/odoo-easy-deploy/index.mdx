@@ -37,14 +37,12 @@ In this tutorial, you learn how to install Odoo on a [Scaleway Kubernetes Kapsul
 1. Go to the **Container Registry** dashboard in the [Scaleway Console](https://console.scaleway.com), and click **Create a namespace**.
 
   <Lightbox src="scaleway-registry_home.webp" alt="" />
-
 2. Complete the required information:
 
     - **Namespace name**: any unique name of your choice (must contain only alphanumeic characters, dots and dashes)
     - **Namespace description** a description for your Namespace
     - **Region** a geographical region for your namespace.
     - **Privacy Policy**: you must select **Public** (currently the Easy-Deploy feature only works on public images)
-
 3. Check the summary, then click **Create a namespace**.
 
   <Lightbox src="scaleway-create-namespace.webp" alt="" />
@@ -66,19 +64,16 @@ In this tutorial, you learn how to install Odoo on a [Scaleway Kubernetes Kapsul
   ```
   docker login rg.fr-par.scw.cloud/odoo-tutorial-namespace -u nologin -p $SCW_SECRET_KEY
   ```
-
 2. Pull the latest official Odoo image.
 
   ```
   docker pull odoo:latest
   ```
-
 3. Tag the image, ready to push it to your Container Registry.
 
   ```
   docker tag odoo:latest rg.fr-par.scw.cloud/odoo-tutorial-namespace/odoo:latest
   ```
-
 4. Push the image to your Container Registry.
 
   ```
@@ -86,7 +81,6 @@ In this tutorial, you learn how to install Odoo on a [Scaleway Kubernetes Kapsul
   ```
 
   This process takes some minutes to complete.
-
 5. Wait a minute, then go to the Container Registry dashboard to make sure the image has been successfully created. 
 
   <Lightbox src="scaleway-image-pushed.webp" alt="" />
@@ -96,11 +90,9 @@ In this tutorial, you learn how to install Odoo on a [Scaleway Kubernetes Kapsul
 ## Creating a Kubernetes Kapsule Cluster and deploying Odoo
 
 1. Go to the Kubernetes dashboard in the Scaleway console. 
-
 2. Click **Create a cluster**.
 
   <Lightbox src="scaleway-kapsule_splashscreen.webp" alt="" />
-
 3. Enter the required information:
 
     - **Cluster type**: select one between [Kapsule](/compute/kubernetes/concepts/#kubernetes-kapsule) or [Kosmos (Multi AZ)](/compute/kubernetes/concepts/#kubernetes-kosmos)
@@ -111,32 +103,26 @@ In this tutorial, you learn how to install Odoo on a [Scaleway Kubernetes Kapsul
     - **Node options**: choose your required options, or leave at default values
 
   <Lightbox src="scaleway-create-cluster.webp" alt="" />
-
 4. Check the summary, then click **Create a cluster**.
 
   A process screen displays to inform you that your cluster is being created. You may also see an additional warning that some of your pools are not yet ready. After a few minutes, your cluster should be up and running and ready to use.
 
   <Lightbox src="scaleway-cluser-created.webp" alt="" />
-
 5. Click the **Easy Deploy** tab on the cluster information page. Select the **Registry** option.
 
   <Lightbox src="scaleway-easy-deploy-01.webp" alt="" />
-
 6. Select the namespace, the container and its version to deploy:
 
   <Lightbox src="scaleway-easy-deploy-03.webp" alt="" />
-
 7. Select the **Deployment** type for the container.
 
   <Lightbox src="scaleway-easy-deploy-04.webp" alt="" />
 
   You can leave the other settings at the default values, we will return to them later. 
-
 8. Enter a name and a namespace for your application. 
 
     - **Container name**: any identifying name of your choice for your container (must contain only alphanumeric characters and dashes)
     - **Kubernetes namespace** any identifying name of your choice for the Kubernetes namespace on which your container will run (must contain only alphanumeric characters and dashes)
-
 9. Click **Deploy a container**. The easy deploy overview page displays.
 
 ## Installing a PostgreSQL database
@@ -144,19 +130,15 @@ In this tutorial, you learn how to install Odoo on a [Scaleway Kubernetes Kapsul
 The Odoo image [documentation](https://hub.docker.com/_/odoo) specifies that it requires a running PostgreSQL server, which we will now create:
 
 1. Go to the **Database** dashboard, in the Scaleway console. 
-
 2. Click **Create an Instance**.
 
   <Lightbox src="scaleway-db-create-instance.webp" alt="" />
-
 3. Enter your Database Instance information. Select **PostgreSQL-12** as your database engine. Select your **region** and **node type** (we recommend minimum `DB-DEV-L`). 
 
   <Lightbox src="scaleway-create-db1.webp" alt="" />
-
 4. Enter a **username** and **password** in the **Credentials** section. Then, enter a **name** for your Database Instance. Note all of these down as you will need them in a future step.
 
   <Lightbox src="scaleway-create-db2.webp" alt="" />
-
 5. Check the summary and click **Create an Instance**.
 
   <Lightbox src="scaleway-create-db3.webp" alt="" />
@@ -164,7 +146,6 @@ The Odoo image [documentation](https://hub.docker.com/_/odoo) specifies that it 
   A screen reports the progress of the Database creation. After a minute or two, a screen similar to the following should confirm the creation of your Database Instance.
 
   <Lightbox src="scaleway-db-created.webp" alt="" />
-
 6. Take note of the endpoint information, as you will need it in the next step.
 
 ## Connecting the Odoo application to the PostgreSQL server
@@ -174,36 +155,28 @@ The Odoo image [documentation](https://hub.docker.com/_/odoo) tells us that by m
 1. Go to the **Kubernetes** dashboard in the Scaleway console and select the cluster you created and deployed your Odoo image on.
 
   <Lightbox src="scaleway-edit-cluster.webp" alt="" />
-
 2. Click the **Easy Deploy** tab. Then click <Icon name="[more]" /> **> Edit** next to your Odoo container.
 
   <Lightbox src="scaleway-edit-cluster2.webp" alt="" />
-
 3. Click <Icon name="[toggle]" /> to **Add Load Balancer**. 
-
 4. Under **Container port to expose**, enter `80:8069` and click **Add**.
   
   Your Load Balancer will map incoming traffic ports (80 is the default for `http`, and you can use 443 for `https`) to your exposed container port (8069 being the default Odoo port). 
 
   <Lightbox src="scaleway-expose-port.webp" alt="" />
-
 5. Leave the **Number of replicas** option at 1 (default) to avoid session token conflicts. 
-
 6. Click **Add Variable** under **Environment Variables**. Add four variables.
 
   <Lightbox src="scaleway-edit-container2.webp" alt="" />
-
 7. Add the following information for your variables. 
 
     - **USER**: the username that you set when creating your PostgreSQL database
     - **PASSWORD**: the password that you set when creating your PostgreSQL database
     - **HOST**: the first part of your database's endpoint, which you previously noted down. If your endpoint was `123.456.78.91:1011`, then the host is `123.456.78.91`
     - **PORT**: the second part of your database's endpoint. If your endpoint was `123.456.78.91:1011`, then the port is `1011`
-
 8. Click **Update Container**. The container information page displays.
 
   <Lightbox src="scaleway-update-container.webp" alt="" />
-
 9. Click **Load Balancer** on the side menu of the Scaleway console. A list of your Load Balancers displays.
 
   <Lightbox src="scaleway-load-balancer1.webp" alt="" />
@@ -217,7 +190,6 @@ The Odoo image [documentation](https://hub.docker.com/_/odoo) tells us that by m
 1. Enter the `Load Balancer IP` in a new browser window. It will take you to the Odoo landing page:
 
   <Lightbox src="scaleway-odoo-landing1.webp" alt="" />
-
 2. Enter the required information:
 
     - **Master Password**: Odoo generates and auto-completes a master password for you (displayed at the top of the page), which you can change if you wish

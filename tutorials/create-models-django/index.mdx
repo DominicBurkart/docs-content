@@ -42,7 +42,6 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
   ```
 
   We will create two models: Question and Choice. A Question has a question and a publication date. A Choice has two fields: the text of the choice and a vote tally. Each Choice is associated with a Question.
-
 2. Edit the `polls/models.py` file so it looks like this
 
   ```python
@@ -62,13 +61,11 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
       choice_text = models.CharField(max_length=200)
       votes = models.IntegerField(default=0)
   ```
-
 3. To activate the app, edit the `myDjangoProject/settings.py` file again
 
   ```python
   nano myDjangoProject/settings.py
   ```
-
 4. Change the `INSTALLED_APPS` setting to include the string `polls`
 
   ```
@@ -84,7 +81,6 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
       'polls',
   ]
   ```
-
 5. Run `makemigrations` to indicate Django that you’ve made some changes to your models
 
   ```
@@ -106,7 +102,6 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
   You can read the migration for your new model if you like; it’s the file `polls/migrations/0001_initial.py`
 
   </Message>
-
 6. Run the migrations with the `migrate` command to manage your database schema automatically
 
   ```
@@ -131,7 +126,6 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
   ```
   python manage.py shell
   ```
-
 2. Paste the following content to the shell
 
   ```
@@ -172,7 +166,6 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
   ```
 
   Exit the Python shell by pressing Control+D.
-
 3. Edit the `polls/models.py` to add a `__str__()` method to both Question and Choice.
 
   <Message type="note">
@@ -210,7 +203,6 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
       def __str__(self):
           return self.choice_text
   ```
-
 4. Save these changes and start a new Python interactive shell by running python `manage.py` shell again
 
   ```
@@ -262,7 +254,6 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
 
   admin.site.register(Question)
   ```
-
 2. Reload the Admin Console and login.
 
   ```
@@ -294,7 +285,6 @@ Now that we have the questions on the admin page we need to configure the multip
 
   admin.site.register(Choice)
   ```
-
 2. Reload the Admin Console and login.
 
   ```
@@ -304,9 +294,7 @@ Now that we have the questions on the admin page we need to configure the multip
   You now have `Choice` displayed on your admin interface.
 
   <Lightbox src="scaleway-django_choices.webp" alt="" />
-
 3. You can add as many choices as you wish. Click **Choices** to add a choice.
-
 4. Select your question and type your answer.
 
   <Lightbox src="scaleway-django_choice_oceane.webp" alt="" />

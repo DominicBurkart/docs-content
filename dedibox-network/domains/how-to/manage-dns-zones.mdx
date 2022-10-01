@@ -51,15 +51,12 @@ You can manage multiple versions of your DNS zones at Scaleway.
 Each modification on an existing DNS zone will launch the creation of a new temporary zone. Once you have finished your modifications, you will be able to create a permanent zone from the temporary zone and to set it as active to allow its usage on the Internet.
 
 1. From the [Dedibox console](https://console.online.net), click **Domain**. A list of your domains displays.
-
 2. Click **Configure domain name** next to the relevant domain. 
 
   <Lightbox src="scaleway-domain-configure.webp" alt="" />
-
 3. Click the **Edit DNS zone** tab.
 
   <Lightbox src="scaleway-edit-dns-zone.webp" alt="" />
-
 4. Note the following parts of the interface:
 
   - At the top of the screen, the **Select a zone version** drop-down menu lets you navigate between your different zone versions to modify them and set them as active.
@@ -69,9 +66,7 @@ Each modification on an existing DNS zone will launch the creation of a new temp
 ## How to modify a DNS zone
 
 1. From the **Edit DNS zone** tab, make your changes (eg adding or deleting an entry) in the current zone shown to you.
-
 2. Click **Create a new version**.
-
 3. Click **Set as active** and wait for propagation of the zone.
 
   <Message type="note">
@@ -87,7 +82,6 @@ Each modification on an existing DNS zone will launch the creation of a new temp
 To facilitate the management of your zones, reserved for experts, we provide you with the option of sending and downloading your DNS zone in the BIND format. This is the format mostly used for the configuration of a BIND DNS Server, and allows you to re-import your zones if they were previously in this format, or if you are used to it. 
 
 1. From the **Edit DNS zone** tab, click the arrow in the middle panel next to **Open BIND file options**.
-
 2. Enter the desired content in the text box that displays. Alternatively, if you want to recover your current zone, click the **Download** button.
 
   Here is an example of a DNS zone in the BIND format:
@@ -105,7 +99,6 @@ To facilitate the management of your zones, reserved for experts, we provide you
     db93577 86400 IN CNAME pf114.mutu-perf.online.net.
     phpmyadmin 14400 IN CNAME pf114.mutu-perf.online.net.
   ```
-
 3. Click **Submit your zone**.
 
 <Navigation title="See Also">

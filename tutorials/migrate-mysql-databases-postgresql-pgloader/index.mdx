@@ -33,17 +33,14 @@ In this tutorial you learn how to migrate an existing remote MySQL database to a
 ## Setting up pgLoader to migrate your databases
 
 1. Connect to your Instance using [SSH](/compute/instances/how-to/connect-to-instance/).
-
 2. Update the `apt` package cache, and upgrade the software already installed on the Instance:
   ```
   apt update && apt upgrade -y
   ```
-
 3. Install pgLoader using the `apt` package manager:
   ```
   apt install pgloader
   ```
-
 4. To check if the installation of pgLoader was successfully, run the following command:
   ```
   pgloader --version

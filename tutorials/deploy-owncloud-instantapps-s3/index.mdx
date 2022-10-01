@@ -48,11 +48,9 @@ With ownCloud you can sync & share your files, calendar, contacts and more. Acce
 ## Deploying ownCloud
 
 1. Click **Create instance** button in the **Compute** section of the control panel.
-<Lightbox src="scaleway-nc-create-server.webp" alt="" />
-
+    <Lightbox src="scaleway-nc-create-server.webp" alt="" />
 2. Select the ownCloud image in the **InstantApp** section of the Instance creation page.
-  <Lightbox src="scaleway-nc-owncloud.webp" alt="" />
-
+    <Lightbox src="scaleway-nc-owncloud.webp" alt="" />
 3. Click **Create Instance**.
 
 ## Configuring ownCloud
@@ -62,40 +60,28 @@ Once your Instance is running, you can see the Instance's IP address on the Inst
 1. Copy the IP address and paste it on a browser.
 
 You land on the ownCloud configuration page.
-<Lightbox src="scaleway-owncloud-installation.webp" alt="" />
-
+    <Lightbox src="scaleway-owncloud-installation.webp" alt="" />
 2. Add a username and password for the admin account.
-   
 3. Retrieve the database credentials, as ownCloud uses a MySQL database. To do so, connect your Instance via SSH.
+    ```
+    ssh root@<your_instance_ip>
+    ```
 
-  ```
-  ssh root@<your_instance_ip>
-  ```
-
-  The MySQL password is shown in the MOTD message that is shown upon your first connection to the Instance:
-  
-  <Lightbox src="scaleway-owncloud-database.webp" alt="" />
-
+    The MySQL password is shown in the MOTD message that is shown upon your first connection to the Instance:
+    
+    <Lightbox src="scaleway-owncloud-database.webp" alt="" />
 4. Enter the database user and password you retrieve from the MOTD in the ownCloud setup wizard.
-
 5. Set the database name to `owncloud`.
-
 6. Click **Finish Setup**.
 
 ## Configuring ownCloud with Object Storage
 
 1. Click **Storage** in the side menu of the console.
-
 2. Click **Create a Bucket** to create a bucket for ownCloud to store files inside.
-
 3. Name your bucket and validate your bucket creation.
-
 4. Click the **Credentials** button in the ownCloud interface.
-
 5. Click your identifier in the top right corner and then on **Settings**.
-
 6. Enter the **Storage** section and click **Enable external Storage**.
-
 7. Choose **Amazon S3** in the Dropdown list and enter your S3 credentials.
     <Lightbox src="scaleway-owncloud-configure-s3.webp" alt="" />
 

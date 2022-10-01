@@ -25,7 +25,6 @@ Docker is an open source containerization platform. It allows developers to pack
 ## Creating and connecting to your Docker InstantApp Instance
 
 1. Create the Instance by [following our dedicated instructions](/compute/instances/how-to/create-an-instance/). When choosing your **Image**, click the **InstantApps** tab and select the **Docker** InstantApp.
-
 2. [Connect to your Instance via SSH](/compute/instances/how-to/connect-to-instance/).
 
 ## Building your first container
@@ -41,13 +40,11 @@ Here, we create a new Dockerfile for a small Python web application with [Flask]
   ```
   mkdir my-application
   ```
-
 2. Enter into the directory.
 
   ```
   cd my-application
   ```
-
 3. Create a new file, called `Dockerfile`. Copy and paste the following content into it and save the file:
 
   ```
@@ -74,7 +71,6 @@ Here, we create a new Dockerfile for a small Python web application with [Flask]
   ```
 
   The Dockerfile is now ready, and we can proceed to creating the application.
-
 4. Open a text editor, copy paste the following content and save the file as `app.py`:
 
   ```py
@@ -96,7 +92,6 @@ Here, we create a new Dockerfile for a small Python web application with [Flask]
   ```
 
   The application will run a simple web server on port 80 and return the values of the environment variable `NAME` set in the Dockerfile, as well as the hostname of the container when it is running.
-
 5. Build the image. The `-t` tag is used to set a friendly name for the image:
 
   ```
@@ -210,13 +205,11 @@ In this example, the public Docker registry is used ("Docker Hub"), but it also 
   ```code
   docker login
   ```
-
 2. Tag the image, using the `docker tag` command followed by the notation `imagename username/repository:tag`. This associates your local image with a repository on the registry. The tag at the end is not mandatory, but recommended as it is the mechanism that registries use to give Docker images a version.
 
   ```code
   docker tag imagename username/repository:tag
   ```
-
 3. Push your image to the Docker Hub:
 
   ```code

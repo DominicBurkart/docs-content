@@ -37,7 +37,6 @@ The first step we need to follow before installing glusterfs on all servers is c
   ```
   nano /etc/hosts
   ```
-
 2. Paste hosts configuration below:
 
   ```
@@ -45,9 +44,7 @@ The first step we need to follow before installing glusterfs on all servers is c
   ip_address gluster02
   ip_address client01
   ```
-
 3. Save and exit.
-
 4. Ping each server using the hostname as below:
 
   ```
@@ -102,7 +99,6 @@ Add the glusterfs key and repository to all systems.
   ```
   apt install glusterfs-server -y
   ```
-
 2. Start the glusterd service and enable it to launch every time at system boot
 
   ```
@@ -111,7 +107,6 @@ Add the glusterfs key and repository to all systems.
   ```
 
   Glusterfs server is now up and running on the `gluster01` and `gluster02` servers.
-
 3. Check the services and the installed software version
 
   ```
@@ -169,7 +164,6 @@ After creating the trusted storage pool, we will create a new distributed gluste
   ```
   mkdir -p /glusterfs/distributed
   ```
-
 2. From the glusterO1 server, create a distributed glusterfs volume named 'vol01' with two replicas: 'gfs01' and 'gfs02'
 
   ```
@@ -178,7 +172,6 @@ After creating the trusted storage pool, we will create a new distributed gluste
   ```
   volume create: vol01: success: please start the volume to access data
   ```
-
 3. Start the 'vol01' and check the volume info
 
   ```
@@ -217,19 +210,16 @@ In this step, we will mount the glusterfs volume `vol01` to the Ubuntu client, a
   ```
   apt install glusterfs-client -y
   ```
-
 2. Create a new directory: `/mnt/glusterfs`.
 
   ```
   mkdir -p /mnt/glusterfs
   ```
-
 3. Mount the distributed glusterfs volume (`vol01`) to the `/mnt/glusterfs` directory.
 
   ```
   mount -t glusterfs gluster01:/vol01 /mnt/glusterfs
   ```
-
 4. Check the amount of volume available in the system.
 
   ```
@@ -241,13 +231,9 @@ In this step, we will mount the glusterfs volume `vol01` to the Ubuntu client, a
     To mount glusterfs permanently to the Ubuntu client system, we can add the volume to the `/etc/fstab`.
 
   </Message>
-
 5. Edit the `/etc/fstab` configuration file: `vim /etc/fstab`.
-
 6. Paste the following configuring:`gluster01:/vol01 /mnt/glusterfs glusterfs defaults,_netdev 0 0`.
-
 7. Save and exit.
-
 8. Reboot the server. When online, the glusterfs volume 'vol01' is mounted automatically through the fstab.
 
 ## Testing Replication & Mirroring
@@ -256,19 +242,16 @@ In this step, we will mount the glusterfs volume `vol01` to the Ubuntu client, a
 
     - On gluster01: `mount -t glusterfs gluster01:/vol01 /mnt`
     - On gluster02: `mount -t glusterfs gluster02:/vol01 /mnt`
-
 2. Back on `client01`, go to the '/mnt/glusterfs' directory.
 
   ```
   cd /mnt/glusterfs
   ```
-
 3. Create three files using the touch command.
 
   ```
   touch file01 file02 file03
   ```
-
 4. Check on each `gluster01` and `gluster02` that the files that we've created from the client machine are displayed.
 
   ```

@@ -44,33 +44,28 @@ In this tutorial, we will install Django with pip in a virtual environment, as i
   ```
   apt update
   ```
-
 2. Check which version of Python you have installed. The version currently shipped with Ubuntu 20.04 is Python 3.8.2:
 
   ```
   root@Django:~# python3 -V
   Python 3.8.10
   ```
-
 3. Install pip from the Ubuntu repositories
 
   ```
   apt install python3-pip python3-django
   ```
-
 4. Install the `venv` package with `pip`
 
   ```
   apt install python3-venv
   ```
-
 5. Once that is done, you can now start a new project in Django. Remember that whenever you start a new project, start by creating and moving into a new project directory.
 
   ```
   mkdir ~/newhostA
   cd ~/newhostA
   ```
-
 6. Create a virtual environment within the project directory using the python command that is compatible with your version of Python. We will call our virtual environment `my_env`.
 
   ```
@@ -78,7 +73,6 @@ In this tutorial, we will install Django with pip in a virtual environment, as i
   ```
 
   This will install standalone versions of Python and pip into an isolated directory structure within your project directory. A directory will be created with the name you select, which will hold the file hierarchy where your packages will be installed.
-
 7. To install packages into the isolated environment, you must activate it by typing:
 
   ```
@@ -90,13 +84,11 @@ In this tutorial, we will install Django with pip in a virtual environment, as i
   ```
   (my_env) root@Django:~/newhostA#
   ```
-
 8. In your environment, install Django with pip
 
   ```
   pip install django
   ```
-
 9. Verify the version you have installed.
 
   ```
@@ -139,38 +131,32 @@ With Django installed, we can now start to create our project and test it on you
   mkdir ~/my-django
   cd ~/my-django
   ```
-
 2. Create your virtual environment
 
   ```
   python3.8 -m venv my_env
   ```
-
 3. Activate the environment
 
   ```
   source my_env/bin/activate
   ```
-
 4. Install `django` in the environment:
 
   ```
   pip install django
   ```
-
 5. To create your project, use `django-admin <command> [options]` which is Django’s command-line utility for administrative tasks. In each Django project, a `manage.py` is automatically created.
 
     The `startproject` command enables you to create a new project. The command creates a directory within your current working directory that includes:
 
     * `manage.py` which you can use to administer various Django-specific tasks.
     * a directory (with the same name as the project) that includes the actual project code.
-
 6. Create your project(`myDjangoProject`). Add a period at the end of the command to place the management script and inner directory in the current directory.
 
   ```
   django-admin startproject myDjangoProject .
   ```
-
 7. Migrate the database (this example uses SQLite by default) using the `migrate` command with the `manage.py` application. Migrations apply any changes you have made to your Django models, to your database schema.
 
   ```
@@ -198,13 +184,11 @@ With Django installed, we can now start to create our project and test it on you
     Applying auth.0009_alter_user_last_name_max_length... OK
     Applying sessions.0001_initial... OK
   ```
-
 8. Create an administrative user so that you can use the Django admin interface using the `createsuperuser` command.
 
   ```
   python manage.py createsuperuser
   ```
-
 9. Answer the prompts which will ask for:
 
     * A username
@@ -229,7 +213,6 @@ With Django installed, we can now start to create our project and test it on you
   ```
 
   To test your application, you will need to modify one of the directives in the Django settings. Locate the `ALLOWED_HOSTS` directive to define the addresses or domain names that may be used to connect to the Django Instance.
-
 2. List the IP addresses or domain names that are associated with your Django server.
 
   <Message type="note">
@@ -242,7 +225,6 @@ With Django installed, we can now start to create our project and test it on you
   ```
 
   </Message>
-
 3. Save the file and exit
 
 ## Testing the Development Server
@@ -258,15 +240,12 @@ With Django installed, we can now start to create our project and test it on you
   ```
   python manage.py runserver your_server_ip:8000
   ```
-
 2. Visit your server's IP address followed by :8000 in your web browser `http://your_internal_server_ip:8000`
 
   which should display
 
   <Lightbox src="scaleway-django_installed.webp" alt="" />
-
 3.  Add `/admin/` to the end of your URL. The login page displays.
-
 4. Enter your username and password. The admin page displays.
 
   <Lightbox src="scaleway-django_admin.webp" alt="" />

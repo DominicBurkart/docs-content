@@ -35,20 +35,15 @@ To set up a Sigfox network, a **Sigfox account** is needed. If you do not have a
 </Message>
 
 1. Click **IoT Hub** in the **IoT Station** section of the side menu. The list of your IoT Hubs displays.
-
 2. Click the name of the IoT Hub that you want to configure. The hub's overview page displays. 
-
 3. Click the **Networks** tab on the hub's overview page.
-
 4. Click the **Add network** button to access the network creation wizard.
-  <Lightbox src="scaleway-iothub_network_add.webp" alt="" />
-
+    <Lightbox src="scaleway-iothub_network_add.webp" alt="" />
 5. Complete the form by specifying the network's details:
     * Enter a name for your network.
     * Choose Sigfox as the type of network you want to create.
     * Choose a topic prefix your network should publish to. You may leave this empty. All the messages published to this network will have their topics prefixed with this value.
-  <Lightbox src="scaleway-iothub_network_modal_sigfox.webp" alt="" />
-
+    <Lightbox src="scaleway-iothub_network_modal_sigfox.webp" alt="" />
 6. Click **Create Network**. A summary of the network you created, displays. Take note of the two key parameters:
   * The network endpoint.
   * The network secret. Be careful, this secret will **only be shown once**!
@@ -60,18 +55,15 @@ This information is required to configure the Sigfox backend.
 Now you have successfully created your Sigfox network, it's time to configure the Sigfox **callbacks** to relay messages to your Iot Hub.
 
 1. Log into the [Sigfox backend](https://backend.sigfox.com).
-
 2. Go the **DEVICE TYPE** tab
-  <Lightbox src="scaleway-iothub_network_sigfox_devicetype_tab.webp" alt="" />
-
+    <Lightbox src="scaleway-iothub_network_sigfox_devicetype_tab.webp" alt="" />
 3. Click the **CALLBACKS** entry in the left menu
-  <Lightbox src="scaleway-iothub_network_sigfox_devicetype_callbacks.webp" alt="" />
-
+    <Lightbox src="scaleway-iothub_network_sigfox_devicetype_callbacks.webp" alt="" />
 4. Select the **Custom callback** option
-  <Lightbox src="scaleway-iothub_network_sigfox_devicetype_new_custom_callback.webp" alt="" />
+    <Lightbox src="scaleway-iothub_network_sigfox_devicetype_new_custom_callback.webp" alt="" />
 
 5. Fill-in the form like the example below.
-  <Lightbox src="scaleway-iothub_network_sigfox_devicetype_callback_form.webp" alt="" />
+    <Lightbox src="scaleway-iothub_network_sigfox_devicetype_callback_form.webp" alt="" />
 
 Let us go through each field:
 

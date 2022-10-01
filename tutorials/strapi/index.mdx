@@ -32,25 +32,21 @@ In this tutorial you will learn how to deploy Strapi on a [Scaleway Instance](/c
 ## Installing dependencies
 
 1. Connect to your Instance using [SSH](/compute/instances/how-to/connect-to-instance/).
-
 2. Update the apt packet cache and upgrade the software already installed on the instance:
 
   ```
   apt update && apt upgrade -y
   ```
-
 3. Strapi requires Node.js minimum version 12.x in order to run, as well as npm minimum version 6.x. Use the following command to add a maintained and up to date repository for Debian-based Node.js:
 
   ```
   apt install -y curl && curl -sL https://deb.nodesource.com/setup_14.x | bash -
   ```
-
 4. Install Node.js with the following command (npm will also install):
 
   ```
   apt-get install -y nodejs
   ```
-
 5. Check that Node.js and npm are installed in minimum versions 12.x and 6.x respectively:
 
   ```
@@ -58,7 +54,6 @@ In this tutorial you will learn how to deploy Strapi on a [Scaleway Instance](/c
   ```
 
   You should see an output confirming the installed version number of each.
-
 6. Strapi uses the yarn package manager. Install the repository for the required version of Yarn by running the following commands:
 
   ```
@@ -66,7 +61,6 @@ In this tutorial you will learn how to deploy Strapi on a [Scaleway Instance](/c
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
   apt update && apt install yarn
   ```
-
 7. Check that yarn has installed with the following command:
 
   ```
@@ -83,7 +77,6 @@ In this tutorial you will learn how to deploy Strapi on a [Scaleway Instance](/c
   cd /home/<user>
   mkdir strapi-projects
   ```
-
 2. Install Strapi in this directory and create a new project:
 
   ```
@@ -128,7 +121,6 @@ In this step, we will use the Strapi dashboard to configure Strapi for a very si
   You should see the following:
 
   <Lightbox src="scaleway-create-admin.webp" alt="" />
-
 2. Complete the form with your desired information in order to create an admin user, then click `Let's Start`:
 
   <Lightbox src="scaleway-create-admin-completed.webp" alt="" />
@@ -138,13 +130,11 @@ In this step, we will use the Strapi dashboard to configure Strapi for a very si
   <Lightbox src="scaleway-create-first-content.webp" alt="" />
 
   Next, we will essentially define a new database to hold our blog content.
-
 3. Click `Create Your First Content Type`:
 
   The following screen displays:
 
   <Lightbox src="scaleway-create-collection-type.webp" alt="" />
-
 4. Enter `Blog` as the display name (UID will auto-complete), and click `Continue`:
 
   <Lightbox src="scaleway-create-blog.webp" alt="" />
@@ -154,11 +144,9 @@ In this step, we will use the Strapi dashboard to configure Strapi for a very si
   <Lightbox src="scaleway-select_collection_fields.webp" alt="" />
 
   Next, we will define the fields for our Blog database. We'll add two text fields, one to hold the title of each blog post, and one to hold the content of each post:
-
 5. Click `Text`. The following screen displays:
 
   <Lightbox src="scaleway-add-text-field.webp" alt="" />
-
 6. Enter `Title` in the name field, and click `Add another field`:
 
   <Lightbox src="scaleway-add-title.webp" alt="" />
@@ -166,15 +154,12 @@ In this step, we will use the Strapi dashboard to configure Strapi for a very si
   You are taken back to the list of possible field types:
 
   <Lightbox src="scaleway-select_collection_fields.webp" alt="" />
-
 7. Click `Text`. The following screen displays:
 
   <Lightbox src="scaleway-add-text-field.webp" alt="" />
-
 8. Enter `Content` in the name field, and select `Long text` underneath, then click `Finish`:
 
   <Lightbox src="scaleway-add-content.webp" alt="" />
-
 9. A summary of the Blog collection that you have just created displays. Cick `Save`:
 
   <Lightbox src="scaleway-blog-created.webp" alt="" />
@@ -246,25 +231,21 @@ If your Strapi app is still running in your terminal at this point, kill it with
   ```
 
   Next, you need to edit your `.bashrc` file to permit the use of global Yarn packages:
-
 2. Open your `.bashrc` file with a text editor. Here, we use nano:
 
   ```
   nano ~/.bashrc
   ```
-
 3. Add the following to the very end of the file and save the changes:
 
   ```
   export PATH="$PATH:$(yarn global bin)"
   ```
-
 4. Now, to get that modification to the `.bashrc` file to take effect, type:
 
   ```
   source ~/.bashrc
   ```
-
 5. Make sure you are in your Strapi app's directory, and run the following command to launch Strapi as-a-Service with PM2. You can replace `my-strapi-project` with your chosen name:
 
   ```

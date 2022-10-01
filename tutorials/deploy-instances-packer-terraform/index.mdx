@@ -25,9 +25,7 @@ Both applications are available for Linux, MacOS, Windows, FreeBSD and NetBSD.
 ## Downloading and Installing Packer
 
 1. Download [Packer](https://www.packer.io/downloads.html) for your operating system. If you want to define a specific configuration, you can also [build the application](https://www.packer.io/intro/getting-started/install.html#compiling-from-source) from source.
-
 2. Install the application on your computer following the instructions in the Packer [downloads page](https://www.packer.io/downloads.html).
-
 3. Verify that the application is working properly, by opening a terminal and typing `packer --help`. You see the following output:
 
   ```bash
@@ -42,7 +40,6 @@ Both applications are available for Linux, MacOS, Windows, FreeBSD and NetBSD.
       validate    check that a template is valid
       version     Prints the Packer version
   ```
-
 4. Make sure you are running at least version 1.6.3 of Packer.
 
 ## Packer Configuration Files
@@ -110,7 +107,6 @@ As exemplified below, we will build an Ubuntu Image with Apache preinstalled:
   export SCW_ACCESS_KEY=<YOUR_ACCESS_KEY>
   export SCW_SECRET_KEY=<YOUR_SECRET_KEY>
   ```
-
 2. Create and edit the file `packer.json` by putting the following content in it:
 
   ```json
@@ -149,7 +145,6 @@ As exemplified below, we will build an Ubuntu Image with Apache preinstalled:
     ]
   }
   ```
-
 3. Save the file and launch packer:
 
   ```bash
@@ -223,13 +218,11 @@ As exemplified below, we will build an Ubuntu Image with Apache preinstalled:
   And the newly created image will appear in the image list in your account:
 
   <Lightbox src="scaleway-packer-image.webp" alt="" />
-
 4. You can now start one or a series of servers with your new image.
 
 ## Deploying Machine Images with Terraform
 
 1. Download [Terraform](https://www.terraform.io/downloads.html) for your operating system.
-
 2. Set your credentials as environment variable on your computer. For example in bash, you have to edit the file `~/.bashrc`, for zsh the procedure is the same, but the file to edit is `~/.zshrc`:
 
   ```bash
@@ -237,7 +230,6 @@ As exemplified below, we will build an Ubuntu Image with Apache preinstalled:
   export SCW_ACCESS_KEY=<YOUR_ACCESS_KEY>
   export SCW_SECRET_KEY=<YOUR_SECRET_KEY>
   ```
-
 3. Create a configuration file `scaleway.tf` with the following contents:
 
   ```hcl
@@ -289,7 +281,6 @@ As exemplified below, we will build an Ubuntu Image with Apache preinstalled:
     }
   }
   ```
-
 3. Initialize Terraform:
 
   ```bash
@@ -319,13 +310,11 @@ As exemplified below, we will build an Ubuntu Image with Apache preinstalled:
 
   Terraform has been successfully initialized!
   ```
-
 4. Run a **dry run** of the configuration to check it:
 
   ```bash
   terraform plan
   ```
-
 5. Start your server from Terraform:
 
   ```bash

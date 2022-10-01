@@ -83,13 +83,11 @@ By default, only the **postgres** role is configured within the database.
 ```
 createrole
 ```
-
 2. Launch the following command after you are logged as the **postgres** user.
 
 ```
 createuser --interactive
 ```
-
 3. Answer the prompts as in the example below:
 
 ```
@@ -135,19 +133,16 @@ sudo -u bill psql
 To understand the basic SQL syntax, we will create a phonebook that contains a user's personal details:
 
 1. Connect to the Postgres prompt.
-
 2. Create a new table called phonebook, that contains fields for the phone number, for their first and last name, and for the city:
 
   ```sql
   CREATE TABLE phonebook(phone VARCHAR(32), firstname VARCHAR(32), lastname VARCHAR(32), city VARCHAR(64));
   ```
-
 3. Insert data into the table. You may repeat this command if you want to add more than one set of data:
 
   ```sql
   INSERT INTO phonebook(phone, firstname, lastname, city) VALUES('+33 1 23 45 67 89', 'Paul', 'Smith', 'Paris, FR');
   ```
-
 4. Select data from the table. Run the following command to retrieve all data sets, sorted by the last name.
 
   ```sql
@@ -180,13 +175,11 @@ To understand the basic SQL syntax, we will create a phonebook that contains a u
   +33 1 23 45 67 89 | Paul      | Smith    | Paris, FR
   (1 row)
   ```
-
 5. Update the city of the user:
 
   ```sql
   UPDATE phonebook SET city = 'London, UK', phone = '+44 7123 456789' WHERE firstname = 'Paul' AND lastname = 'Smith';
   ```
-
 6. Delete the user's data:
 
   ```sql

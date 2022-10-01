@@ -64,7 +64,6 @@ In all applications, you have to define settings, usually based on environment v
   </Message>
 
   This configuration is usually perfect for development. For a production environment, it can be desirable to have an alternative, e.g. using an Object Storage bucket. 
-
 2. Append the following code to your `settings.py` file. It adds new variables to set up the use of Object Storage as the static files' storage engine. It is recommended to keep the previous settings by default for development purposes.
 
   ```
@@ -86,9 +85,7 @@ In all applications, you have to define settings, usually based on environment v
   ```
 
   Before we look more closely at the variables we just added, further action is required. Since you have a new package (`boto3` in this case) used in the variable `STATICFILES_STORAGE`, you need to follow the next steps:
-
 3. Add the `boto3` package to your requirements list.
-
 4. Add the `boto3` package (`storages` app) to the list of applications used in your Django project in your `settings.py` file.
 
   ```
@@ -98,7 +95,6 @@ In all applications, you have to define settings, usually based on environment v
       ...
       'storages',
   ```
-
 5. Now we can take a look at the variables we added in step 2. Since there are so many variable imbrications it may seem a little overwhelming. However, once the setup is complete you won't need to worry about them any more:
 
     - `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` are the [Access Key and Secret Key for your Scaleway account](/console/my-project/how-to/generate-api-key/)
@@ -118,7 +114,6 @@ In all applications, you have to define settings, usually based on environment v
   Even though we added a lot of lines to `settings.py`, only four environment variables are ultimately needed to use our Object Storage bucket: `ACCESS_KEY_ID`, `SECRET_ACCESS_KEY`, `AWS_S3_REGION_NAME` (eg `nl-ams`) and `AWS_STORAGE_BUCKET_NAME`. These variables are called using `os.getenv('MY_VAR_NAME')` so we now need to set these values.
 
   If you set your `PROD` variable to `TRUE`, you will be able to connect to your bucket, but your variables are only available locally. Instead, to send them safely into your Kubernetes Kapsule environment, you can pack them into a `secret` object:
-
 6. Type the following command into your terminal. Be sure to replace the information in the angled brackets with the correct information for your credentials / bucket:
 
   ```
@@ -148,7 +143,6 @@ Your Object Storage bucket is now all set up, and your production environment kn
 We now need to configure our settings for our Scaleway Database. As noted in the requirements for this tutorial, you should already have [created a Database](/managed-databases/postgresql-and-mysql/how-to/create-a-database/) before continuing. These come in various types, but for this tutorial we use a PostgreSQL database, which does not require much configuration.
 
 1. Add the `psycopg2` package (or the equivalent for your chosen database type) to your python requirements.
-
 2. Back in your `settings.py` file, change the default database engine that Django will be using:
 
   ```
@@ -163,7 +157,6 @@ We now need to configure our settings for our Scaleway Database. As noted in the
       }
   }
   ```
-
 3. As you did for your Object Storage environment variables, you now need to set these new database variables as environment variables so that you can switch from one environment to another, via a `secret` object. Type the following command into your terminal command line. Be sure to replace the information in the angled brackets with the correct information for your Scaleway Database:
 
   ```
@@ -190,7 +183,6 @@ As noted in the requirements for this tutorial, you should already have [created
   ```
   echo SECRET_ACCESS_KEY | docker login rg.nl-ams.scw.cloud -u <my_user_name> --password-stdin
   ```
-
 2. Enable Kubernetes to pull from your private registry namespace by using the `ImagePullSecret` configuration in your manifest. Type the following into your terminal command line, being sure to replace the information in the angled brackets for your own case as necessary:
 
   ```
@@ -230,19 +222,16 @@ You are free to build your Docker image as you see fit. In this case, we won't u
   EXPOSE 8000
   CMD python my_app/manage.py runserver
   ```
-
 2. Use this Dockerfile to build the image, with the following command in your terminal:
 
   ```
   docker build --tag my_web_app .
   ```
-
 3. Tag your image, with the following command:
 
   ```
   docker tag my_web_app:latest rg.nl-ams.scw.cloud/my_registry_namespace/my_web_app:latest
   ```
-
 4. Push the tagged image to your private Container Registry namespace:
 
   ```
@@ -310,7 +299,6 @@ Now that everything is set up, you need to write a manifest to deploy your web a
 
     - We link to our docker image in our private Container Registry namespace (`image: rg.nl-ams.scw.cloud/my_registry_namespace/my_web_app:v1`) by using the credentials set as secret (`imagePullSecrets`)
     - Our web application uses environment variables (`envFrom`) from our secret credentials for Database and Object Storage accesses, and for our application variables.
-
 2. Deploy your app with the following command in your terminal: 
 
   ```
@@ -322,7 +310,6 @@ Now that everything is set up, you need to write a manifest to deploy your web a
   ```
   deployment “awesome-webapp” created
   ```
-
 3. Run the following command to see your application up and running in your cluster:
 
   ```

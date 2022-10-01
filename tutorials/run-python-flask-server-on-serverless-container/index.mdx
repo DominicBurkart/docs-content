@@ -34,19 +34,16 @@ We first need to create a simple Web Server with Python and the [Flask](https://
     ```
     mkdir my_python_project
     ```
-
 2. Use your favourite text editor to create a `requirements.txt`. In this tutorial, we use nano:
 
     ```
     nano requirements.txt
     ```
-
 3. Enter the following text in the `requirements.txt` file to define the library you want to import. Then save and quit the text editor:
 
     ```
     Flask==2.2.1
     ```
-
 4. Create a `server.py` text file, and add the following code to it. This creates a simple web app using Flask:
 
     ```python
@@ -87,7 +84,6 @@ In order to Dockerize our simple web app, we will use the official Python 3 Alpi
     A Dockerfile is a document that contains all the commands a user could call from the command line to create the image.
     
     </Message>
-
 2. In the Dockerfile, add the following;
 
     - Define the Python base image you want to use:
@@ -149,7 +145,6 @@ In order to Dockerize our simple web app, we will use the official Python 3 Alpi
     ```sh
     docker build . -t <your application name>
     ```
-
 2. [Push](/compute/container-registry/how-to/push-images/) the created image into the [container registry](https://www.scaleway.com/en/docs/compute/container-registry/quickstart/) linked to your Containers namespace
 
     <Message type="tip">
@@ -157,5 +152,4 @@ In order to Dockerize our simple web app, we will use the official Python 3 Alpi
     The registry name starts with `funcscw` + the namespace name.
 
     </Message>
-
 3. [Deploy the image using the Scaleway console](/compute/containers/how-to/deploy-a-container/).

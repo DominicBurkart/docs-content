@@ -33,9 +33,7 @@ dates:
 To get started with Object Storage, you must first create a bucket. Objects are gathered into buckets. Each bucket represents a space where objects are stored.
 
 1. Click **Object Storage** on the left side menu of the console. The Object Storage dashboard displays.
-
 2. Click **+ Create a bucket**. The bucket creation page displays.
-
 3. Enter a name for your bucket. The bucket name is used as a unique identifier which allows us to provide features such as the bucket location and geo-replication.
 
   <Message type="note">
@@ -47,7 +45,6 @@ To get started with Object Storage, you must first create a bucket. Objects are 
   Learn more about bucket name limitations on our [dedicated FAQ page](https://www.scaleway.com/en/faq/is-there-a-limitation-in-the-bucket-name/).
 
   </Message>
-
 4. Select the geographical location in which your bucket will be created. Scaleway Object Storage is currently available in three Availability Zones (AZ/Region).
     - Amsterdam, The Netherlands: 
       - Region: `nl-ams`
@@ -55,7 +52,6 @@ To get started with Object Storage, you must first create a bucket. Objects are 
       - Region: `fr-par`
     - Warsaw, Poland: 
       - Region: `pl-waw`
-
 5. Check **Public** or **Private** to define the bucket visibility. The bucket visibility specifies whether everyone can see the list of objects in the bucket or not. It does not affect [object visibility](/storage/object/concepts/#visibility). You can change the visibility settings at a later time in the Object Storage dashboard.
 
   <Message type="note">
@@ -65,7 +61,6 @@ To get started with Object Storage, you must first create a bucket. Objects are 
   You can change the visibility settings at any time from the Object Storage bucket dashboard.
 
   </Message>
-
 6. Verify that all information about your bucket is correct in the Summary before clicking **Create a bucket** to confirm. A list of your buckets displays, showing the newly created bucket.
 
 You can find more information about your bucket by clicking on its name in the **buckets list** and then on the **Bucket Settings** tab.
@@ -73,11 +68,8 @@ You can find more information about your bucket by clicking on its name in the *
 ## How to upload files into a bucket
 
 1. Click **Object Storage** in the **Storage** section of the side menu. A list of your buckets displays.
-
 2. Click the bucket name into which you want to upload your file.
-
 3. Click the grey area to select the files you want to upload into the bucket. Alternatively, you can also drag and drop your files into the grey area. 
-
 4. Select the files to upload from the file browser tool of your operating system.
 
 	<Message type="important">
@@ -85,7 +77,6 @@ You can find more information about your bucket by clicking on its name in the *
     Before uploading your files, make sure the file name is in accordance with the [AWS s3 Object key naming guidelines](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-key-guidelines). 
 
 	</Message>
-
 5. Select the Storage Class of your object. Scaleway Object Storage allows you to associate storage classes with each of your objects. You can choose the storage class depending on your use-case:
 
 - [STANDARD](/storage/object/concepts/#storage-class): The Standard class for any upload; suitable for on-demand content
@@ -107,9 +98,7 @@ A list of the bucket's objects displays including the newly uploaded objects.
 ## How to download files from a bucket
 
 1. Click the name of your selected bucket in the buckets list. A list of your objects displays.
-
 2. Run your cursor over the name of the object you wish to download. The <Icon name="download" /> icon appears.
-
 3. Click the icon to begin the download of the object into your local file system. 
 
 Alternatively, you can click the <Icon name="more" /> icon for your selected object and click **Download**.
@@ -119,11 +108,8 @@ Alternatively, you can click the <Icon name="more" /> icon for your selected obj
 When you delete a bucket, every object stored inside it is deleted with it. 
 
 1. Click **Object Storage** in the **Storage** section of the side menu. The list of your buckets displays. 
-
 2. Click the name of your selected bucket in the buckets list.
-
 3. Click the **Bucket Settings** tab. 
-
 4. Scroll to the end of the page and click **Delete bucket**.
 
   A pop-up appears warning that:
@@ -133,7 +119,6 @@ When you delete a bucket, every object stored inside it is deleted with it.
   Every object stored inside this bucket will be lost, and another customer will be allowed to reuse the name of this bucket. The deletion of your bucket will be triggered today at 11.59pm UTC.
 
   </Message>
-
 5. If you understand and agree to the conditions, type **DELETE** in the box and click **Delete this bucket**
 
 Alternatively, you can delete a bucket just by clicking the <Icon name="more" /> icon and then **Delete** in your bucket list.

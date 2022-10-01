@@ -49,31 +49,26 @@ By default, AwStats package is available in the Ubuntu repository.
   ```
   apt install awstats
   ```
-
 2. Enable the CGI module in Apache.
 
   ```
   a2enmod cgi
   ```
-
 3. Restart Apache.
 
   ```
   systemctl restart apache2
   ```
-
 4. Duplicate the AwStats default configuration file to one with your domain name.
 
   ```
   cp /etc/AwStats/awstats.conf /etc/awstats/domain-example.conf
   ```
-
 5. Edit the your AwStats domain name configuration file.
 
   ```
   nano /etc/awstats/domain-example.conf
   ```
-
 6. Update the settings shown below.
 
   ```
@@ -87,9 +82,7 @@ By default, AwStats package is available in the Ubuntu repository.
   # When this parameter is set to 1, AwStats adds a button on report page to allow to "update" statistics from a web browser
   AllowToUpdateStatsFromBrowser=1
   ```
-
 7. Save and close the file.
-
 8. Build your initial statistics which are generated from the current logs on your server.
 
   ```
@@ -142,11 +135,9 @@ It is recommended to schedule a cron job to regularly update the AwStats databas
   ```
   nano /etc/crontab
   ```
-
 2. Add the following line to tell AwStats to update every ten minutes
 
   ```
   */10 * * * * root /usr/lib/cgi-bin/awstats.pl -config=test.com -update
   ```
-
 3. Save and exit.

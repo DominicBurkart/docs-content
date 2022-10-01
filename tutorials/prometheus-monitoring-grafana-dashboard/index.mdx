@@ -37,14 +37,12 @@ This tutorial explains how to use a Prometheus Monitoring server with a Grafana 
   sudo useradd --no-create-home --shell /usr/sbin/nologin prometheus
   sudo useradd --no-create-home --shell /bin/false node_exporter
   ```
-
 2. Create the folders required to store the binaries of Prometheus and its configuration files.
 
   ```sh
   sudo mkdir /etc/prometheus
   sudo mkdir /var/lib/prometheus
   ```
-
 3. Set the ownership of these directories to our `prometheus` user, to make sure that Prometheus can access to these folders.
 
   ```sh
@@ -61,30 +59,25 @@ As your Prometheus is only capable of collecting metrics, we want to extend its 
   ```sh
   wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
   ```
-
 2. Unpack the downloaded archive. This will create a directory `node_exporter-1.3.1.linux-amd64`, containing the executable, a readme and license file:
 
   ```sh
   tar xvf node_exporter-1.3.1.linux-amd64.tar.gz
   ```
-
 3. Copy the binary file into the directory `/usr/local/bin` and set the ownership to the user you have created in step previously:
    ```sh
    sudo cp node_exporter-1.3.1.linux-amd64/node_exporter /usr/local/bin
    sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
    ```
-
 4. Remove the leftover files of Node Exporter, as they are not needed any longer:
 
   ```sh
   rm -rf node_exporter-1.3.1.linux-amd64.tar.gz node_exporter-1.3.1.linux-amd64
   ```
-
 5. To run Node Exporter automatically on each boot, a Systemd service file is required. Create the following file by opening it in Nano:
    ```sh
    sudo nano /etc/systemd/system/node_exporter.service
    ```
-
 6. Copy the following information in the service file, save it and exit `nano`:
     ```sh
   [Unit]
@@ -107,19 +100,16 @@ As your Prometheus is only capable of collecting metrics, we want to extend its 
   Collectors are used to gather information about the system. By default, a set of collectors is activated. You can see the details about the set in the [README file](https://github.com/prometheus/node_exporter/blob/master/README.md#enabled-by-default). If you want to use a specific set of collectors, you can define them in the `ExecStart` section of the service. Collectors are enabled by providing a` --collector.<name>` flag. Collectors that are enabled by default can be disabled by providing a `--no-collector.<name>` flag.
 
   </Message>
-
 7. Reload Systemd to use the newly defined service.
 
   ```sh
   sudo systemctl daemon-reload
   ```
-
 8. Run Node Exporter by typing the following command.
 
   ```sh
   sudo systemctl start node_exporter
   ```
-
 9. Verify that the software started successfully.
 
   ```sh
@@ -164,35 +154,30 @@ As your Prometheus is only capable of collecting metrics, we want to extend its 
 
     - consoles
     - console_libraries
-
 2. Copy the binary files into the `/usr/local/bin/`directory:
 
   ```sh
   sudo cp ./prometheus /usr/local/bin/
   sudo cp ./promtool /usr/local/bin/
   ```
-
 3. Set the ownership of these files to the `prometheus` user previously created:
 
   ```sh
   sudo chown prometheus:prometheus /usr/local/bin/prometheus
   sudo chown prometheus:prometheus /usr/local/bin/promtool
   ```
-
 4. Copy the `consoles` and `console_libraries` directories to `/etc/prometheus`:
 
   ```sh
   sudo cp -r ./consoles /etc/prometheus
   sudo cp -r ./console_libraries /etc/prometheus
   ```
-
 5. Set the ownership of the two folders, as well as of all files that they contain, to our `prometheus` user:
 
   ```sh
   sudo chown -R prometheus:prometheus /etc/prometheus/consoles
   sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
   ```
-
 6. In our home folder, remove the source files that are not needed anymore:
 
   ```sh
@@ -269,7 +254,6 @@ The configuration file of Prometheus is written in [YAML](http://www.yaml.org/st
     For all information about the configuration of Prometheus, you may check the [configuration documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/).
 
     </Message>
-
 2. Set the ownership of the file to our `Prometheus` user:
 
   ```sh
@@ -299,7 +283,6 @@ Our Prometheus server is ready to run for the first time.
   level=info ts=2022-03-01T13:16:52.949114617Z caller=main.go:603 msg="Loading configuration file" filename=prometheus.yml
   level=info ts=2022-03-01T13:16:52.951124437Z caller=main.go:500 msg="Server is ready to receive web requests."
   ```
-
 2. Open your browser and type `http://IP.OF.YOUR.SERVER:9090` to access the Prometheus interface. If everything is working, we end the task by pressing on `CTRL + C` on our keyboard.
 
   <Message type="note">
@@ -307,7 +290,6 @@ Our Prometheus server is ready to run for the first time.
   If you get an error message when you start the server, double check your configuration file for possible YAML syntax errors. The error message will tell you what to check.
 
   </Message>
-
 3. The server is working now, but it cannot yet be launched automatically at boot. To achieve this, we have to create a new `systemd` configuration file that will tell your OS which services should it launch automatically during the boot process.
 
   ```sh
@@ -315,7 +297,6 @@ Our Prometheus server is ready to run for the first time.
   ```
 
   The service file tells `systemd` to run Prometheus as `prometheus` and specifies the path of the configuration files.
-
 4. Copy the following information in the file and save it, then exit the editor:
 
   ```sh
@@ -338,7 +319,6 @@ Our Prometheus server is ready to run for the first time.
   [Install]
   WantedBy=multi-user.target
   ```
-
 5. To use the new service, reload `systemd`:
 
   ```sh
@@ -350,7 +330,6 @@ Our Prometheus server is ready to run for the first time.
   ```sh
   sudo systemctl enable prometheus
   ```
-
 6. Start Prometheus:
 
   ```sh
@@ -384,7 +363,6 @@ The interface we set up is lightweight. The Prometheus team, therefore, recommen
   wget https://dl.grafana.com/oss/release/grafana_8.4.3_amd64.deb
   sudo dpkg -i grafana_8.4.3_amd64.deb
   ```
-
 2. Enable the automatic start of Grafana by `systemd`:
 
   ```sh

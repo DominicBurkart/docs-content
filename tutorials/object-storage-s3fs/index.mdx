@@ -65,12 +65,10 @@ Next, download and install `s3fs-fuse` itself:
   ```bash
   git clone https://github.com/s3fs-fuse/s3fs-fuse.git
   ```
-
 2. Enter the s3fs-fuse directory
   ```bash
   cd s3fs-fuse
   ```
-
 3. Update the `MAX_MULTIPART_CNT` value in the `fdcache_entity.cpp` file:
 
     - On **Linux**:
@@ -84,19 +82,16 @@ Next, download and install `s3fs-fuse` itself:
     ```bash
     sed -i '' -e 's/MAX_MULTIPART_CNT         = 10 /MAX_MULTIPART_CNT         = 1 /' src/fdcache_entity.cpp
     ```
-
 4. Run the `autogen.sh` script to generate a configuration file, configure the application and compile it from the master branch:
   ```bash
   ./autogen.sh
   ./configure
   make
   ```
-
 5. Run the installation of the application using the `make install` command:
   ```bash
   make install
   ```
-
 6. Copy the application into its final destination to complete the installation:
   ```bash
   cp ~/s3fs-fuse/src/s3fs /usr/local/bin/s3fs
@@ -109,7 +104,6 @@ Next, download and install `s3fs-fuse` itself:
   echo $ACCESS_KEY:$SECRET_KEY > $HOME/.passwd-s3fs
   chmod 600 $HOME/.passwd-s3fs
   ```
-
 2. Execute the following commands to create a file system from an existing bucket. Make the following replacements in the command text:
     - Replace `$SCW-BUCKET-NAME` with the name of your Object Storage bucket and `$FOLDER-TO-MOUNT` with the local folder to mount it in.
     - Replace the `endpoint` parameter with the location of the your bucket (`fr-par` for Paris, `nl-ams` for Amsterdam or `pl-waw` for Warsaw).
@@ -130,7 +124,6 @@ Next, download and install `s3fs-fuse` itself:
     You must carry out the command as root in order for the `allow_other` argument to be allowed.
 
     </Message>
-
 3. Add the following line to `/etc/fstab` to mount the file system on boot. Replace `s3.fr-par.scw.cloud` with the address corresponding to your bucket's geographical location:
 
   ```

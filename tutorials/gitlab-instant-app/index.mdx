@@ -27,13 +27,11 @@ GitLab is a web-based Git repository manager with wiki and issue tracking featur
 ## Creating the GitLab Instance
 
 1. Click **Instances** in the **Compute** section of the side menu. The Instance creation page displays.
-
 2. Click **Create an Instance**. The Instance creation wizard displays.
 
   You can choose the **GitLab** image in the **InstantApps** tab:
 
   <Lightbox src="scaleway-nc-instantapps.webp" alt="" />
-
 3. Follow the remaining steps to [create your Instance](/compute/instances/how-to/create-an-instance/).
 
 ## Opening the mail ports to send e-mails
@@ -41,11 +39,8 @@ GitLab is a web-based Git repository manager with wiki and issue tracking featur
 To avoid spam, remote mail ports cannot be reached from our infrastructure by default. As GitLab requires to send mail, we need to open them. Your account needs to be validated to perform this operation. To get your account reviewed, please [contact our assistance](https://console.scaleway.com/support/).
 
 1. Click the **Security Groups** tab in the Instances overview page.
-
 2. Click **Create a new security group** and input the security group name and description.
-
 3. Check the **Enable SMTP** box to unblock the mail ports.
-
 4. Return to the overview tab and select the security group you created in step 2.
 
 The new security group configuration will be applied automatically on Virtual Cloud Instances.
@@ -53,7 +48,6 @@ The new security group configuration will be applied automatically on Virtual Cl
 ## Configuring GitLab
 
 1. Copy the public IP of your Instance and paste it in your favorite browser.
-
 2. Define a new password for your GitLab account. You may also use `sudo gitlab-rake "gitlab:password:reset"` from the server.
 
   <Lightbox src="scaleway-gitlab-login.webp" alt="" />
@@ -64,9 +58,7 @@ You can also use the following command `sudo gitlab-rake "gitlab:password:reset"
 
 </Message>
 3. Enter the new password twice and click the button to save it.
-
 4. Login now with the `root` user and your new password.
-
 5. Configure GitLab from the "Admin area".
 
 <Lightbox src="scaleway-gitlab-interface.webp" alt="" />

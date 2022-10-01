@@ -37,7 +37,6 @@ In this tutorial, we will install and configure Nagios from its source to make s
   sudo apt-get update && sudo apt-get upgrade
   sudo apt-get install wget build-essential apache2 php apache2-mod-php7.0 php-gd libgd-dev sendmail unzip
   ```
-
 2. Create a user to run Nagios:
 
   ```
@@ -46,7 +45,6 @@ In this tutorial, we will install and configure Nagios from its source to make s
   usermod -a -G nagcmd nagios
   usermod -a -G nagios,nagcmd www-data
   ```
-
 3. Download the sources of Nagios, untar them and enter the directory:
 
   ```
@@ -54,19 +52,16 @@ In this tutorial, we will install and configure Nagios from its source to make s
   tar -xzf nagios*.tar.gz
   cd nagios-*
   ```
-
 4. Before compiling the software, define the user and group to use:
 
   ```
   sudo ./configure --with-nagios-group=nagios --with-command-group=nagcmd
   ```
-
 5. Compile the software:
 
   ```
   sudo make all
   ```
-
 6. Once it has been compiled, run the following `make` commands to install the application, init scripts and configuration files:
 
   ```
@@ -86,7 +81,6 @@ Nagios provides a sample configuration file, that we will use.
   ```
   sudo /usr/bin/install -c -m 644 sample-config/httpd.conf /etc/apache2/sites-available/nagios.conf
   ```
-
 2. Install the [Nagios Plugins](https://nagios-plugins.org/) to have a set of tools to monitor your different services:
 
   ```
@@ -95,7 +89,6 @@ Nagios provides a sample configuration file, that we will use.
   tar -xzf nagios-plugins*.tar.gz
   cd nagios-plugins*
   ```
-
 3. Configure, compile and install them with the following commands:
 
   ```
@@ -111,13 +104,11 @@ Nagios and the required plugins are installed.
 To monitor servers, we have to configure Nagios by editing the file **/usr/local/nagios/etc/nagios.cfg**.
 
 1. Uncommment the line `cfg_dir=/usr/local/nagios/etc/servers` and save the file.
-
 2. Create the folder to store configurations:
 
   ```
   mkdir -p /usr/local/nagios/etc/servers
   ```
-
 3. Configure the contact email address in the file `/usr/local/nagios/etc/objects/contacts.cfg`:
 
   ```
@@ -139,13 +130,11 @@ We are using the Apache web server as an application to serve the Nagios web int
   sudo a2enmod rewrite
   sudo a2enmod cgi
   ```
-
 2. Create a **nagiosadmin** user for the web interface with the `htpasswd` command:
 
   ```
   sudo htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
   ```
-
 3. Enable the Apache vHost:
 
   ```
@@ -163,7 +152,6 @@ This file contains the information where **systemd** can find the Nagios executa
   ```
   sudo nano /etc/systemd/system/nagios.service
   ```
-
 2. Put the following content in the file:
 
   ```
@@ -180,13 +168,11 @@ This file contains the information where **systemd** can find the Nagios executa
   Group=nagios
   ExecStart=/usr/local/nagios/bin/nagios /usr/local/nagios/etc/nagios.cfg
   ```
-
 3. Save the file and enable the service:
 
   ```
   sudo systemctl enable /etc/systemd/system/nagios.service
   ```
-
 4. Start the applications:
 
   ```
@@ -197,7 +183,6 @@ This file contains the information where **systemd** can find the Nagios executa
   Your Nagios server is ready, and you can access the interface at `http://your.server.ip.address/nagios`.
 
   We use the **nagiosadmin** user and the password that you have created previously to log in.
-
 5. Once you are connected, click **Hosts** on the left to see what Nagios is monitoring. By default it will only monitor the local host.
 
 ## Monitoring a Server with the NPRE service
@@ -216,7 +201,6 @@ These steps have to be done on the remote server.
   ```
   sudo apt-get install autoconf gcc libc6 libmcrypt-dev make libssl-dev wget bc gawk dc build-essential snmp libnet-snmp-perl gettext
   ```
-
 2. Download and unpack NRPE:
 
   ```
@@ -224,7 +208,6 @@ These steps have to be done on the remote server.
   wget --no-check-certificate -O nrpe.tar.gz https://github.com/NagiosEnterprises/nrpe/archive/master.tar.gz
   tar xzf nrpe.tar.gz
   ```
-
 3. Compile it with the following commands:
 
   ```
@@ -232,38 +215,32 @@ These steps have to be done on the remote server.
   sudo ./configure --enable-command-args
   sudo make all
   ```
-
 4. Create users and groups:
 
   ```
   sudo make install-groups-users
   ```
-
 5. Install the configuration files:
 
   ```
   sudo make install-config
   ```
-
 6. Install NRPE:
 
   ```
   sudo make install
   ```
-
 7. Install the service, so NPRE can be managed by systemd:
 
   ```
   sudo make install-init
   sudo systemctl enable nrpe.service
   ```
-
 8. Edit the file **/usr/local/nagios/etc/nrpe.cfg**. Replace `IP_of_your_Nagios_Server` with the IP address of your Nagios host:
 
   ```
   allowed_hosts=127.0.0.1,IP_of_your_Nagios_Server
   ```
-
 9. Restart the service:
 
   ```

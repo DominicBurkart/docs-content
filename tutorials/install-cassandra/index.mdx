@@ -28,25 +28,21 @@ dates:
 ## Installing Cassandra
 
 1. Connect to your instance via SSH or by using PuttY.
-
 2. Add the Apache Cassandra repository:
 
   ```
   echo "deb http://www.apache.org/dist/cassandra/debian 41x main" |  tee /etc/apt/sources.list.d/cassandra.list
   ```
-
 3. Add the required PGP keys to use the repositories:
 
   ```
   curl https://downloads.apache.org/cassandra/KEYS | sudo apt-key add -
   ```
-
 4. Reload the APT configuration and update the software already installed on your instance:
 
   ```
   apt update && apt upgrade
   ```
-
 5. Install Cassandra and NTP. [NTP (Network Time Protocol)](https://en.wikipedia.org/wiki/Network_Time_Protocol) is used to keep the time of the instance synchronized:
 
     ```
@@ -105,7 +101,6 @@ The key points to edit are:
       ```
 
   To be fault-tolerant and to minimize the risk of data loss or downtime, Cassandra distributes data across the cluster. Whenever possible it will ensure that data and backups are stored on a different rack, or datacenter to ensure that the impact of even a failing datacenter will be minimal on the production environment.
-
 2. Edit the `/etc/cassandra/cassandra-rackdc.properties` file on each node and set the DC and rack information. You can use your own naming standard to determine the location of each node.
 
     - On Node 1:
@@ -123,7 +118,6 @@ The key points to edit are:
     dc=dc1
     rack=rack2
     ```
-
 3. Remove the `/etc/cassandra/cassandra-topology.properties` file, as we do not use it.
 
   ```
@@ -138,13 +132,11 @@ The key points to edit are:
   systemctl enable cassandra
   systemctl start cassandra
   ```
-
 2. Verify that the service is running.
 
   ```
   systemctl -l status cassandra
   ```
-
 3. Check the status of the cluster with the command `nodetool status`.
 
   ```
@@ -173,7 +165,6 @@ Once all nodes have started, the cluster is ready. You can use the **cqlsh** too
   Use HELP for help.
   cqlsh>
   ```
-
 2. To quit the CQL shell, type `EXIT` and press enter.
 
 <Message type="note">
@@ -191,24 +182,18 @@ By default your cluster is named 'Test Cluster', to edit the it to a more friend
   ```
   UPDATE system.local SET cluster_name = '[new_cluster_name]' WHERE KEY = 'local';
   ```
-
 2. Leave the CQL shell with the command `EXIT`.
-
 3. Edit the file `/etc/cassandra/cassandra.yaml` on each of the nodes and replace the value in the `cluster_name` variable with the new cluster name you just set.
-
 4. Save and close the file.
-
 5. Run the following command from your Linux terminal to clear the system cache and preserve all data in the node:
 
   ```
   nodetool flush system
   ```
-
 6. Restart Cassandra.
 
   ```
   systemctl restart cassandra
   ```
-
 7. Log into the cluster with `cqlsh` and verify the new cluster name is visible.
 

@@ -23,7 +23,6 @@ dates:
   ```
   aws s3api create-bucket --bucket BUCKET-TARGET
   ```
-
 2. Copy the objects between the S3 buckets.
 
   <Message type="important">
@@ -35,7 +34,6 @@ dates:
   ```
   aws s3 sync s3://BUCKET-SOURCE  s3://BUCKET-TARGET
   ```
-
 3. Check that the content of the copied objects matches the content of the source ones.
 
   ```

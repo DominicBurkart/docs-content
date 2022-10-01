@@ -34,14 +34,12 @@ This tutorial will simulate a project with a production environment running all 
     ```
     mkdir Terraform && cd Terraform
     ```
-
 2. Create five files to configure your infrastructure:
     - `main.tf`: will contain the main set of configurations for your project. Here, it will be our Instance
     - `provider.tf`: Terraform relies on plugins called “[providers](https://www.terraform.io/language/providers)” to interact with remote systems
     - `backend.tf`: each Terraform configuration can specify a backend, which defines where the state file of the current infrastructure will be stored. Terraform uses this file to keep track of the managed resources. This state can be stored locally or remotely. Configuring a remote backend allows multiple people to work on the same infrastructure
     - `variables.tf`: will contain the variable definitions for your project. Since all Terraform values must be defined, any variables that are not given a default value will become required arguments
     - `terraform.tfvars`: allows you to set the actual value of the variables
-
 3. Create the following folders:
     - `function`: to store your function code
     - `files`: to temporary store your zip function code
@@ -56,7 +54,6 @@ This tutorial will simulate a project with a production environment running all 
     -- terraform.tfvars
     -- variables.tf
     ```
-
 4. Edit the `backend.tf` file to enable remote configuration backup:
     ```json
     terraform {
@@ -78,7 +75,6 @@ This tutorial will simulate a project with a production environment running all 
         region=fr-par
         */
     ```
-
 5. Edit the `provider.tf` file and add Scaleway as a provider:
     ```json
     terraform {
@@ -116,7 +112,6 @@ This tutorial will simulate a project with a production environment running all 
         description = "Scaleway authtentication token used in the function"
     }
     ```
-
 6. Add the variable values to `terraform.tfvars` 
     ```bash
     zone                           = "fr-par-1"
@@ -198,7 +193,6 @@ def handle(event, context):
       }
     }
     ```
-
 2. Add a development Instance using a DEV1-L named "Dev":
     ```json
     ## Configuring Development environment that will be automatically turn off on week-ends and turn on monday mornings
@@ -221,7 +215,6 @@ def handle(event, context):
       }
     }
     ```
-
 3. Write a function that will run the code you have just written:
     ```json
     # Creating function code archive that will then be updated
@@ -254,7 +247,6 @@ def handle(event, context):
       }
     }
     ```
-
 4. Add a cronjob attached to the function to turn your function off every Friday evening:
     ```json
     # Adding a first cron to turn off the Instance every friday evening (11:30 pm)
@@ -269,7 +261,6 @@ def handle(event, context):
         )
     }
     ```
-
 5. Create a cronjob attached to the function to turn your function on every Monday morning:
     ```json
     # Adding a second cron to turn on the Instance every monday morning (7:00 am)
@@ -294,17 +285,14 @@ Everything is configured now, so you can deploy your infrastructure using Terraf
   $ export SCW_ACCESS_KEY="my-access-key"
   $ export SCW_SECRET_KEY="my-secret-key"
   ```
-
 2. Initialize Terraform 
   ```bash
   terraform init 
   ```
-
 3. Let Terraform verify your configuration:
   ```bash
   terraform plan
   ```
-
 4. Deploy your infrastructure:
   ```bash
   terraform apply

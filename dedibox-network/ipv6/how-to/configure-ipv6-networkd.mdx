@@ -32,19 +32,16 @@ When specifying the IP address of your Dedibox, you need to enter it in [CIDR no
     ```
     sudo mv /etc/network/interfaces /etc/network/interfaces.backup
     ```
-
 2. Enable `networkd` by using the systemctl command. Do not start the service yet, as the server is currently still running on the old configuration and may become unreachable if networkd is started at this step.
 
     ```
     systemctl enable systemd-networkd
     ```
-
 3. Create a new file called `dummy0.netdev` in the `/etc/systemd/network` directory and open it in a text editor, i.e. `nano`.
 
     ```
     sudo nano /etc/systemd/network/dummy0.netdev
     ```
-
 4. Copy the following content into the file, save it, and exit the text editor:
 
     ```
@@ -52,13 +49,11 @@ When specifying the IP address of your Dedibox, you need to enter it in [CIDR no
     Name=dummy0
     Kind=dummy
     ```
-
 5. Create a new file `dummy0.network` and open it in nano:
 
     ```
     sudo nano /etc/systemd/network/dummy0.network
     ```
-
 6. Copy the following content into the file, save it and exit the text editor:
 
     ```
@@ -67,15 +62,12 @@ When specifying the IP address of your Dedibox, you need to enter it in [CIDR no
     [Network]
     IPv6PrefixDelegation=dhcpv6
     ```
-
 7. Find the name of your public Internet interface using the `ip link show` command. In this example, the name of the interface is `enp1s0f0`. Take a note of it, as it will be required in the next steps.
-
 8. Create a new file called `<interface_name>.network` and open it in a text editor
 
     ```
     sudo nano /etc/systemd/network/enp1s0f0.network
     ```
-
 9. Copy the following content in the file, edit it towards your configuration before saving the file and exiting the text editor.
 
     ```

@@ -35,15 +35,10 @@ The answers to these frequently asked questions used to be provided by specializ
 ## Creating a new database for PostGIS
 
 1. Connect to your Scaleway Console and enter the **Managed Databases** section.
-
 2. Choose your Database Instance by clicking on its name.
-
 3. Click the **Managed Databases** tab, then on **+ Create Database**.
-
 4. Enter the name of the new database. In this tutorial we use `townssurvey`.
-
 5. Click the **Users** tab, followed by <Icon name="[more]" /> and **Update Permissions**.
-
 6. Grant your user permission to access the newly created `townssurvey` database.
 
 ## Enabling the PostGIS Extension
@@ -60,12 +55,10 @@ The answers to these frequently asked questions used to be provided by specializ
   You can find the `rdb_host` and `rdb_port` on the database information page.
 
   </Message>
-
 2. Once connected enable the `postgis` extension for the database:
   ```
   CREATE EXTENSION postgis;
   ```
-
 3. Verify that everything went well, by running the following command:
   ```
   SELECT PostGIS_version();
@@ -80,7 +73,6 @@ The answers to these frequently asked questions used to be provided by specializ
   3.0 USE_GEOS=1 USE_PROJ=1 USE_STATS=1
   (1 row)
   ```
-
 4. Log out of the PostgreSQL shell when the database is ready.
   ```
   \q
@@ -91,9 +83,7 @@ The answers to these frequently asked questions used to be provided by specializ
 PostgreSQL is designed to run in very different configurations, from small test or development setups to large databases handling millions of rows. GIS database objects are large in comparison to plain text data. Scaleway Databases are optimized for performance by default, but it is possible to fine-tune them for some parameters.
 
 1. Enter the configuration section of your Database Instance in the [Scaleway console](https://console.scaleway.com/rdb/instances)
-
 2. Choose your Database Instance from the list, and click it to see the Database information page. Then click **Advanced Settings**. The advanced settings tab displays.
-
 3. Click <Icon name="[edit]" /> to configure the parameters of your PostgreSQL server.
 
   <Message type="tip">
@@ -101,7 +91,6 @@ PostgreSQL is designed to run in very different configurations, from small test 
   The parameter `work_mem` defines the amount of memory that internal sorting operations and hash tables can consume in the RAM, set this value to 16MB.
 
   </Message>
-
 4. Save the configuration by clicking on the check mark symbol (✔). The configuration of your Database Instance is updated:
 <Lightbox src="scaleway-dbaas_advanced_settings.webp" alt="" />
 
@@ -125,29 +114,24 @@ You can run the following commands either on a local computer running Ubuntu or 
   ```
   apt install -y wget unzip postgis
   ```
-
 3. Create a directory to store the downloaded data and change to it:
   ```
   mkdir -p /postgis/townssurvey && cd /postgis/townssurvey
   ```
-
 4. Download a dataset. We use a sample provided by [MassGIS Data](https://docs.digital.mass.gov/dataset/massgis-data-community-boundaries-towns-survey-points) which contains information about the legal boundary for each of the 351 municipalities in Massachusetts.
   ```
   wget http://download.massgis.digital.mass.gov/shapefiles/state/townssurvey_shp.zip
   ```
-
 5. Unzip the downloaded data and list the unpacked data to view it:
   ```
   unzip townssurvey_shp.zip && ls
   ```
-
 6. You will notice several `.dbf`, `.prj`, `.shx` and `.shp` files in the folder. These files together are called a [ShapeFile](https://en.wikipedia.org/wiki/Shapefile), a common digital vector storage format for storing geometric location and associated attribute information for legacy GIS software.
 
   To import the data into the database, it has to be converted to SQL. To achieve this, PostGIS provides a tool called `shp2pgsql` which can automatically convert `.shp` files into readable `.sql` files. Convert the file `TOWNSSURVEY_POLY.shp` into a SQL file by running the following command:
   ```
   shp2pgsql -d ./TOWNSSURVEY_POLY.shp > /postgis/TOWNSSURVEY_POLY.sql
   ```
-
 7. Import the generated SQL file into your database using the `psql` client:
   ```
   psql -h <rbd_host> --port <rdb_port> -d townssurvey -U <rdb_user> -f /postgis/TOWNSSURVEY_POLY.sql
@@ -175,7 +159,6 @@ Now as some demo data is available in the database, you can start querying it.
   ```
   psql -h <rbd_host> --port <rdb_port> -d townssurvey -U <rdb_user>
   ```
-
 2. List the tables available in the database:
   ```
   townssurvey=> \dt
@@ -190,7 +173,6 @@ Now as some demo data is available in the database, you can start querying it.
   public | townssurvey_poly | table | rdb_user
   (2 rows)
   ```
-
 3. The table to query is `townssurvey_poly`. To view a list of all available columns in the table, run the following command:
   ```
   townssurvey=> \d townssurvey_poly
@@ -266,7 +248,6 @@ Now as some demo data is available in the database, you can start querying it.
   MONROE       | 942395.280914487
   (10 rows)
   ```
-
 4. Quit the database.
   ```
   \q

@@ -48,19 +48,16 @@ In this tutorial, we will set up [CrowdSec](https://crowdsec.net/) on a Dedibox 
         gnupg \
         lsb-release
     ```
-
 2. Add the CrowdSec [GPG](https://gnupg.org/) key:
 
     ```
     curl -L https://packagecloud.io/crowdsec/crowdsec/gpgkey | apt-key add -
     ```
-
 3. Add the address of the CrowdSec repository:
 
     ```
     echo "deb https://packagecloud.io/crowdsec/crowdsec/debian/ $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/crowdsec_crowdsec.list
     ```
-
 4. Update the sources and install CrowdSec:
 
     ```
@@ -128,7 +125,6 @@ In this tutorial, we will use a bouncer that can manage `iptables` and `ipset`. 
     ```
     apt install crowdsec-firewall-bouncer-iptables
     ```
-
 2. Check that your bouncer is correctly installed:
 
     ```
@@ -151,7 +147,6 @@ In this tutorial, we will use a bouncer that can manage `iptables` and `ipset`. 
     We do not recommend banning your local machine, in case you lose your SSH connection.
 
     </Message>
-
 3. Run `ipset list`. You can see that the bouncer did its job and added a lot of IPs. These are the IPs from the CAPI, automatically banned. You can also easily find your manual ban:
 
     ```

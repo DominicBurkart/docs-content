@@ -54,9 +54,7 @@ This tutorial works with all versions of PostgreSQL. If you prefer another versi
 </Message>
 
 1. Open the [Scaleway Console](https://console.scaleway.com) in a web browser and click **Managed Databases** in the **Storage** section of the side menu. The list of your databases displays. 
-
 2. Click **+ Create an Instance**. The [Instance creation wizard](https://console.scaleway.com/rdb/instances/create) displays.
-
 3. Select **PostgreSQL-13** from the dropdown list and fill in the [required information](/managed-databases/postgresql-and-mysql/how-to/create-a-database/) for your new database Instance. Then click **Create an Instance**. Your database is created and you are redirected to the database dashboard.
 
     <Message type="note">
@@ -64,7 +62,6 @@ This tutorial works with all versions of PostgreSQL. If you prefer another versi
     Ensure your new Database Instance is located in the same geographical region as your old one.
 
     </Message> 
-
 4. Click the **Users** tab and replicate the users of your existing Database Instance.
 
 ### Backing up your existing database using the Scaleway API
@@ -79,7 +76,6 @@ This tutorial works with all versions of PostgreSQL. If you prefer another versi
 1. Retrieve the database ID of your **old** Database Instance. You can find it on the **Database Instance Information** page of your Instance: 
 
     <Lightbox src="scaleway-database-information.webp" alt="" />
-
 2. Make a backup of your logical database(s) using the API: 
 
     ```sh
@@ -91,7 +87,6 @@ This tutorial works with all versions of PostgreSQL. If you prefer another versi
     "expires_at": "<expiry_date>"
     }'
     ```
-
 3. Replace the following information in the command above: 
 
     * `$SECRET_KEY`: Your Scaleway API [secret key](/console/my-account/concepts#secret-key)
@@ -135,7 +130,6 @@ Ensure that you have replicated your database users and permissions on your new 
 </Message>
 
 1. Retrieve the database ID of your **new** Database Instance. You can find it on the **Database Instance Information** page of your Instance.
-
 2. Restore the backup of your logical database(s) using the API: 
 
     ```sh
@@ -179,7 +173,6 @@ Ensure that you have replicated your database users and permissions on your new 
     Depending on the size of your backup, restoring might take a moment. 
 
     </Message>
-
 3. The database appears in the **Managed Databases** tab of your new Database Instance, once the backup has been imported: 
 
     <Lightbox src="scaleway-database-restored.webp" alt="" />
@@ -189,9 +182,7 @@ Ensure that you have replicated your database users and permissions on your new 
     Optionally, you can verify the status of your database with a tool like [pgAdmin 4](/tutorials/manage-database-instance-pgadmin4/)
 
     </Message>
-
 4. Update your applications with the endpoint (IP address and port) of the new Database Instance.
-
 5. Once the migration is complete, [delete](/managed-databases/postgresql-and-mysql/how-to/delete-a-database/) the old Database Instance from your account. 
 
 ## Automatic migration via a bash script using the Scaleway CLI v2
@@ -429,13 +420,11 @@ This solution enables you to migrate your database(s) automatically, with a bash
             log_info "Database $db migrated to $new_instance"
         done;
     ```
-
 2. Make the script executable using the `chmod` command:
 
     ```
     chmod +x db_mig_script.sh
     ```
-
 3. Run the script from your terminal by typing `./db_mig_script.sh`
 
     The script will guide you through the migration process, asking you to complete the necessary information for your migration as required.

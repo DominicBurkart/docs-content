@@ -37,19 +37,16 @@ It provides a large portfolio of [different applications](https://nextcloud.com/
   ```
   ssh root@SERVER_IP_ADDRESS
   ```
-
 2. Update the apt package manager and upgrade the software already installed on your Instance to the latest version.
 
   ```
   apt update && apt upgrade -y
   ```
-
 3. Install Nextcloud via [Snap](https://snapcraft.io/):
 
   ```
   snap install nextcloud
   ```
-
 4. Finish the installation by running the following command. Note that a username and password must be provided when you run the script.
 
   ```
@@ -77,7 +74,6 @@ By the default the access to your Nextcloud instance is limited to `localhost`. 
   ```
   nextcloud.occ config:system:set trusted_domains 1 --value=your.domain.com
   ```
-
 2. The following message appears when the domain was successfully added: `System config value trusted_domains => 1 set to string your.domain.com`
 
 ## Securing the Web Interface with a Let's Encrypt SSL Certificate
@@ -91,13 +87,11 @@ By default the Nextcloud installation via Snap provides a plain HTTP connection 
   ```
   apt install resolvconf
   ```
-
 2. Enable SSL and request a Let's Encrypt SSL certificate:
 
   ```
   nextcloud.enable-https lets-encrypt
   ```
-
 2. The following message will appear, confirm it by pressing `y` on your keyboard:
 
   ```
@@ -123,19 +117,16 @@ By default the Nextcloud installation via Snap provides a plain HTTP connection 
 
   Have you met these requirements? (y/n)
   ```
-
 3. Enter your email address when asked to do so and confirm by pressing **Enter**:
 
   ```
   Please enter an email address (for urgent notices or key recovery): you@your.domain.com
   ```
-
 4. Enter the domain name that you have configured in a previous step for your instance (`your.domain.com` in our case), then confirm by pressing **Enter**:
 
   ```
   Please enter your domain name(s) (space-separated): your.domain.com
   ```
-
 5. Your certificate is being requested and apache will be restarted. The following messages will appear, once the certificate has been obtained:
 
   ```
@@ -148,9 +139,7 @@ By default the Nextcloud installation via Snap provides a plain HTTP connection 
 You will now be able to access your Nextcloud instance for the first time.
 
 1. Open your brower and type the address of your instance (For example: `https://your.domain.com`). You will see a login screen where you have to enter the user and password that you have created previously.
-
 2. Once connected you will see your personal cloud storage space. You can upload, share or download files from the interface:
 
   <Lightbox src="scaleway-nextcloud_files.webp" alt="" />
-
 3. Optionally, you can download one of the several [Nextcloud clients](https://nextcloud.com/install/#install-clients) to manage your cloud storage space directly from your computer.

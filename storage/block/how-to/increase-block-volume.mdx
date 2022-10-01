@@ -25,7 +25,6 @@ With Block Storage it is possible to expand the volume size of an Instance.
 2. Click <Icon name="more" /> beside the volume you want to increase and then click **Increase Volume**.
 3. Increase the size according to your preference with the <Icon name="plus" /> button. 
   <Lightbox src="scaleway-increase-volume-modal.webp" alt="" />
-
 4. Click **Increase your Volume** to confirm.
   <Message type="note">
 
@@ -43,7 +42,6 @@ It is recommeneded to make a backup of your data using the [snapshot](https://ww
 
 
 1. Connect to your Instance using [SSH](https://www.scaleway.com/en/docs/compute/instances/how-to/connect-to-instance/).
-
 2. Use the `lsblk` command to identify your Block Storage volume's mount point. In the following example the volume is mounted at `/mnt/block-volume`: 
 
   ```
@@ -59,14 +57,12 @@ It is recommeneded to make a backup of your data using the [snapshot](https://ww
   sdb       8:16   0 37.3G  0 disk
   └─sdb1    8:17   0 23.3G  0 part /mnt/block-volume
   ```
-
 3. [Unmount](https://www.scaleway.com/en/docs/storage/block/how-to/unmount-a-volume/) the volume:
 
   ```
   umount /mnt/block-volume
   ```
 4. Check that the volume is unmounted by running the `lsblk` command. 
-
 5. Use `growpart` to increase the partition size of your block storage volume (here `/dev/sdb1`):
 
   ```
@@ -78,13 +74,11 @@ It is recommeneded to make a backup of your data using the [snapshot](https://ww
   Take a note of the space between the device identifier and the partition number. 
 
   </Message>
-
 6. Increase the partition size of the volume using `resize2fs`. Replace `/dev/sdX` with the name of your block volume in the following command:
 
   ```
   resize2fs -p /dev/sdX1
   ```
-
 7. Run `e2fsck` on the Block Storage volume to check that everything went well. Replace `/dev/sdX` with the name of your block volume in the following command:
 
   ```
@@ -98,7 +92,6 @@ It is recommeneded to make a backup of your data using the [snapshot](https://ww
   e2fsck 1.45.5 (07-Jan-2020)
   /dev/sda: clean, 11/1827840 files, 158770/7324218 blocks
   ```
-
 8. [Remount](https://www.scaleway.com/en/docs/storage/block/how-to/mount-and-use-volume/) the volume to access the files stored on it: 
 
   ```

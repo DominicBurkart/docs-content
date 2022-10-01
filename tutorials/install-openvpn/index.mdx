@@ -42,26 +42,22 @@ OpenVPN supports two-way certificate-based authentication, this means that the c
 Both the server and the client will authenticate each other. First, the certificate needs to be signed by the certification authority (CA) then, the information in the header (common name of the certificate or the certificate type) of the authenticated certificate can be tested.
 
 1. [Connect to your Instance](/compute/instances/how-to/connect-to-instance/) via SSH.
-
 2. Update the APT package cache and the software already installed.
 
   ```
   apt update && apt upgrade -y
   ```
-
 3. Install easy-RSA.
 
   ```
   apt install easy-rsa -y
   ```
-
 4. Copy the easy-RSA directory into `/etc/openvpn`.
 
   ```
   mkdir -p /etc/openvpn/easy-rsa/
   cp -r /usr/share/easy-rsa/* /etc/openvpn/easy-rsa/
   ```
-
 5. Modify `/etc/openvpn/easy-rsa/vars` by adjusting the following values so they match your configuration.
 
   ```
@@ -75,7 +71,6 @@ Both the server and the client will authenticate each other. First, the certific
   export KEY_EMAIL="me@myhost.mydomain"
   export KEY_OU="MyOrganizationalUnit"
   ```
-
 6. Run the following commands to generate the Certificate Authority and a key:
 
   ```
@@ -85,7 +80,6 @@ Both the server and the client will authenticate each other. First, the certific
   ./clean-all
   ./build-ca
   ```
-
 7. Generate a certificate and a private key for the server:
 
   ```
@@ -93,13 +87,11 @@ Both the server and the client will authenticate each other. First, the certific
   ```
 
   Such as in the previous step, most of the default settings can be kept. Two requests require positive answers: `Sign the certificate? [y/n]` and `1 out of 1 certificate requests certified, commit? [y/n]`.
-
 8. Generate a [Diffie Hellman key](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange) for the OpenVPN server.
 
   ```
   ./build-dh
   ```
-
 9. All certificates and keys have been generated in the **keys/** subdirectory. It is recommended to copy them into the directory `/etc/openvpn/`.
 
   ```
@@ -138,7 +130,6 @@ As you have generated both the servers and the client certificate, you can now c
   ```
   apt install openvpn -y
   ```
-
 2. Create a configuration file `/etc/openvpn/openvpn-server.conf` for the server:
 
   ```
@@ -468,19 +459,16 @@ As you have generated both the servers and the client certificate, you can now c
     - `dh dh2048.pem`
 
   </Message>
-
 3. Edit the file `/etc/sysctl.conf` and uncomment the following line:
 
   ```
   #net.ipv4.ip_forward=1
   ```
-
 4. Reload **sysctl**.
 
   ```
   sysctl -p /etc/sysctl.conf
   ```
-
 5. Create a **ta.key**.
 
   ```
@@ -492,13 +480,11 @@ As you have generated both the servers and the client certificate, you can now c
     Download a copy of this key also on your client to establish the VPN connection.
   
   </Message>
-
 6. Start the OpenVPN service. It is necessary to specify the configuration file as an instance variable. The configuration file you created previously is called `/etc/openvpn/openvpn-server.conf`. Therefore, you need to add **@openvpn-server** to the end of your unit when launching it:
 
   ```
   systemctl start openvpn@openvpn-server
   ```
-
 7. Check that the service is running:
 
   ```
@@ -531,7 +517,6 @@ As you have generated both the servers and the client certificate, you can now c
   Jan 21 14:43:35 openvpn ovpn-openvpn-server[30023]: IFCONFIG POOL LIST
   Jan 21 14:43:35 openvpn ovpn-openvpn-server[30023]: Initialization Sequence Completed
   ```
-
 8. Enable the service to start it automatically when your Instance boots.
 
   ```
@@ -556,7 +541,6 @@ Your OpenVPN server is now ready to accept connections.
     - /etc/openvpn/easy-rsa/keys/openvpn-client01.key
 
   You can download them for example via SFTP with [Filezilla](https://filezilla-project.org/).
-
 2. Create a configuration file `openvpn-client01.ovpn` for the client and put the following information in it.
 
   ```
@@ -690,7 +674,6 @@ Your OpenVPN server is now ready to accept connections.
   ```
 
   Add your OpenVPN server's IP at `remote YOUR_SERVER_IP 1194` and make sure all file names correspond to your files.
-
 3. Restart the openvpn client. On Ubuntu:
 
   ```

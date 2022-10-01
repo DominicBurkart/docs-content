@@ -31,7 +31,6 @@ Learn how to configure a [flexible IP address](/compute/elastic-metal/concepts/#
 Since the LTS release of Ubuntu Version 18.04 (Bionic Beaver) the recommended way to configure a flexible IP is by using [Netplan](https://netplan.io/). If you prefer a more traditional configuration, refer to the instructions for [flexible IP configuration on Debian](#how-to-configure-a-flexible-ip-on-debian-linux).
 
 1. Log into your server using SSH with a user having super-user rights.
-
 2. Open the file `/etc/netplan/01-netcfg.yaml` with superuser rights in your favorite text editor and configure the networking for your machine.
 
    <Message type="note">
@@ -62,7 +61,6 @@ Since the LTS release of Ubuntu Version 18.04 (Bionic Beaver) the recommended wa
     your public Internet interface.
 
   </Message>
-
 3. Once the file is edited as required, save it and quit the text editor. Then apply
 the configuration using the following command: 
 
@@ -75,9 +73,7 @@ Your server now responds on both the primary IP address and the flexible IP addr
 ## How to configure a flexible IP on Debian Linux
 
 1. Log into your server using SSH with a user having super-user rights.
-
 2. Open the file `/etc/network/interfaces` with superuser rights in your favorite text editor and configure the networking for your machine.
-
 3. Edit the file and add the flexible IP as shown in the following example:
 
   ```sh
@@ -105,9 +101,7 @@ Your server now responds on both the primary IP address and the flexible IP addr
     your public Internet interface.
 
   </Message>
-
 4. Save the file and quit the editor. 
-
 5. Bring the interface up using the `ifup`
 command: 
   ```sh 
@@ -119,13 +113,11 @@ Your server now responds on both the primary IP address and the flexible IP addr
 ## How to configure a flexible IP on CentOS
 
 1. Log into your server using SSH using the `root` user.
-
 2. Copy the default network configuration file to create an alias:
 
   ```sh
   cp /etc/sysconfig/network-scripts/ifcfg-eth0 /etc/sysconfig/network-scripts/ifcfg-eth0:0
   ```
-
 3. Open the file `/etc/sysconfig/network-scripts/ifcfg-eth0:0` in your favourite text editor and modify it as in the following example:
 
   ```sh
@@ -135,7 +127,6 @@ Your server now responds on both the primary IP address and the flexible IP addr
   NETMASK="255.255.255.255"
   ONBOOT=yes
   ```
-
 4. Save the file, exit the text editor and run the following command to reload the network configuration:
 
   ```

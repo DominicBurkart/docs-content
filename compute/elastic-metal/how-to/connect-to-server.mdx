@@ -27,7 +27,6 @@ This page shows how to connect to your Scaleway Elastic Metal server via SSH. Th
 ## How to connect from OSX (Mac) and Linux
 
 1. Open a terminal program.
-
 2. Enter the command below into the terminal. Make sure you replace `your_private_key` with the filename of your private key (often `id_rsa`) and `your_server_ip` with the IP address of your Elastic Metal server.
     ```bash
     ssh -i ~/.ssh/your_private_key root@your_server_ip
@@ -40,7 +39,6 @@ This page shows how to connect to your Scaleway Elastic Metal server via SSH. Th
     Elastic Metal servers and their associated IP addresses will display.
 
     </Message>
-
 3. If / when prompted, allow connection to the host by typing `yes`, then press **Enter**.
     ```
     The authenticity of host 'myhost.ext (212.47.226.35)' can't be established.
@@ -55,11 +53,9 @@ You are now connected to your Elastic Metal server.
 To connect to your Elastic Metal server from Windows, you will need to use a small application called **PuTTy**, an SSH client.
 
 1. Download and install PuTTy [here](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
-
 2. Launch PuTTy on your computer. The main screen of the application displays:
 
     <Lightbox src="scaleway-putty-main.webp" alt="" />
-
 3. Enter your Elastic Metal server's IP address in the **Hostname** field.
 
     <Message type="tip">
@@ -69,21 +65,16 @@ To connect to your Elastic Metal server from Windows, you will need to use a sma
     Elastic Metal servers and their associated IP addresses will display.
 
     </Message>
-
 4. In the side menu, under **Connection** navigate to the **Auth** sub-category. Do this by expanding **Connection**, then **SSH** and finally clicking on **Auth**:
 
     <Lightbox src="scaleway-putty-ssh.webp" alt="" />
-
 5. Click the **Browse** button and select the private key file you [generated previously](/console/my-project/how-to/create-ssh-key/).
-
 6. Click **Open** at the bottom of the screen to open a connection to the Elastic Metal server. Upon the first connection, PuttY asks you to allow the connection to the host.
-
 7. Click **OK** to confirm.
 
     <Lightbox src="scaleway-putty-security.webp" alt="" />
 
     The terminal window diplays.
-
 8. Enter the username `root` and press **Enter** to authenticate against the server with your SSH key.
     <Lightbox src="scaleway-putty-logged.webp" alt="" />
 

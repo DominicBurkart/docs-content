@@ -39,13 +39,11 @@ If you want to see a specific Scaleway product, please [open an issue](https://g
   ```bash
   $ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.7.1/cert-manager.yaml
   ```
-
 2. Once Cert Manager is up and running, you have to install the CRDs. First clone the repo, and then making sure your `KUBECONFIG` environment variable is set on the right cluster, run:
 
   ```bash
   $ make install
   ```
-
 3. Then, run:
 
   ```bash
@@ -53,7 +51,6 @@ If you want to see a specific Scaleway product, please [open an issue](https://g
   ```
 
   and replace the values.
-
 4. In order to deploy the Scaleway Operator, run:
 
   ```bash

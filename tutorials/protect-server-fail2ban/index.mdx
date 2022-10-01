@@ -36,11 +36,9 @@ In this Tutorial you will learn how to configure the service on an Ubuntu Bionic
   ```
   sudo apt-get install fail2ban postfix
   ```
-
 2. Choose `Internet Site` when asked for the configuration:
 
   <Lightbox src="scaleway-postfix-install.webp" alt="" />
-
 3. Once the installation has completed, open the file `/etc/aliases` and add the following line:
 
   ```
@@ -64,7 +62,6 @@ In this Tutorial you will learn how to configure the service on an Ubuntu Bionic
   ```
 
   The file `jail.conf` contains the default parameters. If a file `jail.local` is available, it will have priority over `jail.conf` if parameters are modified.
-
 2. Edit the file `/etc/fail2ban/jail.local` with your preferred editor.
 
   Following the parameters which should be modified:
@@ -109,14 +106,12 @@ In this Tutorial you will learn how to configure the service on an Ubuntu Bionic
     Fail2Ban analyses the logs and will ban the users who made several intrusion attempts on ports 22 (SSH by default) & 1234.
 
     </Message>
-
 3. Save the file once you have edited it.
 
   Fail2Ban uses filters, pre-made configuration files indicating what to parse in a log.
 
   They can be found in `/etc/fail2ban/filter.d`.
   You can create your own filters in case you have need to.
-
 4. Restart the service to take the actions into effect:
 
 ```

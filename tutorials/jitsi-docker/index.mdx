@@ -31,13 +31,11 @@ This tutorial explains how to install the Jitsi Meet solution on a virtual cloud
 ## Setting Up the Solution
 
 1. [Connect to your instance](/compute/instances/how-to/connect-to-instance/) via SSH.
-
 2. Update the package cache and upgrade the software already installed on the Instance using the `apt` package manager:
 
   ```
   apt update && apt upgrade -y
   ```
-
 3. Install Docker, for more detailed instructions, follow our [tutorial](docs/tutorials/install-docker-ubuntu-bionic).
 
   ```
@@ -47,20 +45,17 @@ This tutorial explains how to install the Jitsi Meet solution on a virtual cloud
   apt update
   apt install docker-ce docker-ce-cli docker-compose containerd.io git
   ```
-
 4. Clone the Docker Jitsi Meet repository using `git` and `cd` into the downloaded directory:
 
   ```
   git clone https://github.com/jitsi/docker-jitsi-meet && cd docker-jitsi-meet
   ```
-
 5. Copy the `env.example` file to create a environment (`.env`) configugration and create the required configuration directories:
 
   ```
   cp env.example .env
   mkdir -p ~/.jitsi-meet-cfg/{web/letsencrypt,transcripts,prosody,jicofo,jvb}
   ```
-
 6. Open the `.env` file in a text editor and edit the basic settings as following:
 
   ```
@@ -96,14 +91,12 @@ This tutorial explains how to install the Jitsi Meet solution on a virtual cloud
   LETSENCRYPT_EMAIL=me@email.com
   [...]
   ```
-
 7. Make sure that the following ports are open if you run a firewall on your instance or have configured a [stateful cloud firewall](/compute/instances/how-to/use-security-groups/) using security groups.
 
     - 80/tcp for Web UI HTTP (for redirections, after uncommenting ENABLE_HTTP_REDIRECT=1 in .env)
     - 443/tcp for Web UI HTTPS
     - 4443/tcp for RTP media over TCP
     - 10000/udp for RTP media over UDP
-
 8. Run `docker-compose up -d` to download and launch the application.
 
 <Message type="note">
@@ -119,7 +112,6 @@ This tutorial explains how to install the Jitsi Meet solution on a virtual cloud
   <Lightbox src="scaleway-jitsi_login.webp" alt="" />
 
 Enter a name for your conference and press `Go` to enter the conference room. It is now possible to share the link, to set a password, configure the audio and video quality and more for the conference.
-
 2. Happy conferencing :)
 
   <Lightbox src="scaleway-jitsi-meet-conf-call.webp" alt="" />

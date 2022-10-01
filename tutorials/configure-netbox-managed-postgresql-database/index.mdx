@@ -36,67 +36,51 @@ In this tutorial, you will learn how to install and configure NetBox on an Insta
 NetBox requires a PostgreSQL database. Configure your [Database for PostgreSQL](https://www.scaleway.com/en/database/) with a few steps from your [Scaleway console](https://console.scaleway.com/rdb/instances)
 
 1. Enter the Databases section of your [Scaleway console](https://console.scaleway.com/rdb/instances) by clicking on **Managed Databases** in the side menu.
-
 2. Click the name of the Database you want to use to view the Instance's details:
 <Lightbox src="scaleway-db_instance_list.webp" alt="" />
-
 3. Click the **Managed Databases** tab to view the databases of your instance.
 <Lightbox src="scaleway-dbaas_databases_list.webp" alt="" />
-
 4. Click **+ Add Database**. The new database dialog appears.
-
 5. Enter the name for the new database (`netbox`) and click **Create Database** to launch the database creation:
 <Lightbox src="scaleway-dbaas_new_db.webp" alt="" />
-
 6. Select the **Users** tab to view the users of your Database Instance.
-
 7. Click **+ Add user** to create a new `netbox` user for the database. Enter the identifier and password for the user:
 <Lightbox src="scaleway-dbaas_new_user.webp" alt="" />
-
 8. Then click the **Permissions** tab and set **ALL** permissions for the user on the `netbox` table.
-
 9. Once done, click **Create a user** to validate the form and launch the user creation process:
 <Lightbox src="scaleway-dbaas_permissions.webp" alt="" />
 
 ## Installing NetBox
 
 1. Log into your instance using [SSH](/compute/instances/how-to/connect-to-instance/).
-
 2. Update the `apt` package cache and upgrade the software already installed on the instance to the latest version available in Ubuntu's repositories:
   ```
   apt update && apt upgrade -y
   ```
-
 3. Install the required packages using the `apt` package manager:
   ```
   apt install -y libpq-dev python3 python3-pip python3-dev python3-venv build-essential libxml2-dev libxslt1-dev libffi-dev graphviz libpq-dev libssl-dev redis-server zlib1g-dev git nginx
   ```
-
 4. Download the [latest release](https://github.com/netbox-community/netbox/releases/latest) of NetBox. At the time of writing this tutorial it is version 3.2.3. Unpack it into the `/opt` directory:
   ```
   wget https://github.com/netbox-community/netbox/archive/refs/tags/v3.2.3.tar.gz && tar -xzf v3.2.3.tar.gz -C /opt
   ```
-
 5. Create a symlink from the actual netbox directory to `/opt/netbox`:
   ```
   ln -s /opt/netbox-3.2.3/ /opt/netbox
   ```
-
 6. Create a new system user for the NetBox application:
   ```
   adduser --system --group netbox
   ```
-
 7. Set the ownership of the `/opt/netbox/netbox/media/` to the `netbox` user. This is important as otherwise NetBox will not be able to write in this directory and you will not be able to upload any documents or images.
   ```
   chown --recursive netbox /opt/netbox/netbox/media/
   ```
-
 8.  Move into the NetBox configuration directory:
   ```
   cd /opt/netbox/netbox/netbox/
   ```
-
 9. Make a copy of `configuration.example.py` and name it `configuration.py`:
   ```
   cp configuration.example.py configuration.py
@@ -172,12 +156,10 @@ NetBox does not come with any default user accounts. Create a first user by comp
   ```
   source /opt/netbox/venv/bin/activate
   ```
-
 2. Enter into the `netbox` directory:
   ```
   cd /opt/netbox/netbox
   ```
-
 3. Run the `manage.py` script as follows:
   ```
   python3 manage.py createsuperuser
@@ -191,9 +173,7 @@ Enter the `username`, `email`, `password`, and `password confirmation` for the u
   ```
   python3 manage.py runserver 0.0.0.0:8000 --insecure
   ```
-
 2. Open a web browser and point it to the IP address or hostname of your instance on port 8000: `http://netbox.example.com:8000`. The NetBox dashboard displays.
-
 3. Terminate the test webserver by pressing `CTRL`+ `C`.
 
 ## Configuring gunicorn
@@ -215,12 +195,10 @@ We use systemd to start NetBox automatically during the boot process of the inst
   ```
   cp /opt/netbox/contrib/*.service /etc/systemd/system/
   ```
-
 2. Reload they systemd daemon:
   ```
   systemctl daemon-reload
   ```
-
 3. Start and enable the `netbox-rq` service
   ```
   systemctl start netbox netbox-rq
@@ -235,7 +213,6 @@ To provide an additional layer of security, NetBox will be running behind a [NGI
   ```
   nano /etc/nginx/sites-available/netbox.conf
   ```
-
 2. Copy the following configuration into the file `/etc/nginx/sites-available/netbox.conf`. Make sure to replace `netbox.example.com` with the hostname of your instance.
   ```
   server {
@@ -260,29 +237,24 @@ To provide an additional layer of security, NetBox will be running behind a [NGI
   ```
 
 Save the file and exit the text editor.
-
 3. Create a symlink to enable the new configuration with NGINX:
   ```
   ln -s /etc/nginx/sites-available/netbox.conf /etc/nginx/sites-enabled/netbox.conf
   ```
-
 4. Reload NGINX to activate the new configuration:
   ```
   service nginx reload
   ```
-
 5. Install `certbot` to configure a TLS encrypted connection to your NetBox instance:
   ```
   apt install certbot python3-certbot-nginx
   ```
-
 6. Run `certbot` to request a TSL/SSL certificate for your NetBox instance, issued by the [Let's Encrypt](https://letsencrypt.org/) certificate authority:
   ```
   certbot --nginx
   ```
 
 Follow our [dedicated documentation](/tutorials/configure-nginx-lets-encrypt/) about Let's Encrypt for detailed information how to use the `certbot` tool.
-
 7. Open your web browser and point it to your NetBox domain (i.e. `http://netbox.example.com`). The Netbox dashboard displays:
 <Lightbox src="scaleway-dbaas_netbox_dashboard.webp" alt="" />
 

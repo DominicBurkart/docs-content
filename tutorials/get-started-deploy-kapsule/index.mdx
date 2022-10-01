@@ -94,7 +94,6 @@ kubectl create secret docker-registry registry-secret --docker-server=rg.fr-par.
 ```
 
 Make sure you replace `rg.fr-par.scw.cloud` with the endpoint of the container registry where you pushed the `whoami` image [from the first tutorial](/tutorials/get-started-containers-docker/#example-2-a-more-complex-app), and `my-namespace` with the relevant container registry namespace. You should also have [created an API key](/console/my-project/how-to/generate-api-key/) and [exported it as an environment variable](/console/my-project/how-to/generate-api-key/#how-to-use-your-api-key) called `$SCW_SECRET_KEY`.
-
 2. Run the following command to display the generated secret and check that everything went well.
 
 ```
@@ -110,7 +109,6 @@ Now that we have created our cluster, connected to it with `kubectl` and defined
   ```
   nano whoami-deployment.yaml
   ```
-
 2. Paste the following code into the file, then save and exit:
 
   ```
@@ -152,19 +150,16 @@ Now that we have created our cluster, connected to it with `kubectl` and defined
   As this is a very basic yaml file for a Kubernetes deployment, you could reuse the code and adapt it for other simple deployments by changing the registry and image information.
 
   </Message>
-
 3. Run the following command to deploy the deployment on the cluster:
 
   ```
   kubectl apply -f whoami-deployment.yaml
   ```
-
 4. Run the following command to list all the cluster's resources. If everything went well with the deployment, you should see that your pods are running:
 
   ```
   kubectl get all
   ```
-
 5. Run the following command, replacing the pod ID with an appropriate output from the previous command, to check that the application is running and listening on a port:
 
   ```
@@ -180,7 +175,6 @@ Our application is up and running, and we could just stop at this point. However
   ```
   kubectl expose deployment mydeployment --type NodePort --port 80
   ```
-
 2. Use the following command to check that the Nodeport service is up and running:
 
   ```
@@ -194,7 +188,6 @@ Our application is up and running, and we could just stop at this point. However
   service/kubernetes   ClusterIP  10.32.0.1   <none>    443/TCP    68d
   service/mydeployment  NodePort  10.42.65.74  <none>    80:30564/TCP  6s
   ```
-
 3. Run the `get nodes` command to view extra information about each of your cluster's nodes:
 
   ```
@@ -202,7 +195,6 @@ Our application is up and running, and we could just stop at this point. However
   ```
 
   In the output, one of the values you should see is your cluster's external IP:
-
 4. Enter the following address in a browser. Replace `<external-IP>` with your cluster's external IP, and `<port>` with the port that the NodePort service shoewd it was listening on in step 2 (eg `30564`):
 
   ```

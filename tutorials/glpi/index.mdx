@@ -46,7 +46,6 @@ In this tutorial we will install and configure a [LEMP-Stack](https://lemp.io/) 
   ```
   apt update && apt -y upgrade
   ```
-
 2. Use Ubuntu's apt package manager to install Nginx. Then, restart and enable Nginx.
 
   ```
@@ -54,7 +53,6 @@ In this tutorial we will install and configure a [LEMP-Stack](https://lemp.io/) 
   systemctl restart nginx.service
   systemctl enable nginx.service
   ```
-
 3. Install PHP.
 
   ```
@@ -87,13 +85,11 @@ In this tutorial we use a Scaleway Database for MySQL. To create the database, f
   wget https://github.com/glpi-project/glpi/releases/download/9.5.1/glpi-9.5.7.tgz
   tar -xvf glpi-9.5.7.tgz
   ```
-
 2. Move `glpi` to the `/var/www/glpi` directory.
 
   ```
   mv glpi /var/www/glpi
   ```
-
 3. Give Nginx ownership of the directory.
 
   ```
@@ -107,7 +103,6 @@ In this tutorial we use a Scaleway Database for MySQL. To create the database, f
   ```
   nano /etc/nginx/sites-available/glpi
   ```
-
 2. Copy and paste the configuration below into the file. Replace `example.com` with your domain name and save.
 
   ```
@@ -142,14 +137,12 @@ In this tutorial we use a Scaleway Database for MySQL. To create the database, f
       }
   }
   ```
-
 3. Create a symbolic link to enable the server block and restart Nginx.
 
   ```
   ln -s /etc/nginx/sites-available/glpi /etc/nginx/sites-enabled/
   systemctl restart nginx.service
   ```
-
 4. Enter your server's domain name or IP address in a browser to check if GLPI can be accessed via Internet.
 
 ## Installing an SSL/TLS certificate
@@ -166,19 +159,16 @@ In this tutorial we use [certbot](https://certbot.eff.org/lets-encrypt/ubuntufoc
   add-apt-repository ppa:certbot/certbot
   apt-get update
   ```
-
 2. Install `certbot` using `snap`.
 
   ```
   apt-get install python3-certbot-nginx
   ```
-
 3. Run `certbot`:
 
   ```
   certbot --nginx
   ```
-
 4. Answer the questions when prompted by the certbot Wizard.
 
   **A)** Enter your e-mail address.
@@ -261,9 +251,7 @@ In this tutorial we use [certbot](https://certbot.eff.org/lets-encrypt/ubuntufoc
       also contain certificates and private keys obtained by Certbot so
       making regular backups of this folder is ideal.
     ```
-
 5. Take note of the paths provided as they will be required in a later step.
-
 6. Run the command below to program an automatic renewal of your certificate.
 
 ```
@@ -273,21 +261,16 @@ certbot renew --dry-run
 ## Configuring GLPI
 
 1. Access your GLPI interface via browser using your domain name or IP address. The GLPI setup wizard displays. 
-
 2. Select the language and click **OK**. The GLPI license terms display.
-
 3. Read the license terms and check **I have READ and ACCEPT the terms of the license written above** to proceed.
 
   <Lightbox src="scaleway-agree-to-terms.webp" width="800" alt="" />
-
 4. Click **Install** to begin the installation, 
 
   <Lightbox src="scaleway-install.webp" width="800" alt="" />
 
   The wizard runs a compatibility check and a list of tests done on the environment displays.
-
 5. Click **Continue** to proceed.
-
 6. Fill out the boxes to set up your database connection. Enter the following information:
 
     - **SQL Server (MariaDB or MySQL):** `XXX.XXX.XX.XX:PORT` (The IP address of your Database Instance followed by the MySQL port)
@@ -295,15 +278,12 @@ certbot renew --dry-run
     - **SQL Password:** `db-password` (The password previously created for your Database)
 
   <Lightbox src="scaleway-db-setup.webp" width="800" alt="" />
-
 7. Click **Continue** to proceed.
-
 8. Select a database and click **Continue**:
 
   <Lightbox src="scaleway-test-db-connection.webp" width="800" alt="" />
 
   The initialization of the database might take a few minutes.
-
 9. Click **Continue** again.
 
   Once the installation completes, your default logins and passwords display. 

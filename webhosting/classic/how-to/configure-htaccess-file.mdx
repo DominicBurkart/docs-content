@@ -39,7 +39,6 @@ This function allows you to replace the message of a **404 error (Not found)** f
   ```
   Options -Indexes
   ```
-
 3. Upload your file using FTP, place it in the directory of your choice and rename it to `.htaccess`.
 
 
@@ -72,7 +71,6 @@ This function allows you to replace the message of a **404 error (Not found)** f
    - If required, you may use this [website](https://hostingcanada.org/htpasswd-generator/) to encrypt your passwords.
 
    </Message>
-
 2. Name this file **passlist.txt**.
 3. Create an `.htaccess` file in the directory you want to protect to limit the access to the users specified in the file **passlist.txt**. The content of the file should be as following:
 
@@ -88,7 +86,6 @@ This function allows you to replace the message of a **404 error (Not found)** f
    - The command `AuthUserFile` specifies the path to the user table. The path is relative to `/` of your webhosting, therefore your path will generally start with at least `www/` or `blog/`.
 
    </Message>
-
 4. If you have saved your user table in the directory `/www/secret/password/` with the name `mylist.txt` you need to change the `AuthUserFile` directive accordingly:
 
     ```
@@ -99,7 +96,6 @@ This function allows you to replace the message of a **404 error (Not found)** f
     - The command ```require valid-user``` authorizes all valid users to access the files in the folder. It is also possible to use ```require user martin sophie``` to only auhorize the users Martin and Sophie and to exclude Jean. 
 
    </Message>
-
 5. Upload the file using FTP, place it in the directory of your choice and name it `.htaccess`. If you want to learn more about this, we recommend the [Apache user guide](https://httpd.apache.org/docs/) which treats all aspects of authentification in detail.
 
 <Message type="important">
@@ -119,7 +115,6 @@ This function allows you to replace the message of a **404 error (Not found)** f
   ```# Redirection to the site Scaleway.com
   RedirectPermanent / https://www.scaleway.com/en/
   ```
-
 2. Upload the file using FTP in the folder of the concerned sub domain (folder `www` for www.domain.ext, `blog` for blog.domain.ext etc.) and name it `.htaccess`.
 
 <Message type="tip">

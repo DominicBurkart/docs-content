@@ -35,7 +35,6 @@ dates:
     The interface may be named differently depending on your configuration. You can identify the RPN interface by running `ifconfig` which allows you to check the MAC address of the interface which is available in your Dedibox console.
 
     </Message>
-
 3. Reboot your Proxmox server to complete the RPN configuration.
 
 
@@ -51,7 +50,6 @@ Proxmox requires the Open-iSCSI software to support mounting of iSCSI volumes. I
     ```
     apt install open-iscsi
     ```
-
 3. Open the file `/etc/iscsi/iscsid.conf` in a text editor, for example `nano`.
     ```
     vi /etc/iscsi/iscsid.conf
@@ -76,7 +74,6 @@ Proxmox requires the Open-iSCSI software to support mounting of iSCSI volumes. I
     node.conn[0].iscsi.DataDigest = CRC32C,None
     ```
     * Then save your configuration and quit the text editor. 
-
 7. Reboot your server. 
     ```
     reboot 
@@ -85,7 +82,6 @@ Proxmox requires the Open-iSCSI software to support mounting of iSCSI volumes. I
 ## Discover and connect to targets in Proxmox
 
 1. In the **Server View**, click **Datacenter**, then **Storage**.
-
 2. Click **Add** and then **iSCSI Target**. Fill in the form:
     * **ID:** any identifier used to name this RPN SAN volume
     * **Portal:** the server on which your space is available (ex: san-1.rpn.online.net)
@@ -96,7 +92,6 @@ Proxmox requires the Open-iSCSI software to support mounting of iSCSI volumes. I
     * **Shared:** Leave the default option 
     * Add the LVM Group (Optional)
     This step only applies if you want to create a LVM Group to store VM images.
-
 3. Click **Add** and then **LVM** or **LVM-Thin**. Fill in the form:
     * **ID:** any identifier to name this LVM Group
     * **Base Storage:** click on the small arrow, and select the previously mounted storage space

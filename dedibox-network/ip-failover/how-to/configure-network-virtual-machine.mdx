@@ -46,7 +46,6 @@ Since the release of version 18.04 (Bionic Beaver) Ubuntu has switched to Netpla
     ```sh 
     sudo nano /etc/netplan/01-netcfg.yaml 
     ```
-
 2. Create a network configuation as follows. Remember to replace `fail.over.ip.address` with your failover IP address: 
 
     ```yaml 
@@ -66,9 +65,7 @@ Since the release of version 18.04 (Bionic Beaver) Ubuntu has switched to Netpla
               via: fail.over.ip.address
               scope: link
     ```
-
 3. Save the file and exit the text editor. 
-
 4. Apply the new configuration: 
 
     ```
@@ -82,7 +79,6 @@ Since the release of version 18.04 (Bionic Beaver) Ubuntu has switched to Netpla
     ```sh 
     nano /etc/network/interfaces
     ```
-
 2. Configure the network interface as follows. Remember to replace `fail.over.ip.address` with your failover IP address: 
 
     ```sh 
@@ -93,15 +89,12 @@ Since the release of version 18.04 (Bionic Beaver) Ubuntu has switched to Netpla
         pointopoint 62.210.0.1
         gateway 62.210.0.1
     ```
-
 3. Save the file and exit the text editor. 
-
 4. Set the DNS server information by editing the file `/etc/resolv.conf`:
 
     ```
     nano /etc/resolv.conf
     ```
-
 5. Set the DNS resolver by adding the following lines to the file. Then save it and exit the text editor: 
 
     ```
@@ -114,7 +107,6 @@ Since the release of version 18.04 (Bionic Beaver) Ubuntu has switched to Netpla
     The DNS resolvers above are operated by Scaleway. You can also set your preferred alternative DNS resolvers in the file. 
 
     </Message>
-
 6. Activate the network on your virtual machine by running the following code: 
 
     ```
@@ -129,7 +121,6 @@ Since the release of version 18.04 (Bionic Beaver) Ubuntu has switched to Netpla
     ```sh 
     nano /etc/sysconfig/network-scripts/ifcfg-eth0
     ```
-
 2. Configure the network interface as follows. Remember to replace `fail.over.ip.address` with your failover IP address and `virtual:mac:address` with the virtual MAC of the VM: 
 
     ```
@@ -148,16 +139,13 @@ Since the release of version 18.04 (Bionic Beaver) Ubuntu has switched to Netpla
     ARP=yes
     HWADDR=virtual:mac:address
     ```
-
 3. Save the file and close the text editor. 
-
 4. Edit the file `/etc/sysconfig/network-scripts/route-eth0` as follows, then save and exit the text editor: 
 
     ```
     62.210.0.1 dev eth0
     default via 62.210.0.1 dev eth0
     ```
-
 5. Run the following command to bring the network interface up:
 
     ```
@@ -167,7 +155,6 @@ Since the release of version 18.04 (Bionic Beaver) Ubuntu has switched to Netpla
 ## Windows Server
 
 1. Connect to the desktop of your VM in the virtual console, then open the network settings of your server.
-
 2. Enter the following information in the network adapter configuration:
 
     * Address: failover IP

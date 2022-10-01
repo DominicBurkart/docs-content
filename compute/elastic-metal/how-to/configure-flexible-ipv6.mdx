@@ -30,7 +30,6 @@ Make sure your flexible IPv6 is [attached](/compute/elastic-metal/how-to/attach-
     ```
 
     Remember to replace `eno1` with the proper Internet interface name.
-
 2. Restart the network: 
 
     ```
@@ -76,13 +75,11 @@ It replaces the classical network configuration with new configuration files, wr
     The configuration example above is valid for the main IP address of your Dedibox server. If you want to use IPv6 on a [virtual machine](/dedibox-network/network/how-to/configure-network-netplan/#configuring-failover-ip-for-virtual-machines), remember to use the unique gateway for the failover IPv4.
 
     </Message>
-
 2. Check and validate your configuration file.
 
     ```
     sudo netplan try
     ```
-
 3. Activate the new configuration: 
 
     ```
@@ -107,7 +104,6 @@ It replaces the classical network configuration with new configuration files, wr
     ONBOOT="yes"
     IPV6INIT="yes"
     ```
-
 2. Restart the networking service: 
 
     ```

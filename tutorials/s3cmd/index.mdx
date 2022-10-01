@@ -32,7 +32,6 @@ You can install S3cmd frm the command line using your Linux package manager.
   ```bash
   apt update && apt upgrade -y
   ```
-
 2. Enter the following command to install s3cmd:
 
   ```bash
@@ -55,13 +54,11 @@ Carry out the following commands from your terminal.
   cd $HOME
   touch .s3cfg
   ```
-
 2. Open the file with a text editor, e.g. nano:
 
   ```bash
   nano .s3cfg
   ```
-
 3. Copy and paste the following text into the file, then save and close. Make sure you use the `host-base`, `host-bucket` and `bucket_location` details of your own bucket (visible in the **Bucket Settings** tab of the console). You will also need to replace `<ACCESS_KEY>` and `<SECRET_KEY>` with your [own API credentials](/console/my-project/how-to/generate-api-key/).
 
   ```bash
@@ -91,14 +88,12 @@ You can configure s3cmd to use different configuration files on the same compute
 Carry out the following steps from the terminal.
 
 1. Create a default configuration file as indicated in the [previous step](#configuring-s3cmd).
-
 2. Create a new file named `.s3cfg-fr-par` in your home directory.
 
   ```bash
   cd $HOME
   touch .s3cfg-fr-par
   ```
-
 3. Copy and paste the following text into the file, then save and close. Make sure you replace `<ACCESS_KEY>` and `<SECRET_KEY>` with your [own API credentials](/console/my-project/how-to/generate-api-key/). 
 
   ```bash
@@ -116,7 +111,6 @@ Carry out the following steps from the terminal.
   access_key = <ACCESS_KEY>
   secret_key = <SECRET_KEY>
   ```
-
 4. Use s3cmd by specifying the new configuration file in the command:
 
   ```bash
@@ -237,7 +231,6 @@ The [CORS standard](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
   ```bash
   nano cors.xml
   ```
-
 2. Put your configuration in the file, save it and exit the editor:
 
   ```bash
@@ -253,7 +246,6 @@ The [CORS standard](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
     </CORSRule>
   </CORSConfiguration>
   ```
-
 3. Set the information on the bucket. Make sure to replace `bucketname` with the name of your bucket:
 
   ```bash

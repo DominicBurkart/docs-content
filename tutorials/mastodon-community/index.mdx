@@ -33,13 +33,11 @@ Mastodon provides the possibility of using [S3 compatible Object Storage](/stora
 ## Installing Prework
 
 1. [Connect to your instance](/compute/instances/how-to/connect-to-instance/) via SSH.
-
 2. Update the APT packet cache and the software already installed on the instance.
 
   ```
   apt update && apt upgrade -y
   ```
-
 3. Install `curl` on the system and add an external repository for the required version of Node.js. Install it by running the following commands:
 
   ```
@@ -47,7 +45,6 @@ Mastodon provides the possibility of using [S3 compatible Object Storage](/stora
   curl -sL https://deb.nodesource.com/setup_12.x | bash -
   ```
   Mastodon uses the [Yarn](https://yarnpkg.com/en/) package manager.
-
 4. Install the repository for the required version of Yarn by running the following commands:
 
   ```
@@ -59,7 +56,6 @@ Mastodon provides the possibility of using [S3 compatible Object Storage](/stora
   ```
   apt-get update && apt-get install -y yarn
   ```
-
 6. Install the following packages, which Mastodon depends on:
 
     - [Imagemagick](https://www.imagemagick.org/) for image related operations
@@ -78,20 +74,17 @@ Mastodon provides the possibility of using [S3 compatible Object Storage](/stora
   ```
 
   We are going to use `rbenv` to manage Ruby versions. The application must be installed for a single Linux user, therefore, first we must create a user under which Mastodon will run. 
-
 7. Run the following command. The `--disabled-login` flag disables direct login to the user account for increased security.
 
   ```
   adduser --disabled-login mastodon
   ```
-
 8. Log into the `mastodon` user account and change to the home directory.
 
   ```
   su mastodon
   cd
   ```
-
 9. Set up [rbenv](https://github.com/rbenv/rbenv) and [ruby-build](https://github.com/rbenv/ruby-build):
 
   ```
@@ -136,7 +129,6 @@ Mastodon requires access to a postgreSQL database to store its configuration and
   ```
   sudo -u postgres psql
   ```
-
 2. Create the database user for Mastodon and exit:
 
   ```
@@ -151,19 +143,16 @@ Mastodon requires access to a postgreSQL database to store its configuration and
   ```
   su - mastodon
   ```
-
 2. Enter the user's home directory and clone the Mastodon Git repository into the `live` directory:
 
   ```
   git clone https://github.com/tootsuite/mastodon.git live && cd live
   ```
-
 3. Check out to the latest stable branch.
 
   ```
   git checkout $(git tag -l | grep -v 'rc[0-9]*$' | sort -V | tail -n 1)
   ```
-
 4. Install the remaining Ruby dependencies:
 
   ```
@@ -171,13 +160,11 @@ Mastodon requires access to a postgreSQL database to store its configuration and
   bundle config without 'development test'
   bundle install -j$(getconf _NPROCESSORS_ONLN)
   ```
-
 5.  Use yarn to install the node.js dependencies:
 
   ```
   yarn install --pure-lockfile
   ```
-
 6. Type and enter `exit` to return to the root account.
 
 ## Requesting a Let's Encrypt Certificate
@@ -187,7 +174,6 @@ Mastodon requires access to a postgreSQL database to store its configuration and
   ```
   systemctl stop nginx
   ```
-
 2. Use `certbot` to request a certficate with TLS SNI validation in standalone mode. Replace `example.com` with your domain name:
 
   ```
@@ -195,13 +181,11 @@ Mastodon requires access to a postgreSQL database to store its configuration and
   ```
 
   As Let's Encrypt certficates have a validity of 90 days, a cron-job can be used to renew them and to restart nginx automatically. 
-
 3. Create a new file and open it in a text editor like nano:
 
   ```
   nano /etc/cron.daily/letsencrypt-renew
   ```
-
 4. Copy the following content into the file, save it and exit nano:
 
   ```
@@ -209,7 +193,6 @@ Mastodon requires access to a postgreSQL database to store its configuration and
   certbot renew
   systemctl reload nginx
   ```
-
 5. Allow execution of the script and restart the cron daemon. It will run the script daily:
 
   ```
@@ -225,13 +208,11 @@ Mastodon requires access to a postgreSQL database to store its configuration and
   cp /home/mastodon/live/dist/nginx.conf /etc/nginx/sites-available/mastodon
   ln -s /etc/nginx/sites-available/mastodon /etc/nginx/sites-enabled/mastodon
   ```
-
 2. Open the configuration file in a text editor, such as nano:
 
   ```
   nano /etc/nginx/sites-available/mastodon
   ```
-
 3. Replace `example.com` in the configuration file with your domain or subdomain. Replace with your domain in all following occurrences as well.
 
   ```
@@ -351,7 +332,6 @@ Mastodon requires access to a postgreSQL database to store its configuration and
     error_page 500 501 502 503 504 /500.html;
   }
   ```
-
 4. Save and exit.
 
 ## Configuring the Mastodon Application
@@ -361,7 +341,6 @@ Mastodon requires access to a postgreSQL database to store its configuration and
   ```
   su - mastodon
   ```
-
 2. Change into the **/home/mastodon/live** directory and run the Mastodon installer:
 
   ```
@@ -370,13 +349,10 @@ Mastodon requires access to a postgreSQL database to store its configuration and
   ```
 
   The interactive installer guides you through the setup process.
-
 3. Enter the domain name or subdomain of the instance.
-
 4. Select **No** when asked if you want to use Docker. 
 
   Most of the other values are already pre-filled with the correct settings. Edit them if required for your setup.
-
 5. Select **Amazon S3** as a service provider to set up Mastodon with Object Storage. Valid [API keys](/console/my-project/how-to/generate-api-key/) are required in this step.
 
   Enter the details as following:
@@ -399,7 +375,6 @@ Mastodon requires access to a postgreSQL database to store its configuration and
   Once the configuration is complete, the installer will start to compile the application. This may take some time and consume a lot of RAM.
 
   Once the application is installed, you will be asked if you want to create an Administrator account for your Mastodon instance.
-
 3. Type `Y` to create the account. Enter the username for the admin user, followed by your email address. A random password will be generated. Take a note of it, as you will need it to connect to your Instance.
 
   ```
@@ -410,7 +385,6 @@ Mastodon requires access to a postgreSQL database to store its configuration and
   E-mail: me@myemail.com <-- Enter your email address
   You can login with the password: 9dc4d92d93a26e9b6c021bb75b4a3ce2
   ```
-
 4. Type `exit` to switch back into the root account.
 
 ## Setting-up systemd Services
@@ -422,20 +396,17 @@ Systemd scripts are used to manage services on Ubuntu systems. Three different s
   ```
   cp /home/mastodon/live/dist/mastodon-*.service /etc/systemd/system/
   ```
-
 2. Reload the systemd daemon:
 
   ```
   systemctl daemon-reload
   ```
-
 3. Start the services and enable them, so they will start automatically upon the next system reboot:
 
   ```
   systemctl start mastodon-web mastodon-sidekiq mastodon-streaming
   systemctl enable mastodon-web mastodon-sidekiq mastodon-streaming
   ```
-
 4. Verify if all services are running:
 
   ```

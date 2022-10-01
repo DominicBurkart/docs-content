@@ -44,7 +44,6 @@ During this tutorial we install and configure a [LEMP-Stack](https://lemp.io/) u
   ```
   apt update && apt -y upgrade
   ```
-
 2. Use Ubuntu's apt package manager to install the stack packages:
 
   ```
@@ -58,7 +57,6 @@ During this tutorial we install and configure a [LEMP-Stack](https://lemp.io/) u
   ```
   mysql_secure_installation
   ```
-
 2. Answer the questions when prompted, as such:
 
     ```
@@ -135,7 +133,6 @@ During this tutorial we install and configure a [LEMP-Stack](https://lemp.io/) u
 
     Thanks for using MariaDB!
     ```
-
 3. Run the command to verify if the installation was successfully completed:
 
   ```
@@ -145,7 +142,6 @@ During this tutorial we install and configure a [LEMP-Stack](https://lemp.io/) u
   When prompted, insert root password. If the installation was successful, you will see the MariaDB welcome message. Type `exit` to leave the MariaDB prompt.
 
   Some settings need to be added to the MariaDB default configuration file to ensure Moodle is properly installed later on.
-
 4. Open the file using your text editor of choice. (In this tutorial we will use `nano`)
 
   ```
@@ -179,7 +175,6 @@ During this tutorial we install and configure a [LEMP-Stack](https://lemp.io/) u
     innodb_file_per_table = 1
     innodb_large_prefix = ON
     ```
-
 5. Restart MariaDB:
 
   ```
@@ -195,7 +190,6 @@ To ensure better performance, [Moodle recommends](https://docs.moodle.org/39/en/
   ```
   nano /etc/php/7.4/fpm/php.ini
   ```
-
 2. Edit according to these guidelines:
 
   ```
@@ -222,25 +216,21 @@ To ensure better performance, [Moodle recommends](https://docs.moodle.org/39/en/
   ```
   mysql -u root -p
   ```
-
 2. Run the following command to create a database called `moodle`:
 
   ```
   CREATE DATABASE moodle;
   ```
-
 3. Create a user called `moodleuser` and define a password for the database replacing `insert_password` by your password of choice.
 
   ```
   CREATE USER 'moodleuser'@'localhost' IDENTIFIED BY 'insert_password';
   ```
-
 4. Grant the user full access on the database.
 
   ```
   GRANT ALL ON moodle.* TO 'moodleuser'@'localhost' WITH GRANT OPTION;
   ```
-
 5.  Save and exit.
 
   ```
@@ -258,7 +248,6 @@ We will use `git`and `curl` to access and clone the latest version of Moodle.
   apt install git curl
   cd /var/www/
   ```
-
 2. Check the most recent version of Moodle on [this list](https://github.com/moodle/moodle/branches) of each branch available
 
   And replace `#` with the corresponding branch number before downloading the Moodle packages.
@@ -266,7 +255,6 @@ We will use `git`and `curl` to access and clone the latest version of Moodle.
   ```
   git clone -b MOODLE_#_STABLE git://git.moodle.org/moodle.git moodle
   ```
-
 3. Configure permissions by running the following commands:
 
   ```
@@ -313,7 +301,6 @@ We will use `git`and `curl` to access and clone the latest version of Moodle.
         }
     }
     ```
-
 2. Create a symbolic link to enable the server block and restart Nginx.
 
   ```
@@ -337,13 +324,11 @@ By default the connection between your computer and the server is not encrypted.
   We now run a `certbot`, provided with Let's Encrypt, to generate a wildcard certificate. This ensures not only the coverage of the domain name but of all possible subdomains (\*.example.com).
 
   For wildcard certificates, a `DNS` challenge is required.
-
 2. Use DNS to challenge domain ownership, specify the endpoint and agree to ACME's subscriber terms simultaneously and run the command below. Replace `admin@example.com` with your e-mail and `example.com` with your domain name.
 
   ```
   certbot certonly --manual --preferred-challenges=dns --email admin@example.com --server https://acme-v02.api.letsencrypt.org/directory --agree-tos -d example.com -d *.example.com
   ```
-
 3. Answer the questions below when prompted. If you agree, type `y` and enter when prompted.
 
     ```
@@ -401,7 +386,6 @@ By default the connection between your computer and the server is not encrypted.
       again. To non-interactively renew *all* of your certificates, run
       "certbot renew"
     ```
-
 4. Resume the configuration of Let's Encrypt by re-opening the `moodle` server block.
 
   ```
@@ -458,7 +442,6 @@ By default the connection between your computer and the server is not encrypted.
         }
     }
     ```
-
 5. Restart PHP and Nginx.
 
   ```
@@ -473,21 +456,17 @@ Access your Moodle interface via web browser using your domain name or IP addres
 1. Choose a language and click **Next**
 
   <Lightbox src="scaleway-language.webp" alt="" />
-
 2. Check and confirm Moodle's directory paths on your server by clicking next.
 
   <Lightbox src="scaleway-paths.webp" alt="" />
-
 3. Select a database driver when prompted: **MariaDB (native/mariadb)**, then proceed.
 
   <Lightbox src="scaleway-database.webp" alt="" />
-
 4. Insert the previously defined **Database user** and **Database password** in the corresponding fields and click next.
 
   <Lightbox src="scaleway-database-settings.webp" alt="" />
 
   Moodle's terms and conditions display. 
-
 5. Click **Continue** if you **"Have read these conditions and understood them"**.
 
   <Lightbox src="scaleway-confirm-conditions.webp" alt="" />
@@ -495,21 +474,17 @@ Access your Moodle interface via web browser using your domain name or IP addres
   A server check list displays and informs you whether your server environment meets the minimal requirements for Moodle to run.
 
   <Lightbox src="scaleway-server-checks.webp" alt="" />
-
 6. Click **Next** to continue if the status of all requirements are flagged as **OK**. If they are not, click the **Report** link of the requirement in question for more information.
 
   Moodle runs a final installation process which might take a couple of minutes. 
-
 7. Scroll to the bottom of the page and click **Continue** once the installation proccess is successfully completed, scroll.
 
   <Lightbox src="scaleway-installation-success.webp" alt="" />
 
   The following page asks you to configure the Main Administrator Account (root).
-
 8. Fill in the required fields and click **Update profile**.
 
   <Lightbox src="scaleway-configure-main-admin-account.webp" alt="" />
-
 9. Complete installation by entering the **Full site name** and the **Short name for site**. You may also insert a summary and manage authentication and timezones.
 
   Click **Save changes** to conclude and you are redirected to your Moodle homepage.

@@ -42,7 +42,6 @@ Angular is a development platform that can scale from single-developer projects 
     Make sure `angular-cli` is installed on your local machine. If you have not installed it yet, run `sudo apt install angular-cli` on Ubuntu/Debian Linux based machines or install it using Homebrew on MacOS: `brew install angular-cli`. 
 
   </Message>
-
 2. Enter the application directory:
   ```
   cd demo-app
@@ -53,17 +52,14 @@ Angular is a development platform that can scale from single-developer projects 
   angular.json       package-lock.json  tsconfig.app.json
   karma.conf.js      package.json       tsconfig.json
   ```
-
 3. Type the following command to run the development server: 
   ```
   ng serve
   ```
-
 4. Open a web browser and point it to `http://localhost:4200` to see the Angular application: 
   <Lightbox src="scaleway-demo-app-running.webp" alt="" />
 
   Press `CTRL+C` in your terminal to stop the development server. 
-
 5. Add a `nginx-configuration.conf` file inside the `demo-app` directory and add the following content to it:
   ```sh
   # Expires map
@@ -89,7 +85,6 @@ Angular is a development platform that can scale from single-developer projects 
   ```
 
   The configuration file above contains information about expiration headers for images and other content (CSS, HTML, etc.) and switches `gzip` compression on to improve the performance of the application.
-
 6. Create a Dockerfile named `Dockerfile` in the applications' directory and copy the following information into it:
   ```
   # Build and compile the frontend
@@ -118,7 +113,6 @@ Angular is a development platform that can scale from single-developer projects 
   ```
   docker build -t demo-app:latest .
   ```
-
 2. Tag the Docker image: 
   ```
   docker tag demo-app:latest rg.fr-par.scw.cloud/demo-namespace/demo-app:latest
@@ -130,7 +124,6 @@ Angular is a development platform that can scale from single-developer projects 
     * Make sure that the [privacy settings](/compute/container-registry/how-to/manage-image-privacy-settings/) of your namespace are set to **public**.
 
   </Message>
-
 3. Push the image to the registry: 
   ```
   docker push rg.fr-par.scw.cloud/demo-namespace/demo-app:latest
@@ -139,7 +132,6 @@ Angular is a development platform that can scale from single-developer projects 
 ## Deploying the application on Serverless Containers
 
 1. Click **Containers** in the Serverless section of the side menu of the Scaleway console. A list of your container namespaces displays. 
-
 2. Click the name of the namespace in which you want to deploy the application. The list of your containers displays.
 
 <Message type="tip">
@@ -147,7 +139,6 @@ Angular is a development platform that can scale from single-developer projects 
   If you do not have a container namespace yet, click **+ Create a namespace** to create a new one. 
 
 </Message>
-
 3. Click **Deploy a Container**. The container deployment wizard displays. 
 
 Provide the following information to deploy the container:
@@ -157,10 +148,8 @@ Provide the following information to deploy the container:
   - Define the container's resources
   - Configure the scaling of your application
   - Leave the other options at their default values
-
 4. Click **Deploy a Container** to deploy your application. Your application displays in the list of containers: 
   <Lightbox src="scaleway-deployed-containers.webp" alt="" />
-
 
 5. Click on the container's name. The container information page displays. Click the **Container Settings** tab. The container endpoint displays in the container information block. 
   <Lightbox src="scaleway-container-endpoint.webp" alt="" />

@@ -60,7 +60,6 @@ Let's say we have a temperature sensor publishing on the `temperature/living-roo
     )
   '
   ```
-
 2. Setup a database route to listen to the incoming messages, and persist them in the database:
 
   ```bash
@@ -82,7 +81,6 @@ Let's say we have a temperature sensor publishing on the `temperature/living-roo
   ```
 
   We may now test our setup. We're going to publish a message and then check that it was stored in the database.
-
 3. Publish a message:
 
   ```bash
@@ -93,7 +91,6 @@ Let's say we have a temperature sensor publishing on the `temperature/living-roo
     -t 'temperature/bedroom' \
     -m '19.5'
   ```
-
 4. Check the result in the database:
 
   ```bash
@@ -143,7 +140,6 @@ The following example is logging building access attempts in non-working hours. 
     db-config.password="$DBPASS" \
     db-config.query='SELECT nonworkinghours((encode($PAYLOAD, '"'escape'"')::json->>'"'timestamp'"')::timestamp, (encode($PAYLOAD, '"'escape'"')::json->>'"'user'"')::text)'
   ```
-
 2. Try publishing some access events.
   ```bash
   sleep 5 # wait a little for the route to start
@@ -171,7 +167,6 @@ The following example is logging building access attempts in non-working hours. 
   ```
 
   The first access occurs during working hours so it should not be recorded, however the second one occurs at nighttime and will be recorded.
-
 3. Enter the following commands to check that everything is as expected:
   ```bash
   psql -h $DBHOST --port $DBPORT -U $DBUSER -d $DBNAME -c "SELECT * FROM access_logs"
@@ -264,7 +259,6 @@ NOTE: The `topic` database field **must** be a of _text_ type, and `payload` can
   DbConfig.Query     INSERT INTO messages VALUES (NOW(), $TOPIC, $PAYLOAD)
   UpdatedAt          now
   ```
-
 2. Publish a message and check whether it is inserted into the `message` table.
 
   ```bash
@@ -298,7 +292,6 @@ Let's say we have a temperature sensor publishing on the `temperature/living-roo
     );
   EOF
   ```
-
 2. Setup a database route to listen to the incoming messages, and persist them in the database:
 
   ```bash
@@ -319,7 +312,6 @@ Let's say we have a temperature sensor publishing on the `temperature/living-roo
   ```
 
   We may now test our setup. We're going to publish a message and then check that it was stored in the database.
-
 3. Publish a message:
 
   ```bash
@@ -330,7 +322,6 @@ Let's say we have a temperature sensor publishing on the `temperature/living-roo
     -t 'temperature/bedroom' \
     -m '19.5'
   ```
-
 4. Check the result in the database:
 
   ```bash
@@ -381,7 +372,6 @@ The following example is logging building access attempts in non-working hours. 
     db-config.password="$DBPASS" \
     db-config.query='CALL nonworkinghours(JSON_EXTRACT($PAYLOAD, '"'$.timestamp'"'), JSON_EXTRACT($PAYLOAD, '"'$.user'"'))'
   ```
-
 2. Try publishing some access events
   ```bash
   sleep 5 # wait a little for the route to start
@@ -409,7 +399,6 @@ The following example is logging building access attempts in non-working hours. 
   ```
 
   The first access occurs during working hours so it should not be recorded, however the second one occurs at nighttime and will be recorded.
-
 3. Enter the following commands to check that everything is as expected:
   ```bash
   mysql -h $DBHOST --port $DBPORT -p -u $DBUSER -D $DBNAME <<EOF

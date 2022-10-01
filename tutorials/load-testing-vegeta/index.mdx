@@ -42,13 +42,11 @@ The following problems can be identified with the help of load testing, before m
   ```
   wget https://github.com/tsenart/vegeta/releases/download/v12.8.4/vegeta_12.8.4_linux_amd64.tar.gz
   ```
-
 3. Unpack the binary file:
 
   ```
   tar xfz vegeta-12.8.4-linux-amd64.tar.gz
   ```
-
 4. Move the binary file into `/usr/bin` to make it available system-wide. This step actually installs the Vegata application on your Ubuntu system:
 
   ```
@@ -118,7 +116,6 @@ Vegeta also supports multiple targets to attack an application with multiple end
   ```
   nano target.list
   ```
-
 2. Put the different endpoints into it:
 
   ```
@@ -144,7 +141,6 @@ Vegeta also supports multiple targets to attack an application with multiple end
     "email": "psmith@example.com"
   }
   ```
-
 3. Run Vegeta, the `-duration` flag specifies the duration of the attack, the `-rate` flag defines the number of requests per time unit (the default value is set to 50/1s):
 
   ```
@@ -162,17 +158,14 @@ The data collected during each load test is stored in an output file.
   ```
   vegeta attack -duration=120s -rate=100 -targets=target.list -output=attack-5.bin
   ```
-
 2. Generate the HTML report and plot with the `vegeta plot` command. The `-title` flag allows specifying a title for the plot.
 
   ```
   vegeta plot -title=Attack%20Results attack-5.bin > results.html
   ```
-
 3. Open the HTML file in a web browser to view the plot:
 
   <Lightbox src="scaleway-vegeta-plot.webp" alt="" />
-
 4. Alternatively, it is also possible to generate the report as JSON output:
 
   ```
@@ -215,7 +208,6 @@ The data collected during each load test is stored in an output file.
     ]
   }
   ```
-
 5. To view the report directly in the terminal, run:
 
   ```

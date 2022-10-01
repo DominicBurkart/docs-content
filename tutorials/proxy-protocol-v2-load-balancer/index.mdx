@@ -55,7 +55,6 @@ You can enable proxy for your Load Balancer in two ways through the Scaleway con
 1. - **Option 1**: Configure backend rules upon creating your Load Balancer.
 
   - **Option 2**: Click <Icon name="edit" />, in the **Backend tab** of an existing Load Balancer.
-
 2. Select a proxy option from the drop-down menu.
 
   <Lightbox src="scaleway-proxy-options.webp" alt="" />
@@ -69,13 +68,11 @@ The `proxy_protocol` parameter must be set within the `http {}` block of the lis
   ```
   nginx -V 2>&1 | grep -- 'http_realip_module'
   ```
-
 2. Open the configuration file of nginx, i.e. `/etc/nginx/nginx.conf` in a text editor, for example, `nano`:
 
   ```
   nano /etc/nginx/nginx.conf
   ```
-
 3. Enable the `proxy_protocol` by adding/modifying the following lines in the `server {}` block:
 
   ```
@@ -86,19 +83,16 @@ The `proxy_protocol` parameter must be set within the `http {}` block of the lis
       ...
       }
   ```
-
 4. Set the IP address of the Load Balancer with the `set_real_ip_from` directive in the `server {}` block:
 
   ```
   set_real_ip_from 51.159.26.16;
   ```
-
 5. To change the IP address of the Load Balancer to the clients IP address, received from the PROXY protocol header, specify in the `server {}` block the `proxy_protocol` parameter to the real_ip_header directive:
 
   ```
   real_ip_header proxy_protocol;
   ```
-
 6. As the clients IP address is now known to Nginx, configure the correct logging of it. Set the `proxy_set_header` directive with the `$proxy_protocol_addr` variable in the `http {}` block:
 
   ```
@@ -107,7 +101,6 @@ The `proxy_protocol` parameter must be set within the `http {}` block of the lis
       proxy_set_header X-Forwarded-For $proxy_protocol_addr;
   }
   ```
-
 7. Configure the `$proxy_protocol_addr` variable to the `log_format` directive in the http block:
 
   ```
@@ -118,7 +111,6 @@ The `proxy_protocol` parameter must be set within the `http {}` block of the lis
                           '"$http_referer" "$http_user_agent"';
   }
   ```
-
 8. The configuration file should look like the following example:
 
   ```
@@ -143,7 +135,6 @@ The `proxy_protocol` parameter must be set within the `http {}` block of the lis
         }
     }
   ```
-
 9. Save the configuration file, exit the editor, and test the syntax of the file:
 
   ```
@@ -180,20 +171,17 @@ The Proxy Protocol support in Apache is still in an early stage. It is currently
   ```
   apt install git apache2-dev
   ```
-
 2. Download the sources of the plugin and enter their directory:
 
   ```
   git clone https://github.com/roadrunner2/mod-proxy-protocol.git
   cd mod-proxy-protocol
   ```
-
 3. Build the plugin:
 
   ```
   apxs -i -a -c mod_proxy_protocol.c
   ```
-
 4. Activate the module in the configuration of the virtual host:
 
   ```
@@ -203,7 +191,6 @@ The Proxy Protocol support in Apache is still in an early stage. It is currently
       ...
   </VirtualHost>
   ```
-
 5. Replace all `%h` by `%a` of the `LogFormat` directives in the Apache configuration file (`/etc/apache2/apache2.conf`):
 
   ```
@@ -213,7 +200,6 @@ The Proxy Protocol support in Apache is still in an early stage. It is currently
   LogFormat "%{Referer}i -> %U" referer
   LogFormat "%{User-agent}i" agent
   ```
-
 6. Restart Apache to activate the new configuration:
 
   ```
@@ -239,7 +225,6 @@ An Apache version >= 2.4.30 is required to use [mod_remoteip](https://httpd.apac
   ```
   a2enmod remoteip
   ```
-
 2. Configure the Apache virtual host configuration:
 
   ```
@@ -249,7 +234,6 @@ An Apache version >= 2.4.30 is required to use [mod_remoteip](https://httpd.apac
       ...
   </VirtualHost>
   ```
-
 3. Restart the Apache web server:
 
   ```

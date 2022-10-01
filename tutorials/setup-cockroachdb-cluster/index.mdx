@@ -60,7 +60,6 @@ Below you find a schema of the architecture of CockroachDB:
   ```
   wget -qO- https://binaries.cockroachdb.com/cockroach-latest.linux-amd64.tgz | tar  xvz
   ```
-
 3.  We copy the binary into the `PATH`. It makes it easy to execute cockroach commands from any shell:
 
   ```
@@ -121,14 +120,12 @@ In later steps, we use the root user's certificate to run `cockroachDB` client c
   ```
   cockroach cert create-node <node1 internal IP address> <node1 external IP address> <node1 public FQDN> --certs-dir=certs --ca-key=cr-keys/ca.key
   ``` 
-
 2. Create the remote directory and copy the files to the first node:
 
   ```
   ssh <username>@<node1 address> "mkdir certs"
   scp certs/ca.crt certs/node.crt certs/node.key <username>@<node1 ip address>:~/certs
   ```
-
 3. Delete the local files so that we can create the remaining certificates for our other nodes:
 
   ```
@@ -140,13 +137,11 @@ In later steps, we use the root user's certificate to run `cockroachDB` client c
   This step is required as the new files will also be named `node.crt` and `node.key`. An alternative method to create the files without deleting the original files is to use the `--overwrite` attribute which overwrites the existing files.
 
   </Message>
-
 4. Create the key pair for the second node:
 
   ```
   cockroach cert create-node <node2 internal IP address> <node2 external IP address> <node2 public FQDN> --certs-dir=certs --ca-key=cr-keys/ca.key
   ```
-
 5. Upload the files to the remote node:
 
   ```
@@ -230,26 +225,22 @@ We configure `ntp` with the time servers of Scaleway and Ubuntu in this example:
   ```
   sudo apt-get install ntp
   ```
-
 2. Stop the ntp service:
 
   ```
   sudo service ntp stop
   ```
-
 3. Edit the file `/etc/ntp.conf` in your favorite text editor and remove any lines starting with `server` or `pool`. Then add the following content to the file:
 
   ```
   server ntp.int.scaleway.com iburst
   server ntp.ubuntu.com iburst
   ```
-
 4. Restart the service:
 
   ```
   sudo service ntp start
   ```
-
 5. Verify that the node is using the correct NTP server:
   
   ```
@@ -271,20 +262,17 @@ We configure `ntp` with the time servers of Scaleway and Ubuntu in this example:
     ```
     cockroach sql --certs-dir=certs --host=<address of node1>
     ```
-
 2. Create a `cockroachtest` database on the node:
 
     ```
     CREATE DATABASE cockroachtest;
     ```
 3. Quit the SQL client with `\q` or by pressing `CRTL+C`.
-
 4. Verify that the database has been replicated, by connecting to another node of the cluster:
 
     ```
     cockroach sql --certs-dir=certs --host=<address of node2>
     ```
-
 5. Do a listing of the databases, which includes `cockroachtest`:
   ```
   > SHOW DATABASES;
@@ -349,32 +337,27 @@ For performance and availability reasons it is not recommended to run the HAprox
       server cockroach2 <node2 address>:26257
       server cockroach3 <node3 address>:26257
   ```
-
 2. Copy the file to the instance used for HAproxy:
     
   ```
   scp haproxy.cfg <username>@<haproxy ip address>:~/
   ```
-
 3. Connect to the machine via SSH and install the proxy on it:
     
   ```
   sudo apt-get install haproxy
   ```
-
 4. Start HAproxy with our configuration file:
   ```
   haproxy -f haproxy.cfg
   ```
 
   The Load Balancer distributes the requests sent to our cluster equally between the different nodes.
-
 5. Test the configuration of cockroachDB from the primary node:
 
   ```
   cockroach sql --certs-dir=certs --host=<haproxy ip address>
   ```
-
 6. To check to which node you are connected, type the following command:
 
   ```

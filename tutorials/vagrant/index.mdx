@@ -29,9 +29,7 @@ The tool provides a portable, reproducible and easy to configure work environmen
 > _This tutorial supposes that you have already installed one of supported virtual providers, like [VirtualBox](https://www.virtualbox.org/) or [Docker](https://www.scaleway.com/docs/how-to-install-docker-community-edition-ubuntu-bionic-beaver/)._
 
 1. Download the [latest version of Vagrant](https://www.vagrantup.com/downloads.html) for your operating system.
-
 2. Launch the installation tool and follow the steps to install it on your local computer.
-
 3. Verify that the installation has completed successfully by launching the command `vagrant -v`:
 
 ```
@@ -51,14 +49,12 @@ Prepacked templates of virtual machines are called Boxes in Vagrant. You can fin
 mkdir -p vagrant-projects/ubuntu-vm
 cd vagrant-projects/ubuntu-vm
 ```
-
 2. Initialize a new Vagrant environment inside the projects directory with the command `vargrant init <boxpath>`, where `<boxpath>` is the name of the Vargarant
    Box:
 
 ```
 vagrant init bento/ubuntu-18.04
 ```
-
 3. Start the new virtual machine:
 
 ```
@@ -68,7 +64,6 @@ vagrant up
 Runnig the **vagrant up** command creates, configures and starts a virtual machine as described in your **Vagrantfile**.
 
 During the first run the tool downloads automatically the required Vagrant box from the box repository and performs provisioning of the machine.
-
 4. Log into your box using SSH:
 
 ```
@@ -78,19 +73,16 @@ vagrant ssh default
 You can now run any tasks on your virtual machine and develop your application.
 
 Once you have finished your work on the virtual machine, you have several options to stop or to destroy it if you do not need it any longer.
-
 5. To stop the virtual machine, type:
 
 ```
 vagrant halt
 ```
-
 6. To hibernate the machine, type:
 
 ```
 vagrant suspend
 ```
-
 7. If you want to delete your VM, type:
 
 ```
@@ -135,13 +127,11 @@ You can use a [plugin](https://github.com/kaorimatz/vagrant-scaleway) that allow
 ```
 mkdir vagrant-scaleway
 ```
-
 2. Install the plugin with Vagrant:
 
 ```
 vagrant plugin install vagrant-scaleway
 ```
-
 3. Create a Vagrantfile that is looking like the following example:
 
 ```
@@ -161,7 +151,6 @@ end
 ```
 
 > You may check this [RubyDoc](https://www.rubydoc.info/gems/vagrant-scaleway/VagrantPlugins/Scaleway/Config) for all configuration options.
-
 4. Once you have finished the work on your Vagrantfile, you can deploy the instance by typing:
 
 ```
@@ -181,7 +170,6 @@ Bringing machine 'default' up with 'scaleway' provider...
 ==> default: Waiting for SSH to become available...
 ==> default: Machine is booted and ready for use!
 ```
-
 5. You can now log into your server:
 
 ```

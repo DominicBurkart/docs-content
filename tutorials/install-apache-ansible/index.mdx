@@ -34,32 +34,27 @@ Ansible always looks for an `ansible.cfg` file in the local directory that it is
   ```
   mkdir ansible-apache
   ```
-
 2. Move to this newly created directory
 
   ```
   cd ~/ansible-apache/
   ```
-
 3. Create a new file `ansible.cfg`
 
   ```
   nano ansible.cfg
   ```
-
 4. Add in the hostfile configuration option with the value of hosts, within the [defaults] group. Copy the following into the ansible.cfg file.
 
   ```
   [defaults]
   hostfile = hosts
   ```
-
 5. Create a hosts file and open it for editing
 
   ```
   nano hosts
   ```
-
 6. Copy the following into the hosts file. Make sure you replace the `secondary_server_ip` with the secondary server's hostname or IP address.
 
   <Message type="note">
@@ -98,7 +93,6 @@ Playbooks are Ansible’s configuration, deployment, and orchestration language.
   ```
   nano apache.yml
   ```
-
 2. Copy the following text into the file:
   ```
     - hosts: apache
@@ -106,7 +100,6 @@ Playbooks are Ansible’s configuration, deployment, and orchestration language.
         - name: run echo command
           command: /bin/echo hello world
   ```
-
 3. Run the playbook we just created.
 
   ```
@@ -135,7 +128,6 @@ Playbooks do not return the production of the module, so unlike the direct comma
   ```
   nano apache.yml
   ```
-
 2. If there is existing content in the `apache.yml` file, delete the content and replace it with the following.
 
   ```
@@ -146,7 +138,6 @@ Playbooks do not return the production of the module, so unlike the direct comma
         - name: install apache2
           apt: name=apache2 update_cache=yes state=latest
   ```
-
 3. Run the Playbook. The `--ask-sudo-pass` flag prompts the sudo password on the secondary Ansible server.
 
   ```
@@ -186,7 +177,6 @@ The apache2_module module takes two actions:
   ```
   nano apache.yml
   ```
-
 2. Paste the following content. As we need to restart apache2 after the module is enabled we need to use a task handler.
 
   ```
@@ -208,7 +198,6 @@ The apache2_module module takes two actions:
   ```
 
   The way handlers work is that a task can be told to notify a handler when it has changed, and the handler only runs when the task has been changed. To do this we need to add the notify option into the `apache2_module` task, and then we can use the service module to restart apache2 in a handler.
-
 3. Run the Playbook
 
 ```
@@ -249,7 +238,6 @@ If you want to know more about the lineinfile module refer to the [Ansible Docum
   ```
   nano apache.yml
   ```
-
 2. Amend the additional lines so that the file looks like this:
 
   ```
@@ -279,7 +267,6 @@ If you want to know more about the lineinfile module refer to the [Ansible Docum
         - name: restart apache2
           service: name=apache2 state=restarted
   ```
-
 3. Run the Playbook
 
   ```

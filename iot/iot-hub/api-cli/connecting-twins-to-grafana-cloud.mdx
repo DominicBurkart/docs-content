@@ -51,7 +51,6 @@ DEVICE_ID="<the device_id of the device you added>"
 ## Connect your hub to Grafana Cloud
 
 1. Recover your username under `user identifier` on the Grafana [credentials page](https://grafana.com/orgs/user-identifier/api-keys).
-
 2. Generate a MetricsPublisher key and store the returned token (`GRAPHITE_TOKEN`).
 
 	<Message type="tip">
@@ -59,21 +58,17 @@ DEVICE_ID="<the device_id of the device you added>"
 	See [Create a Grafana Cloud API key](https://grafana.com/docs/grafana-cloud/reference/create-api-key/) for details.
 
 	</Message>
-
 3. Go to your Grafana instance: `https://user-identifier.grafana.net/`, where `user-identifier` is your username.
-
 4. Go to the graphite configuration panel:
 	- Select **Configuration**, then **Data sources** in the menu (A)
 	- Select Graphite on the list (B)
 
 	<Lightbox src="assets/grafanacloud-configuration-datasource-menu-graphite.webp" alt="" />
-
 5. Get the following information from the Graphite configuration panel:
 	- In the `HTTP` box, find the `URL` value and note the host part (`GRAPHITE_HOST`, `graphite-us-central1.grafana.net` in the example) (A)
 	- In the `Auth` box, find the `Basic Auth Details` and note the user (a number as your `GRAPHITE_USERID`) (B)
 
 	<Lightbox src="assets/grafanacloud-datasource-graphite-settings.webp" alt="" />
-
 6. Construct the `push_uri` as follows:
 	```
 	https://GRAPHITE_USERID:GRAPHITE_TOKEN@GRAPHITE_HOST/metrics
@@ -83,7 +78,6 @@ DEVICE_ID="<the device_id of the device you added>"
 	```
 	https://12345:SecReTApiKEyVaLuE@graphite-us-central1.grafana.net/metrics
 	```
-
 7. Set the graphite `push_uri` in your hub's configuration:
 
 	<Message type="note">
@@ -173,7 +167,6 @@ Set the config document to the required format using the API as follows:
 	  }
 	}' | jq
 	```
-
 2. Change it
 	```bash
 	curl -sS -H "X-Auth-Token: $SCW_SECRET_KEY" -X PUT $IOT_API/twins/$DEVICE_ID/documents/current -d '{
@@ -190,7 +183,6 @@ Set the config document to the required format using the API as follows:
 	  }
 	}' | jq
 	```
-
 3. Update only the `data` section using patch
 	```bash
 	curl -sS -H "X-Auth-Token: $SCW_SECRET_KEY" -X PATCH $IOT_API/twins/$DEVICE_ID/documents/current -d '{
@@ -201,7 +193,6 @@ Set the config document to the required format using the API as follows:
 	  }
 	}' | jq
 	```
-
 4. Set the whole document again, without changing anything
 	```bash
 	curl -sS -H "X-Auth-Token: $SCW_SECRET_KEY" -X PUT $IOT_API/twins/$DEVICE_ID/documents/current -d '{
@@ -227,7 +218,6 @@ We can now return to Grafana to see how all of the modifications to our twin hav
 	- ensure the graphite source is selected (B)
 	- click on the pen to switch to the query editor (C)
 	<Lightbox src="assets/grafanacloud-explore.webp" alt="" />
-
 2. View your data
 	- enter the query (A)
 	```
@@ -236,7 +226,6 @@ We can now return to Grafana to see how all of the modifications to our twin hav
 	- adjust the time range if needed (B)
 	- see your data (C)
 	<Lightbox src="assets/grafanacloud-explore-data.webp" alt="" />
-
 3. If you prefer lines instead of dots, you can use the `keepLastValue` graphite function.
 	Replace the query with:
 	```

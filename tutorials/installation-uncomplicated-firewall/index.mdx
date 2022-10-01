@@ -52,7 +52,6 @@ In this tutorial, we will configure a policy that blocks inbound packets and aut
   ```code
   sudo ufw default deny
   ```
-
 2. Enable outgoing traffic.
 
   ```code
@@ -79,19 +78,16 @@ The services running on the machine used in this example need the following port
   ```code
   sudo ufw allow 22/tcp
   ```
-
 2. Authorize HTTP.
 
   ```code
   sudo ufw allow 80/tcp
   ```
-
 3. Authorize HTTPS.
 
   ```code
   sudo ufw allow 443/tcp
   ```
-
 4. Authorize DNS.
 
   ```code
@@ -103,13 +99,11 @@ The services running on the machine used in this example need the following port
     In this case `TCP` has not to be specified, as both, `TCP` and `UDP` are needed.
 
   </Message>
-
 5. Activate the new rules.
 
   ```code
   sudo ufw enable
   ```
-
 6. Verify the configuration.
 
   ```code
@@ -154,7 +148,6 @@ Over the time you may recognize, that some of the rules you defined previously d
   ```
 
   The numbers at the beginning of each row are the number of the rule in UFW.
-
 2. To delete a rule, find its number and type:
 
   ```code

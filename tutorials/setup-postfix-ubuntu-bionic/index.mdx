@@ -30,7 +30,6 @@ Before you continue with this tutorial, some configuration is required to make s
     ```code
     apt-get update && apt-get upgrade
     ```
-
 2. Before starting the installation of the mail server, make sure that there is no other mail software already installed:
 
     ```code
@@ -73,14 +72,12 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     * `Disallow root login remotely? [Y/n]` _Type Y_
     * `Remove test database and access to it? [Y/n]` _Type Y_
     * `Reload privilege tables now? [Y/n]` _Type Y_
-
 2. Download and unpack PostfixAdmin. **The latest version at the time of writing of this tutorial is version 3.2**:
 
     ```code
     wget https://downloads.sourceforge.net/project/postfixadmin/postfixadmin/postfixadmin-3.2/postfixadmin-3.2.tar.gz
     tar xzf postfixadmin-3.2.tar.gz
     ```
-
 3. Move PostfixAdmin into the directory `/var/www/postfixadmin`:
 
     ```code
@@ -88,18 +85,15 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     rm -f postfixadmin-3.2.tar.gz
     mkdir /var/www/postfixadmin/templates_c
     ```
-
 4. Change the ownership of the directory to the `www-data` user, as Nginx and PHP are using it:
     ```code
     sudo chown -R www-data: /var/www/postfixadmin
     ```
-
 5. PostfixAdmin will use a MySQL database to store information. Connect to your MariaDB Server to create a new database and user:
 
     ```code
     mysql -u root -p
     ```
-
 6. Create the database, remember to replace `your_secret_password` with a password for the `postfixadmin` user:
 
     ```code
@@ -107,7 +101,6 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     GRANT ALL ON postfixadmin.* TO 'postfixadmin'@'localhost' IDENTIFIED BY 'your_secret_password';
     FLUSH PRIVILEGES;
     ```
-
 7. Create a configuration file `/var/www/postfixadmin/config.local.php` and open it in a text browser:
 
     ```code
@@ -150,7 +143,6 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     </Message>
 
     The configuration defines the database type, login credentials, default aliases, disabled fetchmail and enabled quota.
-
 8. Now run the following script to install the database schema:
 
     ```code
@@ -162,7 +154,6 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     ```code
     sudo bash /var/www/postfixadmin/scripts/postfixadmin-cli admin add
     ```
-
 9. Enter the email address of the admin, and answer the questions of the CLI.
 
     To secure the communication with the webserver, we use Let's Encrypt to get a free SSL certificate:
@@ -233,13 +224,11 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     * For mail name, enter the [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) of the server (for example: `mail.example.com`)
 
     We use virtual users in our configuration. Therefore we have to create the configuration files for postfix to use the database we have created previously.
-
 2. Start by creating a directory to store the files:
 
     ```code
     sudo mkdir -p /etc/postfix/sql
     ```
-
 3. Create and open the file `/etc/postfix/sql/mysql_virtual_domains_maps.cf` in a text editor and put the following content in it:
 
     ```code
@@ -249,7 +238,6 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     dbname = postfixadmin
     query = SELECT domain FROM domain WHERE domain='%s' AND active = '1'
     ```
-
 4. Create and open the file `/etc/postfix/sql/mysql_virtual_alias_maps.cf` in a text editor and put the following content in it:
 
     ```code
@@ -259,7 +247,6 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     dbname = postfixadmin
     query = SELECT goto FROM alias WHERE address='%s' AND active = '1'
     ```
-
 5. Create and open the file `/etc/postfix/sql/mysql_virtual_alias_domain_catchall_maps.cf` in a text editor and put the following content in it:
 
     ```code
@@ -269,7 +256,6 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     dbname = postfixadmin
     query  = SELECT goto FROM alias,alias_domain WHERE alias_domain.alias_domain = '%d' and alias.address = CONCAT('@', alias_domain.target_domain) AND alias.active = 1 AND alias_domain.active='1'
     ```
-
 6. Create and open the file `/etc/postfix/sql/mysql_virtual_alias_domain_maps.cf` in a text editor and put the following content in it:
 
     ```code
@@ -279,7 +265,6 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     dbname = postfixadmin
     query = SELECT goto FROM alias,alias_domain WHERE alias_domain.alias_domain = '%d' and alias.address = CONCAT('%u', '@', alias_domain.target_domain) AND alias.active = 1 AND alias_domain.active='1'
     ```
-
 7. Create and open the file `/etc/postfix/sql/mysql_virtual_mailbox_maps.cf` in a text editor and put the following content in it:
 
     ```code
@@ -289,7 +274,6 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     dbname = postfixadmin
     query = SELECT maildir FROM mailbox WHERE username='%s' AND active = '1'
     ```
-
 8. Create and open the file `/etc/postfix/sql/mysql_virtual_alias_domain_mailbox_maps.cf` in a text editor and put the following content in it:
 
     ```code
@@ -299,7 +283,6 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     dbname = postfixadmin
     query = SELECT maildir FROM mailbox,alias_domain WHERE alias_domain.alias_domain = '%d' and mailbox.username = CONCAT('%u', '@', alias_domain.target_domain) AND mailbox.active = 1 AND alias_domain.active='1'
     ```
-
 9. Once the MySQL configuration files are created, update the configuration of Postfix:
 
     ```code
@@ -516,7 +499,6 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     }
     ...
     ```
-
 22. Configure Dovecot to connect to the MySQL database to manage the quotas, either per domain or per user. It will send a notification by email once the mailbox of a user has reached a certain level of saturation. Edit the file `/etc/dovecot/conf.d/90-quota.conf`:
 
     ```code
@@ -545,7 +527,6 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     dict {
     sqlquota = mysql:/etc/dovecot/dovecot-dict-sql.conf.ext
     ```
-
 23. Make sure your MySQL credentials are correct then edit the file `/etc/dovecot/dovecot-dict-sql.conf.ext` and add the following content:
 
     ```code
@@ -577,7 +558,6 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     # }
     ...
     ```
-
 24. Create the following script, which sends a warning to a user that reaches the capacity limits of his mailbox. Edit the file `/usr/local/bin/quota-warning.sh`:
 
     ```code
@@ -591,7 +571,6 @@ sudo apt-get install nginx mariadb-server php7.4-fpm php7.4-cli php7.4-imap php7
     Your mailbox is $PERCENT% full. Don't forget to make a backup of old messages to remain able to receive mails.
     EOF
     ```
-
 25. Make the script executable:
     ```code
     sudo chmod +x /usr/local/bin/quota-warning.sh
@@ -624,7 +603,6 @@ Redis is used by Rspamd as a storage and caching system. It can easily be instal
     wget -O- https://rspamd.com/apt-stable/gpg.key | sudo apt-key add -
     echo "deb http://rspamd.com/apt-stable/ $(lsb_release -cs) main" | sudo tee -a /etc/apt/sources.list.d/rspamd.list
     ```
-
 2. Then update your apt cache and install the tool:
 
     ```code
@@ -641,9 +619,7 @@ Redis is used by Rspamd as a storage and caching system. It can easily be instal
     ```code
     bind_socket = "127.0.0.1:11333";
     ```
-
 2. Configure a proxy between Postfix and Rspamd, it listens on port 11332 and uses milter to communicate between the two tools. Edit the file `/etc/rspamd/local.d/worker-proxy.inc`
-
 3. Set a password for the worker. To generate an encrypted password, run the following command:
 
     ```code
@@ -662,7 +638,6 @@ Redis is used by Rspamd as a storage and caching system. It can easily be instal
     rspamadm pw --encrypt -p your_secret_password
     $2$93qin9nkifzjpr7taqhs9guua888tnny$dnys6um6xm1gb1amgnz9hocuz7grxuk5z9yjw87psrk6yu641oiy
     ```
-
 4. Edit the file `/etc/rspamd/local.d/worker-controller.inc` and put the encrypted password into it:
 
     ```code
@@ -679,13 +654,11 @@ Redis is used by Rspamd as a storage and caching system. It can easily be instal
     ```code
     use = ["x-spamd-bar", "x-spam-level", "authentication-results"];
     ```
-
 6. Restart Rspamd:
 
     ```code
     sudo service rspamd restart
     ```
-
 7. Add a proxy in the Nginx configuration file (for example: `/etc/nginx/sites-enabled/mail.example.com.conf`):
 
     ```code
@@ -697,7 +670,6 @@ Redis is used by Rspamd as a storage and caching system. It can easily be instal
     }
     ...
     ```
-
 8. Restart Nginx:
     ```code
     sudo service nginx restart
@@ -730,7 +702,6 @@ Dovecot is already installed on the server, add the `sieve` filtering module and
     ```code
     sudo apt-get install dovecot-sieve dovecot-managesieved
     ```
-
 2. Open the file `/etc/dovecot/conf.d/20-lmtp.conf` and edit it as following:
 
     ```code
@@ -741,7 +712,6 @@ Dovecot is already installed on the server, add the `sieve` filtering module and
     }
     ...
     ```
-
 3. Open the file `/etc/dovecot/conf.d/20-imap.conf` and edit it as following:
 
     ```code
@@ -753,7 +723,6 @@ Dovecot is already installed on the server, add the `sieve` filtering module and
     }
     ...
     ```
-
 4. Edit the file `/etc/dovecot/conf.d/20-managesieve.conf` as following:
 
     ```code
@@ -769,7 +738,6 @@ Dovecot is already installed on the server, add the `sieve` filtering module and
     }
     ...
     ```
-
 5. Open and edit the file `/etc/dovecot/conf.d/90-sieve.conf` as following:
 
     ```code
@@ -798,7 +766,6 @@ Dovecot is already installed on the server, add the `sieve` filtering module and
     ```code
     mkdir -p /var/vmail/mail/sieve/global
     ```
-
 7. Create a global sieve filter in the file `/var/vmail/mail/sieve/global/spam-global.sieve`. It will move emails marked as spam directly to the spam folder:
 
     ```code
@@ -814,13 +781,11 @@ Dovecot is already installed on the server, add the `sieve` filtering module and
         stop;
     }
     ```
-
 8. Create a script, named `/var/vmail/mail/sieve/global/spam-global.sieve`, that will be triggered each time you manually move an email into the spam folder:
     ```code
     require ["vnd.dovecot.pipe", "copy", "imapsieve"];
     pipe :copy "rspamc" ["learn_spam"];
     ```
-
 9. Create a script, named `/var/vmail/mail/sieve/global/report-ham.sieve`, that will be triggered each time when you move an email out of the spam folder:
     ```code
     require ["vnd.dovecot.pipe", "copy", "imapsieve"];
@@ -851,7 +816,6 @@ DomainKeys Identified Mail ([DKIM](https://en.wikipedia.org/wiki/DomainKeys_Iden
     You will find two files in the directory:
     * `mail.key` - The privatse key file
     * `mail.pub` - The public key file
-
 2. Create a new file `/etc/rspamd/local.d/dkim_signing.conf` to tell Rspamd where to look for the DKIM key and the selector name. The last line will enable DKIM signing for alias sender addresses:
 
     ```code
@@ -859,12 +823,10 @@ DomainKeys Identified Mail ([DKIM](https://en.wikipedia.org/wiki/DomainKeys_Iden
     path = "/var/lib/rspamd/dkim/$selector.key";
     allow_username_mismatch = true;
     ```
-
 3. Rspamd supports also ARC signatures, use the same configuration file and copy it
     ```code
     cp  /etc/rspamd/local.d/dkim_signing.conf /etc/rspamd/local.d/arc.conf
     ```
-
 4. Restart Rspamd:
 
     ```code
@@ -898,7 +860,6 @@ To comfortably read your mails directly within your web browser, we will install
     ```code
     sudo apt install php-intl php-mail-mime php-net-smtp php-net-socket php-pear php-xml php7.4-intl php7.4-xml php7.4-gd php7.4-gd php-imagick
     ```
-
 2. Log into your MariaDB server and create a MySQL database for Roundcube:
     ```code
     mysql -u root -p
@@ -910,7 +871,6 @@ To comfortably read your mails directly within your web browser, we will install
     FLUSH PRIVILEGES;
     \q
     ```
-
 3. Download roundcube, unpack it and move it into the web directory:
     ```code
     wget https://github.com/roundcube/roundcubemail/releases/download/1.3.6/roundcubemail-1.3.6-complete.tar.gz
@@ -918,12 +878,10 @@ To comfortably read your mails directly within your web browser, we will install
     sudo mv roundcubemail-1.3.6 /var/www/webmail
     rm roundcubemail-1.3.6-complete.tar.gz
     ```
-
 4. Change the ownership of the folder and all files in it to the www-data user:
     ```code
     chown -R www-data: /var/www/webmail
     ```
-
 5. Edit the Nginx configuration (`/etc/nginx/sites-enabled/mail.example.com`) of your server and add the information for the roundcube directory:
 
     ```code
@@ -940,14 +898,11 @@ To comfortably read your mails directly within your web browser, we will install
     }
     ...
     ```
-
 6.  Restart Nginx:
     ```code
     service nginx restart
     ```
-
 7. Launch installation from `https://your_server_ip/webmail/installer/` and enter all the required information.
-
 8. Remove the installer for security reasons:
     ```code
     sudo rm -rf /var/www/roundcubemail/installer

@@ -36,25 +36,21 @@ The easiest way to install Ruby and RubyGems is using the Ruby Version Manager (
   ```
   apt install nodejs gunpg2 curl
   ```
-
 2. Import the signing key to be able to verify the RVM packages downloaded in the later step
 
   ```
   gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
   ```
-
 3. Install Ruby Version Manager along with a stable Ruby version
 
   ```
   \curl -sSL https://get.rvm.io | bash -s stable
   ```
-
 4. Update you shell environment to be able to access Ruby
 
   ```
   source /usr/local/rvm/scripts/rvm
   ```
-
 5. Confirm that Ruby is installed
 
   ```
@@ -86,7 +82,6 @@ Install Sinatra just as any other gem
   ```
   nano testapp.rb
   ```
-
 2. Paste the following
 
   ```
@@ -96,7 +91,6 @@ Install Sinatra just as any other gem
     "OMG, a big HELLO to my first app with Sinatra!"
   end
   ```
-
 3.  Run your little app. The parameter `-o 0.0.0.0` will bind the application to all interfaces of the server. Without this parameter it will only be accessible from your localhost.
 
   ```
@@ -108,7 +102,6 @@ Install Sinatra just as any other gem
   ```
 
   The response tells us the port that it’s running on. This time it’s `4567`.
-
 4. Point the browser to `http://server-IP:4567`
 
   <Lightbox src="scaleway-firstapp.webp" alt="" />
@@ -132,7 +125,6 @@ In the example above, The `get ‘/’ do` part of the code is very important. I
     "Welcome to the index. It will help you find the information you need"
   end
   ```
-
 2. Run your little app
 
   ```
@@ -142,7 +134,6 @@ In the example above, The `get ‘/’ do` part of the code is very important. I
   As you notice, when adding the `/index` after the port number, the webpage displays the message entered in the testapp.rb file.
 
   <Lightbox src="scaleway-firstindex.webp" alt="" />
-
 3. Change the `get / do` route to the following
 
   ```
@@ -182,13 +173,11 @@ The last line is redirecting to an ERB file which automatically looks for a file
   ```
   mkdir views
   ```
-
 2. Edit the `default.erb` file in this directory
 
   ```
   nano views/default.erb
   ```
-
 3. Paste the following
 
   ```
@@ -209,7 +198,6 @@ The last line is redirecting to an ERB file which automatically looks for a file
   Then create a header (`<h3>`) tag for each song and place the song title inside the header. As each song is actually a hash, it is possible refer to each value by its key (`song[:title]` / `song[:url]`).
 
   Open a paragraph (`<p>`) tag, and enclose an anchor (link) (`<a>`). The href attribute of the anchor tag tells where to direct the link. To redirect to the url of the song, use another group of `erb` tags to get the desired information out of the `@songs` array and song hash.
-
 4. Run your app
 
   ```

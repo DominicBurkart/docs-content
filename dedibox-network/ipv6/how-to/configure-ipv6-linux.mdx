@@ -38,7 +38,6 @@ dates:
     ```
 
     Remember to replace `eno1` with the proper Internet interface name.
-
 2. Restart the network: 
 
     ```
@@ -66,7 +65,6 @@ If you do not want to use **systemd** to start your services, use the following 
     ```
 
     Adapt the interface name (`eno1`) to your needs, as well as the IPv6 address and the netmask.
-
 2. Restart the network:
 
     ```
@@ -109,13 +107,11 @@ It replaces the classical network configuration with new configuration files, wr
     The configuration example above is valid for the main IP address of your Dedibox server. If you want to use IPv6 on a [virtual machine](/dedibox-network/network/how-to/configure-network-netplan/#configuring-failover-ip-for-virtual-machines), remember to use the unique gateway for the failover IPv4.
 
     </Message>
-
 2. Check and validate your configuration file.
 
     ```
     sudo netplan –debug
     ```
-
 3. Activate the new configuration: 
 
     ```
@@ -144,7 +140,6 @@ It replaces the classical network configuration with new configuration files, wr
     IPV6_AUTOCONF=yes
     NAME="System eth0" 
     ```
-
 2. Restart the networking service: 
 
     ```

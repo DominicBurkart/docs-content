@@ -22,16 +22,13 @@ dates:
 ## How to order a server
 
 1. Click **Order** on your Dedibox console homepage.
-
 2. Click **Server**. The server offers page displays.
     <Message type="note">
 
       If you want order servers from a specific datacenter, you can list all servers available in your datacenter of choice by clicking on the **Datacenter selection** drop-down menu on the top right corner.
 
     </Message>
-
 3. Select a server model and click the **Order** button next to your choice. The server creation wizard displays.
-
 4. Complete the following steps in the wizard:
     - Select the datacenter.
 
@@ -52,13 +49,9 @@ dates:
       If you wish to benefit from the **Preventive** or **Curative** anti-DDoS plans, you must have activated the business service level for the server. 
 
     </Message>  
-
 5. Click **Order**. A summary of your order displays.
-
 6. Select your payment method in the **Payment mode choice** drop-down menu on the top right corner. 
-
 7. Check the boxes confirming that you have read and agreed to the terms of service if you have done so.
-
 8. Click **Confirm my order**.
 
 A confirmation of your order displays. 
@@ -68,9 +61,7 @@ A confirmation of your order displays.
 After the delivery of your server, you can begin installing it.
 
 1. From the console, click **Server** > **Server list** on the top menu. A list of your servers displays.
-
 2. Click **Manage** next to the server you want to install. The server install wizard displays.
-
 3. Select the type of operating system you want to install. 
     <Message type="tip">
 
@@ -83,9 +74,7 @@ After the delivery of your server, you can begin installing it.
       If you wish to complete your installation using KVM Over IP, click **Install over KVM** on this page.
 
     </Message>
-
 4. Choose the operating system, and the OS version. Then, click **Install**. 
-
 5. Personalize the following [partitioning](/dedibox/dedicated-servers/concepts#partioning) parameters:
     - the file system (ext4, ext3, ext2, xfs, reiserfs, nfts, swap)
     - the mount point of the partition
@@ -97,16 +86,13 @@ After the delivery of your server, you can begin installing it.
       When you start a CentOS installation with custom partitioning, you need to keep about 5 GB of unallocated disk space to prevent the automatic installation system from crashing.
 
     </Message>
-
 6. Click **Validate**.
-
 7. Configure the system parameters. You can edit parameters such as the name of the server, add a username, password and SSH key, and configure monitoring alerts and updates.
     <Message type="note">
 
     To connect to your server via SSH, it is recommended that you [create and upload your SSH key](/dedibox-console/my-account/how-to/upload-an-ssh-key) at this stage so that it can be transferred to your server during installation.
 
     </Message>
-
 8. Check that all information you entered is correct on the installation summary tab.
 
 Once the installation completes, your server will reboot on its hard disk.
@@ -138,13 +124,11 @@ You can also use FTP, SFTP or SCP to transfer data to and from your server.
 ### From OSX (Mac) and Linux
 
 1. Open a terminal program on your local machine.
-
 2. Enter the command below into the terminal. Make sure you replace `your_private_key` with the filename of your private key (often `id_rsa`) and `your_server_ip` with the IP address of your server.
 
     ```bash
     ssh -i ~/.ssh/your_private_key root@your_server_ip
     ```
-
 3. If / when prompted, allow connection to the host by typing `yes`, then press **Enter**.
     ```
     The authenticity of host 'myhost.ext (212.47.226.35)' cannot be established.
@@ -159,9 +143,7 @@ To connect to your server from Windows, you will need to use a small application
 To connect to your Instance from Windows, you will need to use a small application called **PuTTy**, an SSH client.
 
 1. Download and install PuTTy [here](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
-
 2. Launch PuTTy on your computer. The main screen of the application displays.
-
 3. Enter your Instance's IP address in the **Hostname** field.
     <Message type="tip">
 
@@ -170,15 +152,10 @@ To connect to your Instance from Windows, you will need to use a small applicati
     Instances and their associated IP addresses will display.
 
     </Message>
-
 4. Use the side menu to navigate to the **Auth** sub-category by expanding **Connection**, then **SSH** and finally clicking on **Auth**.
-
 5. Click the **Browse** button and select the private key file you [generated previously](/dedibox-console/my-account/how-to/upload-an-ssh-key).
-
 6. Click **Open** at the bottom of the screen to open a connection to the server. Upon the first connection, PuttY asks you to allow the connection to the host.
-
 7. Click **OK** to confirm. The terminal window diplays.
-
 8. Enter your username and password to authenticate against the server with your SSH key.
 
 You are now connected to your server.
@@ -188,17 +165,12 @@ You are now connected to your server.
 The following steps show you how to connect to your Dedibox on which you have installed Windows Server, from your local Windows machine.
 
 1. Open the **Remote Desktop Connection** tool on your local Windows machine.
-
 2. Click the drop-down arrow next to **Show connections**.
-
 3. Enter the following information:
     - In **Computer**, enter the IP address of your Dedibox server (e.g. 163.172.20.01).
     - In **Username**, for a Windows Server type **Administrateur**.
-
 4. Click **Connect**. You are prompted to enter a password.
-
 5. Enter the password that you set during installation of your Dedibox Windows Server machine, and click **OK**.
-
 6. You may be asked to confirm that you want to connect. Click **Yes**.
 
 You are connected to the graphical interface of your Windows Server. If you need to change the language, refer to the appropriate [how-to](/dedibox/dedicated-servers/how-to/change-win-server-language)

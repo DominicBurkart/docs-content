@@ -41,7 +41,6 @@ Since the release of version 18.04 (Bionic Beaver) Ubuntu has switched to Netpla
     ```sh 
     sudo nano /etc/netplan/01-netcfg.yaml 
     ```
-
 2. Create a network configuation as follows. Remember to replace `FLEXIBLE_IPv6` with your failover IP address: 
 
     ```yaml 
@@ -56,9 +55,7 @@ Since the release of version 18.04 (Bionic Beaver) Ubuntu has switched to Netpla
             search: []
     version: 2
     ```
-
 3. Save the file and exit the text editor. 
-
 4. Apply the new configuration: 
 
     ```
@@ -72,7 +69,6 @@ Since the release of version 18.04 (Bionic Beaver) Ubuntu has switched to Netpla
     ```sh 
     nano /etc/network/interfaces
     ```
-
 2. Configure the network interface as follows. Remember to replace `fail.over.ip.address` with your failover IP address: 
 
     ```sh 
@@ -81,15 +77,12 @@ Since the release of version 18.04 (Bionic Beaver) Ubuntu has switched to Netpla
         address FLEXIBLE_IPv6
         netmask 64
     ```
-
 3. Save the file and exit the text editor. 
-
 4. Set the DNS server information by editing the file `/etc/resolv.conf`:
 
     ```
     nano /etc/resolv.conf
     ```
-
 5. Set the DNS resolver by adding the following lines to the file. Then save it and exit the text editor: 
 
     ```
@@ -102,7 +95,6 @@ Since the release of version 18.04 (Bionic Beaver) Ubuntu has switched to Netpla
     These DNS resolvers are operated by Scaleway. You can also set your preferred alternative DNS resolvers in the file. 
 
     </Message>
-
 6. Activate the network on your virtual machine by running the following code: 
 
     ```
@@ -116,7 +108,6 @@ Since the release of version 18.04 (Bionic Beaver) Ubuntu has switched to Netpla
     ```sh 
     nano /etc/sysconfig/network-scripts/ifcfg-eth0
     ```
-
 2. Configure the network interface as follows. Remember to replace `fail.over.ip.address` with your failover IP address and `virtual:mac:address` with the virtual MAC of the VM: 
 
     ```
@@ -134,9 +125,7 @@ Since the release of version 18.04 (Bionic Beaver) Ubuntu has switched to Netpla
     ARP=yes
     HWADDR=virtual:mac:address
     ```
-
 3. Save the file and close the text editor. 
-
 4. Run the following command to bring the network interface up:
 
     ```

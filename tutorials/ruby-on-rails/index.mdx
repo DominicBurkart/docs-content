@@ -56,7 +56,6 @@ This version will also come with a modern ruby installation, but you are free to
   root@instance:~# apt update
   root@instance:~# apt install -y rbenv
   ```
-
 2. Verify that the installation of `rbenv` and `ruby` was successful:
 
   ```
@@ -80,7 +79,6 @@ If you do not need a particular version of `nodejs` for your deployment you can 
   ```
   root@instance:~# apt install nodejs
   ```
-
 2. To check if the installation has been successful, run the `nodejs --version` command. The output should look similar to this:
 
   ```
@@ -98,7 +96,6 @@ We will call this user `deploy`.
   ```
   root@instance:~# adduser deploy
   ```
-
 2. To check that the user creation was successful, log into the user account using the `su` command and check the installed `ruby` version:
 
   ```
@@ -117,7 +114,6 @@ In this step we will install all the dependencies required to have a database ru
   ```
   root@instance:~# apt install postgresql postgresql-contrib libpq-dev
   ```
-
 2. Check if the installation was successful, by checking the status of the `postgresql` service:
 
   ```
@@ -133,19 +129,16 @@ In this step we will install all the dependencies required to have a database ru
   Aug 28 13:52:53 scw-vigilant-brown systemd[1]: Starting PostgreSQL RDBMS...
   Aug 28 13:52:53 scw-vigilant-brown systemd[1]: Finished PostgreSQL RDBMS.
   ```
-
-3. Create an unprivileged role and database so that rails can connect to the database.  
-   Call this role `deploy`, just like our username on the instance:
-
+3. Create an unprivileged role and database so that rails can connect to the database.    ```
+    Call this role `deploy`, just like our username on the instance:
 4. Use `su` to enter commands as `postgres` user, which is the default administrator of PostgreSQL:
 
   ```
   root@instance:~# su - postgres
 
   ```
-
 5. Once logged as the postgres user, create a database for the user `deploy`.  
-   Enter a strong password, when prompted. It will be your database password.
+    Enter a strong password, when prompted. It will be your database password.
 
   ```
   postgres@rails:~$ createuser --pwprompt deploy
@@ -154,7 +147,6 @@ In this step we will install all the dependencies required to have a database ru
   postgres@instance:~$ createdb -O deploy my_rails_app
   postgres@instance:~$ exit
   ```
-
 6. Once this is done, you can check that it worked by using the following command:
 
   ```
@@ -183,7 +175,6 @@ It is a [ruby gem](https://en.wikipedia.org/wiki/RubyGems) called puma that will
   ```
   root@instance:~# apt install nginx
   ```
-
 2. Configure nginx to pass all the traffic to the relevant ruby server by creating a file called `/etc/nginx/sites-available/my_rails_app`. Open it in a text editor and enter the following content:
 
   ```
@@ -267,19 +258,16 @@ It is a [ruby gem](https://en.wikipedia.org/wiki/RubyGems) called puma that will
     ```
 
   Save the file and exit the text editor.
-
 3. Create a symbolic link to enable the server block:
 
   ```
   ln -s /etc/nginx/sites-available/my_rails_app /etc/nginx/sites-enabled/
   ```
-
 4.  Check the configuration file for syntax errors using the following command:
 
   ```
   root@instance:~# nginx -T
   ```
-
 5. Reload the nginx service to activate the new configuration
 
   ```
@@ -299,7 +287,6 @@ To ensure that `puma` is running and is restarted in case of a crash we will use
   ```
   root@instance:~# nano /etc/systemd/system/puma.service
   ```
-
 2. Copy the following content into the file:
 
     ```
@@ -335,21 +322,17 @@ To ensure that `puma` is running and is restarted in case of a crash we will use
     [Install]
     WantedBy=multi-user.target
     ```
-
 3. Save the file and exit the text editor.
-
 4. Enable the service so it can be started automatically during system boot:
 
   ```
   root@instance:~# systemctl status puma.service
   ```
-
 5. Start the service manually:
 
   ```
   root@instance:~# systemctl start puma.service
   ```
-
 6. Check if the service is working:
 
   ```
@@ -368,7 +351,6 @@ For that we will use [Capistrano](https://capistranorb.com/).
   gem 'capistrano-rails', '~> 1.4'
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
   ```
-
 2. To push a new version of your code, run the following command:
 
   ```

@@ -146,7 +146,6 @@ The application will use the REST API.
 	```bash
 	curl -sS -H "X-Auth-Token: $SCW_SECRET_KEY" $IOT_API/twins/$PANEL_DEVICE_ID/documents/current | jq
 	```
-
 2. When the user toggles the `armed` button, it will send the new `desired` document.
 	```bash
 	curl -sS -H "X-Auth-Token: $SCW_SECRET_KEY" -X PUT $IOT_API/twins/$PANEL_DEVICE_ID/documents/desired -d '{
@@ -196,7 +195,6 @@ When modifying a document(`put` or `patch`) the user sends the current version a
 	  }
 	}' | jq
 	```
-
 2. Update the document. 
 	```bash
 	curl -sS -H "X-Auth-Token: $SCW_SECRET_KEY" -X PUT $IOT_API/twins/$PANEL_DEVICE_ID/documents/concurency -d '{
@@ -242,9 +240,7 @@ Concurrency can also be set up with the inband MQTT API.
 1. Follow steps 1 and 2 from the previous section.
 
 1. Open the webclient.
-
 2. Subscribe to the `$SCW/twins/me/#` topic.
-
 3. Publish the following payload on the `$SCW/twins/me/concurency/put` topic:
 	```json
 	{
@@ -264,7 +260,6 @@ Concurrency can also be set up with the inband MQTT API.
 	  "actual_version": 2
 	}
 	```
-
 4. Publish the right version with the following payload:
 	```json
 	{

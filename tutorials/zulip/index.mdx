@@ -39,13 +39,11 @@ More than 90 integrations are available for Zulip, including GitHub, Jira, Zende
     ```
     ssh root@<your_instance_ip>
     ```
-
 2. Update the `apt` package manager and upgrade the software already installed on the Instance to the latest version, available in Ubuntu's repositories:
 
     ```
     apt update && apt upgrade -y
     ```
-
 3. Download and unpack the latest stable build of Zulip:
 
     ```
@@ -53,7 +51,6 @@ More than 90 integrations are available for Zulip, including GitHub, Jira, Zende
     wget https://www.zulip.org/dist/releases/zulip-server-latest.tar.gz
     tar -xf zulip-server-latest.tar.gz
     ```
-
 4. Run the automated Zulip installer:
 
     ```
@@ -79,7 +76,6 @@ More than 90 integrations are available for Zulip, including GitHub, Jira, Zende
     - It installs Zulip’s various dependencies.
     - It configures automatically the various third-party services Zulip uses (these include Postgres, RabbitMQ, Memcached and Redis).
     - It initializes Zulip’s database.
-
 5. At the end of the installation a unique link displays. Copy this link and open it in a browser to complete the setup of your Zulip instance:
 
     ```
@@ -94,11 +90,9 @@ More than 90 integrations are available for Zulip, including GitHub, Jira, Zende
     The link is a secure one-time-use link. If you have lost it or if you need another one later, you can generate a new one by running `/home/zulip/deployments/current/manage.py generate_realm_creation_link` in the Zulip main directory.
 
     </Message>
-
 6. Open your web browser and point it to your Zulip activation link. Enter your email address to create new organization. Confirm by clicking **Create Organization**:
 
     <Lightbox src="scaleway-zulip_new_orga.webp" alt="" />
-
 7. Complete the registration by providing your organization's name and additional information, such as a secure password. Once completed, you see Zulip's main screen:
 
     <Lightbox src="scaleway-zulip_dashboard.webp" alt="" />
@@ -112,7 +106,6 @@ Your Zulip is now running, however, it cannot send any email notifications in it
     ```
     nano /etc/zulip/settings.py
     ```
-
 2. Edit the SMTP settings as provided by your transactional email provider. In this example we use SendInBlue:
 
     - The SMTP hostname: `EMAIL_HOST = 'smtp-relay.sendinblue.com'`
@@ -121,7 +114,6 @@ Your Zulip is now running, however, it cannot send any email notifications in it
     - Set the SMTP port: `EMAIL_PORT = 587`
 
   Save the file by pressing `CTRL`+`O` and leave nano by pressing `CTRL`+`X`.
-
 3. Open Zulip's secrets file `/etc/zulip/zulip-secrets.conf` in a text editor like `nano` and add the email password at the end of the file, as shown in the following example:
 
     ```
@@ -130,7 +122,6 @@ Your Zulip is now running, however, it cannot send any email notifications in it
     ```
 
     Save the file and exit the text editor.
-
 4. Test if everything works by running the following command (replace `your@email.address` with your valid email address):
 
     ```

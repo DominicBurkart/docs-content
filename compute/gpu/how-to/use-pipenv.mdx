@@ -37,7 +37,6 @@ You can view packages, install/uninstall packages and update packages with a few
 1. Enter the following command to see all the packages and dependencies installed in this environment, and their versions:
 
   `pipenv graph`
-
 2. Enter the following command to install a new package:
 
   `pipenv install <package>`
@@ -47,11 +46,9 @@ You can view packages, install/uninstall packages and update packages with a few
     To install a specific version of a package, use the command `pipenv install <package>~=1.2`
 
   </Message>
-
 3. Enter the following command to uninstall a package:
 
   `pipenv uninstall <package>`
-
 4. Enter the following command to update a package:
 
   `pipenv update <package>`
@@ -79,7 +76,6 @@ Every pipenv virtual environment has its own Pipfile. The Pipfile details the de
   ```
   Pipfile  Pipfile.lock
   ```
-
 2. Enter the command `cat Pipfile` to view the contents of Pipfile. The following information will help you understand the output:
 
     - `source` specifies the sources where available packages are added/installed from 
@@ -88,7 +84,6 @@ Every pipenv virtual environment has its own Pipfile. The Pipfile details the de
     - `requires` specifes the required python version for the project
 
   Any packages that you explicitly install with the command `pipenv install <package>` will automatically be added to the Pipfile. If you push your project to a Git repository, other users who clone it will be able to install all dependencies, based on the Pipfile, with the command `pipenv install`.
-
 3. Enter the command `cat Pipfile.lock` to view the contents of Pipfile.lock.
 
   This file specifies which specific versions of the packages in the Pipfile should be used. This prevents packages which depend on each other being automatically upgraded, which could break your project dependency tree.
@@ -98,11 +93,8 @@ Every pipenv virtual environment has its own Pipfile. The Pipfile details the de
 1. Ensure you have [connected to your GPU Instance via SSH](/compute/instances/how-to/connect-to-instance) and then [launched a Scaleway AI Docker container](/compute/gpu/how-to/use-gpu-with-docker). 
 
   You are now in the `~/ai` directory of the Docker container, with the virtual environment activated.
-
 2. Type `exit` to exit the virtual environment.
-
 3. Type `cd ~` to leave the `~/ai` directory and go to the home directory.
-
 4. Create a new project directory for your new virtual environment, and navigate into it. Replace `my-proj` with the desired name for your project.
 
   `mkdir my-proj && cd my-proj`
@@ -112,11 +104,9 @@ Every pipenv virtual environment has its own Pipfile. The Pipfile details the de
   To avoid losing your virtual environment upon exiting the container, make sure you create this folder in a directory that is [mapped to one of your GPU Instance's local volumes](/compute/gpu/how-to/use-gpu-with-docker#how-to-map-local-volumes)
 
   </Message>
-
 5. Create a new virtual environment and generate a Pipfile:
 
   `pipenv install`
-
 6. Activate the virtual environment:
 
   `pipenv shell`

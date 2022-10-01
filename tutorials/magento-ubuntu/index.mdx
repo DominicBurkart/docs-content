@@ -32,33 +32,28 @@ In this tutorial you will learn how to install the Open Source version of Magent
   ```
   sudo apt update && sudo apt upgrade -y
   ```
-
 2. Magento relies on a webserver to deliver content. Install the Apache2 web server using the apt package manager with the following command:
 
   ```
   sudo apt install apache2
   ```
-
 3. Start and enable Apache2.
 
   ```
   systemctl start apache2.service
   systemctl enable apache2.service
   ```
-
 4. Download the pre-required packages and repositories to install PHP. Then, update the apt package cache.
 
   ```
   sudo apt-get install -y software-properties-common 
   sudo apt-get update 
   ```
-
 5. Install the required PHP packages.
 
   ```
   apt install php7.4 libapache2-mod-php7.4 php7.4-common php7.4-gmp php7.4-curl php7.4-soap php7.4-bcmath php7.4-intl php7.4-mbstring php7.4-xmlrpc php7.4-mysql php7.4-gd php7.4-xml php7.4-cli php7.4-zip
   ```
-
 6. Then, authorize the `PHP` and `rewrite` apache modules.
 
   ```
@@ -87,7 +82,6 @@ To avoid running Composer as root, we will create a sudo user and grant it root 
   ```
   sudo adduser username
   ```
-
 2. Add the user to the sudo group.
   ```
   usermod -aG sudo username
@@ -181,7 +175,6 @@ As Magento has specific requirements for PHP, it is recommended to modify the PH
   ```
   nano /etc/php/7.4/apache2/php.ini
   ```
-
 2. Modify parameters as indicated below, save and exit.
 
   ```sh no-copy
@@ -209,7 +202,6 @@ As Magento has specific requirements for PHP, it is recommended to modify the PH
   ```
   apt install mariadb-server mariadb-client
   ```
-
 2. Initialize the MariaDB database server by running the following command:
 
   ```
@@ -226,31 +218,26 @@ As Magento has specific requirements for PHP, it is recommended to modify the PH
     - **Disallow root login remotely? [Y/n]:** Type **Y** and confirm by pressing enter.
     - **Remove test database and access to it? [Y/n]:** Type **Y** and press enter to continue.
     - **Reload privilege table now? [Y/n]:** Confirm by typing **Y**, then press enter.
-
 3. Now that the database engine is configured, log into MariaDB using the `root` user and enter the password set in the previous step when prompted:
 
   ```
   mysql
   ```
-
 4. Create new database for magento by running the following command in the MariaDB shell:
 
   ```
   CREATE DATABASE magento;
   ```
-
 5. Create a user for magento. Replace `your_secret_password` with a password for the user to authenticate:
 
   ```
   CREATE USER 'magento_db'@'localhost' IDENTIFIED BY 'your_secret_password';
   ```
-
 6. Grant the newly created user all permissons on the `magento` database:
 
   ```
   GRANT ALL ON magento.* TO 'magento_db'@'localhost' IDENTIFIED BY 'your_secret_password' WITH GRANT OPTION;
   ```
-
 7. Save the changes and quit the MariaDB shell:
 
   ```
@@ -267,25 +254,21 @@ Since the 2.4 version of Magento has been released, it uses [Elasticsearch](http
   ```
   apt-get install apt-transport-https
   ```
-
 2. Import the Elasticsearch PGP key:
 
   ```
   wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
   ```
-
 3. Create a new `sources` file for the Elasticsearch repository:
 
   ```
   echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-7.x.list
   ```
-
 4. Update the `apt` package manager and install Elasticsearch using it:
 
   ```
   apt-get update && sudo apt-get install elasticsearch
   ```
-
 5. Start the Elasticsearch service to make sure it is up and running:
   ```
   service elasticsearch start
@@ -341,9 +324,7 @@ By default plain HTTP connections are not encrypted and data is transmitted in c
   apt-get install certbot python3-certbot-apache
   certbot --apache
   ```
-
 2. Follow the steps prompted by Certbot to obtain your certificate and reconfigure the Apache2 web server.
-
 3. You can now check your storefront by pointing your web browser to your domain name to check everything is working:
 
 <Lightbox src="scaleway-magento_storefront.webp" alt=""/>
@@ -363,7 +344,6 @@ The interface is available on a customized URL, which was displayed during the i
 1. Type the customized URL into your browser.
 
   Magento 2.4 sets up two-factor authentication by default. To make your first log in to the admin interface seamless, we will disable 2FA via command line. You can enable it on the admin interface at a later time. 
-
 2. Disable 2FA with the following command:
   ```
   php bin/magento module:disable Magento_TwoFactorAuth

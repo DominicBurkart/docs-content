@@ -29,7 +29,6 @@ The tool supports the vast majority of modern hard drives.
 ## How to check a single-disk server
 
 1. Log into your server using SSH.
-
 2. Run the following command from the root account (or precede it with `sudo`):
 
     ```
@@ -48,7 +47,6 @@ The tool supports the vast majority of modern hard drives.
 On these servers, the physical disks are referred to as `sg*` devices
 
 1. Log into your server using SSH.
-
 2. Run the following commands:
 
     ```
@@ -73,19 +71,16 @@ Two possibilities exist for this type of controller:
 The first one displays the status of the RAID volume, whilst the second one displays the SMART status of the disks.
 
 1. Log into your server using SSH.
-
 2. Update the apt package lists cache and install the required packages:
 
     ```
     apt update
     apt install megaclisas-status megacli
     ```
-
 3. Run the following command to display the status of the RAID volume: 
     ```
     megaclisas-status
     ```
-
 4. Run the following little script to retrieve the SMART values of your disks:
 
     ```
@@ -98,7 +93,6 @@ The first one displays the status of the RAID volume, whilst the second one disp
 ## How to check a HP multi-disk server
 
 1. Log into your server using SSH.
-
 2. Run the following command to display the status of the RAID:
     ```
     ssacli ctrl all show config
@@ -114,7 +108,6 @@ The first one displays the status of the RAID volume, whilst the second one disp
         physicaldrive 1I:1:1 (port 1I:box 1:bay 1, SATA, 2 TB, OK)
         physicaldrive 1I:1:2 (port 1I:box 1:bay 2, SATA, 2 TB, OK)
     ```
-
 3. Run the following command to display the SMART values of the disks:
     ```
     smartctl -a -d cciss,0 /dev/sg0
@@ -146,7 +139,6 @@ The following commands are to be executed as `root` or via `sudo`.
 </Message>
 
 1. Log into your server using SSH.
-
 2. Enable basic SMART options:
     ```
     smartctl -s on -o on -S on /dev/sda
@@ -155,7 +147,6 @@ The following commands are to be executed as `root` or via `sudo`.
     ```
     smartctl -H /dev/sda
     ```
-
 4. Edit the file `/etc/smartd.conf`, to set up automated tests:
 
     * Start by commenting out the following line:
@@ -172,9 +163,7 @@ The following commands are to be executed as `root` or via `sudo`.
 
     * A short test (S) every day at 1am (01)
     * A long test (L), every Monday (1) at 3am (03)
-
 5. Activate the daemon by uncommenting the line `start_smartd=yes` in the file `/etc/default/smartmontools`.
-
 6. Start the daemon by running the following command: 
     ```
     service smartmontools start

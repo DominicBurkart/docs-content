@@ -76,19 +76,16 @@ Even the command line tools are similar to `mysqldump` and `mysqladmin` still ha
     If you use the root user, you can remove the `sudo` before each command.
 
   </Message>
-
 2. Update Ubuntu package manager
 
   ```
   sudo apt-get update
   ```
-
 3. Upgrade the Ubuntu packages already installed
 
   ```
   sudo apt-get upgrade
   ```
-
 4. Install MariaDB server and MariaDB client
 
   ```
@@ -122,7 +119,6 @@ You can:
     ```
     mysql_secure_installation
     ```
-
 2. Follow the steps in the wizard:
 
     - Enter current password for root: Press **Enter** for none.
@@ -132,7 +128,6 @@ You can:
     - Disallow root login remotely? **Y**
     - Remove test database and access to it? **Y**
     - Reload privilege tables now? **Y**
-
 3. Run the following command to log in to MariaDB database server:
     ```
     mysql -u root -p
@@ -157,7 +152,6 @@ Depending on the database used and its version, you'll need to use different com
   ```
 
   Note which database and which version you are running, as you will need it later.
-
 2. Shut down the database server to change the root password
 
   ```
@@ -165,7 +159,6 @@ Depending on the database used and its version, you'll need to use different com
   ```
 
   If you run MySQL and MariaDB without loading information about user privileges, it allows you to access the database command line with root privileges without providing a password. It enables to gain access to the database without knowing it.
-
 3. Start the database without loading the grant tables or enabling networking:
 
     ```
@@ -177,7 +170,6 @@ Depending on the database used and its version, you'll need to use different com
       The ampersand at the end of this command will make this process run in the background so you can continue to use your terminal.
 
     </Message>
-
 4. Connect to the database as the root user (the password should not be required)
 
   ```
@@ -194,13 +186,11 @@ Depending on the database used and its version, you'll need to use different com
 
   MariaDB [(none)]>
   ```
-
 5. Reload the grant tables by issuing the `FLUSH PRIVILEGES` command
 
   ```
   FLUSH PRIVILEGES;
   ```
-
 6. Change the root password.
 
   <Message type="note">
@@ -226,15 +216,12 @@ Depending on the database used and its version, you'll need to use different com
   Query OK, 1 row affected (0.00 sec)
   Rows matched: 1  Changed: 1  Warnings: 0
   ```
-
 7. Reload the grant tables by issuing the `FLUSH PRIVILEGES` command.
-
 8. Restart the database server.
 
   ```
   sudo kill `cat /var/run/mariadb/mariadb.pid`
   ```
-
 9. Restart the service.
 
   ```

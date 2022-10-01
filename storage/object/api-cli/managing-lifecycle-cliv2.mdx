@@ -47,7 +47,6 @@ dates:
 
     Do you want to override the current config? (Y/n):  
     ```
-
 2. Type `n` and go directly to the [Creating a configuration file for the Scaleway CLI v2](#creating-a-configuration-file-for-the-scaleway-cliv2) step of this tutorial if you do not want to edit your configuration.
 
     If you have not yet configured the CLI, you will be guided through the configuration process via a series of questions:
@@ -55,7 +54,6 @@ dates:
     ```
     Enter a valid secret-key or an email
     ```
-
 3. Enter either the email address for your account (you will then be asked for your password), or your [API Secret Key](/console/my-project/how-to/generate-api-key/):
 
     ```
@@ -76,7 +74,6 @@ dates:
     To enable autocomplete, scw needs to update your shell configuration.
     What type of shell are you using (default: zsh):
     ```
-
 4. Hit enter if the default shell type is already correct for you. Otherwise, enter your shell type and hit enter.
 
     ```
@@ -85,7 +82,6 @@ dates:
     eval "$(scw autocomplete script shell=zsh)"
     Do you want to proceed with these changes? (Y/n):
     ```
-
 5. Type `y` or `n` and hit enter. This should complete the configuration process:
 
     ```
@@ -126,7 +122,6 @@ dates:
     server_side_encryption =
     storage_class =
     ```
-
 2. Type the following command in your terminal to create a configuration file with `s3cmd`: 
 
     `scw object config get type=s3cmd` 
@@ -188,7 +183,6 @@ dates:
     scw object config install type=rclone
     Configuration file successfully installed at /Users/yourusername/.config/rclone/rclone.conf.
     ```
-
 3. Type the following command in your terminal to install a configuration file for `mc`:
 
     `scw object config install type=mc`
@@ -264,7 +258,6 @@ dates:
   s3cmd ls
   2021-09-01 15:56  s3://name-of-your-bucket
   ```
-
 2. Type the following command in your terminal to delete a bucket:
 
   `s3cmd rb s3://your-bucket-name`

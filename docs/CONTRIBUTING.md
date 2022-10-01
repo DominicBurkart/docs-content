@@ -23,7 +23,6 @@ Any PRs which do not comply with the rules below will be rejected.
    - `product`: the name of the product that corresponds to the documentation page you will edit.
 
      So in the branch `ext-add-instances`, an external contributor will add information to a documentation page of the Instances product category.
-
 4. All commit names must comply with the [commit naming conventions](#commit-conventions) described below.
 5. All PR names must comply with the following naming convention: `docs($PRODUCTNAME): $FIXEXPLANATION BRANCHNAME`.
 6. All PRs are reviewed and approved by the Scaleway Product Documentation team before being merged by them.
@@ -53,7 +52,6 @@ Be sure you have read the present **contributing rules** and **commit convention
 ```bash
 git clone git@github.com:[your-docs-content-fork]/docs-content.git | bash -s -- cd docs-content && yarn
 ```
-
 2. Ensure `yarn` has been run, if not run `yarn install`.
 3. Edit files.
 

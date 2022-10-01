@@ -44,7 +44,6 @@ You will now need to configure Nginx to deliver traffic to the future WordPress 
   ```
   nano /etc/nginx/sites-available/wordpress
   ```
-
 2. Paste the following configuration. Make sure to replace the configuration at the `server_name` line with your domain.
 
     ```
@@ -109,7 +108,6 @@ You will now need to configure Nginx to deliver traffic to the future WordPress 
     }
     }
     ```
-
 3. Test the configuration to ensure that it will function correctly:
 
   ```
@@ -122,13 +120,11 @@ You will now need to configure Nginx to deliver traffic to the future WordPress 
   nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
   nginx: configuration file /etc/nginx/nginx.conf test is successful
   ```
-
 4. Enable the server block by symlinking:
 
   ```
   ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/wordpress
   ```
-
 5. Delete the Nginx default server block:
 
   ```
@@ -136,13 +132,11 @@ You will now need to configure Nginx to deliver traffic to the future WordPress 
   ```
 
   Steps 6 and 7 optimize your Nginx configuration for Wordpress:
-
 6. Open the Nginx configuration file:
 
   ```
   nano /etc/nginx/nginx.conf
   ```
-
 7. Edit the following to optimize:
 
     <Message type="tip">
@@ -202,7 +196,6 @@ You will now need to configure Nginx to deliver traffic to the future WordPress 
     gzip_http_version 1.1;
     gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
     ```
-
 8. Restart the server:
 
   ```
@@ -218,15 +211,12 @@ If you want to upload files more than 2MB to your WordPress site, you have to in
   ```
   nano /etc/php/7.2/fpm/php.ini
   ```
-
 2. Press `Ctrl+W` and search for `upload_max_filesize` and set it to 100M.
-
 3. Press `Ctrl+W`and search for `post_max_size`. It needs to be the same size or larger than `upload_max_filesize`.
 
   ```
   post_max_size=100M
   ```
-
 4. Restart PHP.
 
   ```
@@ -242,7 +232,6 @@ In this section, we will create the database user and tables.
   ```
   mysql -u root -p
   ```
-
 2. Create a WordPress database, along with a user in the database. First, let's make the database (feel free to give it whatever name you like):
 
   ```
@@ -253,7 +242,6 @@ In this section, we will create the database user and tables.
   ```
   Query OK, 1 row affected (0.00 sec)
   ```
-
 3. Create a new user. Please replace the database, name, and password with whatever you prefer:
 
   ```
@@ -265,7 +253,6 @@ In this section, we will create the database user and tables.
   ```
   Query OK, 0 rows affected (0.00 sec)
   ```
-
 4. Set a password for the new user:
 
   ```
@@ -277,7 +264,6 @@ In this section, we will create the database user and tables.
   ```
   Query OK, 0 rows affected (0.00 sec)
   ```
-
 5. Grant all privileges to the new user. Without this command, the WordPress installer will not be able to start up:
 
   ```
@@ -289,7 +275,6 @@ In this section, we will create the database user and tables.
   ```
   Query OK, 0 rows affected (0.00 sec)
   ```
-
 6. Refresh MySQL:
 
   ```
@@ -301,7 +286,6 @@ In this section, we will create the database user and tables.
   ```
   Query OK, 0 rows affected (0.00 sec)
   ```
-
 7. Exit the MySQL shell:
 
   ```
@@ -315,19 +299,16 @@ In this section, we will create the database user and tables.
   ```
   cd /var/www/
   ```
-
 2. Download the latest version of WordPress:
 
   ```
   wget http://wordpress.org/latest.tar.gz
   ```
-
 3. Extract it from the archive:
 
   ```
   tar -xzvf latest.tar.gz
   ```
-
 4. Give the permissions of `/var/www/wordpress` to `www-data` user. It will allow future automatic updating of WordPress plugins and file editing with SFTP.
 
   ```
@@ -346,13 +327,11 @@ In your web browser, navigate to your server's domain name or public IP address:
 1. Select your language.
 
   You are asked to enter your database information. Before doing so, go back to the terminal to complete the next steps.
-
 2. Open the wordpress configuration file from your terminal:
 
   ```bash
   nano /var/www/wordpress/wp-config-sample.php
   ```
-
 3. Edit the information for your database under `MySQL settings`, to replace the default values with those you configured [while setting it up](#setting-up-the-mysql-database). In our case, it looks like this:
 
   ```bash
@@ -375,17 +354,13 @@ In your web browser, navigate to your server's domain name or public IP address:
     /** The database collate type. Don't change this if in doubt. */
     define( 'DB_COLLATE', '' );
   ```
-
 4. Save and exit the file, then return to your web browser.
-
 5. Enter the database information for Wordpress:
 
   <Lightbox src="scaleway-wordpress_lemp.webp" alt="" />
-
 6. Complete the five-minute WordPress installation process.
 
   <Lightbox src="scaleway-wordpress_install.webp" alt="" />
-
 7. Log in. Your dashboard displays.
 
   <Lightbox src="scaleway-wordpress_dashboard.webp" alt="" />

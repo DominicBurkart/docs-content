@@ -45,20 +45,17 @@ In the following example, we configure an Nginx reverse proxy in front of an Apa
   apt update
   apt install nginx
   ```
-
 2. Disable the default virtual host, that is pre-configured when Nginx is installed via Ubuntu's package manager apt.
 
   ```
   unlink /etc/nginx/sites-enabled/default
   ```
-
 3. Enter the directory `/etc/nginx/sites-available` and create a `reverse proxy` configuration file:
 
   ```
   cd /etc/nginx/sites-available
   nano reverse-proxy.conf
   ```
-
 4. Paste the following Nginx configuration in the text editor: 
 
   ```
@@ -81,14 +78,12 @@ In this example, the proxy server redirects all incoming connections on port 80 
     Accesses and errors are located in a log files at `/var/log/nginx`.
 
   </Message> 
-
 5. Copy the configuration from `/etc/nginx/sites-available` to `/etc/nginx/sites-enabled`.
    It is recommended to use a symbolic link.
 
     ```
     ln -s /etc/nginx/sites-available/reverse-proxy.conf /etc/nginx/sites-enabled/reverse-proxy.conf
     ```
-
 6. Test the Nginx configuration file
 
   ```
@@ -98,7 +93,6 @@ In this example, the proxy server redirects all incoming connections on port 80 
   nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
   nginx: configuration file /etc/nginx/nginx.conf test is successful
   ```
-
 7. Open a web browser on your local computer and paste your `public_ip` which will display your web applications homepage.
 
 ## Adding TLS to your Nginx Reverse Proxy using Let's Encrypt
@@ -118,13 +112,11 @@ For security reasons, it is recommended to add an encryption layer with TLS/SSL 
   apt-get update
   apt-get install python3-certbot-nginx
   ```
-
 2. Certbot provides a plugin designed for the Nginx web server, automatizing most of the configuration work related with requesting, installing and managing the TLS certificate:
 
   ```
   certbot --nginx
   ```
-
 3. Answer the prompts that display on the screen to request a valid Let's Encrypt TLS certificate:
 
     ```

@@ -30,19 +30,16 @@ Live video streaming is something becoming more and more popular on the Internet
 ## Setting up the server
 
 1. Log into the instance via [SSH](/compute/instances/how-to/connect-to-instance/)
-
 2. Update the apt sources lists and upgrade the software already installed on the instance:
 
   ```
   apt update && apt upgrade -y
   ```
-
 3. All required packages for the basic server configuration are available via APT. Install `nginx` and the required packages:
 
   ```
   apt install build-essential libpcre3 libpcre3-dev libssl-dev nginx libnginx-mod-rtmp ffmpeg -y
   ```
-
 4. Open the Nginx configuration file `/etc/nginx/nginx.conf` in a text editor:
 
   ```
@@ -72,14 +69,12 @@ Live video streaming is something becoming more and more popular on the Internet
   ```
 
   This sets up the live streaming server as well as recording of the streams. These will be stored in the directory `/var/www/html/recordings` of the instance.
-
 5. Create the directory for recordings and make it writeable to the web server software:
 
   ```
   mkdir -p /var/www/html/recordings
   chown -R www-data:www-data /var/www/html/recordings/
   ```
-
 6. Open the file `/etc/nginx/sites-enabled/default` in a text editor and add a `location` block to the server configuration:
 
   ```
@@ -98,7 +93,6 @@ Live video streaming is something becoming more and more popular on the Internet
   ```
 
   Replace `a_secret_password` with a secret password of your choice which authenticates against the server for broadcasting streams.
-
 7. Restart the Nginx web server:
 
   ```
@@ -112,7 +106,6 @@ To broadcast a stream from a local computer to the streaming server, a broadcast
 1. In the **Controls** section of the Interface, click **Settings** to enter the OBS configuration interface:
 
   <Lightbox src="scaleway-obs_settings.webp" alt="" />
-
 2. Enter the **Stream** tab and enter the Information about your streaming instance:
    Server:
 
@@ -123,7 +116,6 @@ To broadcast a stream from a local computer to the streaming server, a broadcast
   <Lightbox src="scaleway-obs_stream_settings.webp" alt="" />
 
   Save the configuration and setup your scene within OBS Studio.
-
 3. When ready, start broadcasting to your instance by clicking on **Start Streaming** in the **Controls** section of OBS.
 
 ## Connecting to the stream
@@ -131,13 +123,11 @@ To broadcast a stream from a local computer to the streaming server, a broadcast
 The stream can be viewed in your favourite media player, for example [VLC media player](https://www.videolan.org/vlc/).
 
 1. Start VLC and click **Open Media**
-
 2. Click the **Network** tab and enter the URL of your Stream:
 
     - URL: `rtmp://<instance_ip>/live/<your_stream>`
 
   <Lightbox src="scaleway-vlc_source.webp" alt="" />
-
 3. Click **Open** and your stream will be visible in the media player.
 
 ## Setting up multi-streaming
@@ -149,7 +139,6 @@ It is also possible to rebroadcast a stream to platforms like Youtube, Facebook 
   ```
   nano /etc/nginx/nginx.conf
   ```
-
 2. Edit the file as required for the different streaming services that you want to use:
 
   ```
@@ -201,13 +190,11 @@ It is also possible to rebroadcast a stream to platforms like Youtube, Facebook 
   ```
 
   It is possible to add additional applications in the same way as the examples above.
-
 3. Restart Nginx to activate the new configuration:
 
   ```
   systemctl restart nginx.service
   ```
-
 4. Start broadcasting from OBS. You can now either view your stream via a media player like VLC, but also from broadcasting platforms like twitch:
 
   <Lightbox src="scaleway-twitch_stream.webp" alt="" />

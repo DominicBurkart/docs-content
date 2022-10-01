@@ -22,28 +22,20 @@ Scaleway [Block Storage](/storage/block/concepts/#block-device) provides network
 ## How to create a Block Storage volume
 
 1. Click **Instances** from the left side menu. The Instances section displays.
-
 2. Click **Volumes** to display a list of all your current volumes. 
-
 3. Click **Create a Volume** to create a volume that can be attached to any of your Instances.
-
 4. Choose a region for the volume.
   <Message type="important">
   The volume must be in the same region as the Instance you want it to connect to.
   </Message>
-
 5. Select Block Storage when configuring the volume. Enter the volume name and select a size.
-
 6. Click **Create a new volume** to confirm the creation of the volume.
 
 ## How to attach a Block Storage volume to an Instance
 
 1. Click **Instances** from the left side menu. The Instances section displays.  
-
 2. Click **Volumes** to display a list of all your current volumes. The newly created volume displays on top of the list.
-
 3. Click **Attach to Instance** to choose the Instance you want attach the volume to.
-
 4. Select an Instance from the drop-down list and click **Attach this volume** to attach it to the selected Instance.
 
 
@@ -57,7 +49,6 @@ In order to mount and use your Block Storage volume, you need to connect to the 
   ```sh no-code
   ssh root@<your_instance_ip>
   ```
-
 2. Use the `lsblk` command to make sure your block volume is available:
   ```sh no-code
   root@scw-festive-agnesi:~# lsblk
@@ -81,7 +72,6 @@ In order to mount and use your Block Storage volume, you need to connect to the 
   ```
   root@scw-festive-agnesi:~# mkfs.ext4 /dev/sda
   ```
-
 2. Make sure your file system is correctly created by running the `lsblk -f` command:
   ```
   root@scw-festive-agnesi:~# lsblk -f
@@ -113,7 +103,6 @@ Once your file system is created, you need to mount it.
   ```
   root@scw-festive-agnesi:~# mount -o defaults /dev/sda /mnt/block-volume
   ```
-
 3. Make sure your file system is properly mounted by running the `lsblk` command.
   ```sh no-code
   root@scw-festive-agnesi:~# lsblk

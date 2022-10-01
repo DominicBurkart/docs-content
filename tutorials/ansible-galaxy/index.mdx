@@ -44,7 +44,6 @@ To use roles in Ansible playbooks, you must first download them.
       If you want to use other roles, check out [geerlinguy](https://galaxy.ansible.com/geerlingguy)'s Ansible profile.
 
     </Message>
-
 2. Create an Ansible playbook named `lamp.yml` with the following contents:
 
     ```
@@ -55,7 +54,6 @@ To use roles in Ansible playbooks, you must first download them.
           - geerlingguy.apache
           - geerlingguy.php
     ```
-
 3. Run the playbook against a host
 
     ```
@@ -79,7 +77,6 @@ For more information on Solr, refer to the [Solr official documentation](http://
     ```
     ansible-galaxy install geerlingguy.java geerlingguy.tomcat6 geerlingguy.solr
     ```
-
 2. Create a playbook named `solr.yml` with the following contents:
 
     ```
@@ -90,7 +87,6 @@ For more information on Solr, refer to the [Solr official documentation](http://
           - geerlingguy.tomcat6
           - geerlingguy.solr
     ```
-
 3. Run the playbook against a host
 
     ```

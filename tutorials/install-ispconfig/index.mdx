@@ -30,19 +30,16 @@ dates:
 ## Installing ISPConfig
 
 1. [Connect to your Instance](/compute/instances/how-to/connect-to-instance/) via SSH.
-
 2. Update and upgrade the software already installed on the Instance.
 
   ```
   apt update && apt upgrade -y
   ```
-
 3. Change the default shell. `/bin/sh` is a symlink to `/bin/dash`, but ISPConfig requires **bash** as shell. Reconfigure it to `/bin/bash`:
 
   ```
   dpkg-reconfigure dash
   ```
-
 4. Answer the following question, with **No**: `Use dash as the default system shell (/bin/sh)? `
 
   <Message type="important">
@@ -50,14 +47,12 @@ dates:
     If you skip this step, the ISPConfig installation will fail.
 
   </Message>
-
 4. Disable and remove [AppArmor](https://wiki.ubuntu.com/AppArmor) as it might cause conflicts during the installation of ISPConfig:
 
   ```
   update-rc.d -f apparmor remove
   apt-get remove apparmor apparmor-utils
   ```
-
 5. Install [Postfix](/tutorials/setup-postfix-ubuntu-bionic#configuring-postfix), [Dovecot](/tutorials/setup-postfix-ubuntu-bionic#configuring-dovecot), [MariaDB](/tutorials/mariadb-ubuntu-bionic), [rkhunter](/tutorials/install-rkhunter), [binutils](https://www.gnu.org/software/binutils/) and other required software on the Instance.
 
   ```
@@ -68,7 +63,6 @@ dates:
 
     - `General type of mail configuration:` **Internet Site**
     - `System mail name:` **server.yourdomain.com** (Your FQDN)
-
 6. Edit the file `/etc/postfix/master.cf` by uncommenting the line `-o smtpd_client_restrictions=permit_sasl_authenticated,reject` in both, `submission` and `smtps`, sections and leave everything thereafter commented. Make sure to place the whitespaces before each line, as they are required:
 
   ```
@@ -97,7 +91,6 @@ dates:
   #  -o milter_macro_daemon_name=ORIGINATING
   [...]
   ```
-
 7. Save the file, exit your text editor and restart postfix.
 
   ```
@@ -116,7 +109,6 @@ dates:
   sql-mode                ="NO_ENGINE_SUBSTITUTION"
   [...]
   ```
-
 2. Initialize the MariaDB server:
 
   ```
@@ -132,13 +124,11 @@ dates:
     - `Remove anonymous users? [Y/n]` _Y_
     - `Disallow root login remotely? [Y/n]` _Y_
     - `Reload privilege tables now? [Y/n]` _Y_
-
 3. Set the password authentication method to Native.
 
   ```
   echo "update mysql.user set plugin = 'mysql_native_password' where user='root';" | mysql -u root
   ```
-
 4. Open the file `/etc/mysql/debian.cnf` and add your password to the configuration.
 
   ```
@@ -157,7 +147,6 @@ dates:
   ```
 
   Replace `MY_SECRET_PASSWORD` with the password you have set in a previous step.
-
 5. Save the file, exit your text editor and restart the MariaDB service:
 
   ```
@@ -170,14 +159,12 @@ dates:
   ```
   apt install amavisd-new spamassassin clamav clamav-daemon unzip bzip2 arj nomarch lzop cabextract apt-listchanges libnet-ldap-perl libauthen-sasl-perl clamav-docs daemon libio-string-perl libio-socket-ssl-perl libnet-ident-perl zip libnet-dns-perl postgrey -y
   ```
-
 2. Stop Amavisd-new fom loading the SpamAssassin filter library internally, if you wish to free up some RAM.
 
   ```
   service spamassassin stop
   update-rc.d -f spamassassin remove
   ```
-
 3. Update the antivirus signatures and start the service:
 
   ```
@@ -198,7 +185,6 @@ dates:
     It is possible to reduce the list of PHP modules, if you do not require all of them.
 
   </Message>
-
 2. Open the file **/etc/php/7.0/fpm/php.ini** in a text editor, add the line `cgi.fix_pathinfo=0` and edit your timezone. The file should look like the following example:
 
   ```
@@ -218,7 +204,6 @@ dates:
   date.timezone ="Europe/Paris"
   [...]
   ```
-
 3. Install PHPMyAdmin.
 
   ```
@@ -232,7 +217,6 @@ dates:
     Once ISPConfig is installed, you can access PHPMyAdmin at `http://YOUR_FQDN.TLD:8081/phpmyadmin`.
 
   </Message>
-
 4. Install `certbot` to manage [Let's Encrypt SSL certificates](https://letsencrypt.org/):
 
   ```
@@ -295,7 +279,6 @@ dates:
   ```
   service pure-ftpd-mysql restart
   ```
-
 2. Edit the `/etc/fstab` file by adding `usrjquota=quota.user,grpjquota=quota.group,jqfmt=vfsv0` it should look like the following example:
 
   ```
@@ -317,7 +300,6 @@ dates:
   ```
   apt install bind9 dnsutils haveged vlogger webalizer awstats geoip-database libclass-dbi-mysql-perl -y
   ```
-
 2. Open the file `/etc/cron.d/awstats` and edit it as the following example:
 
   ```
@@ -328,7 +310,6 @@ dates:
   # Generate static reports:
   10 03 * * * www-data [ -x /usr/share/awstats/tools/buildstatic.sh ] && /usr/share/awstats/tools/buildstatic.sh
   ```
-
 3. Install [Jailkit](https://olivier.sessink.nl/jailkit/) to [chroot](https://en.wikipedia.org/wiki/Chroot) your users by running the following commands:
 
   ```
@@ -349,13 +330,11 @@ dates:
   dpkg -i jailkit_2.19-1_*.deb
   rm -rf jailkit-2.19*
   ```
-
 4. Install [Fail2Ban](/tutorials/protect-server-fail2ban/) and a [UFW Firewall](/tutorials/installation-uncomplicated-firewall/) on the Instance:
 
   ```
   apt install fail2ban ufw -y
   ```
-
 5. Create and open the file `/etc/fail2ban/jail.local` in your favourite text editor and paste the following content into it to monitor SSH, PureFTPd and Dovecot:
 
   ```
@@ -391,7 +370,6 @@ dates:
   ```
   service fail2ban restart
   ```
-
 6. Install the [Roundcube](https://roundcube.net/) web mail interface via apt:
 
   ```
@@ -412,7 +390,6 @@ dates:
     After installation of ISPConfig, your webmail will be available at `http://YOUR_FQDN:8081/webmail`.
 
   </Message>
-
 7. Download and unpack ISPConfig3 by running the following commands:
 
   ```

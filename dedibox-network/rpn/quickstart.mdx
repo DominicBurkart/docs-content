@@ -24,9 +24,7 @@ RPN v2 also allows you to build security layers to manage your Private Network. 
 ## How to create an RPNv2 group
 
 1. Click on **RPN** > **RPN groups** in the menu on top of the console. Then click **Local RPNv2 groups** in the menu on the left. The RPNv2 groups page displays.
-
 2. Click **Add group**. The add RPNv2 groups form displays. 
-
 3. Select the type of the group. It can either be **Standard** or **[Q-in-Q](/dedibox-network/rpn/concepts/#q-in-q-mode)**. Then enter the name of the group and select the servers to add to the group. Click **Submit** to confirm.
 
 <Message type="note">
@@ -46,7 +44,6 @@ Below you find configuration instructions for the most common operating systems.
     ```
     sudo apt-get install vlan
     ```
-
 2. Edit your `/etc/network/interfaces` file as follows (assuming your RPN NIC is `eth1` and your VLAN ID is `3900`):
 
     ```
@@ -97,7 +94,6 @@ In the following 'how to' we assume your RPN NIC is `eth1`.
     BOOTPROTO=none
     ONBOOT=yes
     ```
-
 2. Create another file for the vlan interface (assuming the VLAN ID is `3900`). The file is called `/etc/sysconfig/network-scripts/ifcfg-eth1.3900`:
 
     ```
@@ -121,7 +117,6 @@ The RPN supports Jumboframes with a maximum payload of 9000 bytes. You need to c
     ```
     MTU="9000"
     ```
-
 2. Restart the network service:
 
     ```
@@ -138,7 +133,6 @@ The RPN supports Jumboframes with a maximum payload of 9000 bytes. You need to c
     mtu 9000
     [...]
     ``` 
-
 2. Restart the network service:
 
     ```
@@ -163,7 +157,6 @@ The RPN supports Jumboframes with a maximum payload of 9000 bytes. You need to c
                     - 1.1.1.1
                     - 2.2.2.2
     ```
-
 2. Save the file, exit the text editor and reload the network configuration: 
 
     ```

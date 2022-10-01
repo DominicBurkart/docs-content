@@ -43,31 +43,26 @@ This ensures that an application can run on any Linux machine, regardless of the
     `apt-get` might report that none of these packages is installed. This is fine, and you can continue with the installation.
 
   </Message>
-
 2. Update the **apt** package cache to make sure all required software is referenced.
 
   ```
   sudo apt-get update
   ```
-
 3. As Docker uses HTTPS for their repository, install the required packages so apt can download them via a secure connection.
 
   ```
   sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
   ```
-
 4. Add Docker's official SSH key to apt.
 
   ```
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   ```
-
 5. Verify the fingerprint of the key (`9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88`), by looking at the last 8 characters.
 
   ```
   sudo apt-key fingerprint 0EBFCD88
   ```
-
 6. Add the repository for the stable version of Docker. For a `x86_64` based server, use the following command.
 
   ```
@@ -79,19 +74,16 @@ This ensures that an application can run on any Linux machine, regardless of the
     On ARM-based servers, replace `amd64` either with `armhf` or `arm64`, depending on the architecture of the CPU.
 
   </Message>
-
 7. Update the apt packet cache.
 
   ```
   sudo apt-get update
   ```
-
 8. Install the latest version of Docker.
 
   ```
   sudo apt-get install docker-ce
   ```
-
 9. Verify that Docker has been installed by running the `Hello World` container
 
   ```
@@ -116,13 +108,11 @@ If you don't want to use sudo with the docker command, create a Unix group calle
   ```code
   sudo groupadd docker
   ```
-
 2. Add your user to the docker group.
 
   ```code
   sudo usermod -aG docker $USER
   ```
-
 3. Log out and log back in to re-evaluate your group membership.
 
   <Message type="note">
@@ -130,7 +120,6 @@ If you don't want to use sudo with the docker command, create a Unix group calle
     If you are executing these commands on a virtual machine, it may be necessary to restart the VM for the changes to take effect.
 
   </Message>
-
 4. Verify that you can run `docker` commands without sudo by downloading a test-image and running it in a container.
 
   ```code
@@ -196,13 +185,11 @@ Thanks to this, you can expect that the build of your application defined in the
   ```code
   mkdir my-application
   ```
-
 2. Enter into the directory
 
   ```code
   cd my-application
   ```
-
 3. Create a new file, called `Dockerfile`, copy & paste the following content into it and save the file
 
   ```code
@@ -357,13 +344,11 @@ We use the public docker registry in this example, but you can also set up a [pr
   The tag is not mandatory, but recommended as it is the mechanism that registries use to give Docker images a version.
 
   To push your image you have to run `docker tag` with your username, repository, and tag, so your image uploads to the desired destination.
-
 2. Tag the image.
 
   ```code
   docker tag imagename username/repository:tag
   ```
-
 3. Publish your image.
 
   ```code

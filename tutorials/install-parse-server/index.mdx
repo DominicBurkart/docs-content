@@ -33,19 +33,16 @@ MongoDB is a document-oriented database that is free and open-source. It conside
   ```
   apt-get update
   ```
-
 2. Upgrade the Ubuntu packages already installed.
 
   ```
   apt-get upgrade
   ```
-
 3. Install MongoDB. By default, MongoDB is available in the Ubuntu 20.04 default repository.
 
   ```
   apt-get install mongodb-server -y
   ```
-
 4. Verify MongoDB status.
 
   ```
@@ -74,19 +71,16 @@ By default, Node.js is not available in the Ubuntu 20.04 default repository. The
   ```
   curl -sL https://deb.nodesource.com/setup_lts.x | bash -
   ```
-
 2. Install NodeJS.
 
   ```
   apt-get install nodejs -y
   ```
-
 3. Install yarn package manager.
 
   ```
   npm install -g yarn
   ```
-
 4. Verify the NodeJS version.
 
   ```
@@ -111,13 +105,11 @@ By default, Node.js is not available in the Ubuntu 20.04 default repository. The
   success Installed "parse-server@4.4.0" with binaries:
         - parse-server
   ```
-
 2. Create a Parse server configuration file and define the attributes of the parse server.
 
   ```
   nano config.json
   ```
-
 3. Add the following lines:
 
   ```
@@ -141,9 +133,7 @@ By default, Node.js is not available in the Ubuntu 20.04 default repository. The
     - `serverURL`: Set a URL for your parse server
     - `publicServerURL`: Set a public URL for your parse server
     - `port`: Indicate the server port
-
 4. Save and close the file.
-
 5. Start the Parse server.
 
   <Message type="note">
@@ -155,7 +145,6 @@ By default, Node.js is not available in the Ubuntu 20.04 default repository. The
   ```
   nohup parse-server config.json &
   ```
-
 6. Run the following command to verify that the Parse server is listening on port 1337 (mentioned in the configuration file):
 
   ```
@@ -174,7 +163,6 @@ Creating a systemd service file allows you to automatically run and manage your 
   ```
   nano parse.server.service
   ```
-
 2. Copy the following lines.
 
   ```
@@ -200,15 +188,12 @@ Creating a systemd service file allows you to automatically run and manage your 
     - `After`: Define after which service the application starts
     - `User`: Set your actual username
     - `ExecStart`: Set the proper path to your script
-
 3. Save and close the file.
-
 4. Start the Parse server.
 
   ```
   systemctl start parse.server.service
   ```
-
 5. Verify the status of the Parse server.
 
   ```
@@ -225,7 +210,6 @@ Creating a systemd service file allows you to automatically run and manage your 
       CGroup: /system.slice/parse.server.service
               └─18097 node /usr/local/bin/parse-server /root/config.json
   ```
-
 6. Get it to automatically start on boot.
 
   ```
@@ -245,13 +229,11 @@ Parse server comes with a Dashboard for managing your Parse server applications.
   success Installed "parse-dashboard@2.1.0" with binaries:
         - parse-dashboard
   ```
-
 2. Create a configuration file for the Parse dashboard.
 
   ```
   nano parse-dashboard-config.json
   ```
-
 3. Add the following lines. Do not forget to replace your server IP address.
 
   ```
@@ -283,9 +265,7 @@ Parse server comes with a Dashboard for managing your Parse server applications.
     - `appName`: Set any name for your Parse server
     - `user`: Set the username to connect to the Parse Dashboard
     - `pass`: Set the password to connect to the Parse Dashboard
-
 4. Save and close the file.
-
 5. Start the Parse server Dashboard.
 
   <Message type="note">
@@ -297,7 +277,6 @@ Parse server comes with a Dashboard for managing your Parse server applications.
   ```
   nohup parse-dashboard --dev --config parse-darshboard-config.json &
   ```
-
 6. Run the following command to verify that the Parse server Dashboard is listening on port 4040.
 
   ```
@@ -314,7 +293,6 @@ Parse server comes with a Dashboard for managing your Parse server applications.
   ```
   nano parse.server.dashboard.service
   ```
-
 2. Copy the following lines:
 
   ```
@@ -335,13 +313,11 @@ Parse server comes with a Dashboard for managing your Parse server applications.
   ```
 
   In the example above, the `After` directive implies that the Parse server Dashboard service starts after the Parse server service itself.
-
 3. Start the Parse server Dashboard service.
 
   ```
   systemctl start parse.server.dashboard.service
   ```
-
 4. Verify the status of the Parse server.
 
   ```
@@ -363,7 +339,6 @@ Parse server comes with a Dashboard for managing your Parse server applications.
 1. Access the Parse server dashboard by visiting the URL `http://your-server-ip:4040`
 
   <Lightbox src="scaleway-parse_dashboardlogin.webp" alt="" />
-
 2. Add the credentials that you entered in the `parse-darshboard-config.json` file.
 
   <Lightbox src="scaleway-parse_dashboard.webp" alt="" />

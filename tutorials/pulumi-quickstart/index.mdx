@@ -96,7 +96,6 @@ In this tutorial, we will use Typescript.
   ```
   $ mkdir scaleway-pulumi && cd scaleway-pulumi
   ```
-
 2. Create a new Pulumi program with the following command:
 
   ```bash
@@ -153,7 +152,6 @@ In this tutorial, we will use Typescript.
   azure-python                   A minimal Azure Native Python Pulumi program
   ....
   ```
-
 3. Add the Scaleway provider
 
   4. Add the Scaleway provider to your project via the `npm` command:
@@ -161,9 +159,7 @@ In this tutorial, we will use Typescript.
   ```
   $ npm install @pulumiverse/scaleway --save --save-exact
   ```
-
 5. Set the Scaleway credentials
-
 6. Add the Scaleway Credentials with the following commands to the Pulumi config:
 
   ```
@@ -179,7 +175,6 @@ In this tutorial, we will use Typescript.
   $ export SCW_SECRET_KEY=ZZZZ
   $ export SCW_PROJECT_ID=ZZZZ
   ```
-
 7. Add this code to your `index.ts` file:
 
   ```typescript
@@ -221,7 +216,6 @@ In this tutorial, we will use Typescript.
   export const kapsuleId = kapsule.id;
   export const kubeconfig = pulumi.secret(kapsule.kubeconfigs[0].configFile);
   ```
-
 8. Run the following command to deploy your program:
 
   ```
@@ -258,7 +252,6 @@ In this tutorial, we will use Typescript.
     > no
     details
     ```
-
 9. Select "yes" to perform the update.
 
   <Message type="tip">

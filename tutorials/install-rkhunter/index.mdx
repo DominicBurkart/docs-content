@@ -27,19 +27,16 @@ The [Rootkit Hunter (rkhunter) project](http://rkhunter.sourceforge.net/) provid
 ## Installing rkhunter
 
 1. [Connect to your instance](/compute/instances/how-to/connect-to-instance/) via SSH.
-
 2. Update the apt-sources and the already installed software on the Instance.
 
   ```
   apt update && apt upgrade -y
   ```
-
 3. Install rkhunter.
 
   ```
   apt install rkhunter -y
   ```
-
 4. Open the configuration file `/etc/rkhunter.conf` in a text editor. Ubuntu modified some of the default configuration options. Edit the file and make sure the following settings are in place:
 
   ```
@@ -47,7 +44,6 @@ The [Rootkit Hunter (rkhunter) project](http://rkhunter.sourceforge.net/) provid
   MIRRORS_MODE=0
   WEB_CMD=""
   ```
-
 5. Open the file `/etc/default/rkhunter` and edit it as following to enable scanning and updating by cron.
 
   ```
@@ -55,19 +51,16 @@ The [Rootkit Hunter (rkhunter) project](http://rkhunter.sourceforge.net/) provid
   CRON_DB_UPDATE=true"
   APT_AUTOGEN="true"
   ```
-
 6. Check that the latest version of rkhunter is installed on your system.
 
   ```
   rkhunter --versioncheck
   ```
-
 7. Download the latest rootkit definations and file signatures.
 
   ```
   rkhunter --update
   ```
-
 8. To run checks against sensitive binaries or programs, update the file properties. These are retrieved from the repositories to minimize the risk of comprimizing the reference check.
 
   ```

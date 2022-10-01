@@ -38,7 +38,6 @@ To complete the following steps, it is required that you have a local project wi
 
 
 1. Open a terminal window on your local computer. 
-
 2. Check that all required files are available to build the container image by running the `ls -l` command in the directory of your project:
    ```bash
     $ ls -l
@@ -49,7 +48,6 @@ To complete the following steps, it is required that you have a local project wi
     -rw-r--r--  1 myuser  staff  1721 Oct 14 12:19 README.md
     drwxr-xr-x  3 myuser  staff    96 Oct 14 12:19 patches
     ```
-
 3. Use the following commands to build the Docker container image locally before pushing it to your private Container Registry. The parameter `-t` configures the tags of the container:
     ```bash
     $ docker build -t mycontainer:latest .
@@ -63,25 +61,21 @@ To complete the following steps, it is required that you have a local project wi
     Successfully built c427b132b5fc
     Successfully tagged mycontainer:latest
     ```
-
 4. Check that the image has been added to the local Docker installation by running the `docker images` command. Your newly created container image will be displayed in the list of available images:
     ```bash
     $ docker images
     REPOSITORY                                             TAG                 IMAGE ID            CREATED             SIZE
     mycontainer                                            latest              c427b132b5fc        22 minutes ago      1.24GB
     ```
-
 5. [Log into your Container Registry](/compute/container-registry/how-to/connect-docker-cli). The endpoint (for example: `rg.fr-par.scw.cloud/myregistry`) of your Container Registry is available from the [Scaleway Console](https://console.scaleway.com/registry/namespaces) and depends on your configuration:
     ```bash
     $ docker login rg.fr-par.scw.cloud/myregistry -u nologin -p $SCW_SECRET_KEY
     ```
     A `Login Succeeded` message displays once logged in.
-
 6. Tag the image using the `docker tag` command. Make sure to replace the URL of the registry with your personal endpoint:
     ```bash
     $ docker tag mycontainer:latest rg.fr-par.scw.cloud/myregistry/mycontainer:latest
     ```
-
 7. Push the image to the registry using the `docker push` command:
     ```bash
     $ docker push rg.fr-par.scw.cloud/myregistry/mycontainer:latest
@@ -114,7 +108,6 @@ To deploy the previously created container image in a Kapsule cluster, you need 
     Replace the value for `docker-server` with the address of your Container Registry (eg if it is in the Amsterdam or Warsaw regions), and the value for `docker-username` with the name of your Container Registry namespace.
 
     </Message>
-
 2. Display the generated secret with the `kubectl get secret` command. The flag `--output=yaml` will return the output formatted in [YAML](https://yaml.org/):
       ```bash
       $ kubectl get secret registry-secret --output=yaml
@@ -141,7 +134,6 @@ To deploy the previously created container image in a Kapsule cluster, you need 
     ```bash
     $ nano deployment.yaml
     ```
-
 2. Copy the following content into it, save the file and quit the text editor.  
 
   Remember to replace the **image name** `rg.fr-par.scw.cloud/myregistry/mycontainer:latest` and **registry secret** `registry-secret` with the values you previously defined.
@@ -175,12 +167,10 @@ To deploy the previously created container image in a Kapsule cluster, you need 
   In the configuration above, the secret and deployments are in the same namespace.
 
   </Message>
-
 3. Run `kubectl apply` to apply the deployment to the cluster:
     ```bash
     $ kubectl apply -f deployment.yaml
     ```
-
 4. Use the `kubectl get pods` command to check the status of the deployment:
     ```bash
     $ kubectl get pods

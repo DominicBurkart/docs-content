@@ -40,7 +40,6 @@ Install BIND and its related tools.
     cd /etc/bind
     nano named.conf.locale
     ```
-
 2. Paste the following. Make sure to edit the domain name and the IP address of the secondary machine.
     ```
     //
@@ -59,12 +58,10 @@ Install BIND and its related tools.
                     notify yes;
             };
     ```
-
 3. Create your zone file. A zone file must contain at least an SOA, a NS and a A record or CNAME.
     ```
     nano db.scw-domain.ml
     ```
-
 4. Paste the following:
     ```
     ;
@@ -98,7 +95,6 @@ Install BIND and its related tools.
     cd /etc/bind
     nano named.conf.local
     ```
-
 2. Paste the following:
     ```
     //
@@ -116,7 +112,6 @@ Install BIND and its related tools.
                     allow-notify { 127.0.0.1; 51.15.242.21; 51.15.250.21; 2001:bc8:4400:2c00::14:229;  };
             };
     ```
-
 3. On the primary machine, restart the service to verify that the zone replication works properly.
     ```
     service bind9 restart

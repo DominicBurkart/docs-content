@@ -37,7 +37,6 @@ To migrate an Instance via the API, the instance ID, a valid API Key and the use
   ```
 
   The ID of the image is indicated in the line `"href_result"`: `"/images/88996119-edb9-4283-8a6e-f9b98999bc19"` Take a note of the ID, as it will be required in the next step.
-
 2. Create the new instance based on the backup created previously. To do so, use the image ID from the `"href_result"`.
 
   Request:
@@ -151,7 +150,6 @@ To migrate an Instance via the API, the instance ID, a valid API Key and the use
       }
   }
   ```
-
 3. The new instance is available in the account now, but currently powered off. Power it up by launching an action on the instance:
 
   Request:
@@ -175,7 +173,6 @@ To migrate an Instance via the API, the instance ID, a valid API Key and the use
       }
   }
   ```
-
 4. In a final step update the flexible IP of the instance so it will point to the new instance:
 
   Request:
@@ -198,7 +195,6 @@ To migrate an Instance via the API, the instance ID, a valid API Key and the use
   ```
 
   The new instance will now be reachable on the usual IP address.
-
 5. Optionally, delete the old instance in case it is no longer used:
 
   Request:

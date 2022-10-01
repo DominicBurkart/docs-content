@@ -31,11 +31,8 @@ OpenVPN InstantApp comes with:
 </Message>
 
 1. Click **Instances** in the **Compute** section of the side menu. The Instance creation page displays.
-
 2. Click **Create an Instance**. The Instance creation wizard displays.
-
 3. Choose the **OpenVPN** image in the **InstantApps** tab:
-
 4. Follow the remaining steps to [create your Instance](/compute/instances/how-to/create-an-instance/).
 
 ## Create a VPN user
@@ -51,7 +48,6 @@ OpenVPN InstantApp comes with:
   Have a look at what scw-ovpn features:
       $ scw-ovpn
   ```
-
 2. Create a new user with the `scw-ovpn` tool.
 
   ```
@@ -99,14 +95,12 @@ OpenVPN InstantApp comes with:
       $ scw-ovpn list-instances
       list all running openvpn Instances
   ```
-
 3. Run it with the following command:
 
   ```
   scw-ovpn create CLIENTNAME
   ```
   It will automatically generate the configuration for the client `CLIENTNAME`.
-
 4. Download the configuration file from your server either via SSH or by starting a HTTP server that provides an `URL` to download the files directly on your computer.
 
   ```
@@ -124,11 +118,9 @@ OpenVPN InstantApp comes with:
   > > >
   ```
 5. Download the configuration file from the `URL` displayed in the MOTD. We assume that you have already installed a VPN client.
-
 6. Open the configuration with your VPN client.
 
   <Lightbox src="scaleway-tunnelblick03.webp" alt="" />
-
 7. Start a new connection using the VPN profile we just installed once the configuration is loaded.
 
   <Lightbox src="scaleway-tunnelblick04.webp" alt="" />

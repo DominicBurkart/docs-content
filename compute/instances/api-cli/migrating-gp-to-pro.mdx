@@ -73,7 +73,6 @@ Local and block snapshots have different formats. To support the migration from 
           (...)
   }
   ```
-
 2. Create a backup of the Instance.
   
   Make sure that you:
@@ -117,7 +116,6 @@ Local and block snapshots have different formats. To support the migration from 
   You can find the DEV1/GP1 backup's UUID from the `href_result` task output. It will be used in step 4.
 
   </Message>
-
 3. Check the state of the backup to make sure it is complete.
 
   ```
@@ -136,7 +134,6 @@ Local and block snapshots have different formats. To support the migration from 
       "state": "available",
       (...)
   ```
-
 4. Create the target Instance from the backup. 
 
   ```
@@ -163,7 +160,6 @@ Local and block snapshots have different formats. To support the migration from 
       (...)
   }
    ```
-
 5. Start the target Instance.
 
   ```
@@ -269,7 +265,6 @@ Local and block snapshots have different formats. To support the migration from 
     Arch                        x86_64
     Zone                        fr-par-2
     ```
-
 2. Type the following command to back up your Instance:
 
     `scw instance server backup 123a12ab-12a1-1a12-123a-a1bc1234a123 zone=fr-par-2 unified=true`
@@ -293,7 +288,6 @@ Local and block snapshots have different formats. To support the migration from 
     Image.Project            012n23ba-25z8-7g97-530a-m6ol1941f001
     Image.Zone               fr-par-2
     ```
-
 3. Type the following command to create a PLAY2/PRO2 Instance from the image created by the backup:
 
     `scw instance server create image=0b123456-1b2b-12b3-b123-1bca0123d456 zone=fr-par-2 type=PRO2-S`
@@ -371,17 +365,14 @@ You can also migrate your existing DEV1/GP1 Instances to PLAY2/PRO2 Instances us
     ```
     scw instance server create type=GP1-S zone=fr-par-2
     ```
-
 2. Make a backup of the GP1 Instance by using the snapshot feature with the unified snapshot type.
     ```
     scw instance server backup <server-id-gp1> zone=fr-par-2 unified=true
     ```
-
 3. Create the PRO2 Instance from the image created by the backup:
     ```
     scw instance server create image=<image-id-gp1> zone=fr-par-2 type=PRO2-S
     ```
-
 4. Power on the PRO2 Instance:
     ```
     scw instance server start <server-id-pro2> zone=fr-par-2

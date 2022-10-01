@@ -62,17 +62,14 @@ The **PostgreSQL Global Development Group (PGDG)** provides an apt repository. A
     ```
     sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
     ```
-
 2. Import the repository signing key:
     ```
       wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
     ```
-
 3. Update the `apt` package manager to ensure it uses the added repository:
     ```
       apt update
     ```
-
 4. Install the PgBouncer application using `apt`:
     ```
       apt install pgbouncer -y
@@ -92,12 +89,10 @@ There are four sections of configuration that you need to set up:
     You may want to update `listen_addr` to listen to TCP connections on all addresses. You can use '`*`' for this. (You cam also set a list of IP addresses):
 
     </Message>
-
 2. Create the `/etc/pgbouncer/userlist.txt` file that contains the users allowed to log in from PgBouncer:
     ```
     "USERNAME" ""
     ```
-
 3. Add the IP address of the PgBouncer server to the PostgreSQL `pg_hba.conf` file:
     ```
     host all all PGBOUNCER_IP/NETMASK trust
@@ -114,12 +109,10 @@ There are four sections of configuration that you need to set up:
     By default, PgBouncer comes with `trust` authentication method. The `trust` method can used for testing environment but is not recommended for production. It will accept all connection requests without authentication. For production, `hba` authentication is recommended. With this, you can specify IP addresses with different connection methods.
     
     </Message>
-
 4. Reload the `pgbouncer.service` to apply the configurations:
     ```
     systemctl reload pgbouncer.service
     ```
-
 5. Connect to PostgreSQL through PgBouncer (PgBouncer default port: 6432):
     ```
     psql -h PGBOUNCER_IP -u USERNAME -d DATABASE -p 6432
@@ -131,17 +124,14 @@ There are four sections of configuration that you need to set up:
     ```
     apt install postgresql-client-14
     ```
-
 2. Configure an admin user to connecting to `pgbouncer` database.
     ```
     admin_users pgbouncer
     ```
-
 3. Reload the `pgbouncer.service` to apply the changes.
     ```
     systemctl reload pgbouncer.service
     ```
-
 4. Connect to `pgbouncer` database with `psql`:
     ```
     psql -h 127.0.0.1 -U pgbouncer -d pgbouncer -p 6432
@@ -208,7 +198,6 @@ Here are a few commands that can be used after connecting to the `pgbouncer` dat
     auth_type = hba
     auth_hba_file = /etc/pgbouncer/pb_hba.conf
     ```
-
 2. Create the `/etc/pgbouncer/pb_hba.conf` file with the following content:
     ```   
     # TYPE DATABASE USER ADDRESS METHOD
@@ -222,7 +211,6 @@ Here are a few commands that can be used after connecting to the `pgbouncer` dat
     # Application
     host all all APPLICATION_IP/NETMASK scram-sha-256
     ```
-
 3. Create the `/etc/pgbouncer/userlist.txt` file that contains the user allowed to login from PgBouncer:
     ```
     "username1" "password"
@@ -238,7 +226,6 @@ Here are a few commands that can be used after connecting to the `pgbouncer` dat
     ```
 
     </Message>
-
 4. Add the IP address of the PgBouncer server to the PostgreSQL `pg_hba.conf` file:
     ```
     host all all PGBOUNCER_IP/NETMASK scram-sha-256
@@ -249,7 +236,6 @@ Here are a few commands that can be used after connecting to the `pgbouncer` dat
     You should reload or restart PostgreSQL to apply the pg_hba.conf changes.
 
     </Message>
-
 5. Reload the `pgbouncer.service` to apply the configurations:
     ```
     systemctl reload pgbouncer.service

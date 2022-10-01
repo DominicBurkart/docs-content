@@ -22,41 +22,31 @@ For more information about Hub Events, you can check out the [IoT Hub events doc
 </Message>
 
 1. Click **IoT Hub** in the **IoT Station** section of the side menu. The list of your IoT Hubs displays.
-
 2. Click the name of the IoT Hub you want to configure. The hub's overview page displays.
-
 3. Click **Devices** to display the device configuration.
-
 4. Click **Add devices** in the devices tab. The **Create a Device** wizard displays.
-
 5. Enter a name for the device (`logger`) and **allow** insecure connections.
-
 6. Click **Add a Device to your Hub**. The devices details displays. Take a note of the **Device ID**:
-<Lightbox src="assets/scaleway-device-id.webp" alt="" />
-
+    <Lightbox src="assets/scaleway-device-id.webp" alt="" />
 7. Open a terminal window on your local computer and subscribe to the `$SCW/events/error/#` topic to receive the hub event:
-	```
-	mosquitto_sub -h iot.fr-par.scw.cloud -p 1883 -i <logger-device-id> -t '$SCW/events/error/#'
-	```
-	<Message type="note">
+    ```
+    mosquitto_sub -h iot.fr-par.scw.cloud -p 1883 -i <logger-device-id> -t '$SCW/events/error/#'
+    ```
+    <Message type="note">
+      The Endpoint `iot-fr-par.scw.cloud` may vary, you find your endpoint on the Hub's network page.
+    </Message>
 
-  	The Endpoint `iot-fr-par.scw.cloud` may vary, you find your endpoint on the Hub's network page.
-
-	</Message>
-
-	The command above contains the following elements:
-	  - `-h`: The **endpoint** or host of your IoT Hub. You require it to communiciate with your hub.
-	  - `-i`: The **device ID** of your device. You can retrieve it from the **Devices** section of your hub. 
-	  - `-t`: The **thread** to send your meesage to. 
-  	  - `-m`: The **message** containing the information you want to transmit.
-
+    The command above contains the following elements:
+      - `-h`: The **endpoint** or host of your IoT Hub. You require it to communiciate with your hub.
+      - `-i`: The **device ID** of your device. You can retrieve it from the **Devices** section of your hub. 
+      - `-t`: The **thread** to send your meesage to. 
+        - `-m`: The **message** containing the information you want to transmit.
 8. Create a second *secured* device, named _secured device_ and **denying insecure** connections. 
 	<Message type="note">
 
 	This will be used to generate an mTLS error by using a device configured to `Deny Insecure` connections, and trying to connect with it.
 
 	</Message>
-
 9. Open a second terminal on your compter and connect the secured device to your Hub, but without using any security: 
 	```
 	mosquitto_pub -h iot.fr-par.scw.cloud -i secured-device-id -t foo/bar -m 'This wont work'

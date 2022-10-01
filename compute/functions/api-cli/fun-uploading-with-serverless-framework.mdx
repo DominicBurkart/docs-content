@@ -37,7 +37,6 @@ Serverless Framework enables you to create a project using a specific template.
   mkdir ~/my-srvless-projects
   cd ~/my-srvless-projects
   ```
-
 2. Create a simple Python 3 template: 
 
   ```bash
@@ -93,7 +92,6 @@ Based on the chosen runtime, the `handler` variable in the function might vary.
     - secondHandler.js => module.exports.mySecondHandler = ...
 - serverless.yml
 ```
-
 2. In the `serverless.yml` file, launch:
 ```yml
 provider:
@@ -105,7 +103,6 @@ functions:
   second:
     handler: src/handlers/secondHandler.mySecondHandler
 ```
-
 3. Include the `node_modules` folder in your package list to add dependencies to your function.
 
 ```yml
@@ -126,7 +123,6 @@ package:
     - secondHandler.py => def my_second_handler
 - serverless.yml
 ```
-
 2. Launch in `serverless.yml`:
 ```yml
 provider:

@@ -28,13 +28,11 @@ dates:
 ## Preparing the Server
 
 1. Connect to your server via SSH.
-
 2. Install **sudo** on the server:
 
   ```
   apt install sudo
   ```
-
 3. Create a regular user account with **sudo** access and switch into it. Replace **my_new_user** with your user name.
 
   ```
@@ -42,19 +40,16 @@ dates:
   usermod -aG sudo my_new_user
   su - my_new_user
   ```
-
 4. Update the already installed software on the system to the latest version:
 
   ```
   sudo apt update && apt upgrade -y
   ```
-
 5. Install the required tools:
 
   ```
   sudo apt install -y build-essential unzip
   ```
-
 6. Install **Node.js** and **NPM**:
 
   ```
@@ -71,11 +66,9 @@ To send Mail from your server, a SMTP server is required.
   ```
   sudo apt install -y postfix
   ```
-
 2. When asked choose **Internet Site** in the list of options:
 
   <Lightbox src="scaleway-postfix_internet_site.webp" alt="" />
-
 3. Enter the **mail name** for your instance and confirm. The mail name should be a fully qualified domain name (FQDN) resolving to your Instances IP address:
 
   <Lightbox src="scaleway-postfix_mail_name.webp" alt="" />
@@ -87,31 +80,26 @@ To send Mail from your server, a SMTP server is required.
   ```
   sudo curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
   ```
-
 2. Install **MariaDB**, an open source MySQL fork:
 
   ```
   sudo apt install -y mariadb-server
   ```
-
 3. Initialize the MariaDB server:
 
   ```
   sudo  mysql_secure_installation
   ```
-
 4. Connect to the database server as **root** user with the password you have set previously:
 
   ```
   mysql -u root -p
   ```
-
 5. Create an empty database for Mailtrain:
 
   ```
   CREATE DATABASE mailtrain;
   ```
-
 6. Create a database user for Mailtrain and grant all privileges of the database to the user. Then create another user with read-only access to the database:
 
   ```
@@ -124,7 +112,6 @@ To send Mail from your server, a SMTP server is required.
   Replace the demo user and password in the commands above with your preferred username and password.
 
   </Message>
-
 7. Flush the new privileges and leave the database prompt: 
 
   ```
@@ -139,7 +126,6 @@ To send Mail from your server, a SMTP server is required.
   ```
   sudo apt install -y nginx
   ```
-
 2. Create three configuration files for nginx:
 
   ```
@@ -209,7 +195,6 @@ To send Mail from your server, a SMTP server is required.
         }
   }
   ```
-
 3. Activate the configuration by linking the files in the **sites-enabled** directory:
 
   ```
@@ -217,7 +202,6 @@ To send Mail from your server, a SMTP server is required.
   sudo ln -s /etc/nginx/sites-available/sbox-mailtrain.example.com.conf /etc/nginx/sites-enabled/
   sudo ln -s /etc/nginx/sites-available/newsletter.example.com.conf /etc/nginx/sites-enabled/
   ```
-
 4. Reload the nginx configuration to enable the new virtual host:
 
   ```
@@ -238,7 +222,6 @@ To send Mail from your server, a SMTP server is required.
   ```
   cd /var/www/
   ```
-
 2. Download and unzip Mailtrain:
 
   ```
@@ -247,31 +230,26 @@ To send Mail from your server, a SMTP server is required.
   rm v2.20210609.0.zip
   mv mailtrain-2.20210609.0 mailtrain
   ```
-
 3. Change the ownership of the directory to your Mailtrain user:
 
   ```
   chown -R my_new_user:my_new_user /var/www/mailtrain
   ```
-
 4. Enter the Mailtrain directory:
 
   ```
   cd mailtrain
   ```
-
 5. Import the database scheme into the Mailtrain database using the following command. Remember to replace `mailtrain_user` with your database user.
 
   ```
   mysql -u mailtrain_user -p mailtrain < ./server/setup/sql/mailtrain.sql
   ```
-
 6. Create a `production.yaml` file by opening it in a text editor. This file allows you to overwrite the default configuration values in the file `./server/config/default.yaml`.
 
   ```
   nano ./server/config/production.yaml
   ```
-
 7. Copy the following configuration into the file and edit it towards your requirements. Then save the file and exit the text editor: 
 
   ```yaml
@@ -313,13 +291,11 @@ To send Mail from your server, a SMTP server is required.
     - `newsletter.example.com`: The public URL as seen by visitors.
 
   </Message>
-
 8. Create a configuration file for the report worker by opening it in a text editor like nano.
 
   ```
   sudo nano ./server/services/workers/reports/config/production.yaml
   ```
-
 9. Copy the following configuration in the editor, save the file and exit. 
 
   ```
@@ -352,25 +328,21 @@ To send Mail from your server, a SMTP server is required.
   ```
   cd client
   ```
-
 2. Run the following command to build the application:
 
   ```
   npm run build
   ```
-
 3. Set the permissions of the `config` directory:
 
   ```
   sudo chmod o-rwx /var/www/mailtrain/server/config/
   ```
-
 4. Create a `systemd` service file for Mailtrain by opening it in a text editor like nano:
 
   ```
   sudo nano /etc/systemd/system/mailtrain.service
   ````
-
 5. Copy the following configuration into the file, save it and exit the text editor:
 
   ```
@@ -389,7 +361,6 @@ To send Mail from your server, a SMTP server is required.
   [Install]
   WantedBy=multi-user.target
   ```
-
 6. Enable and start the Mailtrain service:
 
   ```
@@ -399,13 +370,10 @@ To send Mail from your server, a SMTP server is required.
 ## Accessing the Mailtrain Webinterface
 
 1. Open your web browser and type the domain name of your Mailtrain instance.
-
 2. Click **Login** in the top bar to connect to Mailtrain.
 
   <Lightbox src="scaleway-mailtrain_login.webp" alt="" />
-
 3. Login with the username `admin` and password `test`. _Don't forget to change the password after your first login._
-
 4. To send mails from Mailtrain, you have to specify the SMTP server configuration like following:
 
   <Lightbox src="scaleway-mailtrain_mailer_settings.webp" alt="" />

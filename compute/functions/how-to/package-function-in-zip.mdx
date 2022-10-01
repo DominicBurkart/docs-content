@@ -51,13 +51,9 @@ src
 ```
 
 1. Make sure to provide the right handler name, namely `src/handlers/hello.say_hello` and `src/handlers/world.to_the_world`
-
 2. Provide a custom handler name for each of these handlers. Each of your functions will know which handler file to run: `hello`→`src/handlers/hello.say_hello` and `world`→`src/handlers/world.to_the_world`.
-
   <Message type="note">
-
-  By default, the handler path is `handler.handle` (def handle in handler.py).
-
+    By default, the handler path is `handler.handle` (def handle in handler.py).
   </Message>
 
 ### Additional dependencies
@@ -109,10 +105,9 @@ docker run --rm -v $(pwd):/home/app/function --workdir /home/app/function rg.fr-
 ``` 
 
 This command will run `pip install` with the given `requirements.txt` file inside a docker container compatible with our function runtimes, and pull the installed dependencies locally to your package directory. As these dependencies have been installed on top of alpine Linux with our compatible system libraries, you will be able to upload your source code and deploy your function properly.
+
 <Message type="note">
-
-The example above uses python3 runtime, but you can easily change the docker image from `rg.fr-par.scw.cloud/scwfunctionsruntimes-public/python-dep:3.10` to `rg.fr-par.scw.cloud/scwfunctionsruntimes/python-dep:2.7`, `rg.fr-par.scw.cloud/scwfunctionsruntimes/python-dep:3.8`, ...
-
+  The example above uses python3 runtime, but you can easily change the docker image from `rg.fr-par.scw.cloud/scwfunctionsruntimes-public/python-dep:3.10` to `rg.fr-par.scw.cloud/scwfunctionsruntimes/python-dep:2.7`, `rg.fr-par.scw.cloud/scwfunctionsruntimes/python-dep:3.8`, ...
 </Message>
 
 
@@ -132,14 +127,12 @@ module.exports.myHandler = (event, context, callback) => {}
 </Message>
 
 1. Make sure to provide the right handler name, namely `src/handlers/hello.sayHello` and `src/handlers/world.toTheWorld`.
-
-  ```bash
-  src
-    | -- handlers
-      | -- hello.js => module.exports.sayHello
-      | -- world.js => module.exports.toTheWorld
-  ```
-
+    ```bash
+    src
+      | -- handlers
+        | -- hello.js => module.exports.sayHello
+        | -- world.js => module.exports.toTheWorld
+    ```
 2. Provide a custom handler name for each of these handlers. Each of your functions will know which handler file to run: `hello`→`src/handlers/hello.sayHello` and `world`→`src/handlers/world.toTheWorld`.
 
 ### Additional dependencies
@@ -162,28 +155,28 @@ Then, set up your function handler to be: `build/handler.js` if you package the 
 **Golang** is a compiled language. Therefore, you must provide Scaleway Function API with a handler name pointing to the function's directory. 
 
 1. Provide Scaleway Function API with a handler name:
-```bash 
-src
--- handlers
----- hello
------- go.mod
------- go.sum
------- main.go -> package main in "handlers/hello" subdirectory
----- world
------- go.mod
------- go.sum
------- main.go -> package main in "handlers/workd" subdirectory
-handler.go -> package main at the root of serverless project
-go.mod
-go.sum
-```
+    ```bash 
+    src
+    -- handlers
+    ---- hello
+    ------ go.mod
+    ------ go.sum
+    ------ main.go -> package main in "handlers/hello" subdirectory
+    ---- world
+    ------ go.mod
+    ------ go.sum
+    ------ main.go -> package main in "handlers/workd" subdirectory
+    handler.go -> package main at the root of serverless project
+    go.mod
+    go.sum
+    ```
 2. Provide a custom handler name for each of these handlers. Each of your function will know which handler file to run: `hello`→`handlers/hello`, `world`→`handlers/world`, and for the `handler.go` at the root of the project→`.`
 
-  <Message type="note">
+    <Message type="note">
 
-  By default, the `handler path` is `.` (package main at the root of the archive).
+    By default, the `handler path` is `.` (package main at the root of the archive).
 
-  </Message>
+    </Message>
 
 ### Additional dependencies
 If you need **external dependencies** for your Golang handlers, you can provide these dependencies using Go Modules.

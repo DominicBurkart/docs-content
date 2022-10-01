@@ -39,13 +39,11 @@ The [Generic Routing Encapsultion (GRE)](https://en.wikipedia.org/wiki/Generic_R
   ```
   ssh root@your-instance-ip
   ```
-
 2. Create a new file called `configure-tunnel.sh`:
 
   ```
   touch /opt/configure-tunnel.sh
   ```
-
 3. Open the file in a text editor and copy the following code into it (ensure that you relplace the IP as stated):
 
   ```
@@ -64,13 +62,11 @@ The [Generic Routing Encapsultion (GRE)](https://en.wikipedia.org/wiki/Generic_R
     ip route add 192.168.1.0/24 dev tun1
     echo "Tunnel configured."
     ```
-
 4. Save the file, exit the text editor and make it executable:
 
   ```
   chmod +x /opt/configure-tunnel.sh
   ```
-
 5. Run the script:
 
   ```
@@ -84,13 +80,11 @@ The [Generic Routing Encapsultion (GRE)](https://en.wikipedia.org/wiki/Generic_R
   ```
   ssh username@your-server-ip
   ```
-
 2. Create a new file called `configure-tunnel.sh`:
 
   ```
   sudo touch /opt/configure-tunnel.sh
   ```
-
 3. Open the file in a text editor and copy the following code into it (ensure that you relplace the IPs as stated):
 
   ```
@@ -109,13 +103,11 @@ The [Generic Routing Encapsultion (GRE)](https://en.wikipedia.org/wiki/Generic_R
     ip route add 192.168.0.0/24 dev tun1
     echo "Tunnel configured."
     ```
-
 4. Save the file, exit the text editor and make it executable:
 
   ```
   sudo chmod +x /opt/configure-tunnel.sh
   ```
-
 5. Run the script:
 
   ```
@@ -149,31 +141,26 @@ The [Generic Routing Encapsultion (GRE)](https://en.wikipedia.org/wiki/Generic_R
   4 packets transmitted, 4 received, 0% packet loss, time 3004ms
   rtt min/avg/max/mdev = 1.011/1.130/1.226/0.084 ms
   ```
-
 2. Install a [web server](/tutorials/installation-lemp-ubuntu-bionic/) on the Dedibox:
 
   ```
   sudo apt update && sudo apt install nginx -y
   ```
-
 3. Enter the directory that is used to serve websites:
 
   ```
   cd /var/www/html
   ```
-
 4. Download a [test file](http://ping.online.net/) into the `/var/www/html` directory:
 
   ```
   sudo wget http://ping.online.net/1000Mo.dat
   ```
-
 5. Install [curl](https://en.wikipedia.org/wiki/CURL) on the Instance:
 
   ```
   apt update && apt install curl -y
   ```
-
 6. Run a bandwidth test with curl:
 
   ```
@@ -205,7 +192,6 @@ These steps have to be executed on both machines. You may need to use `sudo` for
   ```
   nano /etc/systemd/system/configure-tunnel.service
   ```
-
 2. Copy/paste the following content into the file:
 
     ```
@@ -218,9 +204,7 @@ These steps have to be executed on both machines. You may need to use `sudo` for
     [Install]
     WantedBy=default.target
     ```
-
 3. Save the file and exit the text editor.
-
 4. Set the file permissions, reload the `systemd` daemon and enable the newly created service:
 
   ```

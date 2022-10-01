@@ -29,7 +29,6 @@ On OSX and Linux, you can generate the SSH key pair directly from the terminal (
 
 1. Open the terminal application by clicking on the corresponding icon.
   <Lightbox src="scaleway-terminal-icon.webp" alt=""/>
-
 2. Type `ssh-keygen -t ed25519 -C "login" -Z aes256-gcm@openssh.com` and press `Enter` to generate a new key.
 
   <Message type="important">
@@ -37,17 +36,14 @@ On OSX and Linux, you can generate the SSH key pair directly from the terminal (
   It is strongly recommended to use [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519) for increased security and performance. However, if for any reason you can not use these keys, you can create a RSA4096 key, as a fallback option, using the command `ssh-keygen -o -b 4096`. 
 
   </Message>
-
 3. Enter a file path to save the key to when prompted. Alternatively, press **Enter** to leave this at the default setting (the key will be saved in a file called `id_ed25519` in the user's `~/.ssh/` directory).
   ```
   Enter file in which to save the key (~/.ssh/id_ed25519):`
   ```
-
 4. Enter a passphrase when prompted. This step is not mandatory, but is recommended for increased security. The passphrase can be freely chosen. If you do not want to set a passphrase, press **Enter** directly.
   ```
   Enter passphrase (empty for no passphrase):
   ```
-
 5. Enter the passphrase again for confirmation when prompted, and press **Enter**:
   ```
   Enter same passphrase again:
@@ -56,12 +52,10 @@ On OSX and Linux, you can generate the SSH key pair directly from the terminal (
   The key pair is generated in the filepath you specified. The key pair consists of:
     - The public key, named `id_ed25519.pub`
     - The private (identification) key, named `id_ed25519`
-
 6. Display the content of the public key with the following command and copy it.
   ```
   cat /Users/me/.ssh/id_ed25519.pub
   ```
-
 7. Copy the content of the public key which is displayed. You will need this in the next step. Your key should look something like the output shown:
   ```
   ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINPZxtCMs5sIfsMWpq7SHuqFFpBtSTmFqXWOYdf6dX4i me@example.com
@@ -73,18 +67,14 @@ On Windows, you can use the third-party application [PuTTYgen](https://www.chiar
 
 1. Download and install [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) to your local computer. The **PuTTYgen** application is automatically installed (as well as the main PuTTY application).
   <Lightbox src="scaleway-puttygen-app.webp" alt=""/>
-
 2. Launch PuTTYgen by double-clicking on the application icon. 
-
 3. Select **EdDSA** and click the **Generate** button. You can also add a passphrase before generating the key to increase security.
   <Lightbox src="scaleway-puttygen-01.webp" alt="" />
-
 4. Move the mouse around the blank area as instructed, to generate randomness.
   <Lightbox src="scaleway-puttygen-02.webp" alt="" />
 
   The public and private keys are generated and the following screen displays:
   <Lightbox src="scaleway-puttygen-03.webp" alt="" />
-
 5. Complete the steps on the screen to finish:
 
 - Fill in the **Key-comment** field with a name to help you identify this key pair
@@ -101,7 +91,6 @@ You must upload the content of the public part of the SSH key pair you just gene
   
 2. Scroll down to the **SSH Key** section, and click **Add a new SSH key**.
   <Lightbox src="scaleway-ssh-keys.webp" alt="" />
-
 3. Paste the content of the public key (which you copied in the previous step) into the pop-up box, and optionally add a description. Then click **Add a SSH key**.
 
 You will now be able to [connect to your Instances via SSH](/compute/instances/how-to/connect-to-instance/)

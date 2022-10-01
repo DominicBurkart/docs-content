@@ -36,19 +36,16 @@ In this tutorial you learn how to backup a Scaleway Instance running on Ubunutu 
   ```
   ssh root@<your_instance_ip>
   ```
-
 2. Update the system and upgrade the software already installed on the Instance.
 
   ```
   apt update && apt upgrade -y
   ``` 
-
 3. Install Restic. 
 
   ```
   apt-get install restic
   ```
-
 4. Ensure the installation was successful by checking the version.
 
   ```
@@ -65,13 +62,11 @@ A repository is the storage space where your backups will be hosted. In this tut
   export AWS_ACCESS_KEY_ID=$SCW_ACCESS_KEY
   export AWS_SECRET_ACCESS_KEY=$SCW_SECRET_KEY
   ```
-
 4. Initialize the repository using your bucket's endpoint as a backend. Your bucket endpoint can be found in the **Bucket Settings** tab under **Bucket Information**. 
 
   ```
   restic -r s3:https://s3.fr-par.scw.cloud/<bucket_name> init
   ```
-
 5. Enter a password for the repository and repeat it when prompted.
 
   ```
@@ -111,7 +106,6 @@ created restic repository da8e38a165 at s3:https://s3.fr-par.scw.cloud/<bucket_n
   By default, the backups you create are stored using `STANDARD` [storage class](/storage/object/concepts/#storage-class). If you want to use a different storage class, you can add the `-o s3.storage-class=<STORAGE_CLASS>` option to your command. For example: `restic -r s3:https://s3.fr-par.scw.cloud/<bucket_name> backup -o s3.storage-class=ONEZONE_IA ~/<my-directory>`
 
   </Message>
-
 2. Enter the password for the repository when prompted.
 
   ```
@@ -137,7 +131,6 @@ created restic repository da8e38a165 at s3:https://s3.fr-par.scw.cloud/<bucket_n
   Restic does not offer a built-in tool for automated backups. Restic recommends using tools like systemd and cron to schedule backup runs. Learn more on the [Restic documentation](https://restic.readthedocs.io/en/latest/040_backup.html#scheduling-backups).
 
   </Message>
-
 3. Run the following command to verify that the backup was successful:
 
   ```
@@ -162,7 +155,6 @@ created restic repository da8e38a165 at s3:https://s3.fr-par.scw.cloud/<bucket_n
   ---------------------------------------------------------------------------------
   2 snapshots
   ```
-
 2. Run the command below to restore your backup. Specify the path to your repository and to the target directory.
 
   ```

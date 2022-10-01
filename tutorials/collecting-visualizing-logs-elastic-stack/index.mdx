@@ -38,50 +38,42 @@ The ELK stack consists of:
   ```
   apt install -y openjdk-8-jdk
   ```
-
 2. Install the Elastic GPG Key to validate the packages.
 
   ```
   wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
   ```
-
 3. Install HTTPS transport to download the packages over a secure connection.
 
   ```
   apt install -y apt-transport-https
   ```
-
 4. Add the Elastic repository to the APT configuration.
 
   ```
   echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-8.x.list
   ```
-
 5. Update APT and install Elasticsearch.
 
   ```
   apt update && apt install -y elasticsearch
   ```
-
 6. Uncomment and edit the following lines in the `/etc/elasticsearch/elasticsearch.yml` file to reflect the example below. This will limit the Elasticsearch connection to **localhost**.
 
   ```
   network.host: 127.0.0.1
   http.port:9200
   ```
-
 7. Install Logstash and rsyslog.
 
   ```
   apt install -y logstash rsyslog
   ```
-
 8. Install Filebeat.
 
   ```
   apt install -y filebeat
   ```
-
 9. Install Kibana.
 
   ```
@@ -234,7 +226,6 @@ Logstash configuration files are written in JSON and can be found in the `/etc/l
     }
   }
   ```
-
 2. Create a file named `/etc/logstash/conf.d/10-syslog-filter.conf` and paste the following contents.
 
   ```
@@ -259,7 +250,6 @@ Logstash configuration files are written in JSON and can be found in the `/etc/l
   This filter parses incoming system logs to make them structured and usable by the Kibana Dashboards. For more information refer to the [official Elastic documentation](https://www.elastic.co/guide/en/logstash/6.x/logstash-config-for-filebeat-modules.html#parsing-system).
 
   </Message> 
-
 3. Create another file named `/etc/logstash/conf.d/30-elasticsearch-output.conf`, and copy the following content. Then, save and exit.
 
   ```
@@ -280,7 +270,6 @@ Logstash configuration files are written in JSON and can be found in the `/etc/l
   In case you want to add filters that use the Filebeat input, make sure these filters are named between the input and output configuration (between `02` and `30`).
 
   </Message>
-
 4. Start and enable the Filebeat service:
 
   ```
@@ -305,7 +294,6 @@ Other Beats are available, for example: [Metricbeat](https://www.elastic.co/prod
   The file is written in [YAML](http://yaml.org/spec/1.2/spec.html) format and it is important that you respect the formatting rules when you edit the file.
 
   </Message>
-
 2. Add the following configuration for syslog in the `filebeat.inputs` section of the file:
 
     ```yml
@@ -314,7 +302,6 @@ Other Beats are available, for example: [Metricbeat](https://www.elastic.co/prod
       host: "localhost:514"
     type: syslog
     ```
-
 3. Search for `output.elasticsearch` and comment-out the lines as follows:
 
   ```
@@ -324,7 +311,6 @@ Other Beats are available, for example: [Metricbeat](https://www.elastic.co/prod
     #hosts: ["localhost:9200"]
   [...]
   ```
-
 4. Search for `output.logstash` and uncomment the lines as follows:
 
   ```
@@ -334,7 +320,6 @@ Other Beats are available, for example: [Metricbeat](https://www.elastic.co/prod
     hosts: ["localhost:5044"]
   [...]
   ```
-
 5. Enable the [system plugin](https://www.elastic.co/guide/en/beats/filebeat/6.4/filebeat-module-system.html) to handle generic system log files with Filebeat. Enable the plugin:
 
   ```
@@ -346,13 +331,11 @@ Other Beats are available, for example: [Metricbeat](https://www.elastic.co/prod
   Filebeat uses [different modules](https://www.elastic.co/guide/en/beats/filebeat/6.4/filebeat-modules.html) to parse different log files. You can keep the default configuration of the module for this tutorial. If you want to learn more about the parsing rules applied, you may check the configuration of the module located at `/etc/filebeat/modules.d/system.yml`.
 
   </Message>
-
 6. Load the index template into Elasticsearch:
 
   ```
   filebeat setup --template -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["localhost:9200"]'
   ```
-
 7. Disable the Logstash output and enable the Elasticsearch output to load the dashboards when Logstash is enabled:
 
   ```
@@ -374,14 +357,12 @@ Other Beats are available, for example: [Metricbeat](https://www.elastic.co/prod
   2020-07-22T11:48:01.637Z	INFO	[load]	cfgfile/list.go:118	Stopping 1 runners ...
   Loaded Ingest pipelines
   ```
-
 8. You can now start and enable the Filebeat service:
 
   ```
   systemctl start filebeat
   systemctl enable filebeat
   ```
-
 9. Run the following command to verify that your Filebeat service is running:
 
   ```

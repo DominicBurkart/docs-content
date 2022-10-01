@@ -58,43 +58,36 @@ The following steps show how to install Docker on an Ubuntu Linux operating syst
     ```bash
     sudo apt-get remove docker docker-engine docker.io
     ```
-
 2. Update the apt package cache:
 
     ```bash
     sudo apt-get update
     ```
-
 3. Install some required packages for Docker. Docker uses HTTPS for its repository, so we make sure we have everything needed to download Docker with a secure connection:
 
     ```bash
     sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
     ```
-
 4. Add Docker's [GPG key](https://en.wikipedia.org/wiki/GNU_Privacy_Guard), used to authenticate the Docker content and updates we download to our machine:
 
     ```bash
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     ```
-
 5. Add the reference to Docker's remote repository. This tells our local machine the remote storage location from which it should get and install Docker and any future updates:
 
     ```bash
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
     ```
-
 6. Update the apt package cache again:
 
     ```bash
     sudo apt-get update
     ```
-
 7. Install the Docker engine itself:
 
     ```bash
     sudo apt-get install docker-ce
     ```
-
 8. Check that Docker is installed:
 
     ```
@@ -124,25 +117,21 @@ We start by creating a simple, one-line Python application that prints "Hello Wo
     ```bash
     mkdir myfirstapp && cd myfirstapp
     ```
-
 2. Create a python file called `myapp.py`:
 
     ```bash
     nano myapp.py
     ```
-
 3. Write the following line of code inside the file, then save and exit:
 
   ```python
   print("Hello World")
   ```
-
 4. Create the Dockerfile. This is a text file that gives instructions for building the Docker image for the application. Create it in the same directory as `myapp.py` with the following command
 
   ```bash
   nano Dockerfile
   ```
-
 5. Copy and paste the following code into the Dockerfile, then save and exit:
 
   ```
@@ -154,7 +143,6 @@ We start by creating a simple, one-line Python application that prints "Hello Wo
     * **FROM**: this instruction specifies the base image for the container. In our case, we take care of our python requirement.
     * **ADD**: this instruction adds files from our local machine (`myapp.py`) to the container image.
     * **CMD**: this instruction contains the command to be executed by default when the container is launched. In this case, we tell it to use python to run the `myapp.py` application.
-
 6. Run the following command to build a Docker image for the application, using the Dockerfile just created:
 
   ```
@@ -162,7 +150,6 @@ We start by creating a simple, one-line Python application that prints "Hello Wo
   ```
 
   The `-t mytestapp` argument tells Docker to **tag** the image with the name **mytestapp. The `.` at the end of the command tells Docker to use the current directory as build context.
-
 7. Run the following command to run the image. This tells Docker to instantiate and execute the image, launching a container instance of our application:
 
   ```
@@ -184,31 +171,26 @@ In this example, we look at a pre-built application called **whoami**, an HTTP s
     - `COPY`, which is similar to `ADD` and copies files to the Docker image.
 
   Return to the terminal of your local machine for the next steps.
-
 2. Clone the **whoami** project to your local machine:
 
   ```bash
   git clone https://github.com/jwilder/whoami.git
   ```
-
 3. Navigate into the `whoami` directory that has been created:
 
   ```bash
   cd whoami
   ```
-
 4. Build the Docker image for the application:
 
   ```bash
   sudo docker build -t testwhoami .
   ```
-
 5. Run the container image with the following command. Note that the `-d` argument tells Docker to run the contianer in the background (**d**etached mode), and the `-p` argument exposes the necessary ports for the application:
 
   ```bash
   sudo docker run -d -p 8000:8000 -t testwhoami
   ```
-
 6. Carry out the following command to show all the Docker processes currently running:
 
   ```bash
@@ -216,7 +198,6 @@ In this example, we look at a pre-built application called **whoami**, an HTTP s
   ```
 
   You should see the `testwhoami` image in the output, showing that the container is running.
-
 7. Open up a browser and go to the application's endpoint, which is the IP address of your local machine with the port 8000:
 
   ```
@@ -240,13 +221,11 @@ In this example, we look at a pre-built application called **whoami**, an HTTP s
   ```
 
   The container ID should match that which you saw with the `docker ps` command.  
-
 8. Run the following command in your terminal to shut down the container. Replace `<container-ID>` with the ID for your container.
 
   ```
   sudo docker kill <container-ID>
   ```
-
 9. Run `sudo docker ps` and/or refresh the endpoint in your browser, to show that the container is no longer running.
 
 ## Pushing to the Scaleway Container Registry
@@ -254,11 +233,9 @@ In this example, we look at a pre-built application called **whoami**, an HTTP s
 To finish, we push the Docker images we have created to a container registry. Container registries are designed to store container images, and make them accessible to those who need them. There are many different container registry platforms, but here we use the [Scaleway Container Registry](https://www.scaleway.com/en/container-registry/).
 
 1. Open a browser and go to the [Scaleway console's Container Registry page](https://console.scaleway.com/registry/namespaces).
-
 2. Follow [these instructions](https://www.scaleway.com/en/docs/compute/container-registry/how-to/create-namespace/) to create a namespace. Make sure that you set your privacy policy to **private**.
 
   The following steps should be carried out in the terminal of your local machine:
-
 3. Log in to your Container Registry namespace:
 
   ```bash
@@ -270,19 +247,16 @@ To finish, we push the Docker images we have created to a container registry. Co
   Ensure that you replace `<address-of-your-namespace>` with the address of your own Container Registry namespace (eg `rg.fr-par.scw.cloud/mynamespace`) and that you have [created your API key](https://www.scaleway.com/en/docs/console/my-project/how-to/generate-api-key/) and that you have saved the secret part of your API key as an environment variable e.g. with the command `export SCW_SECRET_TOKEN=a4db08b7-5723-4ba9-8c18-f2de493465a2`
 
   </Message>
-
 4. Tag the image you want to push with the address of your Container Registry namespace:
 
   ```bash
   sudo docker tag mytestapp <address-of-your-namespace>/mytestapp
   ```
-
 5. Push the tagged image to the Container Registry namespace:
 
   ```bash
   sudo docker push <address-of-your-namespace>/mytestapp
   ```
-
 6. Refresh your Container Registry namespace in the browser to ensure your image has been successfuly pushed.
 
 ## Conclusion

@@ -33,7 +33,6 @@ It is recommended to use the Internet Systems Consortium DHCP Client, [dhclient]
 ## How to set the DUID of your subnet
 
 1. Log into your server using SSH. 
-
 2. Open the file `/etc/dhcp/dhclient6.conf` in a text editor, for example: `nano`, and edit it as shown below:
 
     ```
@@ -49,7 +48,6 @@ It is recommended to use the Internet Systems Consortium DHCP Client, [dhclient]
 To enable automatic start of the DHCPv6 client during system boot, a SystemD service is required. 
 
 1. Log into your server using SSH. 
-
 2. Open the file `/etc/systemd/system/dhclient.service` in a text editor, for example: `nano`, and edit it as shown below:
 
     ```
@@ -74,7 +72,6 @@ To enable automatic start of the DHCPv6 client during system boot, a SystemD ser
     The path to the `dhclient` binary may vary depending on your OS. To see the exact path for your system, use the following command: `which dhclient`.
 
     </Message>
-
 3. Enable the service so it will start automatically at each reboot of the machine:
 
     ```

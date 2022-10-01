@@ -38,7 +38,6 @@ Hasura provides a pre-configured [repository](https://github.com/hasura/graphql-
   ```
   wget https://raw.githubusercontent.com/hasura/graphql-engine/stable/install-manifests/docker-run/docker-run.sh
   ```
-
 2. The `run-docker.sh` script contains a sample Docker command to run in it. Open the script in a text editor and modify the database URL and network configuration in the script.
   ```bash
   #! /bin/bash
@@ -67,21 +66,18 @@ Hasura provides a pre-configured [repository](https://github.com/hasura/graphql-
         -e HASURA_GRAPHQL_ENABLE_CONSOLE=true \
         hasura/graphql-engine:latest
   ```
-
 3. Make the script executable and run the modified script to start Hasura GraphQL Engine:
   ```
   ./docker-run.sh
   ```
 
   Docker will download the container and start it.
-
 4. Check if the container is running using the `docker ps` command:
   ```bash
   $ docker ps
   CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS                    NAMES
   01fd79964ade        hasura/graphql-engine:latest   "graphql-engine serve"   6 seconds ago       Up 5 seconds        0.0.0.0:8080->8080/tcp   dreamy_lalande
   ```
-
 5. Open the Hasura Console in your web browser by pointing it to [`http://localhost:8080/console`](http://localhost:8080/console). The console displays:
   <Lightbox src="scaleway-hasura_console.webp" alt="" />
 
@@ -106,9 +102,7 @@ Hasura provides a pre-configured [repository](https://github.com/hasura/graphql-
   ```
   For example the configuration of the `book` table:
   <Lightbox src="scaleway-hasura_add_table.webp" alt="" />
-
 2. Add some Sample data by clicking on the **Insert Row** tab on each of the newly created tables.
-
 3. Query the data using GraphQL commands from the GraphQL tab in the console.
 
   For example, to query all rows in the `book` table:

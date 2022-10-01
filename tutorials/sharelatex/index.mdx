@@ -38,14 +38,12 @@ Install ShareLaTeX on a fresh [Ubuntu Xenial (16.04)](https://www.ubuntu.com) in
   curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
   add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
   ```
-
 2. Update **apt** and launch the installation of Docker:
 
   ```
   apt-get update
   apt-get install docker-ce
   ```
-
 3. Install **docker-compose**, a python tool which can be installed via **pip**:
 
   ```
@@ -73,7 +71,6 @@ ShareLaTeX provides a pre-configured configuration file that can be used with **
   ```
 
 The software stores all files by default in the home directory of the user.
-
 2. To have the data of each service stored in a dedicated directory, create a directory `/var/lib/sharelatex` with the following sub-folders:
 
   ```
@@ -82,9 +79,7 @@ The software stores all files by default in the home directory of the user.
   mkdir /var/lib/sharelatex/mongodb
   mkdir /var/lib/sharelatex/redis
   ```
-
 3. Tell **docker-compose** to store the data in these folders.
-
 4. Open the file `/etc/sharelatex/docker-compose.yml` in a text editor and modify it as follows:
 
   ```
@@ -105,7 +100,6 @@ The software stores all files by default in the home directory of the user.
 
   </Message>
 
-
 5. Make the same modification for MongoDB and Redis. The file should look like this:
 
   ```
@@ -114,21 +108,18 @@ The software stores all files by default in the home directory of the user.
   volumes:
     - /var/lib/sharelatex/redis:/data
   ```
-
 6. To run ShareLaTeX behind an NGINX reverse proxy, edit the port on which the application listens:
 
   ```
   ports:
     - 80:80
   ```
-
 7. Make sure that the application listens on port **4242** and is available only from the IP **127.0.0.1**, the host itself. This ensures the application can only be accessed via our HTTPS proxy for security reasons from the outside world. Therefore we modify it like this:
 
   ```
   ports:
     - 127.0.0.1:4242:80
   ```
-
 8. Scroll down in the file, to a part called `environment`. This part contains the configuration of ShareLateX, modify it as follows:
 
     ```
@@ -185,7 +176,6 @@ This tutorial uses [NGINX](https://nginx.org/en/) with [Let's Encrypt](https://l
   ```
   apt install python3-certbot-nginx
   ```
-
 2. Generate the certificate, by running the following command:
 
   ```
@@ -193,13 +183,11 @@ This tutorial uses [NGINX](https://nginx.org/en/) with [Let's Encrypt](https://l
   ```
 
   SSL certificates issued by Let's Encrypt are valid for 90 days. Certbot comes with the option to automatically renew the certificate.
-
 3. Configure a cron job that launches Certbot daily to check the status of the certificate. Open the crontab by typing:
 
   ```
   crontab -e
   ```
-
 4. Add the following line which will stop Nginx, renew the certificate and restart the web server daily at 4:30 in the morning:
 
   ```
@@ -207,7 +195,6 @@ This tutorial uses [NGINX](https://nginx.org/en/) with [Let's Encrypt](https://l
   ```
 
 Configure Nginx in a way, that it will serve our ShareLaTeX site as default site:
-
 5.  Edit the file `/etc/nginx/sites-enabled/default` so that it looks like the following example:
 
   ```
@@ -260,7 +247,6 @@ Configure Nginx in a way, that it will serve our ShareLaTeX site as default site
     }
 
   ```
-
 6. Restart Nginx with the following command:
 
   ```
@@ -287,14 +273,12 @@ Everything is ready for the first start of the ShareLaTeX instance now. To ensur
     [Install]
     WantedBy=multi-user.target
     ```
-
 2. Save the file and make the new service known to the system:
 
   ```
   systemctl enable sharelatex
   systemctl daemon-reload
   ```
-
 3. Start the service `service sharelatex start` and access ShareLaTeX with a web browser: `https://my.instance.ip.address/`
 
   The following interface appears:
@@ -322,7 +306,6 @@ The instance is running now, but does not have any user yet.
     ```
 
   Once the password for the user has been set, login with your email address and your password.
-
 2. Create a first project:
 
   <Lightbox src="scaleway-sharelatex-firstproject.webp" alt="" />
@@ -342,7 +325,6 @@ The installation of all additional packages can take several hours. It is recomm
   ```
   apt-get install screen
   ```
-
 2. Launch the installation of the additional packages:
 
   ```
@@ -357,7 +339,6 @@ The installation of all additional packages can take several hours. It is recomm
   As changes to Docker containers are not permanent, it is required to **commit\*** a new version of the ShareLaTeX container which contains the modification.
 
   To do this,the ID of the container is required.
-
 3. To get it, type the following command:
 
   ```
@@ -374,7 +355,6 @@ The following output of running docker containers on the system appears:
     ```
 
   The **sharelatex** container has the ID `266d633cb0d94`.
-
 4. Build a new container with the LaTeX modules installed, by typing:
 
   ```
@@ -384,7 +364,6 @@ The following output of running docker containers on the system appears:
   This may take some minutes before the new container is ready.
 
   Once the container is built, tell `docker-compose` to use this new container by default.
-
 5. To do this, edit the **image** information in the file `/etc/sharelatex/docker-compose.yml`:
 
     ```

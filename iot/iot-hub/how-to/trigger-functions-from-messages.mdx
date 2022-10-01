@@ -26,9 +26,7 @@ IoT Hub allows messages to be exchanged between devices and business-specific so
 ## How to set up a Route to a Function
 
 1. Instruct your IoT Hub to trigger your function when a message is published on the `my/super/topic` topic. To do so we will use an IoT Hub REST Route.
-
 2. Click the Routes tab of your IoT Hub. 
-
 3. Create a new route with the following settings:
 
     - Name: any name you want
@@ -43,7 +41,6 @@ In a typical use-case, the same Function will be used for many topics. It is pos
 ## How to trigger the Function
 
 1. Click the `MQTT Webclient` button on your device information page. The client will open and automatically connect.
-
 2. Publish a message to the `my/super/topic` topic. In the `Publish` block:
     - Write `my/super/topic` as the topic
     - Leave QoS as 0
@@ -79,9 +76,7 @@ The content of the message will be the body of the reply.
 If you require authentication to protect your Serverless Function, here is how to do it:
 
 1. Click the settings tab of your function settings tab and tick the `Private` option.
-
 2. [Generate a token](/compute/functions/api-cli/restricting-access-to-a-function) for your function.
-
 3. Re-create your IoT Hub Route with the following HTTP header: `SCW_FUNCTIONS_TOKEN: <function token here>`.
 
 Your Function is now private and still accessible from IoT Hub!

@@ -49,13 +49,11 @@ Ansible works by configuring client machines from a computer that has the Ansibl
     If you use the root user, you can remove the `sudo` before each command.
 
     </Message>
-
 2. Update Ubuntu package manager:
 
     ```
     sudo apt-get update
     ```
-
 3. Upgrade the Ubuntu packages already installed:
 
     ```
@@ -71,13 +69,11 @@ Ansible works by configuring client machines from a computer that has the Ansibl
     apt-add-repository ppa:ansible/ansible
     apt update
     ```
-
 2. Install the Ansible software
 
     ```
     apt install ansible
     ```
-
 3. Check that the installation is successful
 
     ```
@@ -119,29 +115,23 @@ To learn more about different methods for installing Ansible, refer to the offic
     Enter passphrase (empty for no passphrase):
     Enter same passphrase again:
     ```
-
 2. Optionally, to avoid the prompt of your passphrase, launch `exec ssh-agent $SHELL` to run an SSH agent, and `ssh-add ~/.ssh/id_rsa` to add your key to the SSH agent.
-
 3. Use the cat command to print the contents of your non-root user’s SSH public key file to the terminal’s output
 
     ```
     cat ~/.ssh/id_rsa.pub
     ```
-
 4. Copy the resulting output to your clipboard, then open a new terminal and connect to one of your **Ansible hosts** using SSH
 
     ```
     ssh root@ansible_host_ip
     ```
-
 5. Open the `authorized_keys` within the `~/.ssh` directory
 
     ```
     nano ~/.ssh/authorized_keys
     ```
-
 6. In the file, paste your Ansible server user’s SSH key, then save the file and close the editor.
-
 7. Install Python 3 on the host in order for Ansible to communicate with it.
 
     <Message type="note">
@@ -154,7 +144,6 @@ To learn more about different methods for installing Ansible, refer to the offic
     apt update
     apt install python3
     ```
-
 8. To make Ansbile work with Python 3, specify the Python interpreter in a var or in the inventory.
 
     ```
@@ -164,7 +153,6 @@ To learn more about different methods for installing Ansible, refer to the offic
 
       host1 ansible_ssh_host=X.X.X.X ansible_python_interpreter=/usr/bin/env python3
     ```
-
 9. IMPORTANT: Under **Credentials** Paste your SSH key in the Scaleway Console and click **Use this SSH Key**
 
 10. Run the exit command to close the connection to the client
@@ -197,7 +185,6 @@ Next, we’ll configure the Ansible server to connect to these hosts using Ansib
     host1 ansible_ssh_host=X.X.X.X
     host2 ansible_ssh_host=X.X.X.X
     ```
-
 2. Save and close this file when you are finished.
 
     If you want to specify configuration details for every server, regardless of group association, you can put those details in a file at `/etc/ansible/group_vars/all`. Individual hosts can be configured by creating files named after their alias under a directory at `/etc/ansible/host_vars`.

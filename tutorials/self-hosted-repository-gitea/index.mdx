@@ -36,25 +36,21 @@ Git was initially developed for software development, but it can track changes i
 ## Installing Gitea
 
 1. Log into your server via SSH.
-
 2. Update the APT package cache, upgrade the already installed software and install Git:
   ```
   apt update && apt upgrade -y && apt install git -y
   ```
-
 3. Download the Gitea Binary and make it executable :
 
   ```
   wget -O gitea https://dl.gitea.io/gitea/1.16.2/gitea-1.16.2-linux-amd64
   chmod +x gitea
   ```
-
 4. Add the user that will run the Gitea application:
 
   ```
   adduser --system --shell /bin/bash --gecos 'Git Version Control' --group --disabled-password --home /home/git git
   ```
-
 5. Create the folder structure that is used by Gitea to store data:
 
   ```
@@ -67,13 +63,11 @@ Git was initially developed for software development, but it can track changes i
   chown root:git /etc/gitea
   chmod 770 /etc/gitea
   ```
-
 6. Set the working directory of Gitea:
 
   ```
   export GITEA_WORK_DIR=/var/lib/gitea/
   ```
-
 7. Copy the Gitea binary file to `/usr/local/bin` to make it available system-wide:
 
   ```
@@ -83,7 +77,6 @@ Git was initially developed for software development, but it can track changes i
 ## Running Gitea
 
 1. Create a systemd service for Gitea by opening the file `/etc/systemd/system/gitea.service` in a text editor like `nano`.
-
 2. Copy the following content into the service file:
 
     ```
@@ -121,28 +114,22 @@ Git was initially developed for software development, but it can track changes i
     [Install]
     WantedBy=multi-user.target
     ```
-
 3. Enable the service and start Gitea at system boot:
 
   ```
   systemctl enable gitea
   systemctl start gitea
   ```
-
 4. Start Gitea for the first time from the command-line:
 
   ```
   GITEA_WORK_DIR=/var/lib/gitea/ /usr/local/bin/gitea web -c /etc/gitea/app.ini
   ```
-
 5. In a web browser go to `http://<your_instance_ip>:3000/` to access the Gitea application:
 
   <Lightbox src="scaleway-gitea_app.webp" alt="" />
-
 6. Click **Register** to start the database initialization. Gitea supports [SQLite](https://www.sqlite.org/index.html) which makes the application very lightweight and ideal for a self-hosted development Environment. If you require more performance, it is also possible to use [MySQL/MariaDB](/tutorials/mariadb-ubuntu-bionic/) or [PostGreSQL](/tutorials/install-postgresql/).
-
 7. Choose **SQLite** as database type. Leave the other pre-filled settings as they are, they are already set to the required values and confirm the form.
-
 8. The installation is ready now and it is time to create the first user. Open `http://<your_instance_ip>:3000/user/sign_up` in a web browser and fill in the required parameters.
 
   <Message type="note">
@@ -150,7 +137,6 @@ Git was initially developed for software development, but it can track changes i
   The first user becomes automatically **admin** of the Gitea instance.
 
   </Message>
-
 9. Once the form has been submitted, you are logged into your Gitea account:
 
   <Lightbox src="scaleway-gitea_dashboard.webp" alt="" />
@@ -166,20 +152,17 @@ For increased security it is possible to configure [NGINX reverse proxy](/tutori
   ```
   apt install nginx
   ```
-
 2. Disable the default virtual host which has been configured during the installation of Nginx via the apt package manager:
 
   ```
   unlink /etc/nginx/sites-enabled/default
   ```
-
 3. Enter the directory `/etc/nginx/sites-available` and create a reverse proxy configuration file:
 
   ```
   cd /etc/nginx/sites-available
   nano reverse-proxy.conf
   ```
-
 4. Paste the following Nginx configuration block in the text editor. The proxy server redirects all incoming connections to the web server listening on port 80, to the local Gitea application, listening on port 3000.
 
   ```
@@ -196,19 +179,16 @@ For increased security it is possible to configure [NGINX reverse proxy](/tutori
     }
   }
   ```
-
 5. Create a symbolic link from `/etc/nginx/sites-available/reverse-proxy.conf` to `/etc/nginx/sites-enabled/reverse-proxy.conf` to activate the new configuration:
 
   ```
   ln -s /etc/nginx/sites-available/reverse-proxy.conf /etc/nginx/sites-enabled/reverse-proxy.conf
   ```
-
 6. Restart Ngnix:
 
   ```
   service nginx restart
   ```
-
 7. [Certbot](https://certbot.eff.org/) is a tool that is able to obtain and renew [Let's Encrypt](https://letsencrypt.org/) TLS certificates. Add it to the apt repository and install the Certbot application
 
   ```
@@ -216,13 +196,11 @@ For increased security it is possible to configure [NGINX reverse proxy](/tutori
   add-apt-repository ppa:certbot/certbot
   apt update && apt install python-certbot-nginx -y
   ```
-
 8. Certbot is able to configure the Nginx automatically. Run the application and specify the flag `--nginx` to configure the web server:
 
   ```
   certbot --nginx
   ```
-
 9. When asked to do so, enter your email address and press **Enter**.
 
 10. Confirm the Terms of Service of Let's Encrypt by pressing on `A` to agree.
@@ -262,19 +240,16 @@ For increased security it is possible to configure [NGINX reverse proxy](/tutori
   ```
   apt install ufw
   ```
-
 2. Block all traffic by default:
 
   ```
   ufw default deny
   ```
-
 3. Then allow outgoing connections:
 
   ```
   ufw default allow outgoing
   ```
-
 4. Enable connections on the ports `22` (SSH), `80` (HTTP), `443` (HTTPS) via [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol) and `53` (DNS) via [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol) and [UDP](https://en.wikipedia.org/wiki/User_Datagram_Protocol) as both are required for DNS:
 
   ```
@@ -283,11 +258,9 @@ For increased security it is possible to configure [NGINX reverse proxy](/tutori
   ufw allow 443/tcp
   ufw allow 53
   ```
-
 5. Activate the new firewall configuration:
 
   ```
   ufw enable
   ```
-
 6. Connections to all other ports than the ones mentioned above are blocked now. The access to the Gitea Application is only possible by passing through the Nginx proxy.

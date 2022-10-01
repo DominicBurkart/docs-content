@@ -41,13 +41,11 @@ Puppet master server and the puppet agents nodes need to be able to communicate 
     ```
     nano /etc/hosts
     ```
-
 2. Specify the Puppet master server as follows, substituting the IP address for your Puppet master.
 
     ```
     puppet_ip_address    puppet
     ```
-
 3. Save and exit.
     <Message type="note">
     
@@ -66,7 +64,6 @@ Puppet Server is the software that pushes configuration from the Puppet master t
     dpkg -i puppetlabs-release-pc1-xenial.deb
     apt-get update
     ```
-
 2. Install the puppet server package
 
     ```
@@ -84,13 +81,11 @@ To customize it:
     ```
     sudo nano /etc/default/puppetserver
     ```
-
 2. Find the `JAVA_ARGS` line, and use the `-Xms` and `-Xmx` parameters to set the memory allocation. We'll increase ours to 3 gigabytes:
 
     ```
     JAVA_ARGS="-Xms3g -Xmx3g -XX:MaxPermSize=256m"
     ```
-
 3. Save and exit
 
 ## Opening the Firewall
@@ -100,7 +95,6 @@ To customize it:
     ```
     ufw allow 8140
     ```
-
 2. To activate the updated configuration, reload ufw
 
     ```
@@ -114,7 +108,6 @@ To customize it:
     ```
     systemctl start puppetserver
     ```
-
 2. Verify that the installation is successful
 
     ```
@@ -136,7 +129,6 @@ To customize it:
     Aug 10 09:59:55 puppet-master puppetserver[32404]: OpenJDK 64-Bit Server VM
     Aug 10 10:00:56 puppet-master systemd[1]: Started puppetserver Service.
     ```
-
 3. Configure your puppet server to start at boot
 
     ```
@@ -158,13 +150,11 @@ The Puppet agent software must be installed on any server that the Puppet master
     sudo dpkg -i puppetlabs-release-pc1-xenial.deb
     sudo apt-get update
     ```
-
 2. Install the puppet-agent Package
 
     ```
     sudo apt-get install puppet-agent
     ```
-
 3. Enable the puppet agent to start on boot
 
     ```
@@ -190,7 +180,6 @@ If it has not been done already, make sure you repeat these steps on every puppe
     ```
 
     A `+` in front of a certificate indicates it has been signed. The absence of a plus sign indicates our new certificate has not been signed yet.
-
 2. Sign `puppet-agent1` certificate using the `puppet cert sign` subcommand and the hostname of the certificate as it is displayed in the certificate request
 
     ```
@@ -225,7 +214,6 @@ We'll create a brief directive to verify that the Puppet Server can manage the A
     ```
     sudo nano /etc/puppetlabs/code/environments/production/manifests/testsite.pp
     ```
-
 2. Create a file called `it_works.txt` on agent nodes located in the `tmp` directory which contains the public IP address of the agent server
 
     ```
@@ -237,7 +225,6 @@ We'll create a brief directive to verify that the Puppet Server can manage the A
     ```
 
     By default Puppet Server runs the commands in its manifests every 30 minutes. If the file is removed, the `ensure` option recreates it. The mode directive will set the file permissions, and the content directive add content to the directive.
-
 3. Apply the manifest on your puppet-agent1
 
     ```
@@ -254,7 +241,6 @@ We'll create a brief directive to verify that the Puppet Server can manage the A
     Info: Applying configuration version '1534164688'
     Notice: Applied catalog in 0.04 seconds
     ```
-
 4. Check the file contents
 
     ```

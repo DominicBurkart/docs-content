@@ -44,11 +44,8 @@ You can easily backup your existing dedicated server with Duplicity. When you ar
 ## Creating an Object Storage bucket
 
 1. Log in to the Scaleway Console
-
 2. Click **Storage** from the left side menu. The Storage page lists all your buckets. At first, your list is empty as you have not created any bucket yet.
-
 3. Click **Create a Bucket** to create a bucket that will store your objects.
-
 4. Name your bucket and validate your bucket creation. A bucket name must be unique and contain only alphanumeric and lowercase characters.
 
 ## Installing software requirements
@@ -136,7 +133,6 @@ Run the following command to update the apt package manager, upgrade the softwar
         uid                      backups (Scaleway Object Storage backups) <me@scaleway.com>
         sub   rsa3072  2020-03-26 [E]
     ```
-
 2. Use the GPG key fingerprint, which could be an 8, 16 or 40 char long hash. You can also find the fingerprint of your key with the following command:
     ```bash
         $ gpg --list-keys
@@ -177,7 +173,6 @@ As everything is installed and ready, we will now configure and script our inter
         mkdir -p /var/log/duplicity
         touch /var/log/duplicity/logfile{.log,-recent.log}
     ```
-
 2. Add the following lines to `.scw-configrc` :
     ```bash
         # Scaleway credentials keys
@@ -267,7 +262,6 @@ Using the configuration and duplicity, we automatize the backups.
     The option `--s3-use-glacier` will move backups into [Scaleway Glacier](https://www.scaleway.com/en/c14-cold-storage/). If you prefer to store your backups on regular Object Storage, remove the line `--s3-use-glacier \` from the script.
 
     </Message>
-
 2. Run the script `./scw-backups.sh` to make sure the configuration is correctly set. Check Scaleway's bucket on the web interface and the logs with the following command:
     ```bash
         cat /var/log/duplicity/logfile-recent.log
@@ -306,12 +300,10 @@ Duplicity also allows you to recover a backup. We will create a script to make t
             ${SCW_BUCKET} $3
         fi
     ```
-
 2. Recover the data you uploaded in the previous section with the following command:
     ```bash
         ./scw-restore.sh 0D /tmp/backup-recovery-test/
     ```
-
 3. You can also recover one specific file with the following format from a backup 5 days ago with:
     ```bash
         ./scw-restore.sh 5D <file> /tmp/backup-recovery-test/
@@ -323,7 +315,6 @@ Duplicity also allows you to recover a backup. We will create a script to make t
     ```bash
         crontab -e
     ```
-
 2. And after selection of your editor, write down:
     ```bash
         PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin

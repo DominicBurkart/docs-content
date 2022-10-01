@@ -38,7 +38,6 @@ For this example we will use Scaleway SDK and Scaleway console, for more informa
     ```
     serverless create --template-url https://github.com/scaleway/serverless-scaleway-functions/tree/master/examples/python3 --path myService
     ```
-
 2. Install the Scaleway SDK using `pip`:
     ```
     pip install scaleway-sdk --target ./package
@@ -66,7 +65,6 @@ For this example we will use Scaleway SDK and Scaleway console, for more informa
     }
     ```
 4. Zip the `handler.py` and the `package` folder.
-
 5. In the Scaleway console: 
 
   <Lightbox src="scaleway-function-uploadzip.webp" alt="" />
@@ -128,7 +126,6 @@ You require your [Instance information](https://developers.scaleway.com/en/produ
             "statusCode": 200,
         }
     ```
-
 3. Add the environment variable `X-AUTH-TOKEN`.
 4. Create cron jobs dedicated to start or stop your Instance in the **Advanced Section**.
     * To **stop** an Instance:

@@ -98,7 +98,6 @@ Instead of creating a Load Balancer service with an ephemeral IP (which changes 
     curl -X POST "https://api.scaleway.com/lb/v1/regions/$SCW_DEFAULT_REGION/ips" -H "X-Auth-Token: $SCW_SECRET_KEY" -H "Content-Type: application/json" \
     -d "{\"organization_id\":\"$SCW_DEFAULT_ORGANIZATION_ID\"} | jq -r .ip_address"
     ```
-
 2. Specify this IP address to `spec.loadBalancerIP` field of the service:
 
     ```yml

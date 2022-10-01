@@ -74,19 +74,16 @@ In contrast to relational database, MongoDB does not require a deep predefined s
     If you use the root user, you can remove the `sudo` before each command.
 
   </Message> 
-
 2. Update Ubuntu package manager
 
   ```
   sudo apt-get update
   ```
-
 3. Upgrade the Ubuntu packages already installed
 
   ```
   sudo apt-get upgrade
   ```
-
 4. Import the key for the official MongoDB repository (Ubuntu ensures the authenticity of software packages by verifying that they are signed with GPG keys.)
 
   ```
@@ -102,13 +99,11 @@ In contrast to relational database, MongoDB does not require a deep predefined s
   gpg: Total number processed: 1
   gpg:               imported: 1  (RSA: 1)
   ```
-
 5. Add the MongoDB repository details so that Ubuntu's `apt` command-line tool will know where to download the packages. Execute the following command to create a list file for MongoDB.
 
   ```
   echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
   ```
-
 6. Update the packages list
 
   ```
@@ -122,13 +117,11 @@ In contrast to relational database, MongoDB does not require a deep predefined s
   ```
   sudo apt-get install mongodb-org
   ```
-
 2. Press enter or type `Y` to proceed when prompted. Once the installation is completed, we start the MongoDB daemon
 
   ```
   sudo systemctl start mongod
   ```
-
 3. Since `systemctl` does not provide output, verify that the service has started properly.
 
   ```
@@ -145,7 +138,6 @@ In contrast to relational database, MongoDB does not require a deep predefined s
   ```
 
   Press `q` to exit.
-
 4. Ensure that it restarts automatically at each boot
 
   ```
@@ -185,7 +177,6 @@ The default installation of MongoDB is vulnerable because no authentication is r
   You can choose any preferred name for the administrative user since the privilege level is assigned from the role of `userAdminAnyDatabase`.
 
   The `admin` database designates where the credentials are stored. You can learn more about authentication in the [MongoDB Security Authentication section](https://docs.mongodb.com/manual/core/authentication/).
-
 2. Set the username of your choice and be sure to pick your own secure password and substitute them in the command below:
 
   ```
@@ -218,7 +209,6 @@ The default installation of MongoDB is vulnerable because no authentication is r
     ]
   }
   ```
-
 3. Type `exit` and press ENTER or use `CTRL+C` to leave the client.
 
   ```
@@ -235,20 +225,17 @@ In order to enforce authentication, we need to enable authentication and restart
   ```
   sudo nano /etc/mongod.conf
   ```
-
 2. In the `#security` section, remove the hash in front of security to enable the section. Then, we add the authorization lines (indented with two spaces) as per the following excerpt below:
 
   ```
   security:
   authorization: "enabled"
   ```
-
 3. Restart the daemon
 
   ```
   sudo systemctl restart mongod
   ```
-
 4. Check the status to verify that the service has rebooted
 
   ```
@@ -265,7 +252,6 @@ In order to enforce authentication, we need to enable authentication and restart
   ```
 
   Press `q` to exit.
-
 5. Ensure that the daemon restarts automatically at boot
 
   ```
@@ -292,7 +278,6 @@ In order to enforce authentication, we need to enable authentication and restart
   ```
 
   We are connected to the test database.
-
 2. Test that the access is restricted with the `show dbs` command:
 
   ```
@@ -304,7 +289,6 @@ In order to enforce authentication, we need to enable authentication and restart
     "codeName" : "Unauthorized"
   } :
   ```
-
 3. Exit the shell to proceed
 
   ```
@@ -319,7 +303,6 @@ In order to enforce authentication, we need to enable authentication and restart
   ```
   mongo -u AdminOce -p --authenticationDatabase admin
   ```
-
 2. Once the correct password is entered, we are dropped into the shell, where we can issue the `show dbs` command:
 
   ```
@@ -351,25 +334,21 @@ Uncomplicated Firewall (UFW), is a front-end to iptables. Its main goal is to ma
   ```
   sudo apt-get install ufw
   ```
-
 2. Check UFW status.
 
   ```
   sudo ufw status
   ```
-
 3. Enable UFW, as it is probably inactive.
 
   ```
   sudo ufw enable
   ```
-
 4. Ensure to allow SSH.
 
   ```
   sudo ufw allow OpenSSH
   ```
-
 5. Rerun the UFW status command.
 
   ```
@@ -383,13 +362,11 @@ Uncomplicated Firewall (UFW), is a front-end to iptables. Its main goal is to ma
   OpenSSH                    ALLOW       Anywhere
   OpenSSH (v6)               ALLOW       Anywhere (v6)
   ```
-
 6. Allow access to the default MongoDB port `27017` but restrict that access to a specific host.
 
   ```
   sudo ufw allow from client_ip_address to any port 27017
   ```
-
 7. Re-run this command using the IP address for each additional client that needs access. To double-check the rule, run `ufw status` again:
 
   ```
@@ -410,7 +387,6 @@ Uncomplicated Firewall (UFW), is a front-end to iptables. Its main goal is to ma
   ```
   sudo nano /etc/mongod.conf
   ```
-
 2. In the `net` section, add the MongoHost's IP to the bindIp line
   	
   <Message type="note">
@@ -424,13 +400,11 @@ Uncomplicated Firewall (UFW), is a front-end to iptables. Its main goal is to ma
     port: 27017
     bindIp: 127.0.0.1,IP_of_MongoHost
   ```
-
 3. Restart the daemon
 
   ```
   systemctl restart mongod
   ```
-
 4. Check the daemon status
 
   ```
@@ -468,13 +442,11 @@ Ensure that Mongo is listening on its public interface by adding the `--host` fl
   ```
   sudo service mongod stop
   ```
-
 2. Remove any MongoDB packages that you had previously installed.
 
   ```
   sudo apt-get purge mongodb-org*
   ```
-
 3. Remove MongoDB databases and log files.
 
   ```

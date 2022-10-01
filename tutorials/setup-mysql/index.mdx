@@ -41,15 +41,12 @@ Oracle provides a `.deb` package to configure the MySQL repository on your machi
   ```
   wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb
   ```
-
 2. Install the package using `dpkg` by running the following command:
 
   ```
   dpkg -i mysql-apt-config_0.8.22-1_all.deb
   ```
-
 3. Select **MySQL 8 server** when you are prompted which MySQL product you want to install. Click **OK** to confirm.
-
 4. Verify the configuration file for the `apt` package manager, generated during the installation of the package above, by running the command `cat /etc/apt/sources.list.d/mysql.list`. The output should look like the following example:
 
   ```
@@ -64,13 +61,11 @@ Oracle provides a `.deb` package to configure the MySQL repository on your machi
   ```
 
   If it does not look like the example above, or if you want to add additional features to MySQL you can reconfigure the configuration file by running `dpkg-reconfigure mysql-apt-config`.
-
 5. Update the `apt` package manager to ensure it uses the newly added repository:
 
   ```
   apt update
   ```
-
 6. Install the MySQL server and client applications using `apt`:
 
   ```
@@ -86,7 +81,6 @@ Once the MySQL server is installed on your system, it needs to be initialized to
   ```
   mysql_secure_installation
   ```
-
 2. You will be prompted the following questions during the configuration:
 
     ```
@@ -166,13 +160,11 @@ As your MySQL server is up and running now, you can connect to it for the first 
   ```
   mysql -u root -p
   ```
-
 2. When prompted, enter the password set during the initialization process and confirm by pressing Enter:
 
   ```
   Enter password:
   ```
-
 3. You are now logged into the MySQL shell. The server displays some connection information as well as information about the installed MySQL version. In the last line the `mysql>` prompt appears. Send your SQL statements from this prompt to the server for execution:
 
     ```
@@ -211,7 +203,6 @@ Later in this tutorial, we will store and modify data in a database. Therefore w
   ```
 
   As you can see in the output above, our server currently contains four databases: `information_schema`, `mysql`, `performance_schema`, and `sys`. These are internal databases in use by MySQL.
-
 2. Create a new MySQL database called `tutorial` with the following command. We will use this database to store our data:
 
   ```
@@ -219,7 +210,6 @@ Later in this tutorial, we will store and modify data in a database. Therefore w
   ```
 
   The response from the server looks as follows: `Query OK, 1 row affected (0.00 sec)` and confirmes that the query has been executed.
-
 3. To ensure that the database has been created, run the `SHOW DATABASES` command again:
 
   ```
@@ -249,7 +239,6 @@ We do not want to use the superuser account `root` to manipulate data in our `tu
   ```
 
   Replace `myuser` with the login for your new user, the part `localhost` defines from which host your user is allowed to login. As we have restricted the access to the MySQL server to our local machine, keep this value. Replace `a_secret_password` with a strong and secure password for the user.
-
 2. By default, the user has no permissions. Grant permission to the `tutorial` table so the user is able to make changes to all data stored in this table:
 
   ```
@@ -270,7 +259,6 @@ We do not want to use the superuser account `root` to manipulate data in our `tu
   ```
   mysql> GRANT grant_type ON database_name.table_name TO ‘myuser’@'localhost’;
   ```
-
 3. Once the user is created and permissions are configured, leave the superuser account:
 
   ```
@@ -286,7 +274,6 @@ Now, as we have our table and user ready, it is time to create some tables, fill
   ```
   mysql -u myuser -p
   ```
-
 2. The MySQL prompt displays. Change into the `tutorial` database you have created in a previous step:
 
   ```
@@ -294,7 +281,6 @@ Now, as we have our table and user ready, it is time to create some tables, fill
   ```
 
 A `Database changed` message indicated that you have changed into the tutorial database.
-
 3. Create a new table `employees` to manage the an inventory of all employees of a fictive company
 
   ```
@@ -307,7 +293,6 @@ A `Database changed` message indicated that you have changed into the tutorial d
     PRIMARY KEY     (id)                                  # Make the ID the primary key
   );
   ```
-
 4. Use `DESCRIBE` to visualize the table structure and to verify everything has been created accordingly:
 
   ```
@@ -323,7 +308,6 @@ A `Database changed` message indicated that you have changed into the tutorial d
   4 rows in set (0.02 sec)
 
   ```
-
 5. Now as we have the table ready, update it by filling in some fictitious emplyoee data into it. When you look at the query, you notice that the value for ID is not in it. This value will be auto-incremented by MySQL when entering the data:
 
   ```
@@ -354,7 +338,6 @@ The `SELECT` statement can be used to retrieve data stored in an existing table.
   +----+----------------+-----------+------------+
   4 rows in set (0.00 sec)
   ```
-
 2. You can use a `WHERE` clause on specific columns and rows to filter results by a certain condition. Run the following command to return the names of all employees in the `DevOps` team that are born before January 1st 2003:
 
   ```
@@ -377,7 +360,6 @@ In case one of your employees has left the company, you want to delete his recor
   mysql> DELETE FROM employees WHERE name='Steve Shining';
   Query OK, 1 row affected (0.09 sec)
   ```
-
 2. Verify if the row has been removed from the table:
 
   ```
@@ -403,7 +385,6 @@ You also want to keep a record of your employees' email addresses to make intern
   Query OK, 0 rows affected (0.08 sec)
   Records: 0  Duplicates: 0  Warnings: 0
   ```
-
 2. Verify that the table has been modified as wanted:
 
   ```
@@ -419,7 +400,6 @@ You also want to keep a record of your employees' email addresses to make intern
   +----------+--------------+------+-----+---------+----------------+
   5 rows in set (0.01 sec)
   ```
-
 3. In case you have no longer the need for a certain column of your table, remove it using `ALTER TABLE...DROP`:
 
   ```

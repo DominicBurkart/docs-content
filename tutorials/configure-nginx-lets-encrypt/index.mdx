@@ -30,13 +30,11 @@ dates:
 ### Installing the NGINX web server
 
 1. Connect to your server as `root` via [SSH](/compute/instances/how-to/connect-to-instance/).
-
 2. Update the APT packet cache and the software already installed on the instance:
 
   ```
   apt update && apt upgrade -y
   ```
-
 3. Install the [Nginx](https://nginx.org/en/) web server via APT:
 
   ```
@@ -58,13 +56,11 @@ In this tutorial the domain name **example.com** will be used. You should replac
   ```
   mkdir -p /var/www/example.com/html
   ```
-
 2. Create a place holder page that will be displayed when accessing your domain:
 
   ```
   nano /var/www/example.com/html/index.html
   ```
-
 3. Put some content like the following into the file which will be displayed to a user when requesting your site. Save and quit nano once you have edited the file:
 
   ```
@@ -78,7 +74,6 @@ In this tutorial the domain name **example.com** will be used. You should replac
       </body>
   </html>
   ```
-
 4. To serve the site, a server block is required. Create the block in the directory **/etc/nginx/sites-available/**:
 
   ```
@@ -108,25 +103,21 @@ In this tutorial the domain name **example.com** will be used. You should replac
   Edit the lines `root` and `server_name` according to your domain name.
 
   </Message>
-
 5. Enable the file by linking it to the **sites-enabled** directory, to enable the server block during Nginx startup:
 
   ```
   ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
   ```
-
 6. Verify if there are no errors in the configuration file before restarting Nginx:
 
   ```
   nginx -t
   ```
-
 7. Restart the Nginx web server:
 
   ```
   systemctl restart nginx
   ```
-
 8. When typing *http://example.com* in your browser, you should see your newly created place holder page:
 
   <Lightbox src="scaleway-example_site.webp" alt="" />
@@ -138,7 +129,6 @@ In this tutorial the domain name **example.com** will be used. You should replac
   ```
   apt install python3-certbot-nginx -y
   ```
-
 2. Launch the certificate generation:
 
   ```
@@ -152,7 +142,6 @@ In this tutorial the domain name **example.com** will be used. You should replac
   </Message>
 
   When running Certbot for the first time, you will be asked to enter your email address. Confirm it by pressing **Enter** on your keyboard.
-
 3. Once confirmed Certbot will run a challenge and request the certificate. When asked to redirect all traffic to HTTPS, press **2**, then **Enter** on your keyboard:
 
   ```

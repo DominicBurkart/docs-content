@@ -31,29 +31,23 @@ The GUI of Rancher makes it easy to manage secrets, handle roles and permissions
 ### Spinning up the required Instances
 
 1. Log into the [Scaleway console](https://console.scaleway.com).
-
 2. Click **Instances** in the menu on the left:
 
   <Lightbox src="scaleway-rancher_instances.webp" alt="" />
-
 3. To deploy Instances with [Docker](https://www.docker.com/) pre-installed, click **+ Create an instance**:
 
   <Lightbox src="scaleway-rancher_create_instance.webp" alt="" />
-
 4. Click the **InstantApps** tab, and choose the **Docker** image:
 
   <Lightbox src="scaleway-rancher_instant_apps.webp" alt="" />
 
   <Lightbox src="scaleway-rancher_docker.webp" alt="" />
-
 5. Choose the region for the instance, the instance type and a name for the instance, i.e. `rancher1` click **Create a new instance**.
-
 6. Repeat these steps two more times to spin up a total of three Instances running Docker.
 
 ### Installing Rancher
 
 1. Log into the first instance (`rancher1`) via [SSH](/compute/instances/how-to/connect-to-instance/).
-
 2. Launch the following command to fetch the docker image `rancher/rancher` to run in a container with automatic restarting enabled in case the container fails. Edit the value `rancher.example.com` with the personalized domain name pointing to the instance to generate a Lets Encrypt certificate automatically:
 
   ```
@@ -65,13 +59,10 @@ The GUI of Rancher makes it easy to manage secrets, handle roles and permissions
 1. Once Rancher is installed, open a web browser and point it to your rancher domain (i.e. `https://rancher.example.com`). The following page displays:
 
   <Lightbox src="scaleway-rancher_password.webp" alt="" />
-
 2. Enter a password and its confirmation and click **Continue** to move forward with the installation of Rancher.
-
 3. Enter the domain name for Rancher. Normally this value is already pre-filled with the domain name configured when launching the docker container. Check that the value is correct and click **Save URL** to continue with the configuration:
 
   <Lightbox src="scaleway-rancher_domain.webp" alt="" />
-
 4. The (empty) Rancher Dashboard displays:
 
   <Lightbox src="scaleway-rancher_dashboard_empty.webp" alt="" />
@@ -79,15 +70,12 @@ The GUI of Rancher makes it easy to manage secrets, handle roles and permissions
 ### Creating a cluster
 
 1. Click **Add Cluster** to configure a new Kubernetes cluster.
-
 2. The cluster creation page displays. Click **Custom** to deploy the Cluster on the already launched Scaleway Instances.
 
   <Lightbox src="scaleway-rancher_add_cluster.webp" alt="" />
-
 3. Enter a name for the cluster, choose the desired Kubernetes version and network provider and select **None** as cloud provider.
 
   <Lightbox src="scaleway-rancher_cluster_options.webp" alt="" />
-
 4. Choose the Options for the Worker nodes. A Kubernets cluster needs to have at least one `etcd` and one `control plane`.
 
     - `etcd` is a key value storage system used by Kubernetes to keep the state of the entire enivironment. It is recommended to run an odd number of copies of the etcd for redundancy (e.g. 1, 3, 5,...).
@@ -99,7 +87,6 @@ The GUI of Rancher makes it easy to manage secrets, handle roles and permissions
   <Lightbox src="scaleway-rancher_node_run.webp" alt="" />
 
   Once all Instances are ready, click **Done** to initialize the cluster.
-
 5. Once the cluster is ready, the dashboard displays:
 
   <Lightbox src="scaleway-rancher_dashboard.webp" alt="" />
@@ -111,11 +98,9 @@ The cluster is ready now and the deployment of a first pod can take place. A [Po
 1. Head over **Global** in the header bar, select the cluster and click **Default** from the drop-down menu:
 
   <Lightbox src="scaleway-rancher_dashboard.webp" alt="" />
-
 2. The clusters dashboard displays. Click **Deploy**:
 
   <Lightbox src="scaleway-rancher_menu.webp" alt="" />
-
 3. Enter the details of the workload:
 
     - **Name**: A friendly name for the workload.
@@ -129,7 +114,6 @@ The cluster is ready now and the deployment of a first pod can take place. A [Po
   <Lightbox src="scaleway-deploy_workload.webp" alt="" />
 
   Click **Launch** to create the workload.
-
 4. Once deployed, open a web browser and point it to `http://<rancher.example.com>:30000/`. The Nginx demo application displays:
 
   <Lightbox src="scaleway-nginx_demo_app.webp" alt="" />
@@ -141,15 +125,12 @@ Currently the Nginx demo application lives in a single pod and is deployed only 
 1. From the cluster dashboard, click **...** then on **Edit** in the pop-up menu:
 
   <Lightbox src="scaleway-workload_edit.webp" alt="" />
-
 2. Edit the Workload type and set the number of scalable deployments to **3**:
 
   <Lightbox src="scaleway-upgrade_service.webp" alt="" />
-
 3. Click **Save**. Rancher will now send instructions to Kubernetes to update the workload configuration and to deploy 3 pods running the Nginx demo application parallel.
 
   <Lightbox src="scaleway-workload_updated.webp" alt="" />
-
 4. Access the application running on the second instance by typing: `http://<second_instance_ip>:30000/` in a web browser. The Nginx demo application displays.
 
 For more information about [Rancher](https://rancher.com/docs/rancher/v2.x/en/) and [Kubernetes](https://kubernetes.io/docs/home/) refer to the official documentation.

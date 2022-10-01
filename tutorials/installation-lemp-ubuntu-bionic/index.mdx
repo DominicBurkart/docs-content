@@ -33,13 +33,11 @@ The [LEMP-Stack](https://lemp.io/) references a group of software that can be us
 ## Installing the stack
 
 1. [Connect to your Instance via SSH](/compute/instances/how-to/create-an-instance/)
-
 2. Use the `apt` package manager of Ubuntu to install the required packages. Make sure that the system is up to date and has the latest bug-fixes and updates installed by running the following command:
 
   ```bash
   apt update && apt -y upgrade
   ```
-
 3. Install the software stack:
 
   ```bash
@@ -54,7 +52,6 @@ The [LEMP-Stack](https://lemp.io/) references a group of software that can be us
   ufw allow 'Nginx HTTP'
   ufw allow 'OpenSSH'
   ```
-
 2. Enable ufw:
 
   ```bash
@@ -67,7 +64,6 @@ The [LEMP-Stack](https://lemp.io/) references a group of software that can be us
   Command may disrupt existing ssh connections. Proceed with operation (y|n)? y
   Firewall is active and enabled on system startup
   ```
-
 3. Check the status of ufw:
 
   ```bash
@@ -94,9 +90,7 @@ The [LEMP-Stack](https://lemp.io/) references a group of software that can be us
   ```bash
   mysql_secure_installation
   ```
-
 2. Press "Enter" when prompted for the current root password for the MariaDB server, as the password is not yet set.
-
 3. Press `Y` to enter a new password for the MariaDB root user:
 
   ```bash
@@ -105,9 +99,7 @@ The [LEMP-Stack](https://lemp.io/) references a group of software that can be us
 
   Set root password? [Y/n]
   ```
-
 4. Enter the new password and press `Enter`, then repeat this step.
-
 5. Keep the settings proposed by default when prompted by further questions, by pressing `Enter` each time.
 
 ## Configuring a Nginx server block
@@ -119,7 +111,6 @@ Nginx stores the configuration of virtual hosts in server blocks. All available 
   ```
   cd /etc/nginx/sites-available/
   ```
-
 2. Create a new server block configuration file and name it after the domain name that points to your Instance. Here we use `example.com`:
 
   ```
@@ -154,21 +145,17 @@ Nginx stores the configuration of virtual hosts in server blocks. All available 
     - `location /` — This location block checks the existence of a requested file. It will deliver either the file or return a 404 error.
     - `location ~ \.php$` — The second location block handles the PHP processing by pointing Nginx to the fastcgi-php.conf configuration file and the php7.2-fpm.sock file, which declares what socket is associated with php-fpm.
     - `location ~ /\.ht` — The last location block prevents .htaccess files to be processed by Nginx. Any .htaccess located in the directory root won't be served to visitors.
-
 3. Save and exit the file.
-
 4. Create a symbolic link to enable the server block. Replace `example.com` with your domain.
 
   ```bash
   ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
   ```
-
 5. Test the configuration for syntax errors.
 
   ```bash
   nginx -t
   ```
-
 6. Reload the Nginx configuration.
 
   ```bash
@@ -182,7 +169,6 @@ Nginx stores the configuration of virtual hosts in server blocks. All available 
   ```bash
   nano /var/www/html/phpinfo.php
   ```
-
 2. Put the following content in it:
 
   ```php
@@ -190,7 +176,6 @@ Nginx stores the configuration of virtual hosts in server blocks. All available 
   phpinfo();
   ?>
   ```
-
 3. Save the file and point your web browser to `http://example.com/phpinfo.php` (replacing `example.com` with your domain name). When you see an output like the following, it means PHP is set up correctly:
 
 <Lightbox src="scaleway-lemp-php72.webp" alt="" />
@@ -210,19 +195,16 @@ Let's Encrypt provides a [certbot](https://certbot.eff.org/) to configure Nginx 
   ```
 
   You may be warned that the PPA has been deprecated. You can press [ENTER] to continue adding it nonetheless.
-
 2. Install certbot.
 
   ```bash
   apt install python3-certbot-nginx
   ```
-
 3. Run certbot.
 
   ```bash
   certbot --nginx
   ```
-
 4. Answer the prompts.
 
   ```
@@ -270,13 +252,11 @@ Let's Encrypt provides a [certbot](https://certbot.eff.org/) to configure Nginx 
   You should test your configuration at:
   https://www.ssllabs.com/ssltest/analyze.html?d=example.com
   ```
-
 5. Reload the Nginx configuration.
 
   ```bash
   systemctl reload nginx
   ```
-
 6. Allow HTTPS in the firewall rules.
 
   ```

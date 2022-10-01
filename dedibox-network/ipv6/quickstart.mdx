@@ -30,7 +30,6 @@ You need to have at least one Dedibox dedicated server to order an IPv6 prefix.
 All Scaleway Dedibox dedicated servers support IPv6. You can request a free /48 IPv6 prefix for your account. This prefix can then be divided into multiple /56 or /64 subnets. IPv6 is available for Dedibox servers in Paris and Warsaw. 
 
 1. Click **Server** > **Network configuration** in the Dedibox console. The network configuration page displays. 
-
 2. Scroll to the bottom of the page and click **Order a free /48 IPv6 block**.
 
 The IPv6 prefix will be delivered within 30 minutes and will be visible on the network configuration page. 
@@ -52,9 +51,7 @@ This feature is not yet available for all servers. Only the servers that are com
 </Message>
 
 1. Click **Server** > **Server list** to display a list of all your servers.
-
 2. Click **Manage** next to the server you want to configure. The server's status page displays.
-
 3. Scroll down to the server's network section and click **Activate IPv6 SLAAC**.
 
   Your server's IPv6 SLAAC is activated now and displays in the network section. 
@@ -62,7 +59,6 @@ This feature is not yet available for all servers. Only the servers that are com
 ### How to configure the DHCPv6 client
 
 1. Log into your server using SSH. 
-
 2. Open the file `/etc/dhcp/dhclient6.conf` in a text editor, for example: `nano`, and edit it as shown below:
 
     ```
@@ -78,7 +74,6 @@ This feature is not yet available for all servers. Only the servers that are com
 To enable automatic start of the DHCPv6 client during system boot, a SystemD service is required. 
 
 1. Log into your server using SSH. 
-
 2. Open the file `/etc/systemd/system/dhclient.service` in a text editor, for example: `nano`, and edit it as shown below:
 
     ```
@@ -103,7 +98,6 @@ To enable automatic start of the DHCPv6 client during system boot, a SystemD ser
     The path to the `dhclient` binary may vary depending on your OS. To see the exact path for your system, use the following command: `which dhclient`.
 
     </Message>
-
 3. Enable the service so it will start at each reboot of the machine:
 
     ```

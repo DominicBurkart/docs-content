@@ -37,19 +37,16 @@ In this tutorial you will learn how to secure the Apache web server on Ubuntu Bi
   apt update
   apt upgrade -y
   ```
-
 2. Install the Apache Web Server:
 
   ```
   apt install apache2
   ```
-
 3. Create a directory for the website. In this tutorial `myweb.example.com` is being used. Replace it with your domain name whenever you see it:
 
   ```
   mkdir -p /var/www/html/myweb.example.com/public_html
   ```
-
 4. Create an index page for the website by running the following command:
 
   ```
@@ -69,13 +66,11 @@ In this tutorial you will learn how to secure the Apache web server on Ubuntu Bi
   </body>
   </html>
   ```
-
 5. Create a configuration file for the website, by making a copy of the default configuration:
 
   ```
   cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/myweb.example.com.conf
   ```
-
 6. Open the file in a text editor:
 
   ```
@@ -94,13 +89,11 @@ In this tutorial you will learn how to secure the Apache web server on Ubuntu Bi
   Once edited the file should look like this example:
 
   <Lightbox src="scaleway-config_apache.webp" alt="" />
-
 7. Activate the new site:
 
   ```
   a2ensite myweb.example.com
   ```
-
 8. Reload the Apache configuration to enable the new site:
 
   ```
@@ -139,7 +132,6 @@ Install Certbot via apt:
     You should test your configuration at:
     https://www.ssllabs.com/ssltest/analyze.html?d=myweb.example.com
     ```
-
 2. Verify the certificate by opening your site in a web browser:
 
   <Lightbox src="scaleway-ssl_enabled.webp" alt="" />
