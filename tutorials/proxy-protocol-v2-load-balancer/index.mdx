@@ -23,12 +23,10 @@ The protocol transports connection information including the originating IP addr
 This information can be useful for automatic delivery of localized contents, blacklisting of abusive users or for logging purposes.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
 - You have [created and configured a Load Balancer](/network/load-balancer/how-to/create-load-balancer/) in front of your servers
 - You have sudo privileges or access to the root user.
-
 </Message>
 
 When using a [Load Balancer](/network/load-balancer/concepts) in front of your web servers, the load balancer's IP address is passed by default to your web servers. This result is visible in the access log files of the web server:
@@ -43,9 +41,7 @@ When using a [Load Balancer](/network/load-balancer/concepts) in front of your w
 Only the IP `51.159.26.16` is visible in the log file, which is the Load Balancer's IP address and not the IP of the different users.
 
 <Message type="important">
-
 The originating IP is also visible in the `X-Forwarded-for:` HTTP header.
-
 </Message> 
 
 ## Enabling PROXY Protocol 
@@ -53,10 +49,8 @@ The originating IP is also visible in the `X-Forwarded-for:` HTTP header.
 You can enable proxy for your Load Balancer in two ways through the Scaleway console:
 
 1. - **Option 1**: Configure backend rules upon creating your Load Balancer.
-
   - **Option 2**: Click <Icon name="edit" />, in the **Backend tab** of an existing Load Balancer.
 2. Select a proxy option from the drop-down menu.
-
   <Lightbox src="scaleway-proxy-options.webp" alt="" />
 
 ## Configuring Proxy Protocol in Nginx Web Server
@@ -64,17 +58,14 @@ You can enable proxy for your Load Balancer in two ways through the Scaleway con
 The `proxy_protocol` parameter must be set within the `http {}` block of the listen directive of a server block to configure NGINX to accept PROXY protocol headers.
 
 1. Make sure that Nginx is installed with the `http_realip_module`. This is the case in the precompiled version that is delivered with Ubuntu Bionic Beaver (18.04).
-
   ```
   nginx -V 2>&1 | grep -- 'http_realip_module'
   ```
 2. Open the configuration file of nginx, i.e. `/etc/nginx/nginx.conf` in a text editor, for example, `nano`:
-
   ```
   nano /etc/nginx/nginx.conf
   ```
 3. Enable the `proxy_protocol` by adding/modifying the following lines in the `server {}` block:
-
   ```
   server {
       ...
@@ -84,17 +75,14 @@ The `proxy_protocol` parameter must be set within the `http {}` block of the lis
       }
   ```
 4. Set the IP address of the Load Balancer with the `set_real_ip_from` directive in the `server {}` block:
-
   ```
   set_real_ip_from 51.159.26.16;
   ```
 5. To change the IP address of the Load Balancer to the clients IP address, received from the PROXY protocol header, specify in the `server {}` block the `proxy_protocol` parameter to the real_ip_header directive:
-
   ```
   real_ip_header proxy_protocol;
   ```
 6. As the clients IP address is now known to Nginx, configure the correct logging of it. Set the `proxy_set_header` directive with the `$proxy_protocol_addr` variable in the `http {}` block:
-
   ```
   http {
       proxy_set_header X-Real-IP       $proxy_protocol_addr;
@@ -102,7 +90,6 @@ The `proxy_protocol` parameter must be set within the `http {}` block of the lis
   }
   ```
 7. Configure the `$proxy_protocol_addr` variable to the `log_format` directive in the http block:
-
   ```
   http {
       #...
@@ -112,7 +99,6 @@ The `proxy_protocol` parameter must be set within the `http {}` block of the lis
   }
   ```
 8. The configuration file should look like the following example:
-
   ```
   http {
       proxy_set_header X-Real-IP       $proxy_protocol_addr;
@@ -136,7 +122,6 @@ The `proxy_protocol` parameter must be set within the `http {}` block of the lis
     }
   ```
 9. Save the configuration file, exit the editor, and test the syntax of the file:
-
   ```
   nginx -t
   ```
@@ -167,23 +152,19 @@ The `proxy_protocol` parameter must be set within the `http {}` block of the lis
 The Proxy Protocol support in Apache is still in an early stage. It is currently not natively supported with the Apache version provided by Ubuntu. An unofficial plugin [is available](https://github.com/roadrunner2/mod-proxy-protocol) for Apache versions prior to 2.4.30. To use it, follow these steps:
 
 1. Download and install the required software components:
-
   ```
   apt install git apache2-dev
   ```
 2. Download the sources of the plugin and enter their directory:
-
   ```
   git clone https://github.com/roadrunner2/mod-proxy-protocol.git
   cd mod-proxy-protocol
   ```
 3. Build the plugin:
-
   ```
   apxs -i -a -c mod_proxy_protocol.c
   ```
 4. Activate the module in the configuration of the virtual host:
-
   ```
   <VirtualHost *:80>
       ...
@@ -192,7 +173,6 @@ The Proxy Protocol support in Apache is still in an early stage. It is currently
   </VirtualHost>
   ```
 5. Replace all `%h` by `%a` of the `LogFormat` directives in the Apache configuration file (`/etc/apache2/apache2.conf`):
-
   ```
   LogFormat "%v:%p %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined
   LogFormat "%a %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined
@@ -201,7 +181,6 @@ The Proxy Protocol support in Apache is still in an early stage. It is currently
   LogFormat "%{User-agent}i" agent
   ```
 6. Restart Apache to activate the new configuration:
-
   ```
   apache2ctl restart
   ```
@@ -215,18 +194,14 @@ The Proxy Protocol support in Apache is still in an early stage. It is currently
 ## Configuring Proxy Protocol in Apache with mod_remoteip
 
 <Message type="important">
-
 An Apache version >= 2.4.30 is required to use [mod_remoteip](https://httpd.apache.org/docs/2.4/mod/mod_remoteip.html#remoteipproxyprotocol). This version is currently not yet available in Ubuntu's repositories, and you have to install it by yourself. Use it only if you know what you are doing.
-
 </Message>
 
 1. Enable the module `remoteip`:
-
   ```
   a2enmod remoteip
   ```
 2. Configure the Apache virtual host configuration:
-
   ```
   <VirtualHost *:80>
       ...
@@ -235,7 +210,6 @@ An Apache version >= 2.4.30 is required to use [mod_remoteip](https://httpd.apac
   </VirtualHost>
   ```
 3. Restart the Apache web server:
-
   ```
   apache2ctl restart
   ```

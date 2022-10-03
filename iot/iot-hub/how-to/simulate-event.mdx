@@ -14,11 +14,9 @@ To demonstrate the use of Hub Events, the following tutorial allows you generate
 For more information about Hub Events, you can check out the [IoT Hub events documentation](/iot/iot-hub/reference-content/hubs/#events).
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [created an IoT Hub](/iot/iot-hub/how-to/create-hub)
 - You have [installed `mosquitto`](https://mosquitto.org/download/) on your local computer
-
 </Message>
 
 1. Click **IoT Hub** in the **IoT Station** section of the side menu. The list of your IoT Hubs displays.
@@ -43,7 +41,6 @@ For more information about Hub Events, you can check out the [IoT Hub events doc
         - `-m`: The **message** containing the information you want to transmit.
 8. Create a second *secured* device, named _secured device_ and **denying insecure** connections. 
 	<Message type="note">
-
 	This will be used to generate an mTLS error by using a device configured to `Deny Insecure` connections, and trying to connect with it.
 
 	</Message>
@@ -63,6 +60,7 @@ For more information about Hub Events, you can check out the [IoT Hub events doc
 		"packet":"CONNECT: dup: false qos: 0 retain: false rLength: 12"
 	}
 	```
+
 
 <Navigation title="See Also">
   <PreviousButton to="/iot/iot-hub/how-to/create-route/">How to create a route</PreviousButton>

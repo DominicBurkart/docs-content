@@ -21,13 +21,11 @@ Angular is a development platform that can scale from single-developer projects 
 * A suite of developer tools to develop, build, test, and update code
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com) 
 - You have a [Container Registry namespace](/compute/container-registry/how-to/create-namespace/)
 - You have installed Angular on your local computer 
 - You have installed Docker on your local machine to build and push the docker image
 - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
-
 </Message> 
 
 ## Creating a demo application
@@ -38,7 +36,6 @@ Angular is a development platform that can scale from single-developer projects 
   ```
 
   <Message type="important">
-
     Make sure `angular-cli` is installed on your local machine. If you have not installed it yet, run `sudo apt install angular-cli` on Ubuntu/Debian Linux based machines or install it using Homebrew on MacOS: `brew install angular-cli`. 
 
   </Message>
@@ -104,9 +101,7 @@ Angular is a development platform that can scale from single-developer projects 
 ## Building and publishing the Docker image
 
 <Message type="important">
-
   Make sure that you have [connected your namespace](/compute/container-registry/how-to/connect-docker-cli/) to the Docker CLI before running the following steps.
-
 </Message>
 
 1. Run the following command to build the Docker image: 
@@ -119,7 +114,6 @@ Angular is a development platform that can scale from single-developer projects 
   ```
 
   <Message type="tip">
-
     * Make sure you replace `demo-namespace` with the name of your [Container Registry namespace](/compute/container-registry/how-to/create-namespace/).
     * Make sure that the [privacy settings](/compute/container-registry/how-to/manage-image-privacy-settings/) of your namespace are set to **public**.
 
@@ -133,14 +127,10 @@ Angular is a development platform that can scale from single-developer projects 
 
 1. Click **Containers** in the Serverless section of the side menu of the Scaleway console. A list of your container namespaces displays. 
 2. Click the name of the namespace in which you want to deploy the application. The list of your containers displays.
-
 <Message type="tip">
-
   If you do not have a container namespace yet, click **+ Create a namespace** to create a new one. 
-
 </Message>
 3. Click **Deploy a Container**. The container deployment wizard displays. 
-
 Provide the following information to deploy the container:
   - Choose the pushed image in your registry's namespace and set the port value to 80. 
     <Lightbox src="scaleway-choose-container.webp" alt="" />

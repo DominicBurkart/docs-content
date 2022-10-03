@@ -20,13 +20,11 @@ dates:
 Many large technology companies use this tool to manage their software development life cycle. It was initially developed in Ruby and currently also uses Go and Vue.js as part of its technology stack.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
 - You have an Instance or Elastic Metal server running Ubuntu Bionic Beaver (18.04)
 - You have a domain or subdomain configured to point to the IP address of your Instance
 - You have [enabled the SMTP ports](/compute/instances/how-to/send-emails-from-your-instance/) to send emails from your Instance
-
 </Message>
 
 ## Installing GitLab
@@ -53,7 +51,6 @@ Many large technology companies use this tool to manage their software developme
   ```
 
   <Message type="important">
-
   GitLab will automatically request a [Let's Encrypt](/tutorials/configure-nginx-lets-encrypt/) certifcate for your domain name. Make sure you have pointed the `A-Record` of your domain to your Instances IP address to be able to obtain a valid certificate.
 
   </Message>
@@ -61,7 +58,6 @@ Many large technology companies use this tool to manage their software developme
 ## Creating a Database
 
 1. [Create a Managed PostgreSQL Database Instance](/managed-databases/postgresql-and-mysql/how-to/create-a-database/) from the Scaleway console. We name our database `gitlab_production`.
-
   You are taken to your Database's **Overview** page.
 2. Click the **Users** tab, then on **Add User**.
 3. Enter the username (`gitlab`) and a secure password. In the permission tab, give `ALL` permissions for the user on the `rdb` database.
@@ -98,9 +94,7 @@ For the following steps, you should be connected to the Ubuntu Bionic Beaver Ins
   gitlab-ctl reconfigure
   ```
 5. Seed the GitLab database:
-
   <Message type="important">
-
   This command overwrites your GitLab database. Be careful when using it. You will lose any previous data stored in the database.
 
   </Message>
@@ -114,7 +108,6 @@ For the following steps, you should be connected to the Ubuntu Bionic Beaver Ins
 ## Logging into GitLab
 
 1. Set the password for your root user with the following command:
-
   ```bash
   gitlab:password:reset[root]
   ```
@@ -122,7 +115,6 @@ For the following steps, you should be connected to the Ubuntu Bionic Beaver Ins
   Enter and confirm the password when prompted.
 2. Open your web browser and go to the URL you configured for GitLab (for example: `https://gitlab.example.com`)
 3. Log in using the user `root` and the password you defined in step 1.
-
   The GitLab dashboard displays. You can now configure your GitLab installation, add additional users and repositories. All data is stored securely on your Scaleway Database Instance:
   <Lightbox src="scaleway-gitlab_dashboard.webp" alt="" />
 

@@ -17,13 +17,11 @@ dates:
 [Rclone](https://rclone.org) provides a modern alternative to [rsync](https://en.wikipedia.org/wiki/Rsync). The tool communicates with any S3 compatible cloud storage provider as well as other storage platforms, and can be used to migrate data from one bucket to another, even if those buckets are in different regions.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
 - You have [generated your API key](/console/my-project/how-to/generate-api-key/)
 - You have at least two [Object Storage buckets](/storage/object/how-to/create-a-bucket/)
 - You have [created an Instance](/compute/instances/how-to/create-an-instance) that runs Ubuntu Focal Fossa
-
 </Message>
 
 ## Installing Rclone
@@ -194,7 +192,6 @@ dates:
   env_auth>
   ```
 5. Type `false` and hit enter, to enter your credentials in the next step.
-
   The following output displays:
   ```
   AWS Access Key ID.
@@ -203,7 +200,6 @@ dates:
   access_key_id>
   ```
 6. Enter your [API Access Key](/console/my-project/how-to/create-ssh-key/) and hit enter.
-
   The following output displays:
   ```
   AWS Secret Access Key (password)
@@ -212,7 +208,6 @@ dates:
   secret_access_key>
   ```
 7. Enter your API Secret Key and hit enter.
-
   The following output displays:
   ```
   Region to connect to.
@@ -225,7 +220,6 @@ dates:
   region>
   ```
 8. Enter your chosen region and hit enter. Here we choose `fr-par`.
-
   The following output displays:
   ```
   Endpoint for Scaleway Object Storage.
@@ -238,7 +232,6 @@ dates:
   endpoint>
   ```
 9. Enter your chosen endpoint and hit enter. Here we choose `s3.fr-par.scw.cloud`.
-
   The following output displays:
   ```
   Canned ACL used when creating buckets and storing or copying objects.
@@ -339,9 +332,7 @@ dates:
 14. Type `q` to quit the config, and hit enter.
 
 <Message type="note">
-
 If you want to be able to transfer data to or from a bucket in a different region to the one you just set up, repeat steps 1-14 again to set up a new remote in the required region. Simply enter the required region at steps 7 and 8. Similarly, you may wish to set up a new remote for a different Object Storage provider.
-
 </Message> 
 
 ## Migrating data
@@ -369,9 +360,7 @@ rclone sync --progress remote-sw-paris:my-first-bucket remote-sw-ams:my-third-bu
 ```
 
 <Message type="note">
-
 This migration may incur in costs from the Object Storage tool you are migrating **from** since they may or may not bill egress bandwitdth.
-
 </Message>
 
 For further information, and to discover other commands available, refer to the official [RClone S3 Object Storage Documentation](https://rclone.org/s3/). 

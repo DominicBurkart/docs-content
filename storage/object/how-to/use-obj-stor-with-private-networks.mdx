@@ -19,10 +19,8 @@ The [Public Gateway](/network/vpc/concepts#public-gateway) feature of the [Priva
 In this documentation, you will learn how to create an Instance without a public IP address, create a Private Network with a Public Gateway, and a route from your Instance to an Object Storage bucket.
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)  
   - You have [created an Object Storage bucket](/storage/object/how-to/create-a-bucket/)
-
 </Message>
 
 ## How to create an Instance without a public IP
@@ -34,14 +32,12 @@ Follow the instructions for [creating an Instance](/compute/instances/how-to/cre
   - **Advanced options:** Untick the flexible IP option
 
 <Message type="tip">
-
 You could also use one of the following methods to create your Instance:
 - Use [this link](https://console.scaleway.com/instance/servers/create?area=fr-par&imageGroup=distribution_ubuntu&imageKey=3f1b9623-71ba-4fe3-b994-27fcdaa850ba&region=fr-par-2&selectedImageTab=distribution&selectedServerGroup=Development&serverKey=fr-par-2DEV1-S) to have your Instance automatically configured in the console with the required parameters. Just click **Create an Instance** to launch the instance creation process.
 - If you have installed the Scaleway CLI tool, create the Instance using the following command: 
     ```
     scw instance server create type=DEV1-S zone=fr-par-1 image=ubuntu_bionic root-volume=l:20G name=objectstorage-over-pn ip=none
     ```
-
 </Message>
 
 ## How to create a Private Network and attach the Instance
@@ -67,7 +63,6 @@ You could also use one of the following methods to create your Instance:
 ## How to set the Object Storage Route
 
 1. SSH into your machine using the following command: 
-
     ```
     ssh root@your_virtual_instance_ip
     ```
@@ -78,7 +73,6 @@ You could also use one of the following methods to create your Instance:
 
     </Message>
 2. Configure the following route to the Object Storage platform: 
-
     ```sh
     # set this to keep the network on the instance
     $> ip route add 10.0.0.0/8 via `ip route | grep default | awk '{print $3} '` dev ens2
@@ -93,6 +87,7 @@ You could also use one of the following methods to create your Instance:
 ## Conclusion
 
 You have now configured an Instance with a Private Network to communicate with Scaleway's Object Storage platform using the Public Gateway feature. The gateway ensures the exchange of data between your Private Network and the public Internet.
+
 
 <Navigation title="See Also">
   <PreviousButton to="/storage/object/how-to/use-bucket-website/">How to set up a static website</PreviousButton>

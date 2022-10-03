@@ -21,13 +21,11 @@ Nextcloud is an open source, self-hosted file share and communication platform.
 Combining [Nextcloud](https://www.nextcloud.com) with Object Storage gives you infinite storage space for your personal cloud.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
 - You have an Instance running on Ubuntu Jammy Jellyfish (22.04)
 - You have [installed and configured](/tutorials/mariadb-ubuntu-bionic/) MariaDB on your Instance
 - You have sudo privileges or access to the root user.
-
 </Message>
 
 ## Installing Nextcloud
@@ -48,7 +46,6 @@ Combining [Nextcloud](https://www.nextcloud.com) with Object Storage gives you i
   ```
 
   <Message type="tip">
-
   Check the [Nextcloud changelog](https://nextcloud.com/changelog/) for the latest release.
 
   </Message>
@@ -95,7 +92,6 @@ Combining [Nextcloud](https://www.nextcloud.com) with Object Storage gives you i
   ```
 
   <Message type="tip">
-
   A self signed certificate may have some drawbacks if you want to make your Nextcloud installation publicly available, a warning may appear in the browser. If required, you can request a free signed certificate from [Let's Encrypt](https://letsencrypt.org).
 
   </Message>
@@ -108,9 +104,7 @@ Combining [Nextcloud](https://www.nextcloud.com) with Object Storage gives you i
 ### Configuring MariaDB
 
 <Message type="important">
-
 It is required thet you have configured your [MariaDB](/tutorials/mariadb-ubuntu-bionic/) server before you run these commands.
-
 </Message>
 
 1. Connect to the MariaDB server:
@@ -139,9 +133,7 @@ It is required thet you have configured your [MariaDB](/tutorials/mariadb-ubuntu
 Nextcloud can use Object Storage as primary storage. This gives you the possibility to store infinite data in your personal cloud.
 
 <Message type="important">
-
 Configuring Object Storage as primary storage on an existing Nextcloud instance will make all existing files on the instance inaccessible. It is therefore recommended to configure Object Storage on a fresh installation.
-
 </Message>
 
 1. Retrieve your `ACCESS-KEY` and `SECRET-KEY` from the [Scaleway console](https://console.scaleway.com/project/credentials/).
@@ -208,9 +200,7 @@ Configuring Object Storage as primary storage on an existing Nextcloud instance 
 <Lightbox src="scaleway-nextcloud-obstorage.webp" alt="" />
 
 <Message type="note">
-
 Accessing the web interface for the first time may take a moment, as Nextcloud configures the bucket in the background before displaying the interface.
-
 </Message>
 
 ### Configuring Object Storage as external storage in Nextcloud

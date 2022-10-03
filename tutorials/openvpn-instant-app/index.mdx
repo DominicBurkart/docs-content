@@ -23,11 +23,9 @@ OpenVPN InstantApp comes with:
 - a client configuration profile to set up your client
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
   - You have installed a VPN client on your local machine
-
 </Message>
 
 1. Click **Instances** in the **Compute** section of the side menu. The Instance creation page displays.
@@ -38,7 +36,6 @@ OpenVPN InstantApp comes with:
 ## Create a VPN user
 
 1. [Connect to your Instance](/compute/instances/how-to/connect-to-instance/) via SSH. Run the `scw-ovpn status` command to check if your OpenVPN server is ready:
-
   ```
   root@scw-charming-haibt:~# scw-ovpn status
 
@@ -49,7 +46,6 @@ OpenVPN InstantApp comes with:
       $ scw-ovpn
   ```
 2. Create a new user with the `scw-ovpn` tool.
-
   ```
   root@scw-942e6e:~# scw-ovpn
   This wrapper helps you manage your openvpn server.
@@ -96,13 +92,11 @@ OpenVPN InstantApp comes with:
       list all running openvpn Instances
   ```
 3. Run it with the following command:
-
   ```
   scw-ovpn create CLIENTNAME
   ```
   It will automatically generate the configuration for the client `CLIENTNAME`.
 4. Download the configuration file from your server either via SSH or by starting a HTTP server that provides an `URL` to download the files directly on your computer.
-
   ```
   scw-ovpn serve CLIENTNAME
   ```
@@ -119,10 +113,8 @@ OpenVPN InstantApp comes with:
   ```
 5. Download the configuration file from the `URL` displayed in the MOTD. We assume that you have already installed a VPN client.
 6. Open the configuration with your VPN client.
-
   <Lightbox src="scaleway-tunnelblick03.webp" alt="" />
 7. Start a new connection using the VPN profile we just installed once the configuration is loaded.
-
   <Lightbox src="scaleway-tunnelblick04.webp" alt="" />
 
 You are now connected and all your traffic is routed through the OpenVPN server. Check that your public IP matches the public IP of the server to ensure your configuration is correct. 

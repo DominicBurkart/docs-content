@@ -21,12 +21,10 @@ Scaleway Instances provide you with resources to develop, test code and deploy y
 
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway Console](https://console.scaleway.com/)
   - You have configured your [SSH Key](/console/my-project/how-to/create-ssh-key/)
   - You have generated your [API key](/console/my-project/how-to/generate-api-key/)
   - You have downloaded and installed the [Scaleway CLI v2](https://github.com/scaleway/scaleway-cli#scaleway-cli-v2)
-
 </Message>
 
 
@@ -34,7 +32,6 @@ Scaleway Instances provide you with resources to develop, test code and deploy y
 ## Configuring the CLI
 
 1. Open a terminal and type the following command, to configure the Scaleway CLI on your machine:
-
   `scw init`
   
   If you have already configured the CLI, you will see a message like the following:
@@ -51,14 +48,12 @@ Scaleway Instances provide you with resources to develop, test code and deploy y
   Do you want to override the current config? (Y/n):  
   ```
 2. Unless you want to change your configuration, you can type `n` and go directly to the [Creating an Instance](#creating-an-instance) step of this tutorial.
-
   If you have not yet configured the CLI, you will be guided through the configuration process via a series of questions:
 
   ```
   Enter a valid secret-key or an email
   ```
 3. Enter either the email address for your account (you will then be asked for your password), or your [API Secret Key](/console/my-project/how-to/create-ssh-key/):
-
   ```
   To improve this tool we rely on diagnostic and usage data.
   Sending such data is optional and can be disabled at any time by running "scw config set send-telemetry=false".
@@ -78,7 +73,6 @@ Scaleway Instances provide you with resources to develop, test code and deploy y
   What type of shell are you using (default: zsh):
   ```
 4. Hit enter if the default shell type is already correct for you. Otherwise, enter your shell type and hit enter.
-
   ```
   To enable autocomplete we need to append to /Users/yourusername/.zshrc the following lines:
   # Scaleway CLI autocomplete initialization.
@@ -98,7 +92,6 @@ Scaleway Instances provide you with resources to develop, test code and deploy y
 
 
 1. Type the following command in your terminal to obtain a local-image UUID:
-
   `scw marketplace image get label=ubuntu_focal`
 
   A list of local-images UUIDs from marketplace images displays: 
@@ -124,11 +117,9 @@ Scaleway Instances provide you with resources to develop, test code and deploy y
   ff48b73a-097d-4685-b996-d3ebe50636ea  fr-par-1  x86_64
   ```
 2. Type the following command in your terminal to create an Instance: 
-
   `scw instance server create zone=xx-xxx-x image=ubuntu_focal`
 
   <Message type="note">
-
   Replace `xx-xxx-x` with the availability zone you want to create your Instance in. If you want your availability zone to be in Paris for example, use `fr-par-1`. Refer to our [documentation](/compute/instances/concepts/#availability-zone) for more information about availability zones.
 
   </Message>
@@ -181,7 +172,6 @@ Scaleway Instances provide you with resources to develop, test code and deploy y
 
 
 1. Type the following command in your terminal to create an Instance volume with a size of 50GB: 
-
   `scw instance volume create size=50GB name=my-volume`
 
   You will see an output like the following:
@@ -201,18 +191,14 @@ Scaleway Instances provide you with resources to develop, test code and deploy y
   ```
 2. Write down the ID of your Instance, as you will need it in the next steps. 
 
-
 ## Creating and attaching a Block Volume to an Instance 
 
 
 <Message type="important">
-
   Block volumes are only available for `DEV1`, `GP1` and `RENDER` offers.
-
 </Message>
 
 1. Type the following command in your terminal to create a [Block Volume](/compute/instances/concepts/#block-volumes/): 
-
     `scw instance volume create size=10GB volume-type=b_ssd`
 
     Your Block Volume has been created: 
@@ -232,7 +218,6 @@ Scaleway Instances provide you with resources to develop, test code and deploy y
     
 2. Write down your Block Volume's ID as you will need it in the next steps. 
 3. Type the following command in your terminal to attach your Block volume to your Instance: 
-
   `scw instance server attach-volume server-id=n4m3-0f-y0Ur-s3rv3r-id volume-id=n4m3-0f-y0Ur-volume-id`
 
 
@@ -299,9 +284,7 @@ Your Instance has been powered off.
 ## Deleting an Instance
 
 <Message type="important">
-
   This action will delete all your volumes and data located on your storage server. To avoid losing data, it is recommended to perform regular snapshots.
-
 </Message>
 
 Ensure that your Instance is powered off, and type the following command in your terminal. Replace "your-server" with the ID of your server. 
@@ -314,6 +297,7 @@ You will see the following output:
 successfully deleted volume ubuntu_20.04_focal_fossa:volume-0 (20 GB l_ssd)
 
 ```
+
 
 <Navigation>
   <NextButton to="/compute/instances/api-cli/creating-backups/">Creating backups</NextButton>

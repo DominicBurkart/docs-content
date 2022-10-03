@@ -37,15 +37,12 @@ sudo yum install mtr
 ### On Windows
 
 <Message type="note">
-
 You have to install [WinMTR](https://sourceforge.net/projects/winmtr/) on your server.
-
 </Message>
 
 1. Download the application from its [project page](https://sourceforge.net/projects/winmtr/).
 2. Extract the archive and run the executable.
 3. Enter the target (IP) of your test in the Host textbox, then click on Start. Wait one or two minutes before you stop the test. You can then make a screenshot or export the result with the functions of the software.
-
 Example of MTR between a Scaleway Dedibox server and `free.fr`:
 
 ```
@@ -119,7 +116,6 @@ If your server is located at Amsterdam execute: root@163-172-30-2:~# iperf3 -c p
 2. Choose the latest version and download the file.
 3. Extract the file.
 4. Open a terminal and run the following command:
-
 ```
 \iperf3.exe -c ping.online.net -p 5203
 ```
@@ -140,10 +136,8 @@ The results show:
 Sometimes when you change the mode of your dedicated server from normal to rescue mode during the reboot of a server, you may see the following error message in your console:
 
 <Message type="important">
-
   **Your server's network port is off.** 
   If you just asked for a server reboot, or to boot in rescue or test mode, this message will only be displayed for a few seconds. Otherwise, our network equipment may be on protective mode due to non-authorized traffic. In this case, please ask the support team to unlock your server. 
-
 </Message>
 
 If this message is visible for a longer period or cycles every 5 minutes, it means your server is either distributing unauthorized traffic in the style of DHCP, distributing a MAC address that is not assigned to the server, ARP requests, too many requests per second in sending or receiving on your server.
@@ -151,7 +145,5 @@ If this message is visible for a longer period or cycles every 5 minutes, it mea
 If you continue to see this message, empty the cache of your browser as the old page may be kept in it. Alternatively, you can reload the page several times until the message disappears.
 
 <Message type="important">
-
   When setting up the WAN interface on a PfSense firewall you should disable auto-configuration, as it might cause an IPv6 packet flood shutting down your server's network port. If your network ports do not become available after a few minutes, you need to contact the support.
-
 </Message>

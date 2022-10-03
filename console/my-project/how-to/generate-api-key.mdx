@@ -24,7 +24,6 @@ Creating an API key can be done directly from the Scaleway console:
 3. Click **Generate new API key**. The following pop-up appears:
   <Lightbox src="scaleway-api-key-purpose.webp" alt="" />
 4. Add an **API Key purpose** (for your own reference), or leave this blank. Then click **Generate API Key**.
-
   The two parts of your API Key (access key and secret key) are displayed. Take careful note of the secret key, as it will not be recoverable or viewable after this point.
   <Lightbox src="scaleway-generate-api-key.webp" alt="" />
 5. Click **OK** to conclude.
@@ -34,24 +33,19 @@ Creating an API key can be done directly from the Scaleway console:
 This is an example of one way you can use your API key: to make a call to the Scaleway Authentication API. You will store your access key and secret key as environment variables. Then, you will use [curl](https://curl.se/) to call the Scaleway API and authenticate yourself with your API key. You will receive back a token containing information about your account, including your **user_id**, **project_id** and **organization_id**, among other details.
 
 <Message type="tip">
-
   These instructions are for Linux/Mac operating systems. For Windows, when storing environment variables, use the `set` command instead of `export`.
-
 </Message>
 
 1. Open a terminal and execute the following commands. Replace **your_access_key** and **your_secret_key** with the access and secret keys you generated at the previous step.
-
   ```
   export SCW_ACCESS_KEY=your_access_key
   export SCW_SECRET_KEY=your_secret_key
   ```
   <Message type="tip">
-
   You will need to repeat these `export` commands every time you open a new shell session. To avoid the need for repetition, open your `~/.bashrc` or `~/.zshrc` files in a text editor and append the export commands to the file. Save and exit the file, and perform `source ~/.bashrc` (or `source ~/.zshrc`) to finish.
 
   </Message>
 2. Execute the following command:
-
 ```
 curl https://account.scaleway.com/tokens/$SCW_ACCESS_KEY -H "X-Auth-Token: $SCW_SECRET_KEY"
 ```
@@ -82,6 +76,7 @@ You will receive a response similar to the following:
 ```
 
 You can use your API key to authenticate yourself against the [Scaleway Developer API](https://developers.scaleway.com/en/), and use this to create and manage all your Scaleway resources.
+
 
 <Navigation title="See Also">
   <PreviousButton to="/console/my-project/how-to/create-ssh-key/">How to generate an SSH Key</PreviousButton>

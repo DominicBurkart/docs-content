@@ -18,13 +18,11 @@ Socket.io enables real-time event-based communication between one or more client
 Learn how to install and use Socket.io with Express using the `npm` package manager, and create a simple chat server to see the basics of how a client and server work together.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have a [Scaleway Instance](/compute/instances/how-to/create-an-instance/) running Ubuntu Xenial or a later version
 - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
 - You have root access to the Instances you want to manage
 - You have [Node.js](https://nodejs.org/en/) and [NPM (Node Package Manager)](https://www.npmjs.com/) installed on your Instance. 
-
 </Message>
 
 ## Installing Express.js and Socket.io
@@ -32,25 +30,21 @@ Learn how to install and use Socket.io with Express using the `npm` package mana
 Express is a minimal and flexible Node.js web application framework.
 
 1. Create a folder and change the directory. In this tutorial we call the folder `myapp`.
-
   ```
   mkdir myapp
   cd myapp
   ```
 2. Use `npm init` to create a package.json.
-
   ```
   npm init
   ```
 
   The `npm init` command creates an empty project with a `package.json` file. You can answer all the questions or press enter through all of them if you do not want to.
 3. Install Express and Socket.io using the `npm` package manager, and save them to our `package.json` file for later.
-
   ```
   npm install socket.io express --save
   ```
 4. Install jquery using `npm`.
-
   ```
   npm install jquery --save
   ```
@@ -58,12 +52,10 @@ Express is a minimal and flexible Node.js web application framework.
 ## Creating an Express server
 
 1. Create a new file in the `myapp` folder. 
-
   ```
   nano app.js
   ```
 2. Paste the following code in the file, save and exit.
-
   ```js
   // app.js
   var express = require('express');
@@ -85,12 +77,10 @@ Express is a minimal and flexible Node.js web application framework.
 
   `App.get` routes HTTP requests to the specified path with a specific call-back function. The `res` object represents the HTTP response that an Express app sends when it gets a request. The `sendFile` sends the file to the specified path. The `server.listen` opens a port and listens for requests coming in.
 3. Create an `index.html` file in the `myapp` folder to display a `Hello World` message in the socket.
-
   ```
   nano index.html
   ```
 4. Paste the following content in the file:
-
   ```html
   <!doctype html>
   <html lang="en">
@@ -112,12 +102,10 @@ Express is a minimal and flexible Node.js web application framework.
 
   The src scripts point to files in our `node_modules` folder.
 5. Launch the server.
-
   ```
   node app.js
   ```
 6. Open a browser and enter `http://<IP_address>:4200`. It should display the following:
-
 <Lightbox src="scaleway-Hello_world.webp" alt="Hello World" />
 
 ## Connecting a client to a server using Socket.io
@@ -125,7 +113,6 @@ Express is a minimal and flexible Node.js web application framework.
 In the next steps we connect the client to the server with Socket.io and have it respond in the console.
 
 1. In the `app.js` file, edit the `index.html` to add the script to the bottom of the file.
-
   ```html
   <!--Index.html-->
   ...
@@ -139,7 +126,6 @@ In the next steps we connect the client to the server with Socket.io and have it
 
   The `socket.on('connect')` is an event fired upon a successful connection from the web browser. We then have a function callback that sends the `hello world` message to the server.
 2. Edit the `app.js` file to add the following configuration. Add the configuration before `server.listen`.
-
   ```js
   // app.js
 
@@ -156,7 +142,6 @@ In the next steps we connect the client to the server with Socket.io and have it
     - `io.on` - is listening for connections. When it receives one it will report to the console `client connected...`. 
     - `'client.on('join')` - waits for a message from the client to `join`. It will then log in to the console.
 3. Launch `node` again.
-
   ```
   node app.js
   ```
@@ -166,13 +151,10 @@ In the next steps we connect the client to the server with Socket.io and have it
 ## Setting up the Socket server
 
 <Message type="important">
-
 You must set up your server locally before following the next steps. 
-
 </Message>
 
 1. Add the `emit` line after console.log.
-
   ```js
   // app.js
   io.on('connection', function(client) {
@@ -188,7 +170,6 @@ You must set up your server locally before following the next steps.
 
     - `client.emit` will send a message back to the client that just connected with a message using 'messages'.
 2. Add a new `socket.on` message event in the `index.html`.
-
   ```js
   // index.html
           socket.on('messages', function(data) {
@@ -203,7 +184,6 @@ You must set up your server locally before following the next steps.
 In the previous examples we learned that we can send a message to the server and also send one back to the client. You can also send a message to all the clients excluding the socket that started it.
 
 1. Update the `index.html` file as follows.
-
   ```html
   <script>
   var socket = io.connect('http://51.15.244.129:4200');
@@ -227,7 +207,6 @@ In the previous examples we learned that we can send a message to the server and
 
   Also, we added a new socket event listener for 'broad' which updates our div with the message returned.
 2. Update the `app.js` file.
-
   ```js
   // app.js
   ...

@@ -19,19 +19,16 @@ dates:
 [The Scaleway Command Line Interface (CLI)](https://github.com/scaleway/scaleway-cli) allows you to pilot your Scaleway infrastructure directly from your terminal, providing a faster way to administer and monitor your resources. Scaleway CLI is easy to set up and is an essential tool for operating efficiently in your cloud environment. 
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway Console](https://console.scaleway.com/)
   - You have generated your [API key](/console/my-project/how-to/generate-api-key/)
   - You have downloaded and installed the [Scaleway CLI](https://github.com/scaleway/scaleway-cli#scaleway-cli-v2)
   - You have downloaded [S3cmd](https://github.com/s3tools/s3cmd), [rclone](https://rclone.org/downloads/) and [mc](https://github.com/minio/mc) s3 tools
-
 </Message>
 
 
 ## Configuring the CLI
 
 1. Open a terminal and type the following command, to configure the Scaleway CLI on your machine:
-
     `scw init`
   
    If you have already configured the CLI, you will see a message like the following:
@@ -48,14 +45,12 @@ dates:
     Do you want to override the current config? (Y/n):  
     ```
 2. Type `n` and go directly to the [Creating a configuration file for the Scaleway CLI v2](#creating-a-configuration-file-for-the-scaleway-cliv2) step of this tutorial if you do not want to edit your configuration.
-
     If you have not yet configured the CLI, you will be guided through the configuration process via a series of questions:
 
     ```
     Enter a valid secret-key or an email
     ```
 3. Enter either the email address for your account (you will then be asked for your password), or your [API Secret Key](/console/my-project/how-to/generate-api-key/):
-
     ```
     To improve this tool we rely on diagnostic and usage data.
     Sending such data is optional and can be disabled at any time by running "scw config set send-telemetry=false".
@@ -75,7 +70,6 @@ dates:
     What type of shell are you using (default: zsh):
     ```
 4. Hit enter if the default shell type is already correct for you. Otherwise, enter your shell type and hit enter.
-
     ```
     To enable autocomplete we need to append to /Users/yourusername/.zshrc the following lines:
     # Scaleway CLI autocomplete initialization.
@@ -83,7 +77,6 @@ dates:
     Do you want to proceed with these changes? (Y/n):
     ```
 5. Type `y` or `n` and hit enter. This should complete the configuration process:
-
     ```
     Initialization completed with success.
     ```
@@ -93,13 +86,10 @@ dates:
 
 
 <Message type="important">
-
   Unless you add a region argument to your commands, the configuration file will be set for the default region. 
-
 </Message>
 
 1. Type the following command in your terminal to create a configuration file with `rclone`: 
-
     `scw object config get type=rclone`
     
     You will see the following output: 
@@ -123,7 +113,6 @@ dates:
     storage_class =
     ```
 2. Type the following command in your terminal to create a configuration file with `s3cmd`: 
-
     `scw object config get type=s3cmd` 
 
     You will see the following output:
@@ -142,7 +131,6 @@ dates:
     use_https = True
     ```
 3. Type the following command in your terminal to create a configuration file with `mc`:
-
     `scw object config get type=mc`
 
     You will see the following output:
@@ -154,9 +142,7 @@ dates:
     ```
 
 <Message type="note">
-
- For more information about generating a configuration file, type the following command: `scw object config get --help` in your terminal.
-
+  For more information about generating a configuration file, type the following command: `scw object config get --help` in your terminal.
 </Message>
 
 
@@ -164,7 +150,6 @@ dates:
 ## Installing a configuration file for S3 tools (s3cmd, rclone, and mc)
 
 1. Type the following command in your terminal to install a configuration file for `s3cmd`: 
-
     `scw object config install type=s3cmd`
 
     You will see an output similar to this:
@@ -174,7 +159,6 @@ dates:
     Configuration file successfully installed at /Users/yourusername/.s3cfg.
     ```
 2. Type the following command in your terminal to install a configuration file for `rclone`:
-
     `scw object config install type=rclone`
 
     You will see an output similar to this:
@@ -184,7 +168,6 @@ dates:
     Configuration file successfully installed at /Users/yourusername/.config/rclone/rclone.conf.
     ```
 3. Type the following command in your terminal to install a configuration file for `mc`:
-
     `scw object config install type=mc`
 
     You will see an output similar to this: 
@@ -199,7 +182,6 @@ dates:
 
 
 1. Type the following command in your terminal to create a bucket:
-
     `s3cmd mb s3://your-bucket`
 
     You will see the the following output:
@@ -208,7 +190,6 @@ dates:
     Bucket 's3://your-bucket/' created
     ```
 2. Type the following command in your terminal to add an object to your storage:
-
   `s3cmd put file /Users/yourusername/.config/scw/config.yaml s3://your-bucket/your-object`
 
   You will see the following output:
@@ -234,22 +215,18 @@ dates:
   ```
 
 <Message type="note">
-
   For more information about removing objects type the following command: `s3cmd --help` in your terminal.
-
 </Message>
 
 
 ## Deleting an Object Storage bucket 
 
   <Message type="important">
-
    This will result in the deletion of every object stored inside your bucket. Your bucket name will no longer be yours and other users will be able to use it.
 
   </Message>
 
 1. Type the following command in your terminal to display your buckets:
-
   `s3cmd ls`
 
   You will see an output similar to the following:
@@ -259,7 +236,6 @@ dates:
   2021-09-01 15:56  s3://name-of-your-bucket
   ```
 2. Type the following command in your terminal to delete a bucket:
-
   `s3cmd rb s3://your-bucket-name`
 
   You will see the following output:
@@ -269,10 +245,9 @@ dates:
   ```
 
 <Message type="tip">
-
- For more information about the s3 tools used in this documentation, refer to the official [rclone](https://rclone.org/docs/), [s3cmd](https://s3tools.org/s3cmd-howto), and [mc](https://github.com/minio/mc) documentations. 
-
+  For more information about the s3 tools used in this documentation, refer to the official [rclone](https://rclone.org/docs/), [s3cmd](https://s3tools.org/s3cmd-howto), and [mc](https://github.com/minio/mc) documentations. 
 </Message>
+
 
 <Navigation title="See Also">
   <PreviousButton to="/storage/object/api-cli/lifecycle-rules-api">Managing the lifecycle of objects</PreviousButton>

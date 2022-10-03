@@ -20,30 +20,25 @@ dates:
 When storing data on your Instances, some of your data might be in the form of sensitive commercial or client information. This data falling in the wrong hands could cause serious damage to your business. Therefore it is recommended to encrypt sensitive data stored on a volume of your Instance. Encrypting the whole volume has the advantage that you do not have to worry if some folders are encrypted or not. You simply store all sensitive information on the encrypted volume and you know that the data is safe under a layer of encryption. This tutorial explains how to configure [Cryptsetup](https://gitlab.com/cryptsetup/cryptsetup/) to encrypt an additional volume with [LUKS](https://en.wikipedia.org/wiki/Linux_Unified_Key_Setup), a platform-independent standard on-disk format for use in various tools.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
 - You have [created an Instance](/compute/instances/how-to/create-an-instance/)
 - You have [a second Block Storage volume connected to the Instance](/storage/block/how-to/attach-a-volume/)
 - You have sudo privileges or access to the root user.
-
 </Message>
 
 ## Installing Cryptsetup
 
 1. [Connect to your Instance via SSH](/compute/instances/how-to/connect-to-instance/)
 2. Update the apt sources and the software already installed on the Instance:
-
   ```
   apt update && apt upgrade -y
   ```
 3. Install Cryptsetup on the Instance:
-
   ```
   apt install cryptsetup-bin
   ```
 4. Enter the command `lsblk`. This lists your volumes to help you to determine which is the additional volume to encrypt:
-
   ```
   root@encrypted-disk:~# lsblk
   NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
@@ -56,21 +51,17 @@ When storing data on your Instances, some of your data might be in the form of s
 In this example the space of `vdb` is not mounted and represents the additional volume of the Instance.
 
 <Message type="note">
-
 The name of your additional volume may be different, eg `sda` or other, depending on the Instance type and OS. Replace with the name corresponding to your volume where necessary.
-
 </Message>
 
 ## Encrypting the volume
 
 1. Encrypt the volume vdb with Cryptsetup:
-
   ```
   cryptsetup luksFormat /dev/vdb
   ```
 
   <Message type="tip">
-
   On low memory Instances your may run into `out of memory` (OOM) errors when running `cryptsetup luks{Format,Open}` commands on large volumes. To avoid them, add `--pbkdf pbkdf2` to your command: 
   ```
   cryptsetup luksFormat --pbkdf pbkdf2 /dev/vdb
@@ -88,7 +79,6 @@ The name of your additional volume may be different, eg `sda` or other, dependin
   Are you sure? (Type uppercase yes):
   ```
 2. Type `YES` and press the Enter key, to confirm you want to overwrite the data.
-
   <Message type="important">
   
   Make sure you have a backup of your data on this volume before you launch Cryptsetup. Your data will be irrevocably overwritten and lost.
@@ -97,12 +87,9 @@ The name of your additional volume may be different, eg `sda` or other, dependin
 
   A message appears, asking you to configure a passphrase. A passphrase is the key to decrypt the data on the volume. 
 3. Type your passphrase and press Enter. For increased security, your passphrase should be a secure and random phrase. If required, you may use a [Passphrase generator](https://www.useapassphrase.com/).
-
   A message appears, asking you to verify your passphrase.
 4. Type your passphrase again to confirm it, then press Enter on your keyboard to encrypt the disk.
-
   <Message type="important">
-
   If you forget your passphrase, you will not be able to recover your data. Make sure that you store your password securely.
 
   </Message>
@@ -112,17 +99,14 @@ Your volume is now encrypted.
 ## Mapping the encrypted volume
 
 1. Type the following command to create a mapping (`crypthome`) of the volume:
-
   ```
   cryptsetup luksOpen /dev/vdb crypthome
   ```
 2. Enter your passphrase when requested, and press the Enter key on your keyboard:
-
   ```
   Enter passphrase for /dev/vdb:
   ```
 3. Run the following command to verify the status of the encrypted volume:
-
   ```
   cryptsetup -v status crypthome
   ```
@@ -148,12 +132,10 @@ Your volume is now encrypted.
 Start by writing zeros to the encrypted volume. This allocates zeros to block data, to ensure that it appears as random data. This provides protection against disclosure of usage patterns:
 
 1. Install `pv` (if not already installed) by running the following command:
-
   ```
   apt install pv
   ```
 2. Launch the following command to run `dd`:
-
   ```
   pv -tpreb /dev/zero | dd of=/dev/mapper/crypthome bs=128M
   ```
@@ -174,7 +156,6 @@ Start by writing zeros to the encrypted volume. This allocates zeros to block da
   49997902848 bytes (50 GB, 47 GiB) copied, 331.56 s, 151 MB/s
   ```
 3. Create a filesystem on the encrypted volume by running the following command:
-
   ```
   mkfs.ext4 /dev/mapper/crypthome
   ```
@@ -198,17 +179,14 @@ Start by writing zeros to the encrypted volume. This allocates zeros to block da
 ## Mounting the encrypted volume
 
 1. Create a folder to mount the volume:
-
   ```
   mkdir /mnt/crypthome
   ```
 2. Mount the encrypted volume with the following command:
-
   ```
   mount /dev/mapper/crypthome /mnt/crypthome/
   ```
 3. Verify with `lsblk` that the volume is mounted:
-
   ```
   NAME        MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT
   vda         252:0    0 46.6G  0 disk
@@ -223,17 +201,14 @@ Start by writing zeros to the encrypted volume. This allocates zeros to block da
 ## Unmounting the encrypted volume
 
 1. Unmount the volume from your Instance:
-
   ```
   umount /mnt/crypthome
   ```
 2. Close the LUKS session with Cryptsetup:
-
   ```
   cryptsetup luksClose crypthome
   ```
 3. Verify that the volume has been unmounted with `lsblk`:
-
   ```
   NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
   vda     252:0    0 46.6G  0 disk
@@ -252,17 +227,14 @@ Start by writing zeros to the encrypted volume. This allocates zeros to block da
 ## Remounting the encrypted volume
 
 1. Use Cryptsetup to open the LUKS session and enter the passphrase when prompted:
-
   ```
   cryptsetup luksOpen /dev/vdb crypthome
   ```
 2. Mount the volume in the Instance:
-
   ```
   mount /dev/mapper/crypthome /mnt/crypthome
   ```
 3. Verify that the volume appears with `lsblk` :
-
   ```
   NAME        MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT
   vda         252:0    0 46.6G  0 disk
@@ -284,7 +256,6 @@ Start by writing zeros to the encrypted volume. This allocates zeros to block da
 LUKS supports up to 8 passphrases for each encrypted volume. You may wish to change the passphrase of your encrypted volume, which you can do as follows:
 
 1. Check if there is still space available by retrieving the LUKS headers:
-
   ```
   cryptsetup luksDump /dev/vdb
   ```
@@ -303,7 +274,6 @@ LUKS supports up to 8 passphrases for each encrypted volume. You may wish to cha
 
   As you can see 7 slots are available for the volume.
 2. Type the following command and enter any current passphrase:
-
   ```
   cryptsetup luksAddKey /dev/vdb
   ```
@@ -315,7 +285,6 @@ LUKS supports up to 8 passphrases for each encrypted volume. You may wish to cha
   Verify passphrase:
   ```
 3. Verify that the new passphrase has been taken into account by retrieving the LUKS headers:
-
   ```
   cryptsetup luksDump /dev/vdb
   ```
@@ -333,14 +302,12 @@ LUKS supports up to 8 passphrases for each encrypted volume. You may wish to cha
 
   As you can see only 6 slots are available now, meaning that the new key has been configured.
 4. Remove the old passphrase with the following command:
-
   ```
   cryptsetup luksRemoveKey /dev/vdb
   ```
 
   Enter the passphrase to delete and confirm by pressing Enter.
 5. Verify that the key has been removed by retrieving the LUKS headers:
-
   ```
   cryptsetup luksDump /dev/vdb
   ```

@@ -23,47 +23,36 @@ dates:
 This tutorial guides you through the installation of pfSense on a [Scaleway Dedibox](https://www.scaleway.com/en/dedibox/) server, the automatic configuration of failover IPs, and loadbalancing using HAProxy/Acme. It was written in collaboration with our community member [shannara](https://github.com/shannara).
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
   -  You have [created an Elastic Metal server](/compute/elastic-metal/how-to/create-server) or have a [Scaleway Dedibox](https://www.scaleway.com/en/dedibox/)
-
 </Message>
 
 ## Installing pfSense
 
 <Message type="important">
-
 The installation of pfSense is done using the [KVM-over-IP device](/dedibox/kvm-over-ip/quickstart/) of the Elastic Metal server or the Scaleway Dedibox.
-
 </Message>
 
 1. Connect to the [KVM-over-IP device](/dedibox/kvm-over-ip/quickstart/) of your Elastic Metal server or Scaleway Dedibox.
 2. Depending on the type of the KVM-over-IP device, you can either mount a locally downloaded [pfSense ISO Image](https://www.pfsense.org/download/) or mount a virtual media from a [network share](https://virtualmedia.online.net/pfsense/).
 3. Boot the server from the ISO file or the virtual CD ROM drive.
 4. The pfSense install wizard displays. Accept the copyright and distribution notice by pressing the Enter key on your keyboard:
-
   <Lightbox src="scaleway-pfsense_install_01.webp" alt="" />
 5. The pfSense welcome screen displays, select **Install** and confirm by pressing Enter to launch the setup wizard:
-
   <Lightbox src="scaleway-pfsense_install_02.webp" alt="" />
 6. Choose the Keymap for your pfSense installation. By default, the `US` keymap is preselected. Select the desired keymap from the list and confirm by pressing Enter:
-
   <Lightbox src="scaleway-pfsense_install_03.webp" alt="" />
 7. Choose the disk to install pfSense on. If your server has more than one disk, choose `ada0` as installation destination. Press Enter to confirm.
-
   <Message type="important">
-
   All data on the disk will be deleted during the installation of pfSense. Make sure to have a backup of data stored on the disk if you re-install your machine.
 
   </Message>
 
   <Lightbox src="scaleway-pfsense_install_04.webp" alt="" />
 8. Select the partition scheme for the volume. The default option is `MBR`. You can keep this value and confirm by pressing Enter:
-
   <Lightbox src="scaleway-pfsense_install_05.webp" alt="" />
 9. The setup wizard starts copying the data from the virtual CD ROM drive to the servers hard disk. This may take a while depending on the connection speeds:
-
   <Lightbox src="scaleway-pfsense_install_06.webp" alt="" />
 
 10. The automatic installation finishes. Choose **Yes** and confirm by pressing on Enter to open a shell in the newly installed system to run a manual configuration:
@@ -98,7 +87,6 @@ Once rebooted, the pfSense welcome screen displays:
 
 1. Press `1` to assign the network interfaces.
 2. The network configuration wizard launches :
-
   ```
   Should VLANs be set up now [y|n]?
   ```
@@ -129,7 +117,6 @@ Once rebooted, the pfSense welcome screen displays:
 ### First Connection to the Web Interface
 
 1. Open a web browser and point it to `https://<server_public_ip>`. The pfSense Web Interface displays. Log in using the user **admin** and the password **pfsense**:
-
   <Lightbox src="scaleway-pfsense_setup_01.webp" alt="" />
 
   <Message type="important">
@@ -138,33 +125,26 @@ Once rebooted, the pfSense welcome screen displays:
 
   </Message>
 2. Once logged in, the pfSense setup wizard displays:
-
   <Lightbox src="scaleway-pfsense_setup_02.webp" alt="" />
 
   Click **Next** to move forward.
 3. In the second step, the wizard proposes different support options, proceed by clicking on **Next** if you do not need them.
 4. Enter general information about the pfSense server. These include the **Hostname** and the **Domain** of the server. Leave **Primary DNS Server** and **Secondary DNS Server** empty and the option **Override DNS** checked. Click **Next** to continue:
-
   <Lightbox src="scaleway-pfsense_setup_04.webp" alt="" />
 5. Configure the [NTP Time Server](https://en.wikipedia.org/wiki/Network_Time_Protocol). You can leave the default value and set the **Timezone** to **Europe/Paris**, then click **Next** to continue:
-
   <Lightbox src="scaleway-pfsense_setup_05.webp" alt="" />
 6. Set a [strong and secure](https://passwordsgenerator.net/) password, confirm it and click **Next**
-
   <Lightbox src="scaleway-pfsense_setup_06.webp" alt="" />
 7. Setup is complete now. Click **Finish** to exit the wizard and start configuring rules.
-
   <Lightbox src="scaleway-pfsense_setup_07.webp" alt="" />
 
 ### Configuring Remote Access to the Web Interface
 
 1. Click **Firewall** > **Rules** to display a list of the configured firewall rules:
-
   <Lightbox src="scaleway-pfsense_firewall_rules.webp" alt="" />
 
   You can see the **Anti-Lockout Rule**, which allows the connection to the web interface in the current state of the firewall. This rule will be deleted once the LAN interface is set up.
 2. To avoid being locked out from the configuration interface, create a new rule by clicking on **Add**.
-
   Configure the rule as follows:
 
   | Settings | Description |
@@ -181,7 +161,6 @@ Once rebooted, the pfSense welcome screen displays:
 
   Save the rule once all settings are configured.
 3. Go to **System** > **Advanced** and change the **TCP port** in the **WebConfigurator** settings to `31337` to match the previously configured rules.
-
   <Lightbox src="scaleway-pfsense_configure_tcp_port.webp" alt="" />
 4. Save the settings by clicking on **Save** at the bottom of the page.
 
@@ -200,7 +179,6 @@ In this tutorial, we will configure a cluster of two pfSense servers that are us
 
 1. From the pfSense web interface, go to **Interfaces** > **Assignments** and click the **VLANs** tab.
 2. Click **+ Add** to configure the VLAN on the physical LAN interface:
-
   | Settings | Description |
   |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
   | **Parent interface** | Select the second interface (in this example `igb1`) |
@@ -209,7 +187,6 @@ In this tutorial, we will configure a cluster of two pfSense servers that are us
   | **Description** | `lan` |
 3. Click Save.
 4. Repeat steps two and three with the following parameters:
-
   | Settings | Description |
   |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
   | **Parent interface** | Select the second interface (in this example `igb1`) |
@@ -227,7 +204,6 @@ In this tutorial, we will configure a cluster of two pfSense servers that are us
   | **Description** | `failover` |
 5. From the pfSense web interface, go to **Interfaces** > **Interface Assignments**.
 6. From the drop-down menu **Available network ports** select:
-
     - `VLAN 2002 on igb1 (lan)` and click **+ Add**
     - `VLAN 2000 on igb1 (pfsync)` and click **+ Add**
     - `VLAN 2001 on igb1 (failover)` and click **+ Add**
@@ -235,7 +211,6 @@ In this tutorial, we will configure a cluster of two pfSense servers that are us
 
   Then click **Save**.
 7. Set the MTU value to `9000` for the physical network adapter by clicking on **Interfaces** > **OPT3**. Set the following parameters:
-
   | Settings | Description |
   |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
   | **Description** | `RPN_NIC` |
@@ -243,7 +218,6 @@ In this tutorial, we will configure a cluster of two pfSense servers that are us
 
   Then click **Save** and **Apply Changes** to complete the configuration of the RPN NIC.
 8. Configure the **PFSYNC** interface by clicking on **Interfaces** > **OPT1**
-
   | Settings | Description |
   |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
   | **Enable**: | Check the box **Enable Interface** |
@@ -254,7 +228,6 @@ In this tutorial, we will configure a cluster of two pfSense servers that are us
 
   Then click **Save** and **Apply Changes** to complete the configuration of the `PFSYNC` interface.
 9. Configure the local network by clicking on **Interfaces** > **LAN** and configure it as follows:
-
   | Settings | Description |
   |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
   | **Enable**: | Check the box **Enable Interface** |
@@ -273,7 +246,6 @@ Backup and download the configuration to deploy it on the second machine.
 1. Go to **Diagnostics** > **Backup & Restore**.
 2. In the **Backup Configuration** tab, click **Download configuration as XML** to download and save the configuration. The downloaded file named `config-<hostname>-<timestamp>.xml` contains all the configuration of pfSense (admin account, interfaces, vlan settings, firewall rules). The downloaded file can be used to deploy a second pfSense machine, based on the **identical** hardware configuration.
 3. Once downloaded, copy the file to a new configuration:
-
   ```
   cp config-<hostname>-<timestamp>.xml config-pf2-<timestamp>.xml
   ```
@@ -288,14 +260,11 @@ Backup and download the configuration to deploy it on the second machine.
 Before configuring High Availability, rules to allow `pfsync` traffic have to be created on both firewalls.
 
 <Message type="note">
-
 The following steps have to be executed on both firewalls.
-
 </Message>
 
 1. From the pfSense web interface, go to **Firewall** > **Rules** > **PFSYNC**.
 2. Click the first **Add** in the new **Edit Firewall Rule** and configure the rule as follows:
-
   | Settings | Description |
   |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
   | **Action** | leave `Pass` |
@@ -307,11 +276,9 @@ The following steps have to be executed on both firewalls.
   | **Destination** | select `PFSYNC net`, to allow only traffic to `pfsync` network |
   | **Description** | enter `pfsync link` |
 3. Click **Save** to validate and test the configuration, then click **Apply Changes** to apply the new configuration.
-
   Once these steps are done on both firewalls, continue with the configuration of the "High Availability Synchronisation" of pfSense.
 4. From the pfSense web interface, click **System** > **High Avail. Sync**.
 5. Configure it as follows:
-
     - **State Synchronisation Settings (pfsync)**
 
       | Settings | Description |
@@ -332,7 +299,6 @@ The following steps have to be executed on both firewalls.
 
     Then click **Save**.
 6. On the second firewall, go to **System** > **High Avail. Sync** in the pfSense web interface.
-
 - **State Synchronization Settings (pfsync)**
 
   | Settings | Description |
@@ -364,7 +330,6 @@ With this, we delegate lifecycle management of the failover IP to CARP, by tweak
 
 1. From the pfSense web interface, go to **Firewall** > **Rules** > **Failover**.
 2. Click the first **Add** in the **Edit Firewall Rule** section and configure the rule as follows:
-
   | Settings | Description |
   |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
   | **Action** | leave `Pass` |
@@ -383,7 +348,6 @@ With this, we delegate lifecycle management of the failover IP to CARP, by tweak
 
 1. From the pfSense web interface on the first firewall, go to **Firewall** > **Virtual IPs**
 2. Click the first **Add** in the **Edit Virtual IP** section and configure it as follows:
-
   | Settings | Description |
   |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
   | **Type** | Select `CARP` |
@@ -396,7 +360,6 @@ With this, we delegate lifecycle management of the failover IP to CARP, by tweak
 
   Click **Save**, then on **Apply changes** to apply the new configuration.
 3. Click the first **Add** in the **Edit Virtual IP** section and configure it as follows:
-
   | Settings | Description |
   |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
   | **Type** | Select `CARP` |
@@ -411,7 +374,6 @@ With this, we delegate lifecycle management of the failover IP to CARP, by tweak
 
   The following steps have to be done on the second firewall
 4. Click the first **Add** in the **Edit Virtual IP** section and configure it as follows:
-
   | Settings | Description |
   |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
   | **Type** | Select `CARP` |
@@ -424,7 +386,6 @@ With this, we delegate lifecycle management of the failover IP to CARP, by tweak
 
   Click **Save**, then on **Apply changes** to apply the new configuration.
 5. Click the first **Add** in the **Edit Virtual IP** section and configure it as follows:
-
   | Settings | Description |
   |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
   | **Type** | Select `CARP` |
@@ -440,7 +401,6 @@ With this, we delegate lifecycle management of the failover IP to CARP, by tweak
 7. The first firewall is now master for the virtual IP `172.16.3.1` and backup for the virtual IP `172.16.3.2`. The reverse is visible on `pfsense2`.
 8. On each firewall, edit the file `/etc/pfSense-devd.conf` by clicking on **Diagnostics** > **Edit File**. Enter the path `/etc/pfSense-devd.conf` in the form **Path to file to be edited** and click **Load**.
 9. Once loaded, go to line 30 of the file and replace lines 30-48 with the following block:
-
   ```bash
   # CARP notify hooks. This will call carpup/carpdown with the
   # interface (carp0, carp1) as the first parameter.
@@ -605,14 +565,12 @@ By default, pfSense provides only support for firewalling and VPN features. To s
 1. On each firewall, go to **System** > **Package Manager** from the pfSense web interface and switch to the **Available Packages** tab.
 2. The available packages are listed in alphabetical order. Click **Install** in the row of the `acme` package, then click **Confirm** to validate the automatic installation.
 3. Return to the **Available Packages tab** and type `haproxy` in the **Search term** field. Click **Search** to find the package. Then click **Install** in the HAProxy package row and confirm the installation by clicking on **Confirm**.
-
 The installation of ACME and HAproxy on both firewalls is complete now.
 
 The following steps have to be done on the first firewall:
 
 1. On the first firewall, go to **Services** > **HAProxy** from the pfSense web interface.
 2. Click the **Settings** tab and configure the service as follows:
-
 - **General Settings**
   - Check the box `Enable HAProxy`
   - **Maximum Connections**: Set the value to `1000`
@@ -624,7 +582,6 @@ The following steps have to be done on the first firewall:
 
   Click **Save**, followed by **Apply Changes** to apply the new configuration.
 3. The configuration is replicated automatically on the second firewall.
-
 You have now configured a redundant loadbalancer and firewall infrastructure using pfSense and HAproxy on [Scaleway Dedibox dedicated servers](https://www.scaleway.com/en/dedibox/). To go further with the configuration of pfSense and HAproxy, refer to their official documentation:
 
 - [Official pfSense documentation](https://docs.netgate.com/pfsense/en/latest/index.html)

@@ -15,17 +15,13 @@ The AWS-CLI is an open-source tool built on top of the AWS SDK for Python (Boto)
 This guide shows you how to install the AWS-CLI and configure it for connection to your Scaleway Messaging SNS/SQS namespace.
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)  
   - You have [created an SNS/SQS Messaging namespace](/compute/messaging/how-to/create-namespace/)
   - You have [generated credentials](/compute/messaging/how-to/create-credentials/) for your SNS/SQS Messaging namespace
-
 </Message>
 
 <Message type="note">
-
   This page assumes you will use the AWS-CLI v1. For v2, see the [relevant AWS-CLI documentation page](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html). 
-
 </Message>
 
 ## How to install the AWS-CLI
@@ -44,12 +40,10 @@ Install both `aws-cli` and `awscli-plugin` using `pip`.
 Now you have installed the AWS-CLI, you need to configure it for use with your Scaleway Messaging SNS/SQS namespace.
 
 1. Create a file named `~/.aws/config` by running the following command:
-
   ```
   aws configure set plugins.endpoint awscli_plugin_endpoint
   ```
 2. Open the `~/.aws/config` file you just created in a text editor and edit it as follows:
-
   ```
   [plugins]
   endpoint = awscli_plugin_endpoint
@@ -79,17 +73,14 @@ Now you have installed the AWS-CLI, you need to configure it for use with your S
   ```
 
   <Message type="important">
-
     If you are using the AWS-CLI v2, you must include the path to the plugin in your configuration file. Add `cli_legacy_plugin_path = <path-to-plugin>` to the `[plugins]` section, replacing `<path-to-plugin>` with the corresponding path. 
 
   </Message>
 3. Generate a credentials file using the following command:
-
   ```
   aws configure
   ```
 4. Open the `~/.aws/credentials` file you just created, and add the access key and secret key you saved when you generated your [SNS/SQS namespace's credentials](/compute/messaging/how-to/create-credentials/) as follows:
-
   ```
   [default]
   aws_access_key_id=<ACCESS_KEY>
@@ -104,7 +95,6 @@ Now you have installed the AWS-CLI, you need to configure it for use with your S
   aws_secret_access_key=<SECRET_KEY>
   ```
 6. Test that everything is set up correctly with the following command:
-
   ```
   aws sqs list-queues
   ```
@@ -112,9 +102,7 @@ Now you have installed the AWS-CLI, you need to configure it for use with your S
     Use the `--profile` option if you want to test it using a different profile.
 
 <Message type="tip">
-
   Check out the Scaleway developers documentation to find more common commands for getting started with the AWS CLI:
   - The [SQS guide](https://developers.scaleway.com/en/products/messaging_and_queuing/api/v1alpha1/#getting-started-with-sqs) walks you through creating and listing queues, sending messages to queues, and more. 
   - The [SNS guide](https://developers.scaleway.com/en/products/messaging_and_queuing/api/v1alpha1/#getting-started-with-sns) shows you how to create and list topics and subscriptions, send messages to topics, and more.
-
 </Message>

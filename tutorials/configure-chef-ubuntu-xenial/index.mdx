@@ -23,7 +23,6 @@ As your infrastructure requirements grow, managing each server individually beco
 You can easily manage up to 10,000 nodes using Chef. Chef also makes it easy to automate the replication of infrastructure components.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have one of the following remote machines running Ubuntu (this tutorial has been validated for machines running Ubuntu Xenial or Ubuntu Focal Fossa):
   - An [Instance](/compute/instances/how-to/create-an-instance/)
@@ -31,7 +30,6 @@ You can easily manage up to 10,000 nodes using Chef. Chef also makes it easy to 
   - A [Dedibox dedicated server](/dedibox/dedicated-servers/how-to/order-a-server/)
 - You have a second machine (this could be a local machine or a second remote machine) on which to install Chef SDK
 - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
-
 </Message>
 
 ## Core concepts
@@ -45,28 +43,23 @@ You can easily manage up to 10,000 nodes using Chef. Chef also makes it easy to 
 ### Accessing the server by hostname
 
 1. Connect to your remote machine via SSH. Follow the instructions depending on your remote machine type: [Instance](/compute/instances/how-to/connect-to-instance/), [Elastic Metal](/compute/elastic-metal/how-to/connect-to-server/) or [Dedibox](/dedibox/dedicated-servers/how-to/connect-to-server/).
-
   <Message type="note">
-
     This tutorial assumes that you connect to your machine as root. If this is not the case, you may need to add `sudo` to the commands shown.
 
   </Message>
 
   To install Chef, the hostname of the machine must be a resolvable fully qualified domain name or IP address. Check that in the following steps:
 2. On the machine where you plan to install Chef, launch:
-
   ```
   hostname -f
   ```
 
   If the command does not return an address where the server can be reached, follow steps 3-5 to resolve this. Otherwise, [proceed to the next section of this tutorial](#installing-chef-server).
 3. Open the `etc/hosts` configuration file in a text editor: 
-
   ```
   nano /etc/hosts
   ```
 4. Edit the configuration file to add a domain name or IP address where the server can be reached, following the example below:
-
   ```
   127.0.1.1 fqdn_or_IP_address host_alias
   127.0.0.1 localhost
@@ -74,7 +67,6 @@ You can easily manage up to 10,000 nodes using Chef. Chef also makes it easy to 
   ```
 
   <Message type = "tip">
-
     You can find the IP address of your Instance or Elastic Metal server in its **Overview** tab in the [Scaleway console](https://console.scaleway.com/). For an Instance with host alias `scw-flamboyant-boyd`, IP address `192.158.1.38` and no fully qualified domain name, the configuration file once edited might look like this:
 
     ```
@@ -94,7 +86,6 @@ You can easily manage up to 10,000 nodes using Chef. Chef also makes it easy to 
   
   </Message>
 5. Check that the value was set correctly:
-
   ```
   hostname -f
   ```
@@ -105,12 +96,10 @@ You can easily manage up to 10,000 nodes using Chef. Chef also makes it easy to 
 
 
 1. Update the Ubuntu package manager:
-
   ```
   apt-get update
   ```
 2. Upgrade the Ubuntu packages already installed:
-
   ```
   apt-get upgrade
   ```
@@ -118,17 +107,14 @@ You can easily manage up to 10,000 nodes using Chef. Chef also makes it easy to 
 4. Complete your information in the form that displays and click **Download**.
 5. Right-click **Download Chef Infra Server directly** and copy the link. 
 6. Launch the installation using `wget` + the link you copied, from the terminal of your remote machine. Make sure to use your own link and not the one shown below as an example:
-
   ```
   wget https://packages.chef.io/files/stable/chef-server/14.16.19/ubuntu/20.04/chef-server-core_14.16.19-1_amd64.deb
   ```
 7. Install the package you downloaded:
-
   ```
   dpkg -i chef-server*
   ```
 8. Call the `reconfigure` command, which configures the components that make up the server to work together in your specific environment:
-
   ```
   chef-server-ctl reconfigure
   ```
@@ -142,7 +128,6 @@ You can easily manage up to 10,000 nodes using Chef. Chef also makes it easy to 
 Creating an admin user enables a specific user to make changes to the infrastructure components in the organization. An Organization is a grouping of infrastructure and configuration within Chef.
 
 1. Launch the `chef-server-ctl`with the `user-create` subcommand:
-
   ```
   chef-server-ctl user-create USERNAME FIRST_NAME LAST_NAME EMAIL PASSWORD
   ```
@@ -162,7 +147,6 @@ Creating an admin user enables a specific user to make changes to the infrastruc
   chef-server-ctl user-create testuser test user testuser@example.com pwdexample -f testuser.pem
   ```
 2. Launch the `chef-server-ctl` with the `org-create` subcommand:
-
   ```
   chef-server-ctl org-create SHORTNAME LONGNAME --association_user USERNAME
   ```
@@ -194,17 +178,14 @@ The Chef Workstations is a suite of software designed for Chef workstations.
 2. Complete your information in the form that displays and click **Download**.
 3. Click **Download ChefDK directly** and copy the link. 
 4. Launch the installation using `wget` + the link you copied on the machine you want to install ChefDK.
-
   ```
   wget https://packages.chef.io/files/stable/chef-workstation/22.6.973/ubuntu/20.04/chef-workstation_22.6.973-1_amd64.deb
   ```
 5. Install the package you downloaded:
-
   ```
   dpkg -i chef-workstation_*
   ```
 6. Verify that all of the components are available in their expected location through the new chef command:
-
   ```
   chef verify
   ```
@@ -251,14 +232,12 @@ The method that you use to connect to the Chef server will determine how to down
 #### Option 1: (Recommended) Downloading keys when connecting to a Chef server using SSH keys
 
 1. Leave your workstation
-
   ```
   exit
   ```
 
   The next steps should be carried out from the machine that holds the private SSH key needed to connect to your Chef server.
 2. Add the SSH key you use to connect to the Chef server to an SSH agent:
-
   ```
   eval $(ssh-agent)
   ```
@@ -269,21 +248,18 @@ The method that you use to connect to the Chef server will determine how to down
   Agent pid 2893
   ```
 3. Add your SSH key to the agent:
-
   ```
   ssh-add
   ```
 
   This keeps your SSH key stored in memory. 
 4. Forward the stored key to your workstation using the `-A` option with SSH. This also connects you to your workstation:
-
   ```
   ssh -A username@workstation_domain_or_IP
   ```
 
   Now you can connect to your Chef server from your workstation without needing a password, using the forwarded SSH credentials.
 5. Copy the `testuser.pem` and `scaleway-file.pem` files from the Chef server to the folder you created in your Chef workstation with the following commands:
-
   ```
   scp root@chef_server_domain_or_IP:/root/testuser.pem ~/chef_repo/.chef
   scp root@chef_server_domain_or_IP:/root/scaleway-file.pem ~/chef_repo/.chef
@@ -299,9 +275,7 @@ The method that you use to connect to the Chef server will determine how to down
 #### Option 2: Downloading keys when connecting to a Chef server with passwords
 
 <Message type="note">
-
 By default, you cannot connect to a Scaleway Instance or Elastic Metal server with a password. For more information, refer to the dedicated [Ubuntu Forum](https://askubuntu.com/questions/101670/how-can-i-allow-ssh-password-authentication-from-only-certain-ip-addresses)
-
 </Message>
 
 In this case we will construct the `scp` commands directly. When executing the `scp` commands, you will be asked for the password to connect to your Chef server.
@@ -311,7 +285,6 @@ From your Chef workstation, construct the scp commands as follows:
 1. Specify the username and domain name or IP address used to connect to the Chef server.
 2. Follow this immediately with a colon (:) and the path to the file you wish to download.
 3. After adding a space, indicate the directory on the local computer where you wish the download the files to be placed (`~/chef_repo/.chef` in our case).
-
 If you log into the Chef server using the root user account, your commands will look something like this.
 
 ```
@@ -335,12 +308,10 @@ Now that you have your Chef credentials available on your workstation, we can co
 This is done through a `knife.rb` file that we will place in the `~/chef_repo/.chef` directory along with our keys.
 
 1. Create and open a file called `knife.rb` in that directory in your text editor:
-
   ```
   nano ~/chef_repo/.chef/knife.rb
   ```
 2. Paste the following information replacing the information with your infrastructure information:
-
   ```
   current_dir = File.dirname(__FILE__)
   log_level                :info
@@ -376,7 +347,6 @@ This is done through a `knife.rb` file that we will place in the `~/chef_repo/.c
   ```
 3. Save and close the `knife.rb` file.
 4. Test the configuration file. We need to be in our `~/chef-repo` directory for our configuration file to be read correctly:
-
   ```
   cd ~/chef_repo
   knife client list
@@ -396,7 +366,6 @@ This is done through a `knife.rb` file that we will place in the `~/chef_repo/.c
 
   This occurs because we do not have our Chef server's SSL certificate on our workstation.
 5. Launch the following command:
-
   ```
   knife ssl fetch
   ```
@@ -415,7 +384,6 @@ This is done through a `knife.rb` file that we will place in the `~/chef_repo/.c
 
   After the SSL certificate has been fetched, the previous command should now work.
 6. Launch the following command:
-
   ```
   knife client list
   ```

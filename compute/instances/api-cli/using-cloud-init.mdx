@@ -17,11 +17,9 @@ The cloud-init program that is available on recent distributions (Ubuntu, Fedora
 Cloud-config files are special scripts designed to be run by the cloud-init process. These are generally used for initial configuration on the very first boot of a server.
 
 <Message type="requirement">
-
   - You have a [Scaleway account](/console/my-account/how-to/create-an-account/)   
   - You have [configured your API keys](/console/my-project/how-to/generate-api-key/)
   - You have downloaded the [latest version of the Scaleway CLI tools](https://github.com/scaleway/scaleway-cli), directly from Github.
-
 </Message>
 
 ## Provisioning your Instance with Cloud-Init
@@ -37,7 +35,6 @@ For `user_data` to be effective, it has to be added prior to the creation of the
   $ scw instance server create image=ubuntu_focal name=myinstance cloud-init=@/path/to/cloud-config-file
   ```
   <Message type="note">
-
   `@/path/to/cloud-config-file` is the path of your [Cloud-Init](/compute/instances/how-to/use-boot-modes/#how-to-use-cloud-init) configuration file. Edit it towards your requirements.
 
   </Message>
@@ -89,6 +86,7 @@ The command line documentation is accessible on any cloud-init installed system.
   ````
 
 For detailed information on Cloud-init, refer to the official cloud-init [documentation](http://cloudinit.readthedocs.io/en/latest/index.html).
+
 
 <Navigation>
   <PreviousButton to="/compute/instances/api-cli/migrating-gp-to-pro/">Migrating Instances - GP1 to PRO2</PreviousButton>

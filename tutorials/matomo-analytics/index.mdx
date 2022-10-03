@@ -19,12 +19,10 @@ dates:
 The tool is written in PHP and stores its data in a MySQL/MariaDB database.
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
   -  You have [created an Instance](/compute/instances/how-to/create-an-instance) that runs Ubuntu Focal Fossa (20.04)
   - You have sudo privileges or access to the root user.
-
 </Message>
 
 
@@ -33,24 +31,20 @@ The tool is written in PHP and stores its data in a MySQL/MariaDB database.
 Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working [LEMP-Stack](/tutorials/installation-lemp-ubuntu-bionic) must be set up on your Instance for Matomo to run.
 
 1. Update the apt packet cache and upgrade the packets already installed on the Instance.
-
   ```
   apt update && apt -y upgrade
   ```
 2. Install the required software via apt.
-
   ```
   apt install -y ufw nginx mariadb-server php-fpm php-mysql php-curl php-gd php-cli php-xml php-mbstring software-properties-common
   ```
 3. [Secure the MariaDB server](https://www.scaleway.com/en/docs/tutorials/mariadb-ubuntu-bionic/#securing-mariadb) by executing the following command.
-
   ```
   mysql_secure_installation
   ```
 
   When asked for the current MySQL root password, press **Enter** as no password is set by default.
 4. Install [Certbot](https://certbot.eff.org/) to manage the TLS/SSL certificate
-
   ```
   apt install -y python3-certbot-nginx
   ```
@@ -58,22 +52,18 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
 ## Downloading Matomo
 
 1. Enter the directory `/var/www/html`.
-
   ```
   cd /var/www/html
   ```
 2. Download the latest release of Matomo.
-
   ```
   wget https://builds.matomo.org/matomo-latest.tar.gz
   ```
 3. Unpack Matomo.
-
   ```
   tar xfz matomo-latest.tar.gz
   ```
 4. Set the ownership of the Matomo files to the `www-data` user.
-
   ```
   chown -R www-data:www-data matomo
   ```
@@ -81,18 +71,14 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
 ## Configuring the Nginx Web Server  
   
 <Message type="note">
-
   When following the next steps, replace `matomo.example.com` with your domain name.
-
 </Message>
 
 1. Create a Nginx configuration file and open it in a text editor.
-
   ```
   nano /etc/nginx/sites-available/matomo.example.com
   ```
 2. Copy the following content into the configuration file.
-
   ```
   server {
           listen 80;
@@ -115,22 +101,18 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
   }
   ```
 3. Enable the newly created site by creating a symlink.
-
   ```
   ln -s /etc/nginx/sites-available/matomo.example.com /etc/nginx/sites-enabled/
   ```
 4. Check the Nginx configuration file for possible errors.
-
   ```
   nginx -t
   ```
 5. Reload Nginx to activate the new configuration.
-
   ```
   service nginx reload
   ```
 6. [Run Certbot](/tutorials/installation-lemp-ubuntu-bionic#configuring-ssl-with-let's-encrypt) with the `--nginx` flag to request a Let's Encrypt TLS/SSL certificate for the newly created server block.
-
   ```
   certbot --nginx
   ```
@@ -138,18 +120,15 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
 ## Creating a MySQL Database for Matomo
 
 1. Log into the MySQL shell with the `root` user.
-
   ```
   mysql -u root -p
   ```
 
   <Message type="important">
-
     The password of the MySQL root user is the one configured during the secure installation of MySQL.
 
   </Message>
 2. Run the following commands from the MySQL shell to create the database for Matomo.
-
   ```
   CREATE DATABASE matomodb;
   GRANT ALL ON matomodb.* TO matomo@localhost IDENTIFIED BY 'SECURE-DATABASE-PASSWORD';
@@ -160,13 +139,11 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
 ## Running the Matomo Web Installer
 
 1. Open a web browser and go to `https://matomo.example.com/`. The web installer displays. Click **Next** to go to the second step:
-
   <Lightbox src="scaleway-matomo-setup1.webp" alt="" />
 
   Matomo launches some automatic checks if all pre-requirements are fulfilled.
 2. Click **Next** to continue with the installation, if all prerequisites are met.
 3. Proceed with the database configuration.
-
   Enter the following information for your database:
     - **Database Server**: `127.0.0.1`
     - **Login**: The Matomo database user (`matomo`)
@@ -179,10 +156,8 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
 
   Matomo verifies the MySQL/MariaDB credentials. If all is in order, the database structure is created automatically and a success message displays.
 4. Click **Next** to continue with the installation:
-
   <Lightbox src="scaleway-matomo-setup2.webp" alt="" />
 5. Configure a super-user (or admin user) for Matomo. This will be the main user who can configure all settings and can add additional users and sites:
-
   Enter the following credentials for your user:
     - **Super user login**: Choose an identifier for the user
     - **Password**: Choose a secure password for the user
@@ -193,7 +168,6 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
 
   Click **Next** to create the super user account and proceed with the installation.
 6. Set up the first website you want Matomo to track and analyze.
-
   Enter the following information for your website:
     - **Website name**: Enter a name of the website
     - **Website URL**: Enter the website URL
@@ -203,14 +177,12 @@ Matomo relies on a web server, for example [Nginx](http://nginx.org/). A working
   Click **Next** to validate the form and to continue with the installation.
 
   <Message type="important">
-
     Additional websites can be configured once the initial setup has been completed.
 
   </Message>
 
   A tracking code appears. Ensure that the tracking code is on every page of your website. It is recommended to put it in the header-section of the website, immediately before the closing `</head>` tag.
 7. Copy the displayed tracking code and put it into your website header. The tracking code looks like the following example:
-
   ```js
   <!-- Matomo -->
   <script type="text/javascript">

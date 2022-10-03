@@ -20,22 +20,18 @@ It consists of two parts:
 The tool supports the vast majority of modern hard drives.
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Dedibox Console](https://console.online.net) 
   - You have a [Dedibox dedicated server](https://www.scaleway.com/en/dedibox/) 
-
 </Message>
 
 ## How to check a single-disk server
 
 1. Log into your server using SSH.
 2. Run the following command from the root account (or precede it with `sudo`):
-
     ```
     smartctl -a /dev/sda
     ```
     <Message type="note">
-
     The identifier `sda` refers to your hard disk.
 
     </Message>
@@ -48,7 +44,6 @@ On these servers, the physical disks are referred to as `sg*` devices
 
 1. Log into your server using SSH.
 2. Run the following commands:
-
     ```
     smartctl -a -T permissive /dev/sg0
     smartctl -a -T permissive /dev/sg1
@@ -56,7 +51,6 @@ On these servers, the physical disks are referred to as `sg*` devices
     ```
 
     <Message type="tip">
-
     As the devices can be positioned a little further away, do not hesitate to test up to `sg5` if you do not have conclusive results.
 
     </Message>
@@ -72,7 +66,6 @@ The first one displays the status of the RAID volume, whilst the second one disp
 
 1. Log into your server using SSH.
 2. Update the apt package lists cache and install the required packages:
-
     ```
     apt update
     apt install megaclisas-status megacli
@@ -82,7 +75,6 @@ The first one displays the status of the RAID volume, whilst the second one disp
     megaclisas-status
     ```
 4. Run the following little script to retrieve the SMART values of your disks:
-
     ```
     DEVICE=/dev/sda
     for i in $(megacli -pdlist -a0 | grep Id | cut -d":" -f2); do
@@ -122,10 +114,8 @@ The first one displays the status of the RAID volume, whilst the second one disp
 `smartd` allows you to monitor your disks and to be alerted (depending on the configuration) by email in case of failure.
 
 <Message type="important">
-
 There is no guarantee as to the result of SMARTD and the time remaining before the disk fails completely. 
 However, we strongly encourage you to back up and request a replacement rapidly.
-
 </Message>
 
 ### How to configure SMARTD
@@ -133,9 +123,7 @@ However, we strongly encourage you to back up and request a replacement rapidly.
 Below, you find an example of a single-disk server installed on a Debian-like machine.
 
 <Message type="note">
-
 The following commands are to be executed as `root` or via `sudo`.
-
 </Message>
 
 1. Log into your server using SSH.
@@ -148,7 +136,6 @@ The following commands are to be executed as `root` or via `sudo`.
     smartctl -H /dev/sda
     ```
 4. Edit the file `/etc/smartd.conf`, to set up automated tests:
-
     * Start by commenting out the following line:
         ```
         DEVICESCAN -d removable -n standby -m root -M exec /usr/share/smartmontools/smartd-runner
@@ -203,7 +190,5 @@ Local Time is: Fri Oct 29 11:20:27 2010 CEST
 ```
 
 <Message type="tip">
-
 For more information on Smartmontools, refer to the [official documentation](https://www.smartmontools.org/wiki/TocDoc)
-
 </Message>

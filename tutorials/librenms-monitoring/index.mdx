@@ -20,23 +20,19 @@ dates:
 The software is based on [PHP](https://php.net) and [MySQL (MariaDB)](/tutorials/mariadb-ubuntu-bionic/) and is a community-based fork of the last GPL-licensed version of Observium.
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
   -  You have [created an Instance](/compute/instances/how-to/create-an-instance) that runs Ubuntu Focal Fossa Beaver
   - You have a domain or subdomain pointed to your Instance
-
 </Message>
 
 ## Installing LibreNMS
 
 1. Update the apt repository information.
-
   ```
   apt update
   ```
 2. Install the required packages.
-
   ```
   apt install software-properties-common
   add-apt-repository universe
@@ -44,19 +40,16 @@ The software is based on [PHP](https://php.net) and [MySQL (MariaDB)](/tutorials
   apt install acl curl composer fping git graphviz imagemagick mariadb-client mariadb-server mtr-tiny nginx-full nmap php7.4-cli php7.4-curl php7.4-fpm php7.4-gd php7.4-json php7.4-mbstring php7.4-mysql php7.4-snmp php7.4-xml php7.4-zip python3-memcache python3-mysqldb python3-pip rrdtool snmp snmpd whois
   ```
 3. Create a user for LibreNMS:
-
   ```
   useradd librenms -d /opt/librenms -M -r
   usermod -a -G librenms www-data
   ```
 4. Enter the directory `/opt` and download LibreNMS:
-
   ```
   cd /opt
   git clone https://github.com/librenms/librenms.git
   ```
 5. Set the permissions:
-
   ```
   chown -R librenms:librenms /opt/librenms
   chmod 770 /opt/librenms
@@ -64,17 +57,14 @@ The software is based on [PHP](https://php.net) and [MySQL (MariaDB)](/tutorials
   setfacl -R -m g::rwx /opt/librenms/rrd /opt/librenms/logs /opt/librenms/bootstrap/cache/ /opt/librenms/storage/
   ```
 6. Switch into the `librenms` user:
-
   ```
   su - librenms
   ```
 7. Install the PHP dependencies:
-
   ```
   ./scripts/composer_wrapper.php install --no-dev
   ```
 8. Logout from the user session:
-
   ```
   exit
   ```
@@ -84,17 +74,14 @@ The software is based on [PHP](https://php.net) and [MySQL (MariaDB)](/tutorials
 LibreNMS stores the data collected from the monitored systems in a MySQL database. The [open-source fork](<https://en.wikipedia.org/wiki/Fork_(software_development)>) **[MariaDB](https://mariadb.org)** is used in the setup, providing the same features as MySQL.
 
 1. Run the [MariaDB setup assistant](tutorials/mariadb-ubuntu-bionic#securing-mariadb) to configure a secure root password for the database server:
-
   ```
   mysql_secure_installation
   ```
 2. Connect to the MariaDB shell with the user `root` and the password configured in the previous step:
-
   ```
   mysql -uroot -p
   ```
 3. Create a database and user for LibreNMS and grant permissions to the database:
-
   ```
   CREATE DATABASE librenms CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   CREATE USER 'librenms'@'localhost' IDENTIFIED BY '<a_secure_password>';
@@ -105,7 +92,6 @@ LibreNMS stores the data collected from the monitored systems in a MySQL databas
 
   Replace `<a_secure_password>` with a secure password of your choice.
 4. Open the file `/etc/mysql/mariadb.conf.d/50-server.cnf` in a text editor, for example `nano`:
-
   ```
   nano /etc/mysql/mariadb.conf.d/50-server.cnf
   ```
@@ -119,7 +105,6 @@ LibreNMS stores the data collected from the monitored systems in a MySQL databas
 
   Save the file by pressing **CTRL**+**O** and exit nano by pressing **CTRL**+**X**.
 5. Restart the MariaDB server:
-
   ```
   systemctl restart mysql
   ```
@@ -129,7 +114,6 @@ LibreNMS stores the data collected from the monitored systems in a MySQL databas
 [Nginx](https://nginx.org) is an open-source web server and is being used to serve the web frontend of LibreNMS.
 
 1. Create the file `/etc/nginx/sites-available/librenms.example.com` by opening it in a text editor:
-
   ```
   nano /etc/nginx/sites-available/librenms.example.com
   ```
@@ -164,17 +148,14 @@ LibreNMS stores the data collected from the monitored systems in a MySQL databas
   ```
 
   <Message type="important">
-
     Replace `<librenms.example.com>` with the [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) of your instance.
 
   </Message>
 2. Enable the server block by linking it to the **sites-enabled** directory:
-
   ```
   ln -s /etc/nginx/sites-available/librenms.example.com /etc/nginx/sites-enabled/
   ```
 3. Restart the Nginx web server:
-
   ```
   service nginx restart
   ```
@@ -186,12 +167,10 @@ For security reasons, it is recommended to configure HTTPS by following [this tu
 [Simple Network Management Protocol (SNMP)](https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol) is a protocol for collecting and organizing information about managed devices on IP networks. Data of SNMP is transported using [User Datagram Protocol (UDP)](https://en.wikipedia.org/wiki/User_Datagram_Protocol). Requests are sent to the agent listening on UDP port 161.
 
 1. Copy the SNMP configuration file in the directory `/etc/snmp`:
-
   ```
   cp /opt/librenms/snmpd.conf.example /etc/snmp/snmpd.conf
   ```
 2. Open the configuration file in a text editor:
-
   ```
   nano /etc/snmp/snmpd.conf
   ```
@@ -200,13 +179,11 @@ For security reasons, it is recommended to configure HTTPS by following [this tu
 
   Save the file and exit `nano`.
 3. To display distribution information, download the `distro` script and make it executable:
-
   ```
   curl -o /usr/bin/distro https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/distro
   chmod +x /usr/bin/distro
   ```
 4. Restart the SNMP service:
-
   ```
   systemctl restart snmpd
   ```
@@ -216,14 +193,12 @@ For security reasons, it is recommended to configure HTTPS by following [this tu
 [Cron](https://en.wikipedia.org/wiki/Cron) is a job scheduler available on Linux systems. It can be used to run jobs (i.e. shell scripts) automatically at given points in time to automatize system maintenance. [Logrotate](https://en.wikipedia.org/wiki/Log_rotation) is a tool to rotate log files automatically. This means to clean up log files periodically by removing old contents to ensure the disk space they occupy does not exceed a configured maximum value.
 
 1. Copy the cron configuration file into the directory `/etc/cron.d/` to execute actions automatically:
-
   ```
   cp /opt/librenms/librenms.nonroot.cron /etc/cron.d/librenms
   ```
 
   The file contains the basic cronjobs required by LibreNMS.
 2. To avoid that the log files of LibreNMS become too large, logrotate can rotate them out from time to time to save space. Enable it by copying the provided configuration file into `/etc/logrotate.d`:
-
   ```
   cp /opt/librenms/misc/librenms.logrotate /etc/logrotate.d/librenms
   ```
@@ -231,18 +206,15 @@ For security reasons, it is recommended to configure HTTPS by following [this tu
 ## Running the web installer
 
 1. Open a web browser and go to your LibreNMS Instance:
-
   ```
   https://librenms.example.com/install.php
   ```
 
   <Lightbox src="scaleway-librenms_install.webp" alt="" />
 2. Fill in the database connection parameters and the password set during database creation:
-
   <Lightbox src="scaleway-librenms_db.webp" alt="" />
 3. Configure a **user** and **password** for LibreNMS and complete the setup.
 4. Login to LibreNMS with the user and password created in the previous step:
-
   <Lightbox src="scaleway-librenms_login.webp" alt="" />
 
 ## Adding localhost to LibreNMS
@@ -250,10 +222,8 @@ For security reasons, it is recommended to configure HTTPS by following [this tu
 Start by adding the local host as the first device to monitor:
 
 1. Once logged in, click **Devices**, then **Add Device** in the pop-up menu:
-
   <Lightbox src="scaleway-librenms_adddevice.webp" alt="" />
 2. Enter the hostname **localhost**, keep **SNMP** on, leave the values for **SNMP version** and **Port Association Mode** as preset. Enter the configured community name in the file `/etc/snmp/snmpd.conf` as value for **Community**. Once all values are set, click **Add Device** to add the device:
-
   <Lightbox src="scaleway-librenms_newdevice.webp" alt="" />
 3. LibreNMS starts polling the device and different graphs are created, showing the status of the device.
 
@@ -262,33 +232,27 @@ Start by adding the local host as the first device to monitor:
 LibreNMS is capable of monitoring many different network devices. To monitor a remote cloud Instance or Elastic Metal server, the use of SNMP is widespread. SNMP stands for Simple Network Management Protocol. It is a protocol that was designed for monitoring and management purposes of network-connected devices (servers, switches, printers, routers, etc.). On Ubuntu systems a daemon called `SNMPd` is available to listen and reply to SNMP requests.
 
 1. To monitor another cloud instance or elastic metal server, connect to the machine as root:
-
   ```
   ssh root@second_cloud_instance
   ```
 2. Update the `apt` repository inventory:
-
   ```
   apt update
   ```
 3. To display distribution information, download the `distro` script and make it executable:
-
   ```
   curl -o /usr/bin/distro https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/distro
   chmod +x /usr/bin/distro
   ```
 4. Install `SNMPd` via apt:
-
   ```
   apt install snmpd
   ```
 5. Open the SNMPd configuration file in a text editor (e.g. `nano`):
-
   ```
   nano /etc/snmp/snmpd.conf
   ```
 6. Delete the content present in the default configuration file and replace it with the example below:
-
   ```
   # Change RANDOMSTRINGGOESHERE to your preferred SNMP community string
   com2sec readonly  123.123.123.123         RANDOMSTRINGGOESHERE
@@ -315,13 +279,11 @@ LibreNMS is capable of monitoring many different network devices. To monitor a r
 
   Edit the values in the file towards your needs before saving it and exiting the editor.
 7. Restart the SNMP service:
-
   ```
   systemctl restart snmpd
   ```
 8. Add the device to LibreNMS by clicking on **Devices**, then **Add Device** in the pop-up menu from within the LibreNMS web interface.
 9. Enter the hostname of the device, keep **SNMP** on, leave the values for **SNMP version** and **Port Association Mode** as preset. Enter the community name set in the file `/etc/snmp/snmpd.conf` as value for **Community**. Once all values are set, click **Add Device** to add the device.
-
 10. LibreNMS starts polling the device and creating different graphs showing the status of the device:
 
   <Lightbox src="scaleway-librenms_graphs.webp" alt="" />

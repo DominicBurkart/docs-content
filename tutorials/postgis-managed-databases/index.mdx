@@ -26,10 +26,8 @@ PostGIS was published under the [GNU GPL license](https://en.wikipedia.org/wiki/
 The answers to these frequently asked questions used to be provided by specialized GIS (Geographic Information Systems) applications. However, these were not a viable solution for dealing with massive spatial datasets (for example: a dataset that includes all the routes in Europe). This is where modern systems like PostGIS step in.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have a [Database Instance](https://www.scaleway.com/en/database/).
-
 </Message>
 
 ## Creating a new database for PostGIS
@@ -51,7 +49,6 @@ The answers to these frequently asked questions used to be provided by specializ
   Enter the password for your database user when prompted.
 
   <Message type="tip">
-
   You can find the `rdb_host` and `rdb_port` on the database information page.
 
   </Message>
@@ -85,9 +82,7 @@ PostgreSQL is designed to run in very different configurations, from small test 
 1. Enter the configuration section of your Database Instance in the [Scaleway console](https://console.scaleway.com/rdb/instances)
 2. Choose your Database Instance from the list, and click it to see the Database information page. Then click **Advanced Settings**. The advanced settings tab displays.
 3. Click <Icon name="[edit]" /> to configure the parameters of your PostgreSQL server.
-
   <Message type="tip">
-
   The parameter `work_mem` defines the amount of memory that internal sorting operations and hash tables can consume in the RAM, set this value to 16MB.
 
   </Message>
@@ -101,9 +96,7 @@ Your Database Instance is configured now, and it is time to load some spatial da
 To get familiar with spatial data, you can download demo data and enter it in the database.
 
 <Message type="note">
-
 You can run the following commands either on a local computer running Ubuntu or on an Instance.
-
 </Message>
 
 1. Update and upgrade the system.
@@ -127,7 +120,6 @@ You can run the following commands either on a local computer running Ubuntu or 
   unzip townssurvey_shp.zip && ls
   ```
 6. You will notice several `.dbf`, `.prj`, `.shx` and `.shp` files in the folder. These files together are called a [ShapeFile](https://en.wikipedia.org/wiki/Shapefile), a common digital vector storage format for storing geometric location and associated attribute information for legacy GIS software.
-
   To import the data into the database, it has to be converted to SQL. To achieve this, PostGIS provides a tool called `shp2pgsql` which can automatically convert `.shp` files into readable `.sql` files. Convert the file `TOWNSSURVEY_POLY.shp` into a SQL file by running the following command:
   ```
   shp2pgsql -d ./TOWNSSURVEY_POLY.shp > /postgis/TOWNSSURVEY_POLY.sql

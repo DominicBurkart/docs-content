@@ -13,24 +13,19 @@ dates:
 The snapshot feature lets you create a backup of a specific [volume](/compute/instances/concepts/#volumes) of your Instance. A snapshot is a full-volume copy stored in our secure data centers. They are usually used to recover volume data or to create a copy of a volume.
 
 <Message type="note">
-
 The snapshot features creates backups of specific volumes only. If you wish to create a backup image which is a complete backup of your Instance including **all** of its volumes, consider using the [backup feature](/compute/instances/how-to/create-a-backup)
-
 </Message>
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [created your SSH key and added it to your account](/console/my-project/how-to/create-ssh-key/)
   - You have [created an Instance](/compute/instances/how-to/create-an-instance)
-
 </Message>
 
 ## How to create a snapshot
 
 1. Click **Instances** in the **Compute** section of the side menu. The Instances page displays.
 2. Click the **Snapshots** tab.
-
   <Lightbox src="scaleway-create-a-snapshot.webp" alt="" />
 3. Click the **+ Create a snapshot** button. You are directed to the snapshot creation wizard.
 4. Complete the following steps in the wizard: 
@@ -47,11 +42,9 @@ You can create a [volume](/compute/instances/concepts/#volume) from a snapshot a
 2. Click the **Snapshots** tab.
 3. Click <Icon name="more" /> next to the snapshot you want to create an image from. A drop-down menu displays.
 4. Click **Volume from snapshot**. A pop-up displays.
-
   <Lightbox src="scaleway-volume-from-snapshot.webp" alt="" />
 5. Enter a name for the volume (or use the default suggested name), and click **Create Volume from Snapshot**
 6. Click **Create image from snapshot**. 
-
 The volume is created, and can be viewed in the [Volumes tab](https://console.scaleway.com/instance/volumes). Check out our documentation on [attaching volumes](/storage/block/how-to/attach-a-volume) and [mounting volumes](/storage/block/how-to/mount-and-use-volume) to learn how to use the volume with your Instances.
 
 ## How to create an Instance from a snapshot
@@ -61,6 +54,7 @@ Follow the instructions for [creating an Instance](/compute/instances/how-to/cre
 <Lightbox src="scaleway-create-from-snapshot.webp" alt="" />
 
 You can see the snapshotted volume in the Instance's volumes at step 4 of the creation wizard.
+
 
 <Navigation title="See Also">
   <PreviousButton to="/compute/instances/how-to/create-a-backup/">How to create a backup</PreviousButton>

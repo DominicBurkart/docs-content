@@ -33,12 +33,10 @@ In this tutorial you will learn basic steps to configure a deployment-ready mach
 - [Ubuntu 20.04](https://www.ubuntu.com/) as operating system and [Systemd](https://www.freedesktop.org/wiki/Software/systemd/) for keeping processes up.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
 - You have an Instance or Elastic Metal server running on Ubuntu Focal Fossa (20.04 LTS).
 - You have sudo privileges or access to the root user.
-
 </Message>
 
 ## Installing rbenv and nodejs
@@ -51,13 +49,11 @@ Because we want to have the liberty to choose the version of ruby we want, we wi
 This version will also come with a modern ruby installation, but you are free to change it to fit your needs.
 
 1. The installation is done using the `apt` package manager of Ubuntu. Update the `apt` package cache prior to installation, to make sure to install the latest available version in the Ubuntu repository:
-
   ```
   root@instance:~# apt update
   root@instance:~# apt install -y rbenv
   ```
 2. Verify that the installation of `rbenv` and `ruby` was successful:
-
   ```
   root@instance:~# rbenv --version
   rbenv 1.1.1
@@ -75,12 +71,10 @@ Ruby on Rails requires having [nodejs](https://nodejs.org/en/) installed to comp
 If you do not need a particular version of `nodejs` for your deployment you can use the default one provided by the operating system.
 
 1. Install `nodejs` using the `apt` package manager:
-
   ```
   root@instance:~# apt install nodejs
   ```
 2. To check if the installation has been successful, run the `nodejs --version` command. The output should look similar to this:
-
   ```
   root@instance:~# nodejs --version
   v10.19.0
@@ -92,12 +86,10 @@ Create a non-administrative user that will be able to run programs without havin
 We will call this user `deploy`.
 
 1. Create the user by running the following command as root:
-
   ```
   root@instance:~# adduser deploy
   ```
 2. To check that the user creation was successful, log into the user account using the `su` command and check the installed `ruby` version:
-
   ```
   root@instance:~# su - deploy
   deploy@instance:~$ ruby --version
@@ -110,12 +102,10 @@ Ruby on rails application typically use a SQL database for data persistence.
 In this step we will install all the dependencies required to have a database running.
 
 1. Install the default [PostgreSQL](https://www.postgresql.org/) provided by the operating system using the `apt` package manager.
-
   ```
   root@instance:~# apt install postgresql postgresql-contrib libpq-dev
   ```
 2. Check if the installation was successful, by checking the status of the `postgresql` service:
-
   ```
   root@instance:~# service postgresql status
   ● postgresql.service - PostgreSQL RDBMS
@@ -132,7 +122,6 @@ In this step we will install all the dependencies required to have a database ru
 3. Create an unprivileged role and database so that rails can connect to the database.    ```
     Call this role `deploy`, just like our username on the instance:
 4. Use `su` to enter commands as `postgres` user, which is the default administrator of PostgreSQL:
-
   ```
   root@instance:~# su - postgres
 
@@ -148,7 +137,6 @@ In this step we will install all the dependencies required to have a database ru
   postgres@instance:~$ exit
   ```
 6. Once this is done, you can check that it worked by using the following command:
-
   ```
   root@instance:~# psql --user deploy -h localhost -d my_rails_app
   Password for user deploy:
@@ -171,12 +159,10 @@ The second step is the applicative server.
 It is a [ruby gem](https://en.wikipedia.org/wiki/RubyGems) called puma that will run the code. [puma](https://github.com/puma/puma) is provided by default in the recent version of rails. So installing the dependencies of our project will install `puma` too.
 
 1. Install the nginx server using the following command via the `apt` package manager:
-
   ```
   root@instance:~# apt install nginx
   ```
 2. Configure nginx to pass all the traffic to the relevant ruby server by creating a file called `/etc/nginx/sites-available/my_rails_app`. Open it in a text editor and enter the following content:
-
   ```
   nano /etc/nginx/sites-available/my_rails_app
   ```
@@ -259,17 +245,14 @@ It is a [ruby gem](https://en.wikipedia.org/wiki/RubyGems) called puma that will
 
   Save the file and exit the text editor.
 3. Create a symbolic link to enable the server block:
-
   ```
   ln -s /etc/nginx/sites-available/my_rails_app /etc/nginx/sites-enabled/
   ```
 4.  Check the configuration file for syntax errors using the following command:
-
   ```
   root@instance:~# nginx -T
   ```
 5. Reload the nginx service to activate the new configuration
-
   ```
   root@instance:~# service nginx reload
   ```
@@ -283,12 +266,10 @@ Once this server runs, a socket will show up on `/home/vagrant/my_rails_app/tmp/
 To ensure that `puma` is running and is restarted in case of a crash we will use a systemd configuration file:
 
 1. Create a new service file and open it in a text editor:
-
   ```
   root@instance:~# nano /etc/systemd/system/puma.service
   ```
 2. Copy the following content into the file:
-
     ```
     [Unit]
     Description=Puma HTTP Server
@@ -324,17 +305,14 @@ To ensure that `puma` is running and is restarted in case of a crash we will use
     ```
 3. Save the file and exit the text editor.
 4. Enable the service so it can be started automatically during system boot:
-
   ```
   root@instance:~# systemctl status puma.service
   ```
 5. Start the service manually:
-
   ```
   root@instance:~# systemctl start puma.service
   ```
 6. Check if the service is working:
-
   ```
   root@instance:~# systemctl status puma.service
   ```
@@ -345,14 +323,12 @@ The next step will be to deploy your local code.
 For that we will use [Capistrano](https://capistranorb.com/).
 
 1. In the `Gemfile` of your rails application add the following gems:
-
   ```
   gem 'capistrano', '~> 3.11'
   gem 'capistrano-rails', '~> 1.4'
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
   ```
 2. To push a new version of your code, run the following command:
-
   ```
   cap production deploy
   ```
@@ -362,7 +338,5 @@ For that we will use [Capistrano](https://capistranorb.com/).
 In this tutorial we only installed basic dependencies but there is many other services that could be installed: [elasticsearch](https://github.com/elastic/elasticsearch-rails), [redis](https://redis.io/), ...
 
 <Message type="tip">
-
 All the steps made in this tutorial could be made on a local virtual machine.
-
 </Message>

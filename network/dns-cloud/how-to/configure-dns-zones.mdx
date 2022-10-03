@@ -17,10 +17,8 @@ It contains configuration stored in multiple [DNS records](/network/dns-cloud/co
 Each **Zone Name** created translates into a [**Domain Name**](/network/dns-cloud/concepts/#domain-name-domain). For example the zone `myzone` in the domain `example.com` becomes `myzone.example.com`. This works also on multiple levels, meaning that the zone `myzone.subdomain` becomes the domain name `myzone.subdomain.example.com`.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com) 
 - You have [linked your domain](/network/dns-cloud/how-to/add-external-domain) with Scaleway DNS
-
 </Message>
 
 ## How to add a new DNS zone
@@ -31,7 +29,6 @@ Each **Zone Name** created translates into a [**Domain Name**](/network/dns-clou
   <Lightbox src="scaleway-dns-zone-list.webp" alt="" />
 
   <Message type="note">
-
   The **Root Zone** is always available, by default. This zone is directly associated with the domain name and cannot be deleted. It will only be removed from the DNS when its associated domain name is deleted. 
 
   </Message>
@@ -57,10 +54,10 @@ Each **Zone Name** created translates into a [**Domain Name**](/network/dns-clou
 5. Type **DELETE** in the pop-up form and click **Delete this zone** to confirm the action:
     <Lightbox src="scaleway-dns-delete-zone.webp" alt="" />
     <Message type="important">
-
     Be careful! This will permanently delete your zone and all its associated data will be lost. This action is irreversible.
 
     </Message>
+
 
 <Navigation title="See Also">
   <PreviousButton to="/network/dns-cloud/how-to/add-external-domain/">How to add an external domain</PreviousButton>

@@ -11,15 +11,12 @@ dates:
 ---
 
 <Message type="requirement">
-
   - You have a [Scaleway account](/console/my-account/how-to/create-an-account/)   
   - You have [configured your API keys](/console/my-project/how-to/generate-api-key/)
   - You have a [Block Storage volume](/storage/block/api-cli/creating-a-volume)
-
 </Message>
 
 1. Query the current volumes of the Instance.
-
   ```
   $ curl -q \
   -H "X-Auth-Token: $SECRET_KEY" \
@@ -42,7 +39,6 @@ dates:
 
   As displayed, our current volumes are only constituted of the root volume.
 2. Hot-plug the volume created earlier:
-
   ```
   $ curl -q \
   -H "X-Auth-Token: $SECRET_KEY" \
@@ -93,7 +89,6 @@ dates:
   }
   ```
 3. Use [SSH](/compute/instances/how-to/connect-to-instance/) to log into your server and verify that the new disk exists:
-
   ```
   $ lsblk
   NAME    MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
@@ -135,6 +130,7 @@ dates:
     }
   }
   ```
+
 
 <Navigation title="See Also">
   <PreviousButton to="/storage/block/api-cli/creating-a-volume/">Creating a volume</PreviousButton>

@@ -19,12 +19,10 @@ pgBackRest can back up in three ways:
 - Incremental backup: This retrieves files that have changed since the last backup. The last backup can be a full backup or a differential backup.
 
 <Message type="requirement">
-
 - You have an account and are logged into the Scaleway console.
 - You have created Instances running a [PostgreSQL database](https://www.scaleway.com/en/docs/tutorials/install-postgresql/) on Ubuntu/Debian or RHEL/Rocky Linux.
 - You have sudo privileges or access to the root user.
 - You have [created an Object Storage bucket](https://www.scaleway.com/en/docs/storage/object/how-to/upload-files-into-a-bucket)
-
 </Message>
 
 
@@ -87,7 +85,6 @@ For RHEL/Rocky Linux:
    ```
 
     <Message type="note">
-
     PostgreSQL data directory is `/var/lib/postgresql/14/main` in Ubuntu/Debian by default
 
     </Message>
@@ -105,13 +102,11 @@ For RHEL/Rocky Linux:
    ```
 
     <Message type="note">
-
     Changing the `archive_mode` parameter requires a restart, but a reload is sufficient if you are only changing the `archive_command` parameter.
 
     </Message>
 
     <Message type="note">
-
     If you want WAL archiving to be done only during backup, you can add the following command:
         ```
         test -f /tmp/pgbackrest/db-primary-backup.lock || exit 0 && pgbackrest --stanza=db-primary archive-push %p
@@ -120,7 +115,6 @@ For RHEL/Rocky Linux:
 
     </Message>
 2. Restart PostgreSQL to apply the changes:
-
    For RHEL/Rocky Linux:
 
    Restart the `postgresql-14.service` to apply the changes.
@@ -162,9 +156,7 @@ For RHEL/Rocky Linux:
     ```
 
 <Message type="note">
-
 If there are no existing backups for a stanza, the backup type will be set to full.
-
 </Message>
 
 
@@ -186,15 +178,11 @@ If there are no existing backups for a stanza, the backup type will be set to fu
     ```
 
 <Message type="tip">
-
 A full restore can take a long time on large databases. If the connection is lost, the restoration process may be interrupted. For this reason, running the restore command in `screen` or `tmux` will increase reliability.
-
 </Message>
 
 <Message type="note">
-
 If only missing files need to be added, you can use the `--delta` parameter. This parameter restores only missing files.
-
 </Message>
 
 

@@ -36,22 +36,18 @@ For more information, refer to the [official Apache Hadoop documentation.](http:
 
 	
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
   - You have sudo privileges or access to the root user.
-
 </Message>
 
 ## Installing the Default JRE/JDK
 
 1. Update the package index.
-
   ```
   apt-get update
   ```
 2. Install Java. Specifically, this command will install the Java Runtime Environment (JRE).
-
   ```
   apt-get install default-jre
   ```
@@ -60,7 +56,6 @@ For more information, refer to the [official Apache Hadoop documentation.](http:
 
   The JDK does contain the JRE, so there are no disadvantages if you install the JDK instead of the JRE, except for the larger file size. You can install the JDK with the `apt-get install default-jdk` command.
 3. Check the version once the installation is complete, let's
-
   ```
   java -version
   ```
@@ -73,10 +68,8 @@ For more information, refer to the [official Apache Hadoop documentation.](http:
 
 1. Visit the [Apache Hadoop Releases page](http://hadoop.apache.org/releases.html) to select the most recent stable release. We will install Hadoop version 3.3.4
 2. Copy the link to the release binary.
-
   <Lightbox src="scaleway-apacheDL.webp" alt="" />
 3. Use `wget` to fetch it:
-
   ```
   wget http://mirrors.standaloneinstaller.com/apache/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz
   ```
@@ -85,12 +78,10 @@ For more information, refer to the [official Apache Hadoop documentation.](http:
 
   <Lightbox src="scaleway-checksumDL.webp" alt="" />
 4. Copy the link displayed in the browser and use `wget` on our server to download the file.
-
   ```
   wget https://dist.apache.org/repos/dist/release/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz.mds
   ```
 5. Run the following verification:
-
   ```
   shasum -a 256 hadoop-3.3.4.tar.gz
   ```
@@ -98,19 +89,16 @@ For more information, refer to the [official Apache Hadoop documentation.](http:
   f837fe260587f71629aad1f4fb6719274e948111dc96ffc5a8e26f27deac5602  hadoop-3.3.4.tar.gz
   ```
 6. Compare this value with the SHA-256 value in the .mds file:
-
   ```
   cat hadoop-3.3.4.tar.gz.mds
   ```
 
   The output of the command we ran against the file we downloaded from the mirror should match the value in the file we downloaded from `apache.org.`.
 7. Use the tar command with the `-x` flag to extract, `-z` to uncompress, `-v` for verbose output, and `-f` to specify that we're extracting from a file.
-
   ```
   tar -xzvf hadoop-3.3.4.tar.gz
   ```
 8. Move the extracted files into `/usr/local`. Change the version number to match the version you downloaded.
-
   ```
   mv hadoop-3.3.4 /usr/local/hadoop
   ```
@@ -124,7 +112,6 @@ The path to Java, `/usr/bin/java` is a symbolic link to `/etc/alternatives/java`
 Use `readlink` command with the `-f` option to follow every symbolic link in every part of the path, recursively. Then, use `sed` to trim `bin/java` from the output to give us the correct value for `JAVA_HOME`.
 
 1. Launch the following command to find the default Java path:
-
   ```
   readlink -f /usr/bin/java | sed "s:bin/java::"
   ```
@@ -134,18 +121,15 @@ Use `readlink` command with the `-f` option to follow every symbolic link in eve
 
   You can copy this output to set Hadoop's Java home to this specific version, which ensures that if the default Java changes, this value will not. Or, you can use the `readlink` command dynamically in the file so that Hadoop will automatically use whatever Java version is set as the system default.
 2. Open `hadoop-env.sh`:
-
   ```
   sudo nano /usr/local/hadoop/etc/hadoop/hadoop-env.sh
   ```
 	
   <Message type="note">
-
     With respect to Hadoop, the value of JAVA_HOME in hadoop-env.sh overrides any values that are set in the environment by /etc/profile or in a user's profile.
 
   </Message>
 3. Select one of the following options:
-
   **Option 1**: Static Value
 
   ```
@@ -199,37 +183,30 @@ MapReduce is a programming framework that allows us to perform distributed and p
 MapReduce consists of two distinct tasks – Map and Reduce. As the name MapReduce suggests, reducer phase takes place after mapper phase has been completed.
 
 1. Create a directory called `input` in our home directory
-
   ```
   mkdir ~/input
   ```
 2. Copy Hadoop's configuration files into it to use those files as our data.
-
   ```
   cp /usr/local/hadoop/etc/hadoop/*.xml ~/input
   ```
 3. Download Hadoop example
-
   ```
   wget  https://jar-download.com/cache_jars/org.apache.hadoop/hadoop-mapreduce-examples/3.0.3/jar_files.zip
   ```
 4. Unzip the file
-
   ```
   unzip jar_files.zip
   ```
 5. Move the `jar_files` to `/usr/local/hadoop/share/hadoop/mapreduce/hadoop/`
-
   ```
   mv hadoop-mapreduce-examples-3.0.3.jar /usr/local/hadoop/share/hadoop/mapreduce/.
   ```
   <Message type="important">
-
     Verify that your /etc/hosts file is properly setup and contains at least the following: `127.0.0.1 localhost <your hostname>`.
 
   </Message>
 6.  Use the following command to run the MapReduce `hadoop-mapreduce-examples` program. We'll invoke its grep program which counts the matches of a literal word or regular expression (e.g., `allowed`).
-
   ```
   /usr/local/hadoop/bin/hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.0.3.jar grep ~/input ~/grep_example 'allowed[.]*'
   ```

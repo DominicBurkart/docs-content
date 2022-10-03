@@ -19,12 +19,10 @@ This page shows examples of functions in [Python](#python), [Node](#node), and [
   - connect to HTTP services
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have a [Serverless Functions namespace](/compute/functions/how-to/create-a-functions-namespace/)
 - You have a text editor/IDE (for example [Visual Studio Code](https://code.visualstudio.com/) or [Atom](https://atom.io/))
 - You understand [how to package your code](https://www.scaleway.com/en/docs/compute/functions/how-to/package-function-in-zip/)
-
 </Message>
 
 ## Python
@@ -191,10 +189,8 @@ def handle(event, context):
     }
 ```
 <Message type="note">
-
 If you want to use other libraries like `request`, you need to upload your project [using Serverless Framework](https://www.scaleway.com/en/docs/compute/functions/api-cli/fun-uploading-with-serverless-framework/) (recommanded)
 or by [using a zip-file](https://www.scaleway.com/en/docs/compute/functions/how-to/package-function-in-zip/).
-
 </Message>
 
 ## Node
@@ -202,9 +198,7 @@ or by [using a zip-file](https://www.scaleway.com/en/docs/compute/functions/how-
 ### Returning a function result in Node
 
 <Message type="note">
-
 The following examples use CommonJS modules. If you use ES modules refer to the [dedicated section of this documentation](#using-es-modules).
-
 </Message>
 
 There are multiple ways a response can return from a handler function:

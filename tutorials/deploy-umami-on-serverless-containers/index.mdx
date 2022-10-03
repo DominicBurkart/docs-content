@@ -18,14 +18,12 @@ Umami is a simple, easy to use, self-hosted web analytics solution. It provides 
 The tool collects only the metrics relevant to you and displays everything on a single page.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have created a [Container Registry](/compute/container-registry/quickstart/)
 - You have created a [Database for PostgreSQL](/managed-databases/postgresql-and-mysql/quickstart/)
 - You have [Docker](/tutorials/install-docker-ubuntu-bionic/) installed on your local computer
 - You have generated an [API key](/console/my-project/how-to/generate-api-key)
 - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key/)
-
 </Message>
 
 ## Preparating the Database
@@ -49,7 +47,6 @@ The tool collects only the metrics relevant to you and displays everything on a 
     ```
 
     <Message type="important">
-
     In order to run this example, you must first create a secret token from the credentials page, and replace the expression `$SCW_SECRET_TOKEN` with the created token.
 
     </Message>
@@ -78,7 +75,6 @@ The tool collects only the metrics relevant to you and displays everything on a 
 5. Select the resources you want to allocate to the container. The resources to allocate depend on the intended load of your application. In this tutorial we use **128 MB - 70 mCPU**.
 6. Configure the minimum and maximum values to autoscale the number of available instances for your container. 
 7. Set the Secrets. Secrets are an extra-secure type of environment variables which are injected into your container and stored securely:
-
     <Lightbox src="scaleway-serverless-secrets.webp" alt="" />
 
 
@@ -112,11 +108,9 @@ Your Serverless Functions come with a default endpoint name. You can customize t
 1. Click the **Endpoints** tab. The endpoint information displays. 
 2. Click **+ Add new Endpoints**. A pop up displays. 
 3. Enter the name of your endpoint. You can use any domain or subdomain that you own. Click **Add Endpoint** to validate.
-
     <Lightbox src="scaleway-serverless-endpoint.webp" alt="" />
 
     <Message type="note">
-
     Make sure you have configured a valid CNAME record for your domain and activated TLS before adding the endpoint.
 
     </Message>

@@ -23,12 +23,10 @@ dates:
 In this tutorial, you will learn how to install and configure NetBox on an Instance running on Ubuntu 20.04 LTS and a Database for PostgreSQL.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key)
 - You have a [Instance](https://www.scaleway.com/en/virtual-instances/) running Ubuntu Focal Fossa (20.04 LTS) or later
 - You have a [Database for PostgreSQL](https://www.scaleway.com/en/database/)
-
 </Message>
 
 ## Configuring the database
@@ -119,13 +117,11 @@ Enter the key in the configuration file as follows, then save the file and exit 
   SECRET_KEY = 'uyK5ajt-Vl$!gd2HeLbN=^6@&EhDmv8%)zT1S03kXPCsUGrI9_'
   ```
 <Message type="important">
-
 The `SECRET_KEY` is not used for hashing user passwords or for the encrypted storage of secret data in NetBox.  
 NetBox comes with a script, that you may use to generate a random key:
 ```
 python3 /opt/netbox/netbox/generate_secret_key.py
 ```
-
 </Message>
 
 12. Once NetBox has been configured, proceed with the actual installation by running the packaged upgrade script (`upgrade.sh`):
@@ -143,7 +139,6 @@ This script performs the following actions on your instance:
 <Message type="note">
   
   The upgrade script may warn you, that no existing virtual environment was detected. As this is a new installation, you can safely ignore this warning.
-
 </Message>
 
 The basic configuration for NetBox is done now, several other configuration options are available but optional. Refer to the [official documentation](https://netbox.readthedocs.io/en/stable/configuration/optional-settings/) for more information on them.

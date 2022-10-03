@@ -25,42 +25,35 @@ The complete messaging architecture is built using open technology and well-know
 During this tutorial you will learn how to install the latest version of open-source version of Zimbra on a [Elastic Metal server](https://www.scaleway.com/en/elastic-metal/) running on Ubuntu Bionic Beaver server.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
 - You have [created an Elastic Metal server](/compute/elastic-metal/how-to/create-server/) which is running Ubuntu Bionic Beaver (18.04 LTS)
 - You have sudo privileges or access to the root user
 - You have configured an A-record pointing to your servers IP address
 - You have configured a valid reverse DNS for your IP address
-
 </Message>
 
 ## Installing Zimbra Open Source Edition
 
 1. Connect to your server using SSH:
-
   ```code
   ssh root@SERVER_IP
   ```
 2. Update your system to the latest version:
-
   ```code
   apt-get update && apt-get upgrade
   ```
 3. Edit your `/etc/hosts` file so it looks like the following example:
-
   ```code
   51.159.31.9   zimbra.example.com     zimbra
   127.0.0.1       localhost
   ```
 4. Configure the DNS settings of your server by editing the file `/etc/resolv.conf`. Set it to `62.210.16.6` and `62.210.16.7` to use Scaleway's DNS servers.
-
   ```code
   nameserver 62.210.16.6
   nameserver 62.210.16.7
   ```
 5. [Download](https://www.zimbra.com/downloads/zimbra-collaboration-open-source/) and extract the latest version of Zimbra
-
   ```code
   wget https://files.zimbra.com/downloads/8.8.15_GA/zcs-8.8.15_GA_3869.UBUNTU18_64.20190918004220.tgz
   tar xfz zcs-8.8.15_GA_3869.UBUNTU18_64.20190918004220.tgz
@@ -72,22 +65,18 @@ During this tutorial you will learn how to install the latest version of open-so
 
   </Message>
 6. Enter the Zimbra directory:
-
   ```code
   cd zcs-*
   ```
 7. Run the Zimbra installation tool:
-
   ```code
   ./install.sh
   ```
 8. Confirm that you agree to the software license, by typing `y`:
-
   ```code
   Do you agree with the terms of the software license agreement? [N]y
   ```
 9. Confirm that you want to use the repository of Zimbra, by pressing on `Enter`:
-
   ```code
   Use Zimbra's package repository [Y]
   ```
@@ -237,10 +226,8 @@ The installation of Zimbra Open Source is complete now and you can continue with
 ## Configuring Zimbra Open Source Edition
 
 1. You can now login to the admin console at `https://YOUR_SERVER_IP:7071/zimbraAdmin/`. Use the user `admin@domin.tld` and the password that you have set during the installation to login:
-
   <Lightbox src="scaleway-zimbra-admin-login.webp" alt="" />
 2. Once you are logged you can click **Get Started** to begin with the configuration of the Zimbra server:
-
   <Lightbox src="scaleway-zimbra-admin-logged.webp" alt="" />
 
 Add users and accounts as required.
@@ -258,7 +245,6 @@ You can now check your emails, manage your contacts and your calendar.
 By default Zimbra uses a self-signed certificate which can cause warnings in a web browser. To avoid these warnings, request a free [Let's Encrypt](https://letsencrypt.org/) TLS/SSL certificate.
 
 1. Log into to your server, as `root` user, via SSH, add the [certbot](https://certbot.eff.org/) repository, and install `certbot` to manage the certificate:
-
   ```code
   apt install software-properties-common -y
   add-apt-repository universe
@@ -267,23 +253,19 @@ By default Zimbra uses a self-signed certificate which can cause warnings in a w
   apt install certbot -y
   ```
 2. Switch into the Zimbra user:
-
   ```code
   su zimbra
   ```
 3. Stop the following services:
-
   ```code
   zmproxyctl stop
   zmmailboxdctl stop
   ```
 4. Exit from the Zimbra user:
-
   ```code
   exit
   ```
 5. Lauch the following command to use the `certonly` feature of certbot:
-
   ```
   certbot certonly --standalone
   ```
@@ -294,7 +276,6 @@ By default Zimbra uses a self-signed certificate which can cause warnings in a w
   certbot certonly --standalone -d example.com -d www.example.org
   ```
 6. The certificate has been issued once the following message appears:
-
   ```
     Congratulations! Your certificate and chain have been saved at:
     /etc/letsencrypt/live/example.com/fullchain.pem
@@ -344,19 +325,16 @@ By default Zimbra uses a self-signed certificate which can cause warnings in a w
 
   > In short: chain.pem has to be merged with the root CA. First your certificate chain, and the end of the file the root CA. The order is important.
 7. Copy the Let's Encrypt folder with all files `/etc/letsencrypt/live/zimbra.example.com` into `/opt/zimbra/ssl/letsencrypt`:
-
   ```code
   mkdir /opt/zimbra/ssl/letsencrypt
   mv /etc/letsencrypt/live/mydomain.com/* /opt/zimbra/ssl/letsencrypt/
   chown zimbra:zimbra /opt/zimbra/ssl/letsencrypt/*
   ```
 8. Change into the Zimbra user:
-
   ```code
   su zimbra
   ```
 9. Verify the certificate:
-
   ```code
   cd /opt/zimbra/ssl/letsencrypt/
   /opt/zimbra/bin/zmcertmgr verifycrt comm privkey.pem cert.pem chain.pem

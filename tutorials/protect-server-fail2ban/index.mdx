@@ -21,26 +21,21 @@ dates:
 In this Tutorial you will learn how to configure the service on an Ubuntu Bionic server to protect the SSH service. Fail2Ban can be used with all services generating log files.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have an Ubuntu Bionic Instance
 - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
 - You have sudo privileges or access to the root user.
-
 </Message>
 
 ## Installing Fail2Ban
 
 1. The required packages are available in the repositories of Ubuntu and can be installed with `apt`:
-
   ```
   sudo apt-get install fail2ban postfix
   ```
 2. Choose `Internet Site` when asked for the configuration:
-
   <Lightbox src="scaleway-postfix-install.webp" alt="" />
 3. Once the installation has completed, open the file `/etc/aliases` and add the following line:
-
   ```
   root: me@mydomain.tld
   ```
@@ -48,7 +43,6 @@ In this Tutorial you will learn how to configure the service on an Ubuntu Bionic
   Make sure to replace `me@mydomain.tld` with your actual email address.
 
   <Message type="tip">
-
   To receive notifications by email, it is required that the [email ports are unlocked](/compute/instances/how-to/send-emails-from-your-instance/).
 
   </Message>
@@ -56,14 +50,12 @@ In this Tutorial you will learn how to configure the service on an Ubuntu Bionic
 ## Configuring Fail2Ban
 
 1. Start by copying the configuration file:
-
   ```
   cd /etc/fail2ban && sudo cp jail.conf jail.local
   ```
 
   The file `jail.conf` contains the default parameters. If a file `jail.local` is available, it will have priority over `jail.conf` if parameters are modified.
 2. Edit the file `/etc/fail2ban/jail.local` with your preferred editor.
-
   Following the parameters which should be modified:
 
     - `ignoreip = 127.0.0.1/8` By default the IPs of localhost are ignored, self-banning would not be very useful. It is possible to exclude other IPs from being banned.
@@ -97,7 +89,6 @@ In this Tutorial you will learn how to configure the service on an Ubuntu Bionic
     ```
 
     <Message type="tip">
-
     If your SSH daemon is listening on multiple ports or on a different port, you have to modify the line port with the correct parameters:
     For example:
     ```
@@ -107,13 +98,11 @@ In this Tutorial you will learn how to configure the service on an Ubuntu Bionic
 
     </Message>
 3. Save the file once you have edited it.
-
   Fail2Ban uses filters, pre-made configuration files indicating what to parse in a log.
 
   They can be found in `/etc/fail2ban/filter.d`.
   You can create your own filters in case you have need to.
 4. Restart the service to take the actions into effect:
-
 ```
 sudo service fail2ban restart
 ```

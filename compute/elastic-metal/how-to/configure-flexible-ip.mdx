@@ -17,12 +17,10 @@ dates:
 Learn how to configure a [flexible IP address](/compute/elastic-metal/concepts/#flexible-ip) on your Elastic Metal server. The configuration depends on the Linux distribution running on your machine. You can configure your flexible IP on machines running one of [Ubuntu Linux](#how-to-configure-a-flexible-ip-on-ubuntu-linux), [Debian Linux](#how-to-configure-a-flexible-ip-on-debian-linux) or [CentOS](#how-to-configure-a-flexible-ip-on-centos).
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)  
 - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
 - You have [created](/compute/elastic-metal/how-to/create-server) and [installed](/compute/elastic-metal/how-to/install-server) an Elastic Metal server
 - You have [attached a flexible IP address](/compute/elastic-metal/how-to/attach-detach-flexible-ip) to your Elastic Metal server
-
 </Message>
 
 
@@ -32,9 +30,7 @@ Since the LTS release of Ubuntu Version 18.04 (Bionic Beaver) the recommended wa
 
 1. Log into your server using SSH with a user having super-user rights.
 2. Open the file `/etc/netplan/01-netcfg.yaml` with superuser rights in your favorite text editor and configure the networking for your machine.
-
    <Message type="note">
-
      IP addresses in the configuration file have to be specified in CIDR
      notation. The netmask is `/24` for the principal IP of the server and `/32`
      for each flexible IP.
@@ -55,7 +51,6 @@ Since the LTS release of Ubuntu Version 18.04 (Bionic Beaver) the recommended wa
   ```
 
   <Message type="tip">
-
     The interface name for your primary interface may be different than
     `enp1s0f0`. You can use the `ip link show` command to determine the name of
     your public Internet interface.
@@ -75,7 +70,6 @@ Your server now responds on both the primary IP address and the flexible IP addr
 1. Log into your server using SSH with a user having super-user rights.
 2. Open the file `/etc/network/interfaces` with superuser rights in your favorite text editor and configure the networking for your machine.
 3. Edit the file and add the flexible IP as shown in the following example:
-
   ```sh
   # This file describes the network interfaces available on your system
   # and how to activate them. For more information, see interfaces(5).
@@ -95,7 +89,6 @@ Your server now responds on both the primary IP address and the flexible IP addr
   ```
 
   <Message type="note">
-
     The interface name of your server might be different depending on the hardware
     of the server. You can use the `ip link show` command to determine the name of
     your public Internet interface.
@@ -114,12 +107,10 @@ Your server now responds on both the primary IP address and the flexible IP addr
 
 1. Log into your server using SSH using the `root` user.
 2. Copy the default network configuration file to create an alias:
-
   ```sh
   cp /etc/sysconfig/network-scripts/ifcfg-eth0 /etc/sysconfig/network-scripts/ifcfg-eth0:0
   ```
 3. Open the file `/etc/sysconfig/network-scripts/ifcfg-eth0:0` in your favourite text editor and modify it as in the following example:
-
   ```sh
   DEVICE="eth0:0"
   BOOTPROTO=static
@@ -128,7 +119,6 @@ Your server now responds on both the primary IP address and the flexible IP addr
   ONBOOT=yes
   ```
 4. Save the file, exit the text editor and run the following command to reload the network configuration:
-
   ```
   /etc/init.d/network restart
   ```
@@ -148,10 +138,9 @@ Configure the networking of your VM's as follows:
 * DNS resolver: `62.210.16.6` and `62.210.16.7`
 
 <Message type="tip">
-
 The gateway of all flexible IPs is `62.210.0.1`. This allows you to move your VMs between your hypervisors without changing the network configuration of the virtual machine.
-
 </Message>
+
 
 <Navigation title="See Also">
   <PreviousButton to="/compute/elastic-metal/how-to/attach-detach-flexible-ip/">How to attach / detach a flexible IP</PreviousButton>

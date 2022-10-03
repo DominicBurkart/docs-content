@@ -13,19 +13,15 @@ dates:
 Managed Database for Redis™ is a low-latency caching solution based on in-memory data storage. It allows you to easily set up a secure cache and lighten the load on your main database. 
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-
 </Message>
 
 1. Click **Redis™** under **Managed Databases** on the side menu. If you do not have a database already created, the creation page displays.
 2. Click **Create Redis™ Database Instance**. The creation wizard displays.
 3. Complete the following steps in the wizard:
-
     - Choose an Availability Zone. This is the geographical location where your database will be deployed.
 
     <Message type="note">
-
     Managed Database for Redis™ are available in PAR1, PAR2, AMS1 and WAW1.
 
     </Message>
@@ -38,7 +34,6 @@ Managed Database for Redis™ is a low-latency caching solution based on in-memo
     - **Private Network**: allows your Databases to communicate in an isolated and secure network without the need for a public IP address. If you select this option you must: 1. select a Private Network to attach from the drop-down and 2. enter an IP address for each node in your Private Network. The IP addresses must belong to the same subnet. The mask you select applies to all IP addresses.
 
     <Message type="important">
-
     If you want to use Private Networks you must:
     - select the option upon creation
     - have an existing Private Network to select the option
@@ -48,7 +43,6 @@ Managed Database for Redis™ is a low-latency caching solution based on in-memo
     </Message>
 
     <Message type="note">
-
     While it is theoretically possible to use any IP range within your Private Network, it is not recommended to use any IP subnets that are publicly routed. Whilst the configuration may work for your Instances to communicate with each other, you might experience connectivity issues to machines on the public Internet within these ranges. 
 
     It is therefore recommended that you configure your Private Network using IPs from the following private IP ranges: 
@@ -59,7 +53,6 @@ Managed Database for Redis™ is a low-latency caching solution based on in-memo
     Using the `10.0.0.0/8` private IP range is **not recommended**, as this block is used for infrastructure services. This is only recommended for expert users. 
 
     <Message type="important">
-
     - It is not possible to use a broadcast address (last address of the subnet, e.g. `192.168.0.255/24`) or network address (first address of the subnet, e.g. `192.168.0.0/24`).
     - It is also not possible to use the same IP twice in a Private Network.
 

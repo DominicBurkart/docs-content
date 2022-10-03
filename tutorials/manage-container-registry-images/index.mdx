@@ -20,11 +20,9 @@ When overused, a Container Registry can become very dense, storing lots of unuse
 This tutorial will show you how to periodically remove older images with a specific tag using Serverless Functions, Scaleway Console and Python’s Urllib.
 
 <Message type="requirement">
-
 - You have an account and are logged into [the Scaleway console](https://console.scaleway.com) and have access to Registry and Functions
 - You have created a [Serverless Functions Namespace](/compute/container-registry/how-to/create-namespace/)  
 - You have generated [an API key](/console/my-project/how-to/generate-api-key)
-
 </Message>
 
 
@@ -39,7 +37,6 @@ This tutorial will show you how to periodically remove older images with a speci
 6. From the second drop-down menu, choose `python3` as your runtime. 
 7. Delete what automatically displays in the online code editor. 
 8. Type the following code into the online code editor: 
-
     ```python
     import urllib.request
     import os
@@ -108,7 +105,6 @@ This tutorial will show you how to periodically remove older images with a speci
    ```
    
 9. Choose a **name** for your Function. The name must only contain alphanumeric characters.
-
 10. Choose the **resources** to be allocated to your Function at runtime. These define the performance characteristics of your Function.
 
 11. Set your **scaling** preferences, or leave them at default values. The Scaleway platform autoscales the number of available Instances of your Function to match the incoming load, depending on the settings you define here.
@@ -128,7 +124,6 @@ This tutorial will show you how to periodically remove older images with a speci
 15. Add a **Trigger** to specify the frequency you want to execute the Function at. 
 
     <Message type="note">
-
      For example 0 2 * * * will make the function run every day at 2 am
 
     </Message>
@@ -136,9 +131,7 @@ This tutorial will show you how to periodically remove older images with a speci
 16. Click **Deploy a Function**. 
 
 <Message type="note">
-
 You can run your Function by reaching its endpoint. Click the **Function Settings** tab to do so. 
-
 </Message>
 
 

@@ -25,9 +25,7 @@ dates:
 
 
 <Message type="note">
-
 - The default version of PHP for all webhostings is PHP 5. During the creation of your webhosting, a `phpinfo.php` file will be created.
-
 </Message>
 
 
@@ -37,9 +35,7 @@ Sessions are a method to save certain information when you are browsing, (your s
 
 
 <Message type="tip">
-
 - Refer to the [official documentation](https://www.php.net/manual/en/ref.session.php) for more information about sessions. 
-
 </Message>
 
 Let us see how to use sessions with PHP4: 
@@ -67,20 +63,16 @@ Let us see how to use sessions with PHP4:
 4. Upload the files to your website and open the file `start.php` in your browser.
 
 
-
 ## How to configure a root directory (DocumentRoot)
 
 
 <Message type="important">
-
 Never use the absolute path `hard` coded in your site, because the path is likely to change and your site would be inaccessible.
-
 </Message>
 
 
 1. Use the variable `$DOCUMENT_ROOT` that points to the root of the website in which your script is being hosted.
 2. Use `$path = “$DOCUMENT_ROOT/afolder/anotherfolder/”;` if you want to know the path of your website `http://www.mysite.ext/afolder/anotherfolder`
-
 
 
 ## How to configure a directory inclusion (IncludePath)
@@ -89,14 +81,11 @@ As part of the creation of a large website, it is possible to centralize frequen
 
 
 1. Create a directory `include` (all lowercase letters) in the website's folder (for example: www/include).
-
     <Message type="note">
-
      - Such directory can only be used within the website it was created in. This means the main website's directory which is named `www/include` is not accessible from a secondary website such as `blog.domain.ext`).
 
     </Message>
 2. Below is an example of a directory-inclusion: 
-
 - Let us suppose you created a file `global.php` including different information or methods. 
 - You want to access it from anywhere on your website without copying it in each subdirectory or enter the relative path to that file in each program.
 - Let us assume that your `.php` files are located in the main website `www.mydomain.ext>`
@@ -120,9 +109,7 @@ As part of the creation of a large website, it is possible to centralize frequen
 
 
 <Message type="note">
-
 - Persistent connections are not possible due to the architecture of the webhosting platform and are performed as a standard connection.
-
 </Message>
 
 Refer to the [documentation](#manage-mysql-database-phpmyadmin) to configure the connection to a database using PHP.
@@ -131,15 +118,12 @@ Refer to the [documentation](#manage-mysql-database-phpmyadmin) to configure the
 ## How to upload files? 
 
 <Message type="note">
-
 - The maximum file size you can upload is 10 MB. 
-
 </Message>
 
 
 1. Rename an uploaded file using the function `move_updloaded_file` before the end of your script. 
 2. The temporary file `phpXXXXX` will be deleted at the end of the receiving PHP script. Below is an example: 
-
 ```php
 <form method="post" enctype="multipart/form-data" action="upload.php">
 <p>
@@ -218,9 +202,7 @@ else
 ```
 
 <Message type="important">
-
 - Be aware that a malicious individual can use contact forms to send you spam. By calling several times a second, it will eventually saturate the `contact@domain.ext` email address you specified. The addition of a captcha can help you avoid this kind of hacking, and thus the suspension or cancellation of your account.
-
 </Message>
 
 
@@ -242,7 +224,6 @@ Let us suppose that the domain in this example is `domain.ext`.
   </html>
   ```
 2. Create a second file `form2mail.php` and upload it using FTP. Your file should be similar to:
-
   ```php
   <?php
   
@@ -304,9 +285,7 @@ Scaleway offers different PHP versions:
 
 
 <Message type="important">
-
 Versions prior to PHP 5.6 are deprecated, so we recommend you update the code of your website. If you need an older version, you must contact the support and request it.
-
 </Message>
 
 The default version for `.php` is 7.3 for current webhosting accounts. For older accounts the version can be changed directly from the [Dedibox Console](https://console.online.net):
@@ -318,39 +297,31 @@ The default version for `.php` is 7.3 for current webhosting accounts. For older
   
     <Lightbox src="scaleway_website_php.webp" alt="" />
 5. Select the PHP version of your choice.  
-
     <Lightbox src="scaleway_php_versions.webp" alt="" />
 6. Click **Submit** to update your PHP version. 
-
 
 
 ## How to configure PHP 
 
 
 <Message type="important">
-
 Configuring PHP is possible for all our offers. However, ensure you are running at least PHP version 5.3 and above.
-
 </Message>
 
 
 1. Upload a `.user.ini`file to the folder corresponding to your sub domain (folder `/www` for example).
   <Message type="note">
-
   The majority of options are configurable, except for those with an impact on the resources of the server.
 
   </Message>
 2. You can modify all values with `PHP_INI_ALL` changeable option you can find by clicking this [link](https://www.php.net/manual/en/ini.list.php). 
 
-
 <Message type="important">
-
 - chown: modifications of the owner of a file are prohibited. Files uploaded using PHP or FTP already belong to your user.
 
 - system/exec/popen: the execution of binaries or CGI files is not possible for security reasons.
 
 - ASP is not supported. The execution of CGI scripts (cgi-bin) and other programs is disabled.
-
 </Message>
 
 

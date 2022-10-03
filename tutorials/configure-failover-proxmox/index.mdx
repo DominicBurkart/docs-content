@@ -21,18 +21,14 @@ Proxmox Virtual Environment (Proxmox VE) is a open-source management platform fo
 The software provides an intuitive web interface as well as a complete REST-API to deploy and manage infrastructures.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Dedibox Console](https://console.online.net)
 - You have a [Scaleway Dedibox](http://www.scaleway.com/en/dedibox)
 - You have at least one [failover IP](/dedibox-network/ip-failover/concepts#failover-ips) with a [virtual MAC address](/dedibox-network/ip-failover/concepts#virtual-mac-address)
-
 </Message>
 
 <Message type="note">
-
 This tutorial assumes that you have already installed Proxmox VE on your Scaleway Dedibox. The automatic installation of Proxmox VE is available from your [Dedibox Console](https://console.online.net) 
 or manually unsing the [KVM-over-IP device](/dedibox/dedicated-servers/concepts/#ipmi) of your server.
-
 </Message>
 
 ## Connecting to Proxmox
@@ -70,25 +66,18 @@ ISO files are archive files that contain identical copies of the data found on o
 ### Creating a LXC Container
 
 1. Click **Create CT** to launch the LXC container creation wizard:
-
     <Lightbox src="scaleway-proxmox_create_ct.webp" width="800" alt="" />
 2. Enter the **Hostname** for the container, a **Password** and its confirmation. Optionally you can enter or upload a public SSH key for authentication:
-
     <Lightbox src="scaleway-proxmox_ct_general_01.webp" width="500" alt="" />
 3. Choose the template for the LXC container:
-
     <Lightbox src="scaleway-proxmox_ct_template_02.webp" width="500" alt="" />
 4. Configure the virtual disk for the cluster. You can set the type of the storage as well as the capacity of the virtual disk:
-
     <Lightbox src="scaleway-proxmox_ct_disk_03.webp" width="500" alt="" />
 5. Set the number of virtual CPU cores available for the container:
-
     <Lightbox src="scaleway-proxmox_ct_cpu_04.webp" width="500" alt="" />
 6. Set the amount of available RAM and Swap space for the container towards your requirements:
-
     <Lightbox src="scaleway-proxmox_ct_ram_05.webp" width="500" alt="" />
 7. Configure the network for the container. Set the parameters as follows to ensure your container has network access:
-
     - **Name**: Set this value to `eth0`
     - **MAC Address**: Set this value to the [virtual MAC address](/dedibox-network/ip-failover/concepts#virtual-mac-address) associated to the failover IP of the container.
     - **Bridge**: Set this value to `vmbr0`.
@@ -96,10 +85,8 @@ ISO files are archive files that contain identical copies of the data found on o
 
   <Lightbox src="scaleway-proxmox_ct_eth_06.webp" width="500" alt="" />
 8. Set the resolving DNS servers for the container. You can either configure the DNS servers provided by Scaleway Dedibox (`62.210.16.6` and `62.210.16.7`) or set your preferred DNS resolvers:
-
   <Lightbox src="scaleway-proxmox_ct_dns_07.webp" width="500" alt="" />
 9. A summary of the containers' configuration displays. If everything is set correctly, click **Finish** to create the container:
-
     <Lightbox src="scaleway-proxmox_ct_summary_08.webp" width="500" alt="" />
 
 10. Start the container from the Proxmox web interface. You can use the web console to connect to your virtual machine and test the network connectivity using a `ping`-test:
@@ -109,22 +96,16 @@ ISO files are archive files that contain identical copies of the data found on o
 ### Creating a KVM Virtual Machine
 
 1. Click **Create VM** to launch the KVM virtual machine creation wizard:
-
     <Lightbox src="scaleway-proxmox_kvm_create.webp" width="800" alt="" />
 2. Enter a **Name** for the virtual machine. The **Node** and **VM ID** values are pre-filled, leave them as they are.
-
     <Lightbox src="scaleway-proxmox_kvm_create_01.webp" width="500" alt="" />
 3. Choose the installation media for the virtual machine. Select **CD/DVD disc image file (iso)**, choose the **local** storage and select the ISO-file downloaded previously. Choose the **Guest OS** type. For a recent Linux distribution, select **Type** `Linux` and **Version** `5.x - 2.6 Kernel`. For other OS types set the values according to the requirements of your operating system.
-
     <Lightbox src="scaleway-proxmox_kvm_os_02.webp" width="500" alt="" />
 4. Configure graphics card and SCSI controller available for the virtual machine. If no special requirements are needed, leave the default settings:
-
     <Lightbox src="scaleway-proxmox_kvm_system_03.webp" width="500" alt="" />
 5. Set the parameters of the virtual hard drive. You can go with the default settings and set the disk size towards your requirements:
-
     <Lightbox src="scaleway-proxmox_kvm_hdd_04.webp" width="500" alt="" />
 6. Choose the CPU settings for the virtual machine. You may set the number of **Sockets** and **Cores** as well as the **Type** towards your requirements:
-
     <Lightbox src="scaleway-proxmox_kvm_cpu_05.webp" width="500" alt="" />
 7. Set the amount of RAM for the virtual machine towards your requirements
 8. Configure the network interface. Set the **bridge** to `vmbr0`, the model to `VirtIO (paravirtualized)` and configure the [virtual MAC address](/dedibox-network/ip-failover/concepts#virtual-mac-address) assigned to the failover IP of the virtual machine. The static [network configuration](/compute/elastic-metal/how-to/configure-flexible-ip/) is done in a later step, during the installation of the operating system.  <Lightbox src="scaleway-proxmox_kvm_cpu_05.webp" width="500" alt="" />
@@ -136,7 +117,5 @@ ISO files are archive files that contain identical copies of the data found on o
 
 
 <Message type="tip">
-
 Follow the official documentation to learn more about [VM templates and Clones](https://pve.proxmox.com/wiki/VM_Templates_and_Clones) or watch tutorials on the official [Youtube canal](https://www.youtube.com/user/ProxmoxVE).
-
 </Message>

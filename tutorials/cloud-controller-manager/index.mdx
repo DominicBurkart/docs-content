@@ -28,12 +28,10 @@ The Scaleway Cloud Controller Manager is currently under active development and 
 
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
 - You have [created your API Key](/console/my-project/how-to/generate-api-key/)
 - You have [created three Instances](/compute/instances/how-to/create-an-instance/) running Ubuntu Bionic
-
 </Message>
 
 ## Creating a Kubernetes Cluster using kubeadm on Scaleway
@@ -47,7 +45,6 @@ To follow this example, you need to create three Ubuntu Bionic Instances:
 - `node2`
 
 1. Run the following commands on each of your Instances:
-
   ```bash
   apt-get update && apt-get install -y \
       iptables \
@@ -73,7 +70,6 @@ To follow this example, you need to create three Ubuntu Bionic Instances:
   echo KUBELET_EXTRA_ARGS=\"--cloud-provider=external\" > /etc/default/kubelet
   ```
 2. Initialize the Kubernetes master on the Instance `master1`:
-
   ```bash
   root@master1:~# kubeadm init --control-plane-endpoint=$(scw-metadata PUBLIC_IP_ADDRESS) --apiserver-cert-extra-sans=$(scw-metadata PUBLIC_IP_ADDRESS)
   root@master1:~# mkdir -p ~/.kube
@@ -83,13 +79,11 @@ To follow this example, you need to create three Ubuntu Bionic Instances:
   ```
 3. During the installation the `kubeadm join` command displays. Note it down as it is required for the worker nodes to join the cluster. You can also copy the `kubeconfig` file and save it on your local computer.
 4. Execute the `kubeadm join` command on worker node to join the cluster:
-
   ```bash
   root@node1:~# kubeadm join 10.68.34.145:6443 --token itvo0b.kwoao79ptlj22gno \
       --discovery-token-ca-cert-hash sha256:07bc3f9601f1659771a7a6fd696c2969cbc757b088ec752ba95d5a42c06ed91f
   ```
 5. Verify the status of the cluster on the master by running the `kubectl get nodes` command.
-
   ```bash
   root@master1:~#  kubectl get nodes
   NAME       STATUS   ROLES    AGE     VERSION
@@ -110,13 +104,10 @@ To deploy the `cloud-controller-manager` the following information are required:
 - The Scaleway region.
 
 <Message type="note">
-
 You can find this information in the [Scaleway Console](https://console.scaleway.com/account/credential).
-
 </Message>
 
 1. Create a `k8s-scaleway-secret.yml` file containing the following information:
-
   ```bash
   root@master1:~#  nano k8s-scaleway-secret.yml
   ```
@@ -134,7 +125,6 @@ You can find this information in the [Scaleway Console](https://console.scaleway
     SCW_DEFAULT_ORGANIZATION_ID: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx'
   ```
 2. Create the `secret` and deploy the controller
-
   ```bash
   root@master1:~# kubectl create -f k8s-scaleway-secret.yml
   root@master1:~# kubectl apply -f https://raw.githubusercontent.com/scaleway/scaleway-cloud-controller-manager/master/examples/k8s-scaleway-ccm-latest.yml
@@ -143,7 +133,6 @@ You can find this information in the [Scaleway Console](https://console.scaleway
 ## Checking that the cloud-controller-manager is working
 
 1. Verify the `cloud-controller-manager` is running from the `master1` instance:
-
   ```bash
   root@master1:~# kubectl get pods -n kube-system -l app=scaleway-cloud-controller-manager
   NAME                                                 READY   STATUS    RESTARTS   AGE
@@ -155,7 +144,6 @@ You can find this information in the [Scaleway Console](https://console.scaleway
   node2      Ready    <none>   2m31s   v1.17.4
   ```
 2. Deploy a `LoadBalancer` service and make sure a public IP is assigned to this service. The service will automatically create a [managed Load Balancer](https://www.scaleway.com/en/load-balancer/) on the Scaleway platform.
-
   Create a `lb.yml` file that contains the following information:
 
   ```bash
@@ -176,12 +164,10 @@ You can find this information in the [Scaleway Console](https://console.scaleway
     type: LoadBalancer
   ```
 3. Create the service from the configuration file:
-
   ```bash
   root@master1:~# kubectl create -f lb.yml
   ```
 4. Verify if the service has been created:
-
   ```bash
   root@master1:~# kubectl get services
   NAME              TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)          AGE

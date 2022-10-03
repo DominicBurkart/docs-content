@@ -20,25 +20,21 @@ The LAMP stack references a group of software that can be used to serve dynamic 
 The concept describes a server environment that consists of a Linux operating system (Ubuntu Jammy Jellyfish 22.04 LTS), an Apache web server, a MySQL (or MariaDB) database server, and the PHP programming language. 
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key/)
   - You have a [Scaleway Instance](/compute/instances/how-to/create-an-instance/) running on Ubuntu 22.04 (Jammy Jellyfish)
   - You have a FQDN (Fully Qualified Domain Name) pointing to your Instance’s IP address
   - You have sudo privileges or access to the root user
-
 </Message>
 
 ## Installing the LAMP stack on an Ubuntu 22.04 Instance
 
 1. [Connect to your Instance via SSH](/compute/instances/how-to/connect-to-instance/).
 2. Use the `apt` package manager of Ubuntu to install the required packages. Make sure that the system is up to date and has the latest bug-fixes and updates installed by running the following command:
-
   ```bash
   apt update && apt -y upgrade
   ```
 3. Install the software stack:
-
   ```bash
   apt install -y ufw apache2 mariadb-server php-fpm php-mysql
   ```
@@ -46,7 +42,6 @@ The concept describes a server environment that consists of a Linux operating sy
 ## Securing the database engine
 
 1. Launch the configuration wizard to configure the database server:
-
   ```bash
   mysql_secure_installation
   ```
@@ -56,7 +51,6 @@ The concept describes a server environment that consists of a Linux operating sy
     Switch to unix_socket authentication [Y/n]
     ```
 4. Press `N` to keep your current root password, press `Y` to change the root password:
-
   ```bash
   You already have your root account protected, so you can safely answer 'n'.
 
@@ -70,12 +64,10 @@ The concept describes a server environment that consists of a Linux operating sy
 Apache stores the configuration of virtual hosts configuration files. All available configuration files are located in the `/etc/apache2/sites-available/` directory.
 
 1. Navigate to the relevant directory:
-
   ```
   cd /etc/apache2/sites-available/
   ```
 2. Create a new virtual hosts configuration file and name it after the domain name that points to your Instance. Here we call it `example.com.conf` and put the following content into the file:
-
     ```
     <VirtualHost *:80>
         ServerName example.com
@@ -109,7 +101,6 @@ Apache stores the configuration of virtual hosts configuration files. All availa
     - `CustomLog` — Specifies the access log file of this Apache virtual host. 
 3. Save and exit the file.
 4. Activate the new virtual host in Apache:
-
   ```bash
   a2ensite example.com
   ```
@@ -118,7 +109,6 @@ Apache stores the configuration of virtual hosts configuration files. All availa
     a2enmod proxy_fcgi
     ```
 6. Reload the Apache configuration to make the site available. 
-
   ```bash
   systemctl reload apache2
   ```
@@ -126,13 +116,11 @@ Apache stores the configuration of virtual hosts configuration files. All availa
 ## Securing your Instance with a firewall
 
 1. Enable HTTP, HTTPS and SSH connections in the [firewall](/tutorials/installation-uncomplicated-firewall/) configuration of the Instance by running the following command:
-
   ```bash
   ufw allow 'Apache Full'
   ufw allow 'OpenSSH'
   ```
 2. Enable ufw:
-
   ```bash
   ufw enable
   ```
@@ -144,7 +132,6 @@ Apache stores the configuration of virtual hosts configuration files. All availa
   Firewall is active and enabled on system startup
   ```
 3. Check the status of ufw:
-
   ```bash
   ufw status
   ```
@@ -166,19 +153,16 @@ Apache stores the configuration of virtual hosts configuration files. All availa
 ## Testing PHP
 
 1. Create a test PHP file to test if your LAMP stack is working.
-
   ```bash
   nano /var/www/html/example.com/phpinfo.php
   ```
 2. Put the following content in it:
-
   ```php
   <?php
   phpinfo();
   ?>
   ```
 3. Save the file and point your web browser to `http://example.com/phpinfo.php` (replacing `example.com` with your domain name). When you see an output like the following, it means PHP is set up correctly:
-
 <Lightbox src="scaleway-lamp-php81.webp" alt="" />
 
 ## Securing your site with Let's Encrypt
@@ -187,17 +171,14 @@ By default the connection between your computer and the Instance is not encrypte
 
 Let's Encrypt provides a [certbot](https://certbot.eff.org/) to configure the Apache webserver automatically with Let's Encrypt.
 2. Install certbot.
-
   ```bash
   apt install python3-certbot-apache
   ```
 3. Run certbot.
-
   ```bash
   certbot --apache
   ```
 4. Answer the prompts.
-
     ```
     Saving debug log to /var/log/letsencrypt/letsencrypt.log
     Enter email address (used for urgent renewal and security notices)
@@ -249,7 +230,6 @@ Let's Encrypt provides a [certbot](https://certbot.eff.org/) to configure the Ap
     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ```
 5. Reload the Apache configuration.
-
   ```bash
   systemctl reload apache2
   ```

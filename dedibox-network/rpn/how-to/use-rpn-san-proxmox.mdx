@@ -11,11 +11,9 @@ dates:
 ---
 
 <Message type="requirement">
-
 * You have an account and are logged into the [Dedibox Console](https://console.online.net)
 * You have a [Dedibox dedicated server](https://www.scaleway.com/en/dedibox/)
 * You have an [RPN SAN](https://www.scaleway.com/en/dedibox/storage/rpn-san/) 
-
 </Message>
 
 ## Configuration of Proxmox to use the RPN
@@ -31,12 +29,10 @@ dates:
     ```
 
     <Message type="tip">
-
     The interface may be named differently depending on your configuration. You can identify the RPN interface by running `ifconfig` which allows you to check the MAC address of the interface which is available in your Dedibox console.
 
     </Message>
 3. Reboot your Proxmox server to complete the RPN configuration.
-
 
 ## Open-iSCSI installation and configuration
 
@@ -101,6 +97,7 @@ Proxmox requires the Open-iSCSI software to support mounting of iSCSI volumes. I
     * **Enable** check the box
 
 Your RPN SAN is available for use.
+
 
 <Navigation title="See Also">
   <PreviousButton to="/dedibox-network/rpn/how-to/use-rpn-san-esxi-v7/">How to configure an RPN SAN on ESXi 7</PreviousButton>

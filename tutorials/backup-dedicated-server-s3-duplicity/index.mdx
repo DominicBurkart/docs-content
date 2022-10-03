@@ -34,11 +34,9 @@ To achieve this, we will:
 You can easily backup your existing dedicated server with Duplicity. When you are using a [Scaleway Dedibox](https://www.scaleway.com/fr/dedibox/) or a [Scaleway Elastic Metal server](https://www.scaleway.com/en/elastic-metal/), the data transfer is free of charge within the same region.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have generated [your API key](/console/my-project/how-to/generate-api-key/)
 - You have a [Scaleway Instance](/compute/instances/how-to/create-an-instance) running Ubuntu or Debian 
-
 </Message>
 
 ## Creating an Object Storage bucket
@@ -52,9 +50,7 @@ You can easily backup your existing dedicated server with Duplicity. When you ar
 We are going to install Duplicity. To make sure we can generate a GPG Key, we need to create some entropy, we suggest using [Haveged](http://www.issihosts.com/haveged/) constantly on your sever to generate a small amount of entropy. You can find the link to the latest version of Duplicity on their [website](https://duplicity.gitlab.io/). 
 
 <Message type="note">
-
 You may replace the link used with `wget` if a newer version is available.
-
 </Message>
 
 Run the following command to update the apt package manager, upgrade the software installed already installed on the server and to download and install Duplicity:
@@ -149,13 +145,11 @@ Run the following command to update the apt package manager, upgrade the softwar
     ```
 
 <Message type="tip">
-
   If you lose access to your current server, having the GPG private and public keys stored somewhere else will come in handy. Export the GPG keys with:
   ```bash
     gpg --armor --export backups
     gpg --armor --export-secret-key backups
   ```
-
 </Message>
 
 ## Combining Duplicity and Scaleway
@@ -258,7 +252,6 @@ Using the configuration and duplicity, we automatize the backups.
     ```
 
     <Message type="note">
-
     The option `--s3-use-glacier` will move backups into [Scaleway Glacier](https://www.scaleway.com/en/c14-cold-storage/). If you prefer to store your backups on regular Object Storage, remove the line `--s3-use-glacier \` from the script.
 
     </Message>

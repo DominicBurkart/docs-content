@@ -23,10 +23,8 @@ Rclone is available for Windows, macOS X and various Linux distributions.
 In this tutorial we use the [rlcone crypt](https://rclone.org/crypt/) module to encrypt your data before sending it to [Scaleway Object Storage](https://www.scaleway.com/en/object-storage/) via the S3 protocol.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have a Scaleway Object Storage Bucket
-
 </Message>
 
 ## Installing rclone
@@ -67,9 +65,7 @@ brew install rclone
 ## Configuring a S3 remote endpoint
 
 <Message type="important">
-
 You need to have your [API key](/console/my-project/how-to/generate-api-key/) ready for the `rclone` configuration.
-
 </Message>
 
 Before encrypting your data, create a new remote S3 endpoint in rclone using the `rclone config` command:

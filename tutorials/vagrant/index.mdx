@@ -31,7 +31,6 @@ The tool provides a portable, reproducible and easy to configure work environmen
 1. Download the [latest version of Vagrant](https://www.vagrantup.com/downloads.html) for your operating system.
 2. Launch the installation tool and follow the steps to install it on your local computer.
 3. Verify that the installation has completed successfully by launching the command `vagrant -v`:
-
 ```
 $ vagrant -v
 Vagrant 2.2.19
@@ -44,7 +43,6 @@ Prepacked templates of virtual machines are called Boxes in Vagrant. You can fin
 > **Important** Vagrant Boxes are build for certain hypervizors and may not be universally compatible. Check the box search page to verify, if the Box is compatible with your hypervizor. Alternatively you may use [Bento Boxes](https://app.vagrantup.com/bento), these boxes are open source and built for a number of providers including VMware, Virtualbox, and Parallels. There are a variety of operating systems and versions available.
 
 1. Create a new directory for your Vagrant project and enter it:
-
 ```
 mkdir -p vagrant-projects/ubuntu-vm
 cd vagrant-projects/ubuntu-vm
@@ -56,7 +54,6 @@ cd vagrant-projects/ubuntu-vm
 vagrant init bento/ubuntu-18.04
 ```
 3. Start the new virtual machine:
-
 ```
 vagrant up
 ```
@@ -65,7 +62,6 @@ Runnig the **vagrant up** command creates, configures and starts a virtual machi
 
 During the first run the tool downloads automatically the required Vagrant box from the box repository and performs provisioning of the machine.
 4. Log into your box using SSH:
-
 ```
 vagrant ssh default
 ```
@@ -74,17 +70,14 @@ You can now run any tasks on your virtual machine and develop your application.
 
 Once you have finished your work on the virtual machine, you have several options to stop or to destroy it if you do not need it any longer.
 5. To stop the virtual machine, type:
-
 ```
 vagrant halt
 ```
 6. To hibernate the machine, type:
-
 ```
 vagrant suspend
 ```
 7. If you want to delete your VM, type:
-
 ```
 vagrant destroy
 ```
@@ -123,17 +116,14 @@ vagrant up
 You can use a [plugin](https://github.com/kaorimatz/vagrant-scaleway) that allows you to provide Scaleway Instances directly from your Vagrantfile.
 
 1. Create a new folder for your project:
-
 ```
 mkdir vagrant-scaleway
 ```
 2. Install the plugin with Vagrant:
-
 ```
 vagrant plugin install vagrant-scaleway
 ```
 3. Create a Vagrantfile that is looking like the following example:
-
 ```
 Vagrant.configure('2') do |config|
   config.vm.provider :scaleway do |scaleway, override|
@@ -152,7 +142,6 @@ end
 
 > You may check this [RubyDoc](https://www.rubydoc.info/gems/vagrant-scaleway/VagrantPlugins/Scaleway/Config) for all configuration options.
 4. Once you have finished the work on your Vagrantfile, you can deploy the instance by typing:
-
 ```
 vagrant up
 ```
@@ -171,7 +160,6 @@ Bringing machine 'default' up with 'scaleway' provider...
 ==> default: Machine is booted and ready for use!
 ```
 5. You can now log into your server:
-
 ```
 vagrant ssh
 ```

@@ -18,23 +18,19 @@ dates:
 The application can detect hundreds of metrics automatically, simplifying their configuration and integration. The application's core is written in C and hundreds of collectors are available to collect thousands of different metrics while being very lightweight and not requiring additional computing power. Netdata can either run autonomously, without any third-party components, or it can be integrated to existing monitoring toolchains like [Prometheus](/tutorials/prometheus-monitoring-grafana-dashboard), Graphite, OpenTSDB, [Kafka](/tutorials/configure-apache-kafka/), [Grafana](/tutorials/monitor-k8s-grafana), and more.
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
   -  You have [created four Instances](/compute/instances/how-to/create-an-instance)
-
 </Message>
 
 ## Installing Netdata
 
 1. [Connect to your instance](/compute/instances/how-to/connect-to-instance/) via SSH.
 2. Update the repository lists of the `apt` package manager and use the `upgrade` command to upgrade the software already installed on the Instance:
-
   ```
   apt update && apt upgrade -y
   ```
 3. Run the automatic installer of Netdata:
-
   ```
   bash <(curl -Ss https://my-netdata.io/kickstart.sh)
   ```
@@ -104,7 +100,6 @@ Optionally, Netdata sends by default anonymous [usage statistics](https://github
 
 It is possible to opt-out from these statistics using an empty file called `.opt-out-from-anonymous-statistics` which stored in the Netdata configuration directory. It stops the statistics script from running. 
 4. Create the file using the `touch` command:
-
   ```
   touch /etc/netdata/.opt-out-from-anonymous-statistics
   ```
@@ -114,7 +109,6 @@ It is possible to opt-out from these statistics using an empty file called `.opt
 1. Open a web browser on your local computer, for example Chrome or Firefox.
 2. Point it to `http://<netdata_instance_ip>:19999/` (replace `<netdata_instance_ip>` with the public IP address of your instance.)
 3. The Netdata dashboard displays:
-
   <Lightbox src="scaleway-netdata_dashboard.webp" alt="" />
 
 By default Netdata monitors a wide list of services on the machine. Browse around to see the details of all of them.
@@ -125,11 +119,9 @@ Netdata is a distributed application, and it is possible to add multiple nodes t
 
 1. From the Netdata dashboard, click **Netdata** in the menu bar, then on **Nodes**.
 2. The Netdata Cloud splash screen displays. Enter your email address to generate a magic link. Alternatively, use a [Google](https://account.google.com/) or [GitHub](https://www.github.com/) account to authenticate.
-
   <Lightbox src="scaleway-netdata_cloud.webp" alt="" />
 3. Click the magic link, sent to the email address entered in the previous step.
 4. The Netdata cloud dashboard displays. Repeat this step on all machines running Netdata to add them to the dashboard:
-
   <Lightbox src="scaleway-netdata_cloud_dashboard.webp" alt="" />
 
 ## Configuring Additional Metrics
@@ -143,7 +135,6 @@ In the following example, a plugin to monitor a [NGINX](https://www.nginx.org) w
 The plugin relies on data provided by the Nginx module [`stub_status`](http://nginx.org/en/docs/http/ngx_http_stub_status_module.html). 
 
 1. Add the following configuration in a Nginx [server block](/tutorials/installation-lemp-ubuntu-bionic#configuring-a-nginx-server-block):
-
   ```
   location /stub_status {
     stub_status;
@@ -154,12 +145,10 @@ The plugin relies on data provided by the Nginx module [`stub_status`](http://ng
   }
   ```
 2. The Netdata `nginx` plugin requires the external plugin `python.d.plugin`, an orchestrator for modules written in `python`. Open the Netdata configuration file in a text editor, for example `nano`:
-
   ```
   nano /etc/netdata/netdata.conf
   ```
 3. Scroll down to the `[plugins]` section of the file, and uncomment the line `python.d = yes`. The fill should look as follows:
-
   ```
   [...]
   [plugins]
@@ -185,7 +174,6 @@ The plugin relies on data provided by the Nginx module [`stub_status`](http://ng
   ```
 4. Save it and exit the text editor, when using `nano`, press `CTRL` and `O` to write the file, then `CTRL` and `X` to exit nano.
 5. Create and open a new configuration file for the Nginx plugin:
-
   ```
   nano /etc/netdata/python.d/nginx.chart.py
   ```
@@ -210,19 +198,15 @@ The plugin relies on data provided by the Nginx module [`stub_status`](http://ng
     url  : 'http://127.0.0.1/stub_status'
   ```
 6. Restart the Netdata service:
-
   ```
   service netdata restart
   ```
 7. Point your web browser to the Netata interface and click **Nginx web configuration** in the menu on the right. The Nginx statistics displays:
-
   <Lightbox src="scaleway-netdata_nginx.webp" alt="" />
 
 For more information regarding all available plugins, refer to the official [Netdata documentation](https://docs.netdata.cloud/docs/add-more-charts-to-netdata/).
 
 	
 <Message type="note">
-
   For security reasons, it is recommended to setup a [Nginx reverse proxy](/tutorials/nginx-reverse-proxy) and to block access to the application from the Internet using a [firewall](/tutorials/installation-uncomplicated-firewall).
-
 </Message>

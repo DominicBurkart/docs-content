@@ -13,9 +13,7 @@ dates:
 [Scaleway DNS](https://www.scaleway.com/en/dns/) is a managed DNS service that allows you to easily configure the DNS zones of your domains. It provides support for queries via both IPv4 and IPv6 and supports all common types of DNS records. Scaleway DNS is currently available for you to manage your DNS zones for external domains (domains created at external registrars).
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-
 </Message>
 
 ## How to add external domains
@@ -24,11 +22,9 @@ dates:
 2. Enter the external domain name in the box and click the search icon to verify the domain exists. Once verified, the following message displays:
   <Lightbox src="scaleway-dns-domain-validated.webp" alt="" />
 3. Click **Next** to validate your domain name. The validation instructions display.
-
   Add a `TXT` record to the root zone of the domain at your current registrar to validate the domain ownership.
 
   <Message type="note">
-
   `TXT` means text record and it is used to carry machine-readable data such as information for automated domain validation.
 
   </Message>
@@ -38,7 +34,6 @@ dates:
   <Lightbox src="assets/scaleway-dns-validation-token.webp" alt="" />
 
   <Message type="important">
-
   The token's presence will be checked regularly. If it has not been set within 48 hours, the external domain will be deleted from the service.
 
   </Message>
@@ -49,19 +44,15 @@ Once the record has been validated, the dot turns green and you will receive an 
 
 Update the nameserver information at your current registrar once the domain name is validated in order to link your existing domain name with your Scaleway Domains DNS zone. 
 <Message type="note">
-
 Scaleway's DNS servers are:
 * ns0.dom.scw.cloud
 * ns1.dom.scw.cloud
-
 </Message>
 
 You can verify whether the association of your domain has been successfully completed by checking the Nameservers list in the **Domain Information** page. 
 
 <Message type="important">
-
 If the entire process is not completed after 14 days, the domains are deleted from the DNS and you will have to start over. E-mails reminding you to complete the process are sent on days 7 and 13.
-
 </Message>
 
 
@@ -79,9 +70,7 @@ If the entire process is not completed after 14 days, the domains are deleted fr
 3. Click the **Zones** tab. A list of the zones configured within the selected domain displays.
 4. Click <Icon name="more" />, then **Delete** in the **Zones** page to delete a zone. A pop-up asks you to confirm the action.
 5. Type **DELETE** in the pop-up form and click **Delete this zone**.
-
     <Message type="important">
-
     Be careful! This will permanently delete your zone and all its associated data will be lost. This action is irreversible.
 
     </Message>
@@ -95,7 +84,6 @@ If the entire process is not completed after 14 days, the domains are deleted fr
 4. Click the name of the DNS zone you want to edit. A list of the zone's records displays.
 5. Click **+ Add records** to add a new record to your DNS zone. A pop-up displays.
 6. Fill-in the required information for the record, then confirm by clicking **Add Records**.
-
 
 ## How to delete DNS records
 

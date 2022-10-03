@@ -28,10 +28,8 @@ The available records are:
 * **ALIAS record**: Alias record, maps a name to another name. It is similar to CNAME records but can coexist with other records on that name. It can be used if you want to map one name to another, and you do not need other record types (for example: MX records for emails) for the same name.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com) 
 - You have [linked your domain](/network/dns-cloud/how-to/add-external-domain) with Scaleway DNS
-
 </Message>
 
 ## How to add DNS records
@@ -109,7 +107,6 @@ Having established the 'healthy' IPs, the DNS service responds to requests using
 If none of the addresses in the IP list has passed the health check, it sends a fallback IP.
 
 <Message type="note">
-
   The following table shows more explicitly how the results of the IP healthcheck determine the single IP address that the DNS service will send:
 
   | IP list healthcheck | Fallback IP check |                  Response                 |
@@ -150,6 +147,7 @@ The answer to a DNS request is based on the client's (resolver's) subnet.
 : This record type is only available for A, AAAA, CNAME and ALIAS records.
 
 <Lightbox src="scaleway-dns-view.webp" alt="" />
+
 
 <Navigation title="See Also">
   <PreviousButton to="/network/dns-cloud/how-to/configure-dns-zones/">How to configure DNS zones</PreviousButton>

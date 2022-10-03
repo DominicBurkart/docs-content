@@ -20,13 +20,11 @@ GitHub provides a limited range of free resources to build your applications thr
 In this tutorial, you learn how to set up a GitHub Actions runner on a Scaleway Instance to automatize the workflow of your projects. For demanding workloads and best performances, the use of [General Purpose](https://www.scaleway.com/en/virtual-instances/general-purpose/) Instances is recommended.
 	
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
   - You have [created an Instance](/compute/instances/how-to/create-an-instance) that runs Ubuntu 20.04
   - You have sudo privileges or access to the root user.
   - You have a [GitHub](https://www.github.com) account
-
 </Message>
 
 ## Adding a workflow to your repository
@@ -37,27 +35,22 @@ In this tutorial, you learn how to set up a GitHub Actions runner on a Scaleway 
 3. Select the workflow that corresponds to your project and click **Set up this workflow**. You can either create a workflow from scratch or use one of the templates suggested. 
 4. Edit the workflow according to your requirements. For more information about GitHub Actions, refer to the [product documentation](https://docs.github.com/en/actions). Once configured, save the workflow.
 
-
 ## Installing a GitHub runner
 
 1. [Connect to your Instance](/compute/instances/how-to/connect-to-instance/) via SSH. 
 2. Create a user for the GitHub runner.
-
   ```
   adduser ghrunner
   ``` 
 3. Add the user to the superuser file:
-
   ```
   adduser ghrunner sudo
   ```
 4. Switch into the `ghrunner` user account 
-
   ```
   su ghrunner
   ```
 5. Download and unpack the GitHub runner using the following commands: 
-
   ```sh
   # Create a folder
   mkdir actions-runner && cd actions-runner
@@ -86,7 +79,6 @@ In this tutorial, you learn how to set up a GitHub Actions runner on a Scaleway 
     The configuration tool connects to GitHub using the given token. 
 6. Enter the name of the runner during the runner configuration. It gets automatically several tags attached to it. Optionally you can enter custom tags. When prompted, enter the `work` directory of the runner. You can confirm the default values by pressing enter. Otherwise enter your customized values before pressing enter. 
 7. The runner is configured. Once everything is ready, the following message displays: 
-
   ```
   √ Runner successfully added
   √ Runner connection is good
@@ -94,7 +86,6 @@ In this tutorial, you learn how to set up a GitHub Actions runner on a Scaleway 
   √ Settings Saved.
   ```
 8. Launch the runner using the following command: 
-
   ```
   ./run.sh
   ```

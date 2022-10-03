@@ -17,14 +17,12 @@ dates:
 This tutorial explains how to configure IPv6 on virtual machines on ESXi hypervisors.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH Key](console/my-project/how-to/generate-api-key/)
 - You have a [Dedibox](https://www.scaleway.com/en/dedibox/) running ESXi 6.5 or later
 - You have [enabled SLAAC](/dedibox-network/ipv6/how-to/enable-ipv6-slaac/) for your Dedibox
 - You have [requested an IPv6 prefix](/dedibox-network/ipv6/how-to/request-prefix)
 - You have installed a virtual machine running Ubuntu 20.04 or later and [configured a failover IPv4](/dedibox-network/ip-failover/how-to/configure-network-virtual-machine/#ubuntu) on it
-
 </Message>
 
 
@@ -55,7 +53,6 @@ This tutorial explains how to configure IPv6 on virtual machines on ESXi hypervi
     }
     ```
     <Message type="important">
-
     Edit the name of the Internet interface to the one of your VM and replace `DUID` with the [DUID of your prefix](/dedibox-network/ipv6/how-to/request-prefix/).
 
     </Message>
@@ -149,7 +146,6 @@ This tutorial explains how to configure IPv6 on virtual machines on ESXi hypervi
         on-link: true
     ``` 
     <Message type="note">
-
     Remember to replace `DEFAULT_GATEWAY` with the default gateway found in the previous step.
 
     </Message>

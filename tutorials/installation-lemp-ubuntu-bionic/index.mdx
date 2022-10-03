@@ -21,25 +21,21 @@ The [LEMP-Stack](https://lemp.io/) references a group of software that can be us
 - [PHP](http://www.php.net/) for dynamic data processing
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
   - You have a [Scaleway Instance](/compute/instances/how-to/create-an-instance/) running on Ubuntu 18.04 (Bionic Beaver)
   - You have a FQDN (Fully Qualified Domain Name) pointing to your Instance’s IP address
   - You have sudo privileges or access to the root user
-
 </Message>
 
 ## Installing the stack
 
 1. [Connect to your Instance via SSH](/compute/instances/how-to/create-an-instance/)
 2. Use the `apt` package manager of Ubuntu to install the required packages. Make sure that the system is up to date and has the latest bug-fixes and updates installed by running the following command:
-
   ```bash
   apt update && apt -y upgrade
   ```
 3. Install the software stack:
-
   ```bash
   apt install -y ufw nginx mariadb-server php-fpm php-mysql
   ```
@@ -47,13 +43,11 @@ The [LEMP-Stack](https://lemp.io/) references a group of software that can be us
 ## Configuring the firewall
 
 1. Enable HTTP and SSH connections in the [firewall](/tutorials/installation-uncomplicated-firewall/) configuration of the server by running the following command:
-
   ```bash
   ufw allow 'Nginx HTTP'
   ufw allow 'OpenSSH'
   ```
 2. Enable ufw:
-
   ```bash
   ufw enable
   ```
@@ -65,7 +59,6 @@ The [LEMP-Stack](https://lemp.io/) references a group of software that can be us
   Firewall is active and enabled on system startup
   ```
 3. Check the status of ufw:
-
   ```bash
   ufw status
   ```
@@ -86,13 +79,11 @@ The [LEMP-Stack](https://lemp.io/) references a group of software that can be us
 ## Configuring MySQL/MariaDB
 
 1. Launch the configuration assistant for the database server:
-
   ```bash
   mysql_secure_installation
   ```
 2. Press "Enter" when prompted for the current root password for the MariaDB server, as the password is not yet set.
 3. Press `Y` to enter a new password for the MariaDB root user:
-
   ```bash
   Setting the root password ensures that nobody can log into the MariaDB
   root user without the proper authorization.
@@ -107,12 +98,10 @@ The [LEMP-Stack](https://lemp.io/) references a group of software that can be us
 Nginx stores the configuration of virtual hosts in server blocks. All available server blocks are located in the directory `/etc/nginx/sites-available/`.
 
 1. Navigate to the relevant directory:
-
   ```
   cd /etc/nginx/sites-available/
   ```
 2. Create a new server block configuration file and name it after the domain name that points to your Instance. Here we use `example.com`:
-
   ```
     server {
           listen 80;
@@ -147,17 +136,14 @@ Nginx stores the configuration of virtual hosts in server blocks. All available 
     - `location ~ /\.ht` — The last location block prevents .htaccess files to be processed by Nginx. Any .htaccess located in the directory root won't be served to visitors.
 3. Save and exit the file.
 4. Create a symbolic link to enable the server block. Replace `example.com` with your domain.
-
   ```bash
   ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
   ```
 5. Test the configuration for syntax errors.
-
   ```bash
   nginx -t
   ```
 6. Reload the Nginx configuration.
-
   ```bash
   systemctl reload nginx
   ```
@@ -165,19 +151,16 @@ Nginx stores the configuration of virtual hosts in server blocks. All available 
 ## Testing PHP
 
 1. Create a test PHP file to test if your LEMP stack is working.
-
   ```bash
   nano /var/www/html/phpinfo.php
   ```
 2. Put the following content in it:
-
   ```php
   <?php
   phpinfo();
   ?>
   ```
 3. Save the file and point your web browser to `http://example.com/phpinfo.php` (replacing `example.com` with your domain name). When you see an output like the following, it means PHP is set up correctly:
-
 <Lightbox src="scaleway-lemp-php72.webp" alt="" />
 
 ## Configuring SSL with Let's Encrypt
@@ -187,7 +170,6 @@ By default the connection between your computer and the server is not encrypted 
 Let's Encrypt provides a [certbot](https://certbot.eff.org/) to configure Nginx automatically with Let's Encrypt.
 
 1. Prepare the system.
-
   ```bash
   apt update && apt -y install software-properties-common
   add-apt-repository ppa:certbot/certbot
@@ -196,17 +178,14 @@ Let's Encrypt provides a [certbot](https://certbot.eff.org/) to configure Nginx 
 
   You may be warned that the PPA has been deprecated. You can press [ENTER] to continue adding it nonetheless.
 2. Install certbot.
-
   ```bash
   apt install python3-certbot-nginx
   ```
 3. Run certbot.
-
   ```bash
   certbot --nginx
   ```
 4. Answer the prompts.
-
   ```
   Saving debug log to /var/log/letsencrypt/letsencrypt.log
   Plugins selected: Authenticator nginx, Installer nginx
@@ -253,12 +232,10 @@ Let's Encrypt provides a [certbot](https://certbot.eff.org/) to configure Nginx 
   https://www.ssllabs.com/ssltest/analyze.html?d=example.com
   ```
 5. Reload the Nginx configuration.
-
   ```bash
   systemctl reload nginx
   ```
 6. Allow HTTPS in the firewall rules.
-
   ```
   ufw allow 'Nginx HTTPS'
   ```

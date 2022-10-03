@@ -16,11 +16,9 @@ Function as a Service allows developers to run code without the hassle of managi
 IoT Hub allows messages to be exchanged between devices and business-specific software. Some or all components of this software can be implemented using Function as a Service, and IoT Hub can be configured to trigger these functions to process messages being exchanged on the Hub.
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [created a function](/compute/functions/how-to/create-a-function/)
   - You have [created an IoT Hub](/iot/iot-hub/how-to/create-hub/) and [added a Device](/iot/iot-hub/how-to/add-device/)
-
 </Message>
 
 ## How to set up a Route to a Function
@@ -28,7 +26,6 @@ IoT Hub allows messages to be exchanged between devices and business-specific so
 1. Instruct your IoT Hub to trigger your function when a message is published on the `my/super/topic` topic. To do so we will use an IoT Hub REST Route.
 2. Click the Routes tab of your IoT Hub. 
 3. Create a new route with the following settings:
-
     - Name: any name you want
     - Topic: `my/super/topic`
     - Route type: REST Query
@@ -51,7 +48,6 @@ In a typical use-case, the same Function will be used for many topics. It is pos
   You can see your published message in the function logs. 
   
   <Message type="note">
-
     There may be a few minutes delay before the logs show up.
 
   </Message>
@@ -65,9 +61,7 @@ To allow this action, add an `X-Mqtt-Topic` header to your reply, and a new mess
 The content of the message will be the body of the reply. 
 
 <Message type="important">
-
   The HTTP status code needs to be in the 2xx range.
-
 </Message>
 
 
@@ -78,8 +72,8 @@ If you require authentication to protect your Serverless Function, here is how t
 1. Click the settings tab of your function settings tab and tick the `Private` option.
 2. [Generate a token](/compute/functions/api-cli/restricting-access-to-a-function) for your function.
 3. Re-create your IoT Hub Route with the following HTTP header: `SCW_FUNCTIONS_TOKEN: <function token here>`.
-
 Your Function is now private and still accessible from IoT Hub!
+
 
 <Navigation title="See Also">
   <PreviousButton to="/iot/iot-hub/how-to/understand-event-messages/">How to understand event messages</PreviousButton>

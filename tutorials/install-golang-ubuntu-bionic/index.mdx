@@ -18,33 +18,27 @@ dates:
 This tutorial will guide you through the download and installation of the Go programming language on a Ubuntu Bionic Beaver server. At the end of this guide, you will create your first Go application.
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key/)
   - You have a server running on Ubuntu 18.04 (Bionic Beaver) or later
   - You have sudo privileges or access to the root user.
-
 </Message>
 
 ## Installing Go
 
 1. Connect to your Instance using [SSH](/compute/instances/how-to/connect-to-instance/).
-
   ```
   ssh root@your_server_ip
   ```
 2. Update your apt packet cache and upgrade the software already installed on the Instance to the latest release.
-
   ```
   apt update && apt upgrade -y
   ```
 3. Install the Go programming language from the apt repository:
-
   ```
   apt install golang -y
   ```
 4. Make sure Go is installed by running the following command:
-
   ```
   go version
   ```
@@ -56,7 +50,6 @@ This tutorial will guide you through the download and installation of the Go pro
   go version go1.13.8 linux/amd64
   ```
 5. Set the `GOPATH` for your environment:
-
   ```bash
   echo "GOPATH=$HOME/golang" >> ~/.bashrc
   echo "export GOPATH" >> ~/.bashrc
@@ -67,17 +60,14 @@ This tutorial will guide you through the download and installation of the Go pro
 ## Creating a Hello World Go Application
 
 1. Start by creating a workspace, where you will store the files of your project.
-
   ```
   mkdir -p $HOME/golang/src/hello-world
   ```
   <Message type="note">
-
     Go uses a strict [Workspace layout](https://go.dev/doc/code#Workspaces). You should follow the guidelines to make sure your application will work.
 
   </Message>
 2. Open a text editor and create a file `hello-world.go` in the working directory. Then copy and paste the following content into it:
-
   ```golang
   package main
 
@@ -88,23 +78,19 @@ This tutorial will guide you through the download and installation of the Go pro
   }
   ```
 3. Run the code directly in Go with the command `go run`:
-
   ```
   go run hello-world.go
   ```
 4. Compile the application if you want to have a program directly available as a binary to distribute it. 
-
   ```
   go install hello-world
   ```
 5. Once the application is compiled, you can launch it by typing `hello-world` in your terminal.
-
   ```bash
   bill@golang:~# hello-world
   Hello world! This is my first Go program.
   ```
 6. Use `which` to discover the location of the binary. It will return the file path:
-
   ```
   bash
   bill@golang:~# which hello-world

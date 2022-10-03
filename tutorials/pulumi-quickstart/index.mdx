@@ -16,10 +16,8 @@ dates:
 Pulumi is an open-source infrastructure-as-code tool for creating, deploying and managing cloud infrastructure. Pulumi works with traditional infrastructures like VMs, networks, and databases and modern architectures, including containers, Kubernetes clusters, and serverless functions. Pulumi supports dozens of public, private, and hybrid cloud service providers.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [created your API key](/console/my-project/how-to/generate-api-key/)
-
 </Message>
 
 ## Installing Pulumi
@@ -92,12 +90,10 @@ Pulumi is a multi-language infrastructure as code tool. You have a wide range of
 In this tutorial, we will use Typescript.
 
 1. Create a project folder (for example `scaleway-pulumi`) and navigate into the newly created directory:
-
   ```
   $ mkdir scaleway-pulumi && cd scaleway-pulumi
   ```
 2. Create a new Pulumi program with the following command:
-
   ```bash
   pulumi new typescript
   This command will walk you through creating a new Pulumi project.
@@ -153,7 +149,6 @@ In this tutorial, we will use Typescript.
   ....
   ```
 3. Add the Scaleway provider
-
   4. Add the Scaleway provider to your project via the `npm` command:
 
   ```
@@ -161,7 +156,6 @@ In this tutorial, we will use Typescript.
   ```
 5. Set the Scaleway credentials
 6. Add the Scaleway Credentials with the following commands to the Pulumi config:
-
   ```
   $ pulumi config set scaleway:access_key YYYY --secret
   $ pulumi config set scaleway:secret_key ZZZZ --secret
@@ -176,7 +170,6 @@ In this tutorial, we will use Typescript.
   $ export SCW_PROJECT_ID=ZZZZ
   ```
 7. Add this code to your `index.ts` file:
-
   ```typescript
   import * as pulumi from "@pulumi/pulumi";
   import * as scaleway from "@pulumiverse/scaleway";
@@ -217,7 +210,6 @@ In this tutorial, we will use Typescript.
   export const kubeconfig = pulumi.secret(kapsule.kubeconfigs[0].configFile);
   ```
 8. Run the following command to deploy your program:
-
   ```
   $ pulumi up
   ```
@@ -253,9 +245,7 @@ In this tutorial, we will use Typescript.
     details
     ```
 9. Select "yes" to perform the update.
-
   <Message type="tip">
-
     - You can skip the preview by using the flag `--skip-preview` or `-f`
     - You can skip the confirmation dialog by using `--yes` or `-y`
     Both flags are useful, when you run Pulumi in a CI environment.
@@ -348,10 +338,8 @@ Resources:
 The `+` sign indicates that you are adding a new resource to your infrastructure.
 
 <Message type="note">
-
 - `~` indicates that a resource will be modified.
 - `-` indicates that a resource will be deleted.
-
 </Message>
 
 You can deploy the changes you have made. Use the `-y` and `-f` flags to skip the confirmation dialog and the preview.

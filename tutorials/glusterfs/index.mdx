@@ -19,12 +19,10 @@ This tutorial shows you how to:
 
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
   - You have three servers running on Ubuntu Linux
   - You have sudo privileges or access to the root user.
-
 </Message>
 
 
@@ -33,12 +31,10 @@ This tutorial shows you how to:
 The first step we need to follow before installing glusterfs on all servers is configuring the hosts' file and add GlusterFS repository to each server.
 
 1. Log in to each server and edit the `/etc/hosts` file.
-
   ```
   nano /etc/hosts
   ```
 2. Paste hosts configuration below:
-
   ```
   ip_address gluster01
   ip_address gluster02
@@ -46,7 +42,6 @@ The first step we need to follow before installing glusterfs on all servers is c
   ```
 3. Save and exit.
 4. Ping each server using the hostname as below:
-
   ```
   ping -c 3 gluster01
   ping -c 3 gluster02
@@ -55,9 +50,7 @@ The first step we need to follow before installing glusterfs on all servers is c
 
 	
 <Message type="note">
-
   If the `ping` command is not installed by default, you can install it with the `apt install iputils-ping` command.
-
 </Message>
 
 
@@ -95,12 +88,10 @@ Add the glusterfs key and repository to all systems.
 ## Installing a GlusterFS Server
 
 1. Install the glusterfs server on both gluster01 and gluster02 servers.
-
   ```
   apt install glusterfs-server -y
   ```
 2. Start the glusterd service and enable it to launch every time at system boot
-
   ```
   systemctl start glusterd
   systemctl enable glusterd
@@ -108,7 +99,6 @@ Add the glusterfs key and repository to all systems.
 
   Glusterfs server is now up and running on the `gluster01` and `gluster02` servers.
 3. Check the services and the installed software version
-
   ```
   systemctl status glusterd
   glusterfsd --version
@@ -154,18 +144,14 @@ After creating the trusted storage pool, we will create a new distributed gluste
 ## Setting up the Distributed GlusterFS Volume
 	
 <Message type="note">
-
   For the server production, it's recommended to create the glusterfs volume using the different partition, not using a system directory.
-
 </Message>
 
 1. Create a new directory `/glusterfs/distributed` on each gluster01 and gluster02 server.
-
   ```
   mkdir -p /glusterfs/distributed
   ```
 2. From the glusterO1 server, create a distributed glusterfs volume named 'vol01' with two replicas: 'gfs01' and 'gfs02'
-
   ```
   gluster volume create vol01 transport tcp gluster01:/glusterfs/distributed gluster02:/glusterfs/distributed force
   ```
@@ -173,7 +159,6 @@ After creating the trusted storage pool, we will create a new distributed gluste
   volume create: vol01: success: please start the volume to access data
   ```
 3. Start the 'vol01' and check the volume info
-
   ```
   gluster volume start vol01
   gluster volume info vol01
@@ -206,28 +191,23 @@ At this stage, we created the `Replicate` type `vol01` volume and two bricks on 
 In this step, we will mount the glusterfs volume `vol01` to the Ubuntu client, and we need to install the glusterfs-client to the client server.
 
 1. Install the glusterfs-client on `client01`.
-
   ```
   apt install glusterfs-client -y
   ```
 2. Create a new directory: `/mnt/glusterfs`.
-
   ```
   mkdir -p /mnt/glusterfs
   ```
 3. Mount the distributed glusterfs volume (`vol01`) to the `/mnt/glusterfs` directory.
-
   ```
   mount -t glusterfs gluster01:/vol01 /mnt/glusterfs
   ```
 4. Check the amount of volume available in the system.
-
   ```
   df -h /mnt/glusterfs
   ```
 	
   <Message type="note">
-
     To mount glusterfs permanently to the Ubuntu client system, we can add the volume to the `/etc/fstab`.
 
   </Message>
@@ -239,21 +219,17 @@ In this step, we will mount the glusterfs volume `vol01` to the Ubuntu client, a
 ## Testing Replication & Mirroring
 
 1. Mount the glusterfs volume `vol01` to each glusterfs servers.
-
     - On gluster01: `mount -t glusterfs gluster01:/vol01 /mnt`
     - On gluster02: `mount -t glusterfs gluster02:/vol01 /mnt`
 2. Back on `client01`, go to the '/mnt/glusterfs' directory.
-
   ```
   cd /mnt/glusterfs
   ```
 3. Create three files using the touch command.
-
   ```
   touch file01 file02 file03
   ```
 4. Check on each `gluster01` and `gluster02` that the files that we've created from the client machine are displayed.
-
   ```
   cd /mnt/
   ls -lah

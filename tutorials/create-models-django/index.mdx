@@ -22,13 +22,11 @@ Django is a web development framework for developing dynamic websites and applic
 To follow this tutorial, we assume that you completed successfully the [first tutorial on Django installation and configuration](https://www.scaleway.com/docs/how-to-install-django-web-framework/).
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
 - You have [created an Instance](/compute/instances/how-to/create-an-instance/) which is running Ubuntu Focal Fossa (20.04 LTS).
 - You have sudo privileges or access to the root user
 - You have completed the [Django installation and configuration tutorial](/tutorials/django-ubuntu-focal-fossa)
-
 </Message>
 
 ## Creating Models
@@ -36,14 +34,12 @@ To follow this tutorial, we assume that you completed successfully the [first tu
 Now that your environment (`my-django`) is set up, we can create a new application. The difference between an application and a project is that an app is a Web application that does something. A project is a collection of configuration and apps for a particular Web site. A project can contain multiple apps. An app can be in multiple projects.
 
 1. To create your app, make sure you are in the same directory as `manage.py` and type
-
   ```
   python manage.py startapp polls
   ```
 
   We will create two models: Question and Choice. A Question has a question and a publication date. A Choice has two fields: the text of the choice and a vote tally. Each Choice is associated with a Question.
 2. Edit the `polls/models.py` file so it looks like this
-
   ```python
   from django.db import models
 
@@ -62,12 +58,10 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
       votes = models.IntegerField(default=0)
   ```
 3. To activate the app, edit the `myDjangoProject/settings.py` file again
-
   ```python
   nano myDjangoProject/settings.py
   ```
 4. Change the `INSTALLED_APPS` setting to include the string `polls`
-
   ```
   # Application definition
 
@@ -82,7 +76,6 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
   ]
   ```
 5. Run `makemigrations` to indicate Django that you’ve made some changes to your models
-
   ```
   python manage.py make migrations polls
   ```
@@ -103,7 +96,6 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
 
   </Message>
 6. Run the migrations with the `migrate` command to manage your database schema automatically
-
   ```
   python manage.py migrate
   ```
@@ -122,12 +114,10 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
 ## Playing with the API
 
 1. Invoke the Python shell
-
   ```
   python manage.py shell
   ```
 2. Paste the following content to the shell
-
   ```
     >>> from polls.models import Question, Choice   # Import the model classes we just wrote.
 
@@ -167,9 +157,7 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
 
   Exit the Python shell by pressing Control+D.
 3. Edit the `polls/models.py` to add a `__str__()` method to both Question and Choice.
-
   <Message type="note">
-
   The **str**() method is called whenever you call str() on an object. In Python 3, Django uses str(obj) in a number of places. Most notably, to display an object in the Django admin site and as the value inserted into a template when it displays an object.
 
   </Message>
@@ -204,7 +192,6 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
           return self.choice_text
   ```
 4. Save these changes and start a new Python interactive shell by running python `manage.py` shell again
-
   ```
   python manage.py shell
   ```
@@ -246,7 +233,6 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
 ## Rendering the Application visible in the Console
 
 1. When youre logged in, the `poll` app is not displayed on the admin console. To make it appear, edit the `polls/admin.py` to match the following:
-
   ```
   from django.contrib import admin
 
@@ -255,7 +241,6 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
   admin.site.register(Question)
   ```
 2. Reload the Admin Console and login.
-
   ```
   python manage.py runserver your_server_ip:8000
   ```
@@ -277,7 +262,6 @@ Now that your environment (`my-django`) is set up, we can create a new applicati
 Now that we have the questions on the admin page we need to configure the multiple choices response.
 
 1. Edit the `polls/admin.py` to add the following
-
   ```
   from django.contrib import admin
 
@@ -286,7 +270,6 @@ Now that we have the questions on the admin page we need to configure the multip
   admin.site.register(Choice)
   ```
 2. Reload the Admin Console and login.
-
   ```
   python manage.py runserver your_server_ip:8000
   ```
@@ -296,7 +279,6 @@ Now that we have the questions on the admin page we need to configure the multip
   <Lightbox src="scaleway-django_choices.webp" alt="" />
 3. You can add as many choices as you wish. Click **Choices** to add a choice.
 4. Select your question and type your answer.
-
   <Lightbox src="scaleway-django_choice_oceane.webp" alt="" />
 
   You now have a poll with questions and answers. If you want to customize your interface, follow the [official Django documentation.](https://docs.djangoproject.com/en/1.8/intro/tutorial02/#customize-the-admin-change-list)

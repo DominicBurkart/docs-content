@@ -24,13 +24,11 @@ The software helps users to organize projects from their initial stages of [conc
 In this tutorial you will learn how to install and configure OpenProject on an Instance running Ubuntu Focal Fossa 20.04 while integrating a PostgreSQL [Database](https://www.scaleway.com/en/database/) into your stack.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
 - You have [created an Instance](/compute/instances/how-to/create-an-instance/) which is running Ubuntu 20.04 (Focal Fossa)
 - You have sudo privileges or access to the root user
 - You have [configured an A-record pointing to your Instance's IP address](/network/dns-cloud/how-to/manage-dns-records/)
-
 </Message>
 
 ## Installing OpenProject
@@ -46,7 +44,6 @@ In this tutorial you will learn how to install and configure OpenProject on an I
   wget -qO- https://dl.packager.io/srv/opf/openproject/key | sudo apt-key add -
   ```
   <Message type="note">
-
   If you are using `sudo` to launch commands with administrator permissions, your password will be requested.
 
   </Message>
@@ -100,7 +97,6 @@ You can easily configure your stack and dependencies with OpenProject's installe
 <Lightbox src="scaleway-enable-ssl.webp" alt="" />
 
   <Message type="note">
-
   We will enable TLS to secure and encrypt connections between your users and the instance in a later step.
 
   </Message>
@@ -222,9 +218,7 @@ For this purpose we will be using a [certbot](https://certbot.eff.org/lets-encry
 To begin editing and configuring your OpenProject workspace you must login.
 
 1. Open a web browser and enter `https://<yourdomain.name>/<yourpathprefix>/login`
-
   <Message type="tip">
-
     If you can't reach the application from your browser, try running the following command to start the service:
 
     ```service openproject start

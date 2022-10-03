@@ -24,7 +24,6 @@ There are significant benefits to setting up an Nginx HTTPS reverse proxy:
 - **Encrypted Connection** By encrypting the connection between the client and the Nginx reverse Proxy with TLS, users benefit from a encrypted and securized HTTPS connection, protecting their data.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
 - You have [created an Instance](/compute/instances/how-to/create-an-instance/) that runs Ubuntu Bionic Beaver
@@ -32,7 +31,6 @@ There are significant benefits to setting up an Nginx HTTPS reverse proxy:
 - Make sure your domain name points towards your server IP (A or AAAA record)
 - You have a web application running on a non-standard web port on the Instance (You can for example install a lightweight web server like [Webfsd](http://manpages.ubuntu.com/manpages/trusty/man1/webfsd.1.html), which runs on port 8000 by default to be reachable on the standard HTTP(s) ports via the proxy.)
 - You have [installed and configured Apache](/tutorials/configure-apache-lets-encrypt/#installing-apache) on your Instance
-
 </Message> 
 
 ## Installing and Configuring Nginx
@@ -40,24 +38,20 @@ There are significant benefits to setting up an Nginx HTTPS reverse proxy:
 In the following example, we configure an Nginx reverse proxy in front of an Apache web server.
 
 1. Update the APT package cache and install the Nginx web server via the package manager.
-
   ```
   apt update
   apt install nginx
   ```
 2. Disable the default virtual host, that is pre-configured when Nginx is installed via Ubuntu's package manager apt.
-
   ```
   unlink /etc/nginx/sites-enabled/default
   ```
 3. Enter the directory `/etc/nginx/sites-available` and create a `reverse proxy` configuration file:
-
   ```
   cd /etc/nginx/sites-available
   nano reverse-proxy.conf
   ```
 4. Paste the following Nginx configuration in the text editor: 
-
   ```
   server {
           listen 80;
@@ -85,7 +79,6 @@ In this example, the proxy server redirects all incoming connections on port 80 
     ln -s /etc/nginx/sites-available/reverse-proxy.conf /etc/nginx/sites-enabled/reverse-proxy.conf
     ```
 6. Test the Nginx configuration file
-
   ```
   nginx -t
   ```
@@ -104,7 +97,6 @@ With the current setup, all incoming traffic on the standard, non-securized, HTT
 For security reasons, it is recommended to add an encryption layer with TLS/SSL and to use HTTPS. Whilst it is technically possible to use self-signed certificates, it may cause inconveniences as a warning is displayed by default in a user's web browser when a self-signed certificate is used. A certificate authenticity (CA) can issue trusted certificates which are recognized by most modern web browsers. The CA [Let's Encrypt](https://letsencrypt.org) provides TLS certificates for free and the configuration of Nginx can be done easily with [Certbot](https://certbot.eff.org/), a tool provided by the [EFF](https://www.eff.org/).
 
 1. Install Certbot on your Instance by using the APT packet manager:
-
   ```
   apt-get update
   apt-get install software-properties-common
@@ -113,12 +105,10 @@ For security reasons, it is recommended to add an encryption layer with TLS/SSL 
   apt-get install python3-certbot-nginx
   ```
 2. Certbot provides a plugin designed for the Nginx web server, automatizing most of the configuration work related with requesting, installing and managing the TLS certificate:
-
   ```
   certbot --nginx
   ```
 3. Answer the prompts that display on the screen to request a valid Let's Encrypt TLS certificate:
-
     ```
     Saving debug log to /var/log/letsencrypt/letsencrypt.log
     Plugins selected: Authenticator nginx, Installer nginx
@@ -155,7 +145,6 @@ For security reasons, it is recommended to add an encryption layer with TLS/SSL 
     ```
 
   <Message type="note">
-
   When asked if you want to redirect HTTP traffic automatically to HTTPS, choose the option **2**. This enables the automatic redirection of all incoming requests via an unencrypted HTTP connection to a secure HTTPS connection. Providing an additional layer of security for the Web application running behind the Nginx reverse proxy.
 
   </Message>

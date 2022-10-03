@@ -27,9 +27,7 @@ Initial tags will start with 2204-py3 (April 2022). Check out the [Scaleway Chan
 All our images are based on CUDA 11.2 and cuDNN8.
 
 <Message type="tip">
-
 When using the “Ubuntu Focal GPU OS11” image with your Instance, you can omit the *nvidia runtime* option
-
 </Message>
 
 The following commands show how to launch a container based on each of our various Docker images:
@@ -72,14 +70,12 @@ The main libraries included in the RAPIDS image are: cuDF, cuML, cuGraph, cuxfil
 
 
 <Message type="note">
-
 As the official RAPIDS Docker image uses Anaconda, make sure the "rapids" conda environment is activated in order to use Rapids libraries:
 
 ```
 jovyan@561f14e37a44:~/ai$ conda activate rapids
 (rapids) jovyan@561f14e37a44:~/ai$ jupyter lab
 ```
-
 </Message>
 
 ## "All" (Experimental)

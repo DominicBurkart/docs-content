@@ -17,10 +17,8 @@ When you set up [autobackups](/managed-databases/postgresql-and-mysql/how-to/ena
 You can have up to 100 snapshots per Instance and project (depending on quotas).
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have a [PostgreSQL or MySQL Database Instance](/managed-databases/postgresql-and-mysql/quickstart)
-
 </Message>
 
 
@@ -30,7 +28,6 @@ You can have up to 100 snapshots per Instance and project (depending on quotas).
   <Lightbox src="scaleway-snapshots-tab.webp" alt="" />
 2. Click **+ Create snapshot**.
   <Message type="important">
-
   Make sure your Instance is in `READY` state before creating a snapshot.
 
   </Message>
@@ -40,7 +37,6 @@ You can have up to 100 snapshots per Instance and project (depending on quotas).
   <Lightbox src="scaleway-create-snapshot.webp" alt="" />
 3. Enter a name for your snapshot and set up the expiration date and time.
   <Message type="note">
-
   The default retention period for snapshots is 365 days. 
 
   </Message>
@@ -60,7 +56,6 @@ If you do not wish to wait for the snapshot to expire, you can delete it manuall
   A pop up displays to warn you that:
 
   <Message type="important">
-
   This will permanently destroy your snapshot and all your data will be lost. This action is irreversible.
 
   </Message>
@@ -81,13 +76,12 @@ When you restore a snapshot, a new Instance is created and billed to your accoun
     - Choose a configuration (3)
 
   <Message type="important">
-
   It is possible to select a larger node type for your new Instance. However, the block volume size will be the same as the size of the restored snapshot. All Instance settings will be restored if you chose a node type with the same or more memory size than the initial Instance. Settings will be reset to the default if your node type has less memory.
 
   </Message>
 5. Click **Create Instance** to confirm. 
-
 You can see the new Instance in your Database Instances list.
+
 
 <Navigation title="See Also">
   <PreviousButton to="/managed-databases/postgresql-and-mysql/how-to/manage-manual-backups/">How to manage manual backups</PreviousButton>

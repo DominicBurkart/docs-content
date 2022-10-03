@@ -13,24 +13,18 @@ dates:
 You cannot edit the reverse of IPv4 /27 blocks nor the IPv6 blocks (/48 - /56 - /64) directly in the console. Therefore you will have to delegate your subnet to your nameservers. This will delegate the task of propagating thee DNS reverses of your IPs on the Internet to your servers. You will need two DNS servers for redundancy, and can delegate the subnets directly in your account. 
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Dedibox Console](https://console.online.net) 
   - You created a corresponding A record for your reverse DNS at leat 24 hours ago
-
 </Message>
 
 ## How to add a DNS delegation in the console
 
 1. From the [console](https://console.online.net), click **Server** in the top menu, then select **Network configuration**.
-
   <Lightbox src="scaleway-dedibox-server-list.webp" alt="" />
 2. Click the cogwheel icon next to the relevant IP block, then select **Edit nameserver delegation**. The **Edit nameserver delegation** page displays.
-
   <Lightbox src="scaleway-edit-delegation.webp" alt="" />
 3. Enter details for the two name servers, and click **Update delegation**
-
   <Message type="tip">
-
     - You can have a minimum of two and a maximum of five name servers. To add more name servers, use the **Add nameserver** button.
     - Ensure that your DNS configuration complies with [RFC 4183](https://datatracker.ietf.org/doc/html/rfc4183)
 
@@ -61,9 +55,7 @@ You cannot edit the reverse of IPv4 /27 blocks nor the IPv6 blocks (/48 - /56 - 
 - The lines **PTR** indicate the reverse of the indicated IP, here 62.4.10.1.
 
 <Message type="note">
-
 If your IP block is a size other than /27, you will need to adapt your configuration accordingly.
-
 </Message>
 
 ### IPv6
@@ -96,10 +88,9 @@ $TTL 1h ; Default TTL
 ```
 
 <Message type="tip">
-
 You can use the utilities available at [whatsmydns.net](hhttps://www.whatsmydns.net/reverse-dns-generator) to facilitate the generation of your zones. 
-
 </Message>
+
 
 
 <Navigation title="See Also">

@@ -13,10 +13,8 @@ dates:
 With Block Storage it is possible to expand the volume size of an Instance.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway Console](https://console.scaleway.com/) 
 - You have [created](/storage/block/how-to/create-a-volume/) a Block Storage volume
-
 </Message>
 
 ## How to increase the volume size from the Scaleway console
@@ -27,7 +25,6 @@ With Block Storage it is possible to expand the volume size of an Instance.
   <Lightbox src="scaleway-increase-volume-modal.webp" alt="" />
 4. Click **Increase your Volume** to confirm.
   <Message type="note">
-
   Currently, only the **increase** of a Block Storage volume is supported. The maximum size of a Block volume is 10 TB.
  
   </Message>
@@ -35,15 +32,12 @@ With Block Storage it is possible to expand the volume size of an Instance.
 ## How to increase the partition size of the volume
 
 <Message type="tip">
-
 It is recommeneded to make a backup of your data using the [snapshot](https://www.scaleway.com/en/docs/compute/instances/how-to/create-a-snapshot/) feature, before increasing the partition size of your volume. This helps to avoid any data loss. 
-
 </Message>
 
 
 1. Connect to your Instance using [SSH](https://www.scaleway.com/en/docs/compute/instances/how-to/connect-to-instance/).
 2. Use the `lsblk` command to identify your Block Storage volume's mount point. In the following example the volume is mounted at `/mnt/block-volume`: 
-
   ```
   root@scw-friendly-beaver:~# lsblk
   NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
@@ -58,29 +52,24 @@ It is recommeneded to make a backup of your data using the [snapshot](https://ww
   └─sdb1    8:17   0 23.3G  0 part /mnt/block-volume
   ```
 3. [Unmount](https://www.scaleway.com/en/docs/storage/block/how-to/unmount-a-volume/) the volume:
-
   ```
   umount /mnt/block-volume
   ```
 4. Check that the volume is unmounted by running the `lsblk` command. 
 5. Use `growpart` to increase the partition size of your block storage volume (here `/dev/sdb1`):
-
   ```
   growpart /dev/sdX 1
   ```
 
   <Message type="tip">
-
   Take a note of the space between the device identifier and the partition number. 
 
   </Message>
 6. Increase the partition size of the volume using `resize2fs`. Replace `/dev/sdX` with the name of your block volume in the following command:
-
   ```
   resize2fs -p /dev/sdX1
   ```
 7. Run `e2fsck` on the Block Storage volume to check that everything went well. Replace `/dev/sdX` with the name of your block volume in the following command:
-
   ```
   e2fsck /dev/sdX1
   ```
@@ -93,10 +82,10 @@ It is recommeneded to make a backup of your data using the [snapshot](https://ww
   /dev/sda: clean, 11/1827840 files, 158770/7324218 blocks
   ```
 8. [Remount](https://www.scaleway.com/en/docs/storage/block/how-to/mount-and-use-volume/) the volume to access the files stored on it: 
-
   ```
   mount -o defaults /dev/sda /mnt/block-volume
   ```
+
 
 
 <Navigation title="See Also">

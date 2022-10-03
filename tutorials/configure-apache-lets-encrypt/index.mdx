@@ -21,34 +21,28 @@ dates:
 In this tutorial you will learn how to secure the Apache web server on Ubuntu Bionic Beaver with a Let's Encrypt certificate using certbot.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [created an Instance](/compute/instances/how-to/create-an-instance/)
 - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
 - You have sudo privileges or access to the root user.
-
 </Message> 
 
 ## Installing Apache
 
 1. Start by updating the software already installed on the instance:
-
   ```
   apt update
   apt upgrade -y
   ```
 2. Install the Apache Web Server:
-
   ```
   apt install apache2
   ```
 3. Create a directory for the website. In this tutorial `myweb.example.com` is being used. Replace it with your domain name whenever you see it:
-
   ```
   mkdir -p /var/www/html/myweb.example.com/public_html
   ```
 4. Create an index page for the website by running the following command:
-
   ```
   nano /var/www/html/myweb.example.com/public_html/index.html
   ```
@@ -67,12 +61,10 @@ In this tutorial you will learn how to secure the Apache web server on Ubuntu Bi
   </html>
   ```
 5. Create a configuration file for the website, by making a copy of the default configuration:
-
   ```
   cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/myweb.example.com.conf
   ```
 6. Open the file in a text editor:
-
   ```
   /etc/apache2/sites-available/myweb.example.com.conf
   ```
@@ -90,12 +82,10 @@ In this tutorial you will learn how to secure the Apache web server on Ubuntu Bi
 
   <Lightbox src="scaleway-config_apache.webp" alt="" />
 7. Activate the new site:
-
   ```
   a2ensite myweb.example.com
   ```
 8. Reload the Apache configuration to enable the new site:
-
   ```
   systemctl reload apache2
   ```
@@ -111,7 +101,6 @@ Install Certbot via apt:
 ## Running Certbot
 
 1. Run Certbot to request a certificate for the domain name:
-
   ```
   certbot --apache
   ```
@@ -133,7 +122,6 @@ Install Certbot via apt:
     https://www.ssllabs.com/ssltest/analyze.html?d=myweb.example.com
     ```
 2. Verify the certificate by opening your site in a web browser:
-
   <Lightbox src="scaleway-ssl_enabled.webp" alt="" />
 
 You notice the small padlock icon indicating that the connection to your instance is encrypted now.

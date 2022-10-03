@@ -152,11 +152,9 @@ A Scaleway resource is either a product or a feature in the Scaleway Ecosystem. 
 A rule (also known as an IAM rule) is the part of a [policy](#policy) that defines the permissions of the policy’s [principal](#principal), and the scope of these permissions. A policy can have one or many rules. Each rule consists of:
 
 1. A **scope**, which defines where the permission sets should apply. At Scaleway, a scope can be at [Project](#project) or [Organization](#organization) level.
-
     - **Projects** group your Scaleway resources (eg. Instances, Object Storage buckets, Managed Databases etc.) together. An Organization may have many Projects, or just one default Project. If you choose to define scope at Project level, you can select one, many, or all Projects. When you then define the [permission sets](#permission-set) for this scope, you can give access to different resources within the Project(s).
     - An **Organization** is made of one or several Projects. Billing, IAM, Project management and support are all managed at Organization level, so choose the Organization scope to give access to these features.
 2. One or more [**permission sets**](#permission-set) (eg. "list all Instances"). A permission set consists of one or multiple [permissions](#permission) to perform actions on resources or features. Each permission set has a clear description, e.g. `InstancesFullAccess`, `InstancesReadOnly`, `DatabaseFullAccess`, `BillingReadOnly`.
-
 The rule below defines various levels of access to different resources in Project A. The [principal](#principal) (user, group or application) can create, list, delete and manage Instances and Databases, but for Object Storage can only list and read the resources:
 
 SCOPE

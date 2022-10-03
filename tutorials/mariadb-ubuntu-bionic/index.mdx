@@ -27,19 +27,16 @@ This means that:
 Even the command line tools are similar to `mysqldump` and `mysqladmin` still having the original names, allowing MariaDB to be a drop-in replacement.
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
   - You have [created an Instance](/compute/instances/how-to/create-an-instance) that runs Ubuntu Bionic Beaver
   - You have sudo privileges or access to the root user.
-
 </Message>
 
 
 ## Installing MariaDB
 
 1. [Connect to your instance](/compute/instances/how-to/connect-to-instance/) via SSH.
-
   ```
   ssh root@SERVER_IP
   ```
@@ -72,22 +69,18 @@ Even the command line tools are similar to `mysqldump` and `mysqladmin` still ha
     - On Windows by downloading the [scw-windows-amd64.exe](https://github.com/scaleway/scaleway-cli/releases/latest)
 
   <Message type="note">
-
     If you use the root user, you can remove the `sudo` before each command.
 
   </Message>
 2. Update Ubuntu package manager
-
   ```
   sudo apt-get update
   ```
 3. Upgrade the Ubuntu packages already installed
-
   ```
   sudo apt-get upgrade
   ```
 4. Install MariaDB server and MariaDB client
-
   ```
   sudo apt-get install mariadb-server mariadb-client
   ```
@@ -120,7 +113,6 @@ You can:
     mysql_secure_installation
     ```
 2. Follow the steps in the wizard:
-
     - Enter current password for root: Press **Enter** for none.
     - Set root password? **Y**
     - Create and confirm a new password
@@ -140,7 +132,6 @@ If you forget or lose the root password to your MariaDB database, you can still 
 Depending on the database used and its version, you'll need to use different commands to recover the root password.
 
 1. Determine the SQL version
-
   ```
   mysql --version
   ```
@@ -153,25 +144,21 @@ Depending on the database used and its version, you'll need to use different com
 
   Note which database and which version you are running, as you will need it later.
 2. Shut down the database server to change the root password
-
   ```
   sudo systemctl stop mariadb
   ```
 
   If you run MySQL and MariaDB without loading information about user privileges, it allows you to access the database command line with root privileges without providing a password. It enables to gain access to the database without knowing it.
 3. Start the database without loading the grant tables or enabling networking:
-
     ```
     sudo mysqld_safe --skip-grant-tables --skip-networking &
     ```
 
     <Message type="note">
-
       The ampersand at the end of this command will make this process run in the background so you can continue to use your terminal.
 
     </Message>
 4. Connect to the database as the root user (the password should not be required)
-
   ```
   mysql -u root
   ```
@@ -187,14 +174,11 @@ Depending on the database used and its version, you'll need to use different com
   MariaDB [(none)]>
   ```
 5. Reload the grant tables by issuing the `FLUSH PRIVILEGES` command
-
   ```
   FLUSH PRIVILEGES;
   ```
 6. Change the root password.
-
   <Message type="note">
-
     Make sure to replace `new_password` with your new password of choice.
 
   </Message>
@@ -218,12 +202,10 @@ Depending on the database used and its version, you'll need to use different com
   ```
 7. Reload the grant tables by issuing the `FLUSH PRIVILEGES` command.
 8. Restart the database server.
-
   ```
   sudo kill `cat /var/run/mariadb/mariadb.pid`
   ```
 9. Restart the service.
-
   ```
   sudo systemctl start mariadb
   ```

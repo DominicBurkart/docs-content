@@ -13,11 +13,9 @@ dates:
 You can mount RPN SAN volumes on Linux machines using Open-iSCSI. 
 
 <Message type="requirement">
-
 * You have an account and are logged into the [Dedibox Console](https://console.online.net)
 * You have a [Dedibox dedicated server](https://www.scaleway.com/en/dedibox/)
 * You have an [RPN SAN](https://www.scaleway.com/en/dedibox/storage/rpn-san/) 
-
 </Message>
 
 ## How to install and configure Open-iSCSI
@@ -56,7 +54,6 @@ node.conn[0].iscsi.DataDigest = CRC32C,None
     ```
 
     <Message type="note">
-
     The `SAN_SERVER` address is displayed in your Dedibox console.
 
     </Message>
@@ -84,7 +81,6 @@ node.conn[0].iscsi.DataDigest = CRC32C,None
     In the example above, the disk detected is `sdd`, available at `/dev/sdd`. 
 
     <Message type="note"> 
-
     The assigned device name may be different, depending on your configuration.
 
     </Message>
@@ -101,9 +97,7 @@ LVM automatically uses UUIDs to recognize the partitions it uses. In this case, 
 ### How to address devices when using direct disk formatting
 
 <Message type="note">
-
 This method is not recommended, because aggregates several RPN SAN storage spaces, and does not allow you to make changes afterwards.
-
 </Message>
 
 If you format the device or one of its partitions directly, use the link created by the system in `/dev/disk/by-uuid/` or the fstab notation `UUID=XXX-XXX...` for addressing purposes.
@@ -111,6 +105,7 @@ If you format the device or one of its partitions directly, use the link created
 ### How to address devices directly by their UUID
 
 If (unlike LVM) your application does not support the auto-detection of the partitions associated with it via the UUID, it is recommended to use the link in `/dev/disk/by-id/`.
+
 
 <Navigation title="See Also">
   <PreviousButton to="/dedibox-network/rpn/how-to/connect-rpn-san/">How to connect to an RPN SAN</PreviousButton>

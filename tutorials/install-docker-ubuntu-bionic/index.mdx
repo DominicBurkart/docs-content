@@ -20,12 +20,10 @@ Containers allow to pack an application with all requirements necessary, such as
 This ensures that an application can run on any Linux machine, regardless of the specific settings of the host machine, which might be different from the development environment.
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
   - You have an Ubuntu Bionic server
   - You have sudo privileges or access to the root user.
-
 </Message>
 
 ## Installing Docker Community Edition
@@ -33,59 +31,48 @@ This ensures that an application can run on any Linux machine, regardless of the
 [Docker Community Edition](https://www.docker.com/) (CE) is the classic open source Docker environment.
 
 1. Before installing the latest version of Docker on your server, make sure to remove any old version that might have already been installed.
-
   ```
   sudo apt-get remove docker docker-engine docker.io
   ```
 
   <Message type="note">
-
     `apt-get` might report that none of these packages is installed. This is fine, and you can continue with the installation.
 
   </Message>
 2. Update the **apt** package cache to make sure all required software is referenced.
-
   ```
   sudo apt-get update
   ```
 3. As Docker uses HTTPS for their repository, install the required packages so apt can download them via a secure connection.
-
   ```
   sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
   ```
 4. Add Docker's official SSH key to apt.
-
   ```
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   ```
 5. Verify the fingerprint of the key (`9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88`), by looking at the last 8 characters.
-
   ```
   sudo apt-key fingerprint 0EBFCD88
   ```
 6. Add the repository for the stable version of Docker. For a `x86_64` based server, use the following command.
-
   ```
   sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
   ```
 
   <Message type="note">
-
     On ARM-based servers, replace `amd64` either with `armhf` or `arm64`, depending on the architecture of the CPU.
 
   </Message>
 7. Update the apt packet cache.
-
   ```
   sudo apt-get update
   ```
 8. Install the latest version of Docker.
-
   ```
   sudo apt-get install docker-ce
   ```
 9. Verify that Docker has been installed by running the `Hello World` container
-
   ```
   sudo docker run hello-world
   ```
@@ -98,30 +85,23 @@ This Unix socket is owned by the `root` user by default, and other users can onl
 If you don't want to use sudo with the docker command, create a Unix group called `docker` and add users to it. The daemon makes the ownership of the Unix socket read/writable by the docker group when it starts.
 
 <Message type="important">
-
   Adding users to the docker group grants privileges equivalent to the root user. This can be a security risk. For more information read about [Docker Daemon Attack Surface](https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface).
-
 </Message>
 
 1. Create the docker group.
-
   ```code
   sudo groupadd docker
   ```
 2. Add your user to the docker group.
-
   ```code
   sudo usermod -aG docker $USER
   ```
 3. Log out and log back in to re-evaluate your group membership.
-
   <Message type="note">
-
     If you are executing these commands on a virtual machine, it may be necessary to restart the VM for the changes to take effect.
 
   </Message>
 4. Verify that you can run `docker` commands without sudo by downloading a test-image and running it in a container.
-
   ```code
   docker run hello-world
   ```
@@ -141,9 +121,7 @@ $ sudo chmod g+rwx "/home/$USER/.docker" -R
 ```
 
 <Message type="important">
-
   If you remove the directory, it will be created again automatically when you rerun Docker. Any custom settings will be lost.
-
 </Message>
 
 ## Configuring Docker to start on boot
@@ -181,17 +159,14 @@ This means you have to map ports to the outside world and define precisely about
 Thanks to this, you can expect that the build of your application defined in the Dockerfile behaves precisely the same, no matter wherever it runs.
 
 1. Create a new directory to develop your environment
-
   ```code
   mkdir my-application
   ```
 2. Enter into the directory
-
   ```code
   cd my-application
   ```
 3. Create a new file, called `Dockerfile`, copy & paste the following content into it and save the file
-
   ```code
   # Use an official Python runtime as a parent image
   FROM python:2.7-slim
@@ -243,13 +218,11 @@ if __name__ == "__main__":
 Now as you have created a Dockerfile and the application, it is time to build the container.
 
 1. Make sure you are in the correct directory and that both files are present
-
   ```code
   ls
   Dockerfile        app.py
   ```
 2. Build the image. The `-t` tag allows you to set a friendly name for the image. The application will recover the environment variable we have set in the dockerfile and display the containers host name.
-
   ```code
   docker build -t helloworld .
   ```
@@ -329,13 +302,10 @@ Docker lets you easily ship your image to a registry to share it with others.
 We use the public docker registry in this example, but you can also set up a [private registry](https://docs.docker.com/datacenter/dtr/2.2/guides/) to distribute the image on your infrastructure.
 
 <Message type="requirement">
-
   For this part of the tutorial you need a Docker account. If you don't have one, you can create an account at [hub.docker.com](https://hub.docker.com).
-
 </Message>
 
 1. Log into the Docker registry:
-
   ```code
   docker login
   ```
@@ -345,12 +315,10 @@ We use the public docker registry in this example, but you can also set up a [pr
 
   To push your image you have to run `docker tag` with your username, repository, and tag, so your image uploads to the desired destination.
 2. Tag the image.
-
   ```code
   docker tag imagename username/repository:tag
   ```
 3. Publish your image.
-
   ```code
   docker push username/repository:tag
   ```

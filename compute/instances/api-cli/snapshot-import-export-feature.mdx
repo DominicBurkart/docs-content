@@ -16,19 +16,15 @@ Snapshots are created using the QCOW2 format and their data is stored in a Scale
 More information on the QCOW2 file format, and how to use it can be found in the [QEMU documentation](https://www.qemu.org/docs/master/system/images.html#cmdoption-image-formats-arg-qcow2).
 
 <Message type="tip">
-
 This page shows you how to use the snapshot import/export feature with the Scaleway API. The import/export feature is also available in the console, CLI, and SDK.
-
 </Message>
 
 <Message type="requirement">
-
   - You have a [Scaleway account](/console/my-account/how-to/create-an-account/)
   - You have [configured your API keys](/console/my-project/how-to/generate-api-key/)
   - You have an Instance using [Block Storage volumes](/storage/block/how-to/create-a-volume)
   - You have created a [snapshot](/compute/instances/how-to/create-a-snapshot)
   - You have created an [Object Storage bucket](/storage/object/how-to/create-a-bucket)
-
 </Message>
 
 ## Exporting snapshots
@@ -68,7 +64,6 @@ This page shows you how to use the snapshot import/export feature with the Scale
     ```
 
     <Message type="important">
-
     Snapshots should have a volume size between one gigabyte (GB) and one terabyte (TB).
 
     </Message>
@@ -175,7 +170,5 @@ These features are:
     ```
 
 <Message type="note">
-
 The API might raise other errors if it cannot find the provided object, if the object is not a valid QCOW2 image, if the volume is bigger than one terabyte, etc. 
-
 </Message>

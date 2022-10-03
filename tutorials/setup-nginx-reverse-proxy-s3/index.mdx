@@ -31,12 +31,10 @@ To reduce the load on the bucket and to speed up the delivery of frequently requ
 In this case, an object will be stored temporarily in the cache of Nginx. The client requests an object, and it will be delivered to the client directly from Nginx without forwarding the request to the Object Storage platform.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
 - You have an Instance running Ubuntu or Debian Linux
 - You have a Scaleway Object Storage bucket with [public, readable](https://www.scaleway.com/en/faq/how-can-i-make-an-object-public/) objects
-
 </Message>
 
 ## Installing Nginx as a reverse proxy
@@ -61,9 +59,7 @@ In this case, an object will be stored temporarily in the cache of Nginx. The cl
     nano /etc/nginx/nginx.conf
     ```
 2. Edit the file as follows:
-
   <Message type="note">
-
   Remember to replace `s3proxy.mydomain.eu` with the domain name of your Instance and `myobjectstoragebucket.s3.fr-par.scw.cloud` with the URL of your Object Storage bucket.
   
   </Message>
@@ -166,7 +162,6 @@ You can now access the files of your bucket by going directly to `http://s3proxy
 Connections to your S3 proxy are currently available in plain, unencrypted HTTP only. It is possible to encrypt the connection between the client and the Nginx proxy by configuring HTTPS. To do so, we will obtain a free SSL certificate issued by [Let's Encrypt](https://letsencrypt.org/) using [Certbot](https://certbot.eff.org/), a tool to obtain, manage and renew Let's Encrypt certificates automatically.
 
 1. Add the Certbot repository to apt to download the latest release of the software. Certbot is in active development and it is possible that the packages included in Ubuntu are already outdated.
-
   ```
   add-apt-repository ppa:certbot/certbot
   ```
@@ -176,9 +171,7 @@ Connections to your S3 proxy are currently available in plain, unencrypted HTTP 
   apt install python3-certbot-nginx -y
   ```
 3. Launch the generation of the certificate.
-
   <Message type="note">
-
   Replace `<yourdomain.name>` with the domain name of your Instance.
   
   </Message>

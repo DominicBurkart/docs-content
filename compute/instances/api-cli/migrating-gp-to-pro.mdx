@@ -14,9 +14,7 @@ This page explains how to migrate from a DEV1/GP1 Instance with local storage to
 
 
 <Message type="note">
-
   - The following procedure also applies when migrating any Instance with local storage to any Instance with Block Storage.
-
 </Message>
 
 To migrate from a source Instance with local storage to a destination Instance with Block Storage we will:
@@ -27,18 +25,15 @@ To migrate from a source Instance with local storage to a destination Instance w
 Local and block snapshots have different formats. To support the migration from one to the other, we use unified snapshots. Unified snapshots can be created from either a local or block volume and, in turn, used to create either a local or block volume.
 
 <Message type="requirement">
-
   - You have a [Scaleway account](/console/my-account/how-to/create-an-account/)
   - You have [configured your API keys](/console/my-project/how-to/generate-api-key/)
   - You have created a [General Purpose Instance](/compute/instances/concepts/#general-purpose-instance)
   - You have [installed](https://github.com/scaleway/scaleway-cli#scaleway-cli-v2) and [configured](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2#configuring-the-cli) the Scaleway CLI (version 2.5.3 or later)
-
 </Message>
 
 ## Migrating from DEV1/GP1 to PLAY2/PRO2 via the API
 
 1. Get the information of your source Instance. You will need data like the Instance's and the volumes' UUID in the next steps.
-
   ```
   curl --location --request GET 'https://api.scaleway.com/instance/v1/zones/'$ZONE'/servers/'$GP1_INSTANCE_UUID'' \
   --header 'Content-Type: application/json' \
@@ -112,12 +107,10 @@ Local and block snapshots have different formats. To support the migration from 
   ```
 
   <Message type="note">
-
   You can find the DEV1/GP1 backup's UUID from the `href_result` task output. It will be used in step 4.
 
   </Message>
 3. Check the state of the backup to make sure it is complete.
-
   ```
   curl --location --request GET 'https://api.scaleway.com/instance/v1/zones/'$ZONE'/images?name='$BACKUP_NAME'' \
     --header 'Content-Type: application/json' \
@@ -135,7 +128,6 @@ Local and block snapshots have different formats. To support the migration from 
       (...)
   ```
 4. Create the target Instance from the backup. 
-
   ```
   curl --location --request POST 'https://api.scaleway.com/instance/v1/zones/'$ZONE'/servers/' \
   --header 'Content-Type: application/json' \
@@ -161,7 +153,6 @@ Local and block snapshots have different formats. To support the migration from 
   }
    ```
 5. Start the target Instance.
-
   ```
   curl --location --request POST 'https://api.scaleway.com/instance/v1/zones/'$ZONE'/servers/'$PRO2_INSTANCE_UUID'/action/' \
     --header 'Content-Type: application/json' \
@@ -207,7 +198,6 @@ Local and block snapshots have different formats. To support the migration from 
 ## Migrating from DEV1/GP1 to PLAY2/PRO2 via the CLI
 
 1. Open a terminal and type the following command, to create a DEV1/GP1 Instance:
-
     `scw instance server create type=GP1-S zone=fr-par-2`
 
     You will see an output like the following. The Instance's ID will be required for the next step.
@@ -266,7 +256,6 @@ Local and block snapshots have different formats. To support the migration from 
     Zone                        fr-par-2
     ```
 2. Type the following command to back up your Instance:
-
     `scw instance server backup 123a12ab-12a1-1a12-123a-a1bc1234a123 zone=fr-par-2 unified=true`
 
     Make sure that you specify `unified=true` as the volume type of the snapshots embedded in the backup. 
@@ -289,7 +278,6 @@ Local and block snapshots have different formats. To support the migration from 
     Image.Zone               fr-par-2
     ```
 3. Type the following command to create a PLAY2/PRO2 Instance from the image created by the backup:
-
     `scw instance server create image=0b123456-1b2b-12b3-b123-1bca0123d456 zone=fr-par-2 type=PRO2-S`
 
     You will see an output like the following: 
@@ -356,9 +344,7 @@ Your PLAY2/PRO2 Instance is created and displays in the [Scaleway console](https
 You can also migrate your existing DEV1/GP1 Instances to PLAY2/PRO2 Instances using the [Scaleway CLI](/compute/instances/api-cli/creating-managing-instances-with-cliv2/).
 
 <Message type="important">
-
   It is required that you have [downloaded](https://github.com/scaleway/scaleway-cli) and [configured](/compute/instances/api-cli/creating-managing-instances-with-cliv2#configuring-the-cli) the Scaleway CLI on your computer to run the following commands.
-
 </Message>
 
 1. Create a GP1 Instance by running the following command:
@@ -377,6 +363,7 @@ You can also migrate your existing DEV1/GP1 Instances to PLAY2/PRO2 Instances us
     ```
     scw instance server start <server-id-pro2> zone=fr-par-2
     ```
+
 
 <Navigation>
   <PreviousButton to="/compute/instances/api-cli/migrating-instances/">Migrating Instances</PreviousButton>

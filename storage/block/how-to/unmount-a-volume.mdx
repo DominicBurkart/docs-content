@@ -13,11 +13,9 @@ dates:
 It is important to unmount (detach) a device from the operating system using the `umount` command to avoid data loss before [removing the Block Storage volume](/storage/block/how-to/detach-a-volume/) from the machine. 
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com) 
 - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
 - You have a [Instance](/compute/instances/concepts/#instance) with an additional Block Storage volume
-
 </Message>
 
 1. Connect to your Instance with `ssh`.
@@ -38,13 +36,13 @@ It is important to unmount (detach) a device from the operating system using the
   └─vda15 252:15   0  100M  0 part /boot/efi
   ```
   <Message type="important">
-
   Do not forget to edit the `/etc/fstab` file and delete the line corresponding to your block volume.
 
   </Message>
 
 If you want to mount the same volume elsewhere, make sure you change the mount point.
 Refer to the [How to mount and use a block volume](/storage/block/how-to/mount-and-use-volume/) page for more information.
+
 
 <Navigation title="See Also">
   <PreviousButton to="/storage/block/how-to/increase-block-volume/">How to increase the volume size</PreviousButton>

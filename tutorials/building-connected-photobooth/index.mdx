@@ -21,12 +21,10 @@ In this tutorial, we use the camera module available for the ESP32 to build an *
 <Lightbox src="scaleway-diagram.webp" alt="" />
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have an ESP32-CAM module available
   - You have downloaded or cloned the [source repository](https://gitHub.com/luisomoreau/ESP32-cam-MQTT)
   - You have downloaded and installed the [Arduino IDE](https://www.arduino.cc/en/main/software) (In this tutorial, we use version 1.8.13)
-
 </Message>
 
 ## The ESP32-CAM Module
@@ -38,9 +36,7 @@ You can order the ESP32-CAM module on several websites like [AliExpress](https:/
 - An optional antenna with connectors (Note: ESP32 provides an on-board antenna, but an external antenna can improve WiFi coverage.)
 
 <Message type="note">
-
   Make sure you connect the camera module to the ESP32 module before continuing with this tutorial. 
-
 </Message>
 
 <Lightbox src="scaleway-esp32-cam.webp" alt="" />
@@ -66,7 +62,6 @@ You can order the ESP32-CAM module on several websites like [AliExpress](https:/
     <Lightbox src="scaleway-create-hub-1.webp" alt="" />
 3. Click **Create and add a device** to deploy your Hub in a few seconds. 
 
-
 ## Adding Devices to your IoT Hub
 
 In this tutorial, we add two distinct devices: The camera itself, our ESP32-CAM hardware, and a software called "MQTT Explorer", which we use to trigger the camera and to view the payloads that are going through our Hub.
@@ -89,9 +84,7 @@ Launch MQTT-Explorer on your local computer and fill in the following connection
 <Lightbox src="scaleway-mqtt-explorer.webp" alt="" />
 
 <Message type="note">
-
   The Device ID can be found on the overview tab when clicking on a device (see below).
-
 </Message> 
 
 <Lightbox src="scaleway-device-id.webp" alt="" />
@@ -111,7 +104,6 @@ IoT Routes allow your IoT Hub to forward messages to non-MQTT destinations. In t
 1. Go back to the [IoT Hub](https://console.scaleway.com/iot-hub/hubs) section of the Scaleway console, select your Hub and click on Routes:
     <Lightbox src="scaleway-create-route.webp" alt="" />
 2. Create a new route with the following parameters: 
-
     - **Name:** `object-storage-route`
     - **Topic:** `PICTURE`
     - **Route Type:** Scaleway Object Storage
@@ -131,7 +123,6 @@ This tutorial uses the `SCW_Photobooth.ino` sketch, ready to support MQTT connec
 
 1. Go to the Arduino IDE and open the `SCW_Photobooth.ino` sketch, available in the `SCW_Photobooth` folder of the repository. 
 2. Set your WiFi configuration and edit one variable to make it working (the `mqttUser` must be your Scaleway Device ID):
-
     ```c
     //WIFI config
     const char* ssid = "your-ssid";
@@ -151,7 +142,6 @@ This tutorial uses the `SCW_Photobooth.ino` sketch, ready to support MQTT connec
 3. Include the `PubSubClient` library in the Sketch by clicking on **Sketch** > **Include Library** > **Add .ZIP library**. You find the library in the `libraries` folder of the repository. 
 4. Connect your ESP32-CAM board to a USB port of your compter to power it up. Select the USB port from the **Tools** > **Port** menu and upload the sketch by clicking on the Play button. 
 5. Open the serial console by clicking on **Tools** > **Serial Monitor**. Once the code is uploaded your device will restart and boot the new code. Your device is ready once you will see a message like the following example:
-
     ```
     ..............................................
     WiFi connected
@@ -162,7 +152,6 @@ This tutorial uses the `SCW_Photobooth.ino` sketch, ready to support MQTT connec
     ```
 
     <Message type="note">
-
       The device's IP configuration uses DHCP. Your local WiFi requires a running DHCP server. 
 
     </Message>

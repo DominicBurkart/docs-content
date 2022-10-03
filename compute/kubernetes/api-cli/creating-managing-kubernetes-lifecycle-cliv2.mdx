@@ -22,18 +22,15 @@ You can [create](/compute/kubernetes/how-to/create-cluster/) and [manage](/compu
 
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway Console](https://console.scaleway.com/)
   - You have generated your [API key](/console/my-project/how-to/generate-api-key/)
   - You have downloaded and installed the [Scaleway CLI](https://github.com/scaleway/scaleway-cli#scaleway-cli-v2)
-
 </Message>
 
 
 ## Configuring the CLI
 
 1. Open a terminal and type the following command, to configure the Scaleway CLI on your machine: 
-
   `scw init`
   
   If you have already configured the CLI, you will see a message like the following:
@@ -50,14 +47,12 @@ You can [create](/compute/kubernetes/how-to/create-cluster/) and [manage](/compu
   Do you want to override the current config? (Y/n):  
   ```
 2. Type `n` and go directly to the [Creating a K8s Kapsule cluster](#creating-a-k8s-kapsule-cluster) step of this tutorial, if you do not want to edit your configuration.
-
   If you have not yet configured the CLI, you will be guided through the configuration process via a series of questions:
 
   ```
   Enter a valid secret-key or an email
   ```
 3. Enter either the email address for your account (you will then be asked for your password), or your [API Secret Key](/console/my-project/how-to/generate-api-key/):
-
   ```
   To improve this tool we rely on diagnostic and usage data.
   Sending such data is optional and can be disabled at any time by running "scw config set send-telemetry=false".
@@ -86,7 +81,6 @@ You can [create](/compute/kubernetes/how-to/create-cluster/) and [manage](/compu
   Do you want to proceed with these changes? (Y/n):
   ```
 4. Type `y` or `n` and hit enter. This should complete the configuration process:
-
   ```
   Initialization completed with success.
   ```
@@ -94,7 +88,6 @@ You can [create](/compute/kubernetes/how-to/create-cluster/) and [manage](/compu
 ## Creating a K8s Kapsule cluster
 
 1. Type the following command in your terminal to create a [K8S Kapsule cluster](/compute/kubernetes/concepts/#cluster/):
-
   `scw k8s cluster create name=name-of-your-cluster`
 
   You will see an output similar to this: 
@@ -144,12 +137,10 @@ You can [create](/compute/kubernetes/how-to/create-cluster/) and [manage](/compu
   ```
 
   <Message type="note">
-
   For more information about the creation of a K8s cluster, type `scw k8s cluster create --help` in your terminal. 
 
   </Message>
 2. Write down the ID of your cluster as you will need it in the next steps. 
-
 
 ## Installing a KubeConfig configuration file 
 
@@ -170,17 +161,13 @@ Kubeconfig for cluster your-cluster-ID successfully written at /Users/youruserna
 A pool is a set of identical Nodes. A pool has a name, a size (its current number of nodes), nodes number limits (min and max), and a Scaleway Instance type. 
 
 <Message type="note">
-
 Instance type with insufficient memory are not eligible to become Nodes (DEV1-S, PLAY2-PICO, STARDUST)
-
 </Message>
 
 Changing these limits increases/decreases the size of a pool. Thus, when autoscaling is enabled, the pool will grow or shrink inside those limits, depending on its load).
 
 <Message type="note">
-
 For more information about pools, refer to the [Scaleway CLI documentation](https://github.com/scaleway/scaleway-cli/blob/master/docs/commands/k8s.md#kapsule-pool-management-commands). 
-
 </Message>
 
 
@@ -215,9 +202,7 @@ Region                        fr-par
 
 
 <Message type="important">
-
 This will permanently destroy your pool. All pool data stored on local volume will be destroyed. 
-
 </Message>
 
 
@@ -267,9 +252,7 @@ Cluster your-cluster-ID successfully deleted from /Users/yourusername/.kube/conf
 ## Deleting a K8s cluster 
 
 <Message type="important">
-
 This will permanently destroy your cluster and all associated pools and Instances. 
-
 </Message>
 
 Type the following command in your terminal and replace `your-cluster-ID` with the ID of the cluster you want to delete:
@@ -320,6 +303,7 @@ UsernameClaim   -
 UsernamePrefix  -
 GroupsPrefix    -
 ```
+
 
 <Navigation title="See Also">
   <NextButton to="/compute/kubernetes/api-cli/cluster-monitoring/">Monitoring clusters</NextButton>

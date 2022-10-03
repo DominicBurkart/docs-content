@@ -15,7 +15,6 @@ It is possible to automate the migration between two Instances by using the API.
 To migrate an Instance via the API, the instance ID, a valid API Key and the users organization key are required.
 
 1. Start by making a backup of your Instance. Replace `<REGION>` with the region of your server. This value can be `fr-par-1` for Instances located in Paris, for example.
-
   Request:
   ```
   curl -H "X-Auth-Token: $SECRET_KEY" https://api.scaleway.com/instance/v1/zones/<REGION>/servers/<INSTANCE_ID>/action -d '{"action" : "backup"}' -H "Content-Type: application/json"
@@ -38,7 +37,6 @@ To migrate an Instance via the API, the instance ID, a valid API Key and the use
 
   The ID of the image is indicated in the line `"href_result"`: `"/images/88996119-edb9-4283-8a6e-f9b98999bc19"` Take a note of the ID, as it will be required in the next step.
 2. Create the new instance based on the backup created previously. To do so, use the image ID from the `"href_result"`.
-
   Request:
   ```
   curl https://api.scaleway.com/instance/v1/zones/<REGION>/servers \
@@ -151,7 +149,6 @@ To migrate an Instance via the API, the instance ID, a valid API Key and the use
   }
   ```
 3. The new instance is available in the account now, but currently powered off. Power it up by launching an action on the instance:
-
   Request:
   ```
   curl -H "X-Auth-Token: $SECRET_KEY" https://api.scaleway.com/instance/v1/zones/<REGION>/servers/<SERVER_ID>/action \
@@ -174,7 +171,6 @@ To migrate an Instance via the API, the instance ID, a valid API Key and the use
   }
   ```
 4. In a final step update the flexible IP of the instance so it will point to the new instance:
-
   Request:
   ```
   curl --header "X-Auth-Token: $SECRET_KEY" --header 'Content-Type: application/json' --data '{"server" : "<SERVER_ID>"}' -X PATCH https://api.scaleway.com/instance/v1/zones/<REGION>/ips/<IP_ID>
@@ -196,7 +192,6 @@ To migrate an Instance via the API, the instance ID, a valid API Key and the use
 
   The new instance will now be reachable on the usual IP address.
 5. Optionally, delete the old instance in case it is no longer used:
-
   Request:
   ```
   curl --header "X-Auth-Token: $SECRET_KEY" -X DELETE https://api.scaleway.com/instance/v1/zones/<REGION>/servers/<SERVER_ID>
@@ -207,6 +202,7 @@ To migrate an Instance via the API, the instance ID, a valid API Key and the use
   Empty (204)
 
   For more information on using the API, refer to the complete [API documentation](https://developers.scaleway.com/en/products/instance/api/).
+
 
 <Navigation>
   <PreviousButton to="/compute/instances/api-cli/creating-backups/">Creating backups</PreviousButton>

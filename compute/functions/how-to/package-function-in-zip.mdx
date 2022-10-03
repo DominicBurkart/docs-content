@@ -17,11 +17,9 @@ This page explains how to upload your code as a zip file using the Scaleway Cons
 This feature enables you to add your librairies or static files to your function. 
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
   - You have [created a functions namespace](/compute/functions/how-to/create-a-functions-namespace/)
   - You know how to [create a Function](/compute/functions/how-to/create-a-function/)
-
 </Message>
 
 ## How to upload your zip file to the Scaleway Console
@@ -118,12 +116,10 @@ This command will run `pip install` with the given `requirements.txt` file insid
 The Handler name is a path to the handler file, suffixed with the function name to use as a handler. In the following example, we use two handlers `hello.js` and `world.js` inside the `src/handlers` folder.
 
 <Message type="note">
-
 Currently, a function handler must be a named exported component:
 ``` javascript 
 module.exports.myHandler = (event, context, callback) => {}
 ``` 
-
 </Message>
 
 1. Make sure to provide the right handler name, namely `src/handlers/hello.sayHello` and `src/handlers/world.toTheWorld`.
@@ -171,9 +167,7 @@ Then, set up your function handler to be: `build/handler.js` if you package the 
     go.sum
     ```
 2. Provide a custom handler name for each of these handlers. Each of your function will know which handler file to run: `hello`→`handlers/hello`, `world`→`handlers/world`, and for the `handler.go` at the root of the project→`.`
-
     <Message type="note">
-
     By default, the `handler path` is `.` (package main at the root of the archive).
 
     </Message>
@@ -183,15 +177,11 @@ If you need **external dependencies** for your Golang handlers, you can provide 
 Our runtimes automatically install your dependencies at **Build time** (once you start the function deployment). 
 
 <Message type="important">
-
 Be careful to pack the code and its dependencies directly, not the folder where the project is stored.
-
 </Message>
 
 <Message type="note">
-
 Dependencies installation at the build-time results in longer builds.
-
 </Message>
 
 ```bash
@@ -207,6 +197,7 @@ Package your dependencies with the command `go mod vendor`, and provide your gen
 -- vendor # Dependencies should be installed inside your vendor directory
 ---- <your-dependencies>
 ```
+
 
 <Navigation title="See Also">
   <PreviousButton to="/compute/functions/how-to/create-a-function/">How to create a function</PreviousButton>

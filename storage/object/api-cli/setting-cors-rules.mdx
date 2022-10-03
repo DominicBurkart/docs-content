@@ -20,10 +20,8 @@ Before CORS became standardized it was not possible to call an API endpoint or o
 An example of a cross-origin request: The frontend JavaScript code for a web application served from `http://webapplication.com` uses `XMLHttpRequest` to make a request for `http://customerapi.io/data.json`. Another example might be JavaScript that calls files in an Object Storage bucket, like web fonts, downloads etc. It is possible to configure CORS for each bucket with [`aws-cli`](/storage/object/api-cli/object-storage-aws-cli/).
 
 <Message type="requirement">
-
   - You have an account and are logged into the [Scaleway console](https://console.scaleway.com) 
   - You have [configured your API keys](/console/my-project/how-to/generate-api-key)
-
 </Message>
 
 ## Setting CORS on an Object Storage bucket
@@ -31,7 +29,6 @@ An example of a cross-origin request: The frontend JavaScript code for a web app
 1. Enter the **Object Storage** section in the left menu of the console.
 2. Create a [new bucket](/storage/object/how-to/create-a-bucket) or choose one of your existing buckets.
 3. The CORS configuration should be provided in a json file. Create a new file called `cors.json` locally, open it in a text editor and copy the following content into the file before saving it.
-
   ```
   {
     "CORSRules": [
@@ -47,18 +44,15 @@ An example of a cross-origin request: The frontend JavaScript code for a web app
   ```
 
   <Message type="note">
-
     Replace `http://MY_DOMAIN_NAME` with the domain name to authorize for CORS. You can specify multiple domain names, or put an asterisk (`*`) to allow all domains.
 
   </Message>
 4. Set the CORS configuration of the bucket with AWS CLI:
-
   ```
   aws s3api put-bucket-cors --bucket BUCKETNAME --cors-configuration file://cors.json
   ```
       
   <Message type="note">
-
     Replace `BUCKETNAME` with the name of the bucket.
 
   </Message>
@@ -122,12 +116,11 @@ aws s3api delete-bucket-cors --bucket BUCKETNAME
 ```
 
 <Message type="note">
-
   If the operation is successful, no output returns.
-
 </Message>
 
 For more information on CORS and the Object Storage features, refer to the [documentation](https://www.scaleway.com/docs/object-storage-feature/).
+
 
 <Navigation title="See Also">
   <PreviousButton to="/storage/object/api-cli/multipart-uploads/">Managing multipart uploads</PreviousButton>

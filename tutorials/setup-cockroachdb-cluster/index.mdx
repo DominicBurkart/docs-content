@@ -19,11 +19,9 @@ dates:
 In this tutorial, you will learn how to set up a multi-node [cockroach Database](https://www.cockroachlabs.com/) with HA proxy.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
 - You have an [Instance](/compute/instances/how-to/create-an-instance/) running Ubuntu 16.04
-
 </Message>
 
 
@@ -56,20 +54,16 @@ Below you find a schema of the architecture of CockroachDB:
 
 1.  [Spin up](/compute/instances/how-to/create-an-instance/) at least three Instances to guarantee redundancy and fault tolerance. We use [Ubuntu Xenial (16.04)](https://www.ubuntu.com/) in this example.
 2.  Once the servers have booted we install CockroachDB on them:
-
   ```
   wget -qO- https://binaries.cockroachdb.com/cockroach-latest.linux-amd64.tgz | tar  xvz
   ```
 3.  We copy the binary into the `PATH`. It makes it easy to execute cockroach commands from any shell:
-
   ```
   cp -i cockroach-latest.linux-amd64/cockroach /usr/local/bin
   ```
 
 <Message type="tip">
-
 It is recommended to run CockroachDB on Instances with at least 1GB of RAM for optimal performances.
-
 </Message>
 
 ## Creation of certificates
@@ -94,9 +88,7 @@ Create the Certificate Authority (CA) certificate and key: `ca.crt` and `ca.key`
   ```
 
 <Message type="important">
-
 Keep this key secret. It is the key of your Certificate Authority and can be used to issue certificates that are signed by your server.
-
 </Message>
 
 ### Creation of a client key pair for the root user:
@@ -108,42 +100,34 @@ Generate the key pair for the `root` user: `client.root.crt` and `client.root.ke
   ```
 
 <Message type="tip">
-
 In later steps, we use the root user's certificate to run `cockroachDB` client commands from a local machine. The root user's certificate and the key have to be copied to a remote node as well if you plan to run commands directly as root on that node (for local debugging).
-
 </Message>
 
 ### Create a key pair for the nodes:
 
 1. Create a node certificate and key for each node of our cluster: `node.crt` and `node.key`. They will be used to secure communication between our different nodes:
-
   ```
   cockroach cert create-node <node1 internal IP address> <node1 external IP address> <node1 public FQDN> --certs-dir=certs --ca-key=cr-keys/ca.key
   ``` 
 2. Create the remote directory and copy the files to the first node:
-
   ```
   ssh <username>@<node1 address> "mkdir certs"
   scp certs/ca.crt certs/node.crt certs/node.key <username>@<node1 ip address>:~/certs
   ```
 3. Delete the local files so that we can create the remaining certificates for our other nodes:
-
   ```
   rm certs/node.crt certs/node.key
   ``` 
 
   <Message type="note">
-
   This step is required as the new files will also be named `node.crt` and `node.key`. An alternative method to create the files without deleting the original files is to use the `--overwrite` attribute which overwrites the existing files.
 
   </Message>
 4. Create the key pair for the second node:
-
   ```
   cockroach cert create-node <node2 internal IP address> <node2 external IP address> <node2 public FQDN> --certs-dir=certs --ca-key=cr-keys/ca.key
   ```
 5. Upload the files to the remote node:
-
   ```
   ssh <username>@<node2 address> "mkdir certs"
   scp certs/ca.crt certs/node.crt certs/node.key <username>@<node2 address>:~/certs
@@ -152,7 +136,6 @@ In later steps, we use the root user's certificate to run `cockroachDB` client c
   Repeat these steps for each additional node that we want to use in our cluster.
 
   <Message type="note">
-
   It is recommended to use at least three nodes to have redundancy and replication services of CockroachDB enabled. It is possible to launch an unlimited number of nodes to scale your cluster as the workload grows.
 
   </Message>
@@ -200,15 +183,11 @@ On the other nodes a message appears, confirming that they have joined the clust
 It is possible to verify the status of the cluster from the admin interface of Cockroach DB, available at `https://<node1 ip address>:8080`. Some statistics of the different nodes connected to our cluster are visible.
 
 <Message type="tip">
-
 The administration interface is available on any of the nodes.
-
 </Message>
 
 <Message type="note">
-
 Your browser may show a warning about the connection to this site. This message is due to the self-signed certificate that is used by cockroachDB. You can ignore the advice and configure your web browser to accept the certificate.
-
 </Message>
 
 ## Synchronizing time
@@ -221,23 +200,19 @@ It is therefore recommended to synchronize the clock of your nodes with a time s
 We configure `ntp` with the time servers of Scaleway and Ubuntu in this example:
 
 1. Install the ntp client:
-
   ```
   sudo apt-get install ntp
   ```
 2. Stop the ntp service:
-
   ```
   sudo service ntp stop
   ```
 3. Edit the file `/etc/ntp.conf` in your favorite text editor and remove any lines starting with `server` or `pool`. Then add the following content to the file:
-
   ```
   server ntp.int.scaleway.com iburst
   server ntp.ubuntu.com iburst
   ```
 4. Restart the service:
-
   ```
   sudo service ntp start
   ```
@@ -250,7 +225,6 @@ We configure `ntp` with the time servers of Scaleway and Ubuntu in this example:
   The active NTP server is displayed with an asterisk.
 
   <Message type="note">
-
   You should complete these steps on all of your nodes to make sure the clocks are synchronized.
 
   </Message>
@@ -258,18 +232,15 @@ We configure `ntp` with the time servers of Scaleway and Ubuntu in this example:
 ## Test your cluster
 
 1. On the primary node, launch the SQL client of CockroachDB:
-
     ```
     cockroach sql --certs-dir=certs --host=<address of node1>
     ```
 2. Create a `cockroachtest` database on the node:
-
     ```
     CREATE DATABASE cockroachtest;
     ```
 3. Quit the SQL client with `\q` or by pressing `CRTL+C`.
 4. Verify that the database has been replicated, by connecting to another node of the cluster:
-
     ```
     cockroach sql --certs-dir=certs --host=<address of node2>
     ```
@@ -306,13 +277,10 @@ The cluster is now ready to be used. We can use any of the nodes as an endpoint 
 A Load Balancer increases the **Performance** and **Reliability** of an application.
 
 <Message type="tip">
-
 For performance and availability reasons it is not recommended to run the HAproxy on the same node as your cockroachDB._
-
 </Message>
 
 1. Start by running the `cockroach gen haproxy` command on the primary node to generate automatically the configuration file for HAproxy:
-
   ```
   cockroach gen haproxy --certs-dir=certs --host=<address of the primary node> --port=26257
   ```
@@ -354,12 +322,10 @@ For performance and availability reasons it is not recommended to run the HAprox
 
   The Load Balancer distributes the requests sent to our cluster equally between the different nodes.
 5. Test the configuration of cockroachDB from the primary node:
-
   ```
   cockroach sql --certs-dir=certs --host=<haproxy ip address>
   ```
 6. To check to which node you are connected, type the following command:
-
   ```
   > SHOW node_id;
   ```
@@ -378,9 +344,7 @@ For performance and availability reasons it is not recommended to run the HAprox
   It shows us the ID of the node to which we are connected.
 
 <Message type="note">
-
 In this setup the Load Balancer is a single point of failure. If the Load Balancer fails, our cluster becomes unavailable. It is therefore recommended to configure at least two load balancers and to use round-robin DNS to maximize the availability.
-
 </Message>
 
 ## Conclusion

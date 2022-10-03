@@ -32,7 +32,6 @@ On OSX and Linux, you can generate the SSH key pair directly from the terminal (
 1. Open the terminal application.
 2. Type `ssh-keygen -o -b 4096` and press `Enter` to generate a new key.
   <Message type="important">
-
   For security reasons you must generate a 2048-bit or 4096-bit RSA key (hence the `-b 4096` part of the command). Older 1024-bit keys are no longer supported. The `-o` option was added in 2014, to specify use of the new OpenSSH format. If the command fails for you, try removing the `-o`.
 
   </Message>
@@ -75,7 +74,6 @@ On Windows, you can use the third-party application [PuTTYgen](https://www.chiar
   The public and private keys are generated and the following screen displays:
   <Lightbox src="scaleway-puttygen-screen2.webp" alt="" />
 5. Complete the steps on the screen to finish:
-
 - Fill in the **Key-comment** field with a name to help you identify this key pair
 - Click the **Save public key** button and save it in the folder of your choice
 - Click the **Save private key** button and save it in the same folder
@@ -89,7 +87,6 @@ You must upload the content of the public part of the SSH key pair you just crea
   
 2. Scroll down to the **SSH Key** section, and click **Add a new SSH key**.
 3. Paste the content of the public key (which you copied in the previous step) into the pop-up box, and optionally add a description. Then click **Add a SSH key**.
-
 You will now be able to [connect to your Instances via SSH](/compute/instances/how-to/connect-to-instance/)
 
 ## How to add resources to your project
@@ -100,7 +97,6 @@ To add a new [resource](/console/my-project/concepts/#resources) to your project
 2. You can also check if the name of your project appears in the **Selected Project** dropdown menu. 
 3. Select the resource you want to create from the console side menu.
 4. Click the resource and follow deployment instructions. 
-
 Once the resource is created, it is automatically included in your Project. 
 
 
@@ -114,7 +110,6 @@ Creating an API key can be done directly from the Scaleway console:
 2. Scroll down to the **API Key** section.
 3. Click **Generate new API key**. The following pop-up appears.
 4. Add an **API Key purpose** (for your own reference), or leave this blank. Then click **Generate API Key**.
-
   The two parts of your API Key (access key and secret key) are displayed. Take careful note of the secret key, as it will not be recoverable or viewable after this point.
 5. Click **OK** to conclude.
 
@@ -123,24 +118,19 @@ Creating an API key can be done directly from the Scaleway console:
 This is an example of one way you can use your API key: to make a call to the Scaleway Authentication API. You will store your access key and secret key as environment variables. Then, you will use [curl](https://curl.se/) to call the Scaleway API and authenticate yourself with your API key. You will receive back a token containing information about your account, including your **user_id**, **project_id** and **organization_id**, among other details.
 
 <Message type="tip">
-
   These instructions are for Linux/Mac operating systems. For Windows, when storing environment variables, use the `set` command instead of `export`.
-
 </Message>
 
 1. Open a terminal and execute the following commands. Replace **your_access_key** and **your_secret_key** with the access and secret keys you generated in the previous step.
-
   ```
   export SCW_ACCESS_KEY=your_access_key
   export SCW_SECRET_KEY=your_secret_key
   ```
   <Message type="tip">
-
   You will need to repeat these `export` commands every time you open a new shell session. To avoid the need for repetition, open your `~/.bashrc` or `~/.zshrc` files in a text editor and append the export commands to the file. Save and exit the file, and perform `source ~/.bashrc` (or `source ~/.zshrc`) to finish.
 
   </Message>
 2. Execute the following command:
-
 ```
 curl https://account.scaleway.com/tokens/$SCW_ACCESS_KEY -H "X-Auth-Token: $SCW_SECRET_KEY"
 ```

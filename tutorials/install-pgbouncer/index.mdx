@@ -46,12 +46,10 @@ There are three types of pooling modes:
 In this tutorial, you can choose the pooling mode that best suits your workload.
 
 <Message type="requirement">
-
 - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
 - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
 - You have [created an Instance](/compute/instances/how-to/create-an-instance/) running on Ubuntu or Debian
 - You have sudo privileges or access to the root user.
-
 </Message>
 
 ## Installing PgBouncer
@@ -85,7 +83,6 @@ There are four sections of configuration that you need to set up:
     ```
 
     <Message type="note">
-
     You may want to update `listen_addr` to listen to TCP connections on all addresses. You can use '`*`' for this. (You cam also set a list of IP addresses):
 
     </Message>
@@ -99,13 +96,11 @@ There are four sections of configuration that you need to set up:
     ```
 
     <Message type="note">
-
     You should reload or restart PostgreSQL to apply the pg_hba.conf changes.
 
     </Message>
 
     <Message type="tip">
-
     By default, PgBouncer comes with `trust` authentication method. The `trust` method can used for testing environment but is not recommended for production. It will accept all connection requests without authentication. For production, `hba` authentication is recommended. With this, you can specify IP addresses with different connection methods.
     
     </Message>
@@ -219,7 +214,6 @@ Here are a few commands that can be used after connecting to the `pgbouncer` dat
     ```
 
     <Message type="tip">
-
     You can find the hashed passwords in `pg_shadow` table in PostgreSQL.
     ```
     SELECT usename,passwd FROM pg_shadow;
@@ -232,7 +226,6 @@ Here are a few commands that can be used after connecting to the `pgbouncer` dat
     ```
 
     <Message type="note">
-
     You should reload or restart PostgreSQL to apply the pg_hba.conf changes.
 
     </Message>
