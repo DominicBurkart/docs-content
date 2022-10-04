@@ -128,7 +128,7 @@ For maximum performance you can activate the cache of your SATA disks. After cre
 2. Log into the server using the provided SSH credentials and run the following commands to re-enable the disk cache: 
 ```
 sudo su
- 
+
 echo 'deb http://linux.dell.com/repo/community/deb/latest /' | sudo tee -a  /etc/apt/sources.list.d/linux.dell.com.sources.list
 
 apt-get update && apt-get install -y --force-yes srvadmin-base
