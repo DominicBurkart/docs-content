@@ -63,7 +63,7 @@ Below you find a schema of the architecture of CockroachDB:
   ```
 
 <Message type="tip">
-It is recommended to run CockroachDB on Instances with at least 1GB of RAM for optimal performances.
+  It is recommended to run CockroachDB on Instances with at least 1GB of RAM for optimal performances.
 </Message>
 
 ## Creation of certificates
@@ -88,7 +88,7 @@ Create the Certificate Authority (CA) certificate and key: `ca.crt` and `ca.key`
   ```
 
 <Message type="important">
-Keep this key secret. It is the key of your Certificate Authority and can be used to issue certificates that are signed by your server.
+  Keep this key secret. It is the key of your Certificate Authority and can be used to issue certificates that are signed by your server.
 </Message>
 
 ### Creation of a client key pair for the root user:
@@ -100,7 +100,7 @@ Generate the key pair for the `root` user: `client.root.crt` and `client.root.ke
   ```
 
 <Message type="tip">
-In later steps, we use the root user's certificate to run `cockroachDB` client commands from a local machine. The root user's certificate and the key have to be copied to a remote node as well if you plan to run commands directly as root on that node (for local debugging).
+  In later steps, we use the root user's certificate to run `cockroachDB` client commands from a local machine. The root user's certificate and the key have to be copied to a remote node as well if you plan to run commands directly as root on that node (for local debugging).
 </Message>
 
 ### Create a key pair for the nodes:
@@ -183,11 +183,11 @@ On the other nodes a message appears, confirming that they have joined the clust
 It is possible to verify the status of the cluster from the admin interface of Cockroach DB, available at `https://<node1 ip address>:8080`. Some statistics of the different nodes connected to our cluster are visible.
 
 <Message type="tip">
-The administration interface is available on any of the nodes.
+  The administration interface is available on any of the nodes.
 </Message>
 
 <Message type="note">
-Your browser may show a warning about the connection to this site. This message is due to the self-signed certificate that is used by cockroachDB. You can ignore the advice and configure your web browser to accept the certificate.
+  Your browser may show a warning about the connection to this site. This message is due to the self-signed certificate that is used by cockroachDB. You can ignore the advice and configure your web browser to accept the certificate.
 </Message>
 
 ## Synchronizing time
@@ -277,7 +277,7 @@ The cluster is now ready to be used. We can use any of the nodes as an endpoint 
 A Load Balancer increases the **Performance** and **Reliability** of an application.
 
 <Message type="tip">
-For performance and availability reasons it is not recommended to run the HAproxy on the same node as your cockroachDB._
+  For performance and availability reasons it is not recommended to run the HAproxy on the same node as your cockroachDB._
 </Message>
 
 1. Start by running the `cockroach gen haproxy` command on the primary node to generate automatically the configuration file for HAproxy:
@@ -344,7 +344,7 @@ For performance and availability reasons it is not recommended to run the HAprox
   It shows us the ID of the node to which we are connected.
 
 <Message type="note">
-In this setup the Load Balancer is a single point of failure. If the Load Balancer fails, our cluster becomes unavailable. It is therefore recommended to configure at least two load balancers and to use round-robin DNS to maximize the availability.
+  In this setup the Load Balancer is a single point of failure. If the Load Balancer fails, our cluster becomes unavailable. It is therefore recommended to configure at least two load balancers and to use round-robin DNS to maximize the availability.
 </Message>
 
 ## Conclusion

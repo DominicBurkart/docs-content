@@ -25,7 +25,7 @@ Whatever your operating system (Windows or Linux), as long as your server does n
    * `ssh` directly from a terminal on computers running [Linux or macOS](/dedibox/dedicated-servers/how-to/connect-to-server/#from-osx-(mac)-and-linux).
 
 <Message type="tip">
-The credentials (username and password) to log into the rescue system are displayed in your Dedibox console. 
+  The credentials (username and password) to log into the rescue system are displayed in your Dedibox console. 
 </Message>
 
 ## How to gain root rights
@@ -52,7 +52,7 @@ Mount your partitions by entering, as `root` user, the command `mountall.sh`.
 The partitions are then mounted in the `/mnt` directory
 
 <Message type="note">
-Some errors such as `the swap cannot be mounted` or `many partitions do not exist` may display. You can safely ignore these errors. 
+  Some errors such as `the swap cannot be mounted` or `many partitions do not exist` may display. You can safely ignore these errors. 
 </Message> 
 
 ## How to recover your data
@@ -60,7 +60,7 @@ Some errors such as `the swap cannot be mounted` or `many partitions do not exis
 You can recover your data either by transferring it to the [Dedibackup](https://www.scaleway.com/en/dedibox/storage/dedibackup/) storage space or by downloading it directly to your local computer using the SFTP protocol.
 
 <Message type="important">
-Be careful when editing your data. The `root` user has full permissions on each file and as such can perform actions which could be undesirable, including the irreversible deletion of data.
+  Be careful when editing your data. The `root` user has full permissions on each file and as such can perform actions which could be undesirable, including the irreversible deletion of data.
 </Message>
 
 ###  How to rescue your data using Dedibackup
@@ -91,7 +91,7 @@ The following procedure shows how to retrieve all the contents of your disk (inc
 You should now be able to browse and retrieve all your files by connecting to Dedibackup with any FTP client.
 
 <Message type="tip">
-The Dedibackup service is limited to 1000 files per volume. It is recommended to use archives when backing up your data.
+  The Dedibackup service is limited to 1000 files per volume. It is recommended to use archives when backing up your data.
 </Message>
 
 
@@ -109,7 +109,7 @@ To connect to the server, you are required to complete the following values:
 *  **Port**: Port 22
 
 <Message type="tip">
-These details are available in your console once the recovery mode is launched.
+  These details are available in your console once the recovery mode is launched.
 </Message>
 
 ##### Configuration example
@@ -122,7 +122,7 @@ Your data is located in the folders `/mnt`, and `/sda1`, or `/sda`.
 You can download your data before you reinstall your server, or before transferring data to another server.
 
 <Message type="tip">
-If for any reason you are unable to follow this process, you can contact a [certified outsourcer](https://www.scaleway.com/en/dedibox/outsourcing/) to rescue your data for you.
+  If for any reason you are unable to follow this process, you can contact a [certified outsourcer](https://www.scaleway.com/en/dedibox/outsourcing/) to rescue your data for you.
 </Message>
 
 

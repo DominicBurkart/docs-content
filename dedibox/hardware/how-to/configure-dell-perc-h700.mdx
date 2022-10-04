@@ -102,13 +102,13 @@ Run the following command to check the health status of the disks in your RAID:
 ```
 DEVICE=/dev/sda
 for i in $(megacli -pdlist -a0 | grep Id | cut -d":" -f2); do
-     echo "============================== $i =============================="
+    echo "============================== $i =============================="
     smartctl -s on -a -d megaraid,${i} ${DEVICE} -T permissive
 done
 ```
 
 <Message type="note">
-Please note that you will need to replace `/dev/sda`with the correct disk that represents your Logical Volume, if you have multiple of them.
+  Please note that you will need to replace `/dev/sda`with the correct disk that represents your Logical Volume, if you have multiple of them.
 </Message>
 
 

@@ -140,7 +140,7 @@ Cert-manager is in charge of creating [Let’s Encrypt](https://www.letsencrypt.
 * You can then use this certificate object to serve your website securely (HTTPS).
 
 <Message type="note">
-Any modification to the Traefik2 deployed by Kapsule may be overwritten by the reconciliation process, consider installing it yourself for a production usage.
+  Any modification to the Traefik2 deployed by Kapsule may be overwritten by the reconciliation process, consider installing it yourself for a production usage.
 </Message>
 
 1. Modify the default Traefik 2 daemonset running on Kapsule to do that, add `--providers.kubernetesIngress.ingressClass=traefik-cert-manager` in the cmd stanza.

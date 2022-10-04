@@ -13,7 +13,7 @@ categories:
 ---
 
 <Message type="important">
-PostgreSQL version 9.6 reaches its End of Life (EoL) on November 11, 2021. It is **recommended** to upgrade your PostgreSQL database engine to the latest available version before this date.
+  PostgreSQL version 9.6 reaches its End of Life (EoL) on November 11, 2021. It is **recommended** to upgrade your PostgreSQL database engine to the latest available version before this date.
 </Message>
 
 [PostgreSQL](https://www.postgresql.org/) is a powerful, open-source object-relational database system with more than 30 years of active development. As major PostgreSQL releases regularly add new features, the layout of the system tables may change. However, the internal data storage format itself rarely changes. This allows you to upgrade a PostgreSQL database system without data loss using the backup and restore functions of the Database API.
@@ -27,7 +27,7 @@ In this tutorial, you will learn how to migrate your PostgreSQL databases from v
 ## Manual migration via the Scaleway console and API
 
 <Message type="important">
-This migration method is not suitable for Database Instances with extensions installed. In such cases we recommend using the [automatic migration method with our script](#automatic-migration-via-a-bash-script-using-the-scaleway-cli-v2) or doing a manual dump/restore.
+  This migration method is not suitable for Database Instances with extensions installed. In such cases we recommend using the [automatic migration method with our script](#automatic-migration-via-a-bash-script-using-the-scaleway-cli-v2) or doing a manual dump/restore.
 </Message>
 
 There are three steps to completing a manual migration: creating a new PostgreSQL 13 instance, backing up your existing database using the Scaleway API, and finally restoring your backup on your new PostgreSQL 13 Instance. We walk you through these three steps below.
@@ -42,7 +42,7 @@ There are three steps to completing a manual migration: creating a new PostgreSQ
 ### Creating a PostgreSQL 13 Instance
 
 <Message type="note">
-This tutorial works with all versions of PostgreSQL. If you prefer another version than PostgreSQL 13, select your preferred version during the Instance creation.
+  This tutorial works with all versions of PostgreSQL. If you prefer another version than PostgreSQL 13, select your preferred version during the Instance creation.
 </Message>
 
 1. Open the [Scaleway Console](https://console.scaleway.com) in a web browser and click **Managed Databases** in the **Storage** section of the side menu. The list of your databases displays. 
@@ -108,7 +108,7 @@ This tutorial works with all versions of PostgreSQL. If you prefer another versi
 ### Restoring your backup on your new Database Instance
 
 <Message type="important">
-Ensure that you have replicated your database users and permissions on your new Instance before continuing with the following steps. 
+  Ensure that you have replicated your database users and permissions on your new Instance before continuing with the following steps. 
 </Message>
 
 1. Retrieve the database ID of your **new** Database Instance. You can find it on the **Database Instance Information** page of your Instance.

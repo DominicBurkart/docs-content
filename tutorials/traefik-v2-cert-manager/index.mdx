@@ -97,7 +97,7 @@ To expose Traefik 2 with a Scaleway LoadBalancer, deploy the following `yaml` fi
   ```
 
 <Message type="note">
-It may take some minutes until your cluster is fully deployed and Traefik becomes availale.
+  It may take some minutes until your cluster is fully deployed and Traefik becomes availale.
 </Message>
 
 ## Creating a wildcard DNS record and pointing your domain name to the IP address
@@ -179,7 +179,7 @@ Cert-manager is in charge of creating [Let's Encrypt](https://www.letsencrypt.or
   - You can then use this certificate object to serve your website securely (HTTPS).
 
 <Message type="note">
-Any modification to the Traefik2 deployed by Kapsule may be overwritten by the reconciliation process, consider [installing it yourself](https://doc.traefik.io/traefik/getting-started/install-traefik/) for a production usage.
+  Any modification to the Traefik2 deployed by Kapsule may be overwritten by the reconciliation process, consider [installing it yourself](https://doc.traefik.io/traefik/getting-started/install-traefik/) for a production usage.
 </Message>
 
 1. Modify the default Traefik 2 daemonset running on Kapsule to do that, add `--entrypoints.websecure.http.tls` in the cmd stanza.

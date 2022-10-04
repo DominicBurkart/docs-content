@@ -80,7 +80,7 @@ Now create 2 devices. You just need to provide:
 - (Optional) A name. Again, the name is not important for this tutorial.
 
 <Message type="note">
-As this tutorial aims to be simple and straightforward, the following commands are allowing the device to connect using insecure protocols, such as plain text MQTT or MQTTs without mutual authentication. In production, you should `Deny Insecure` connections to have the highest level of security. This is done by setting the field `allow-insecure` to `false`.
+  As this tutorial aims to be simple and straightforward, the following commands are allowing the device to connect using insecure protocols, such as plain text MQTT or MQTTs without mutual authentication. In production, you should `Deny Insecure` connections to have the highest level of security. This is done by setting the field `allow-insecure` to `false`.
 </Message>
 
 1. Save the response to a file so we can use the fields later.
@@ -165,7 +165,7 @@ Now that everything is set up, let's simulate 2 devices and send data.
 If you require security, you can also connect your device to the Hub using TLS mutual authentication. With this method, the Hub can check the device's identity, and the device can check the Hub's identity.
 
 <Message type="note">
-It is possible to connect to the Hub using TLS but without Mutual authentication. In this case, the device certificates are not needed as the Hub does not need to check the device identity. But the Hub certificate will still be needed as your client must check the hub's identity.
+  It is possible to connect to the Hub using TLS but without Mutual authentication. In this case, the device certificates are not needed as the Hub does not need to check the device identity. But the Hub certificate will still be needed as your client must check the hub's identity.
 </Message>
 
 1. Start by downloading the IoT Hub CA:

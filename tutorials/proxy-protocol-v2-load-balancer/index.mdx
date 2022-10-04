@@ -41,7 +41,7 @@ When using a [Load Balancer](/network/load-balancer/concepts) in front of your w
 Only the IP `51.159.26.16` is visible in the log file, which is the Load Balancer's IP address and not the IP of the different users.
 
 <Message type="important">
-The originating IP is also visible in the `X-Forwarded-for:` HTTP header.
+  The originating IP is also visible in the `X-Forwarded-for:` HTTP header.
 </Message> 
 
 ## Enabling PROXY Protocol 
@@ -194,7 +194,7 @@ The Proxy Protocol support in Apache is still in an early stage. It is currently
 ## Configuring Proxy Protocol in Apache with mod_remoteip
 
 <Message type="important">
-An Apache version >= 2.4.30 is required to use [mod_remoteip](https://httpd.apache.org/docs/2.4/mod/mod_remoteip.html#remoteipproxyprotocol). This version is currently not yet available in Ubuntu's repositories, and you have to install it by yourself. Use it only if you know what you are doing.
+  An Apache version >= 2.4.30 is required to use [mod_remoteip](https://httpd.apache.org/docs/2.4/mod/mod_remoteip.html#remoteipproxyprotocol). This version is currently not yet available in Ubuntu's repositories, and you have to install it by yourself. Use it only if you know what you are doing.
 </Message>
 
 1. Enable the module `remoteip`:

@@ -155,14 +155,14 @@ The [Generic Routing Encapsultion (GRE)](https://en.wikipedia.org/wiki/Generic_R
 As you can see in the example above, the tunnel creates very low overhead and the bandwidth available for the Instance can be used.
 
 <Message type="tip">
-For latency reasons and to avoid IP conflicts, we do not recommend that you create tunnels between different regions (e.g. between Paris and Amsterdam).
+  For latency reasons and to avoid IP conflicts, we do not recommend that you create tunnels between different regions (e.g. between Paris and Amsterdam).
 </Message>
 
 > ## Configuring the automatic start of the tunnel on system boot
 
 
 <Message type="important"> 
-These steps have to be executed on both machines. You may need to use `sudo` for the Dedibox commands.
+  These steps have to be executed on both machines. You may need to use `sudo` for the Dedibox commands.
 </Message>
 
 1. Create a [`systemd`](https://en.wikipedia.org/wiki/Systemd) script in the directory `/etc/systemd/system`, called `configure-tunnel.service`, and open it in a text editor:

@@ -21,7 +21,7 @@ This operation allows you to remove the *null* version (if available) of an obje
 If there is no *null* version, no object is removed.
 
 <Message type="note">
-If the operation is successful no output will be returned.
+  If the operation is successful no output will be returned.
 </Message>
 
 **Sample request**
@@ -79,7 +79,7 @@ date: Wed, 06 Apr 2022 12:20:13 GMT
 This operation allows you to delete a tag set from a specified object.
 
 <Message type="note">
-If the operation is successful no output will be returned.
+  If the operation is successful no output will be returned.
 </Message>
 
 **Sample request**
@@ -124,7 +124,7 @@ Connection: close
 aws s3api get-object --bucket BucketName --key dir/ObjectNameLocation ObjectName
 ```
 <Message type="note">
-The name of the output file must be the last parameter in the command.
+  The name of the output file must be the last parameter in the command.
 </Message>
 
 ## GetObjectAcl
@@ -259,7 +259,7 @@ aws s3api head-object --bucket BucketName --key ObjectName
 Multipart uploads allow you to upload a single object as a set of parts. Each part is a contiguous portion of the object's data. You can upload these object parts independently and in any order. If transmission of any part fails, you can retransmit that part without affecting other parts. After all parts of your object are uploaded, Scaleway Object Storage assembles these parts and creates the object.
 
 <Message type="tip">
-Check out our multipart uploads [documentation page](/storage/object/api-cli/multipart-uploads/) for more information.
+  Check out our multipart uploads [documentation page](/storage/object/api-cli/multipart-uploads/) for more information.
 </Message>
 
 **Sample request**
@@ -471,7 +471,7 @@ aws s3api copy-object --copy-source bucket-1/test.txt --key test.txt --bucket bu
 This operation applies the lock configuration on a bucket. 
 
 <Message type="note">
-If the operation is successful no output will be returned.
+  If the operation is successful no output will be returned.
 </Message>
 
 **Sample request**
