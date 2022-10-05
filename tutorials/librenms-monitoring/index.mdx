@@ -212,19 +212,19 @@ For security reasons, it is recommended to configure HTTPS by following [this tu
 
   <Lightbox src="scaleway-librenms_install.webp" alt="" />
 2. Fill in the database connection parameters and the password set during database creation:
-  <Lightbox src="scaleway-librenms_db.webp" alt="" />
-3. Configure a **user** and **password** for LibreNMS and complete the setup.
-4. Login to LibreNMS with the user and password created in the previous step:
-  <Lightbox src="scaleway-librenms_login.webp" alt="" />
+    <Lightbox src="scaleway-librenms_db.webp" alt="" />
+3. Configure a **user** and **password** for LibreNMS and complete the setup.2. Fill in the database connection parameters and the password set during database creation:
+    <Lightbox src="scaleway-librenms_db.webp" alt="" />
+3. Configure a **user** and **password** for LibreNMS and complete the setup.  <Lightbox src="scaleway-librenms_login.webp" alt="" />
 
 ## Adding localhost to LibreNMS
 
 Start by adding the local host as the first device to monitor:
 
 1. Once logged in, click **Devices**, then **Add Device** in the pop-up menu:
-  <Lightbox src="scaleway-librenms_adddevice.webp" alt="" />
+    <Lightbox src="scaleway-librenms_adddevice.webp" alt="" />
 2. Enter the hostname **localhost**, keep **SNMP** on, leave the values for **SNMP version** and **Port Association Mode** as preset. Enter the configured community name in the file `/etc/snmp/snmpd.conf` as value for **Community**. Once all values are set, click **Add Device** to add the device:
-  <Lightbox src="scaleway-librenms_newdevice.webp" alt="" />
+    <Lightbox src="scaleway-librenms_newdevice.webp" alt="" />
 3. LibreNMS starts polling the device and different graphs are created, showing the status of the device.
 
 ## Adding a remote device to LibreNMS

@@ -23,13 +23,13 @@ Foreman helps to automatize the OS installation. After that – through its very
 This tutorial assumes that Foreman is being installed on a fresh instance, which will also act as the Puppet primary server. 
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
-- You have [created an Instance](/compute/instances/how-to/create-an-instance/) which is running Ubuntu Focal Fossa (20.04) or later
-- You have root access to all of the servers you want to manage
-- Port 8140 on the Puppet primary Instance must be reachable
-- It is recommended to run Foreman on a machine with at least 8GB of RAM for optimal performances
-- Foreman requires a working Puppet installation to perform the configuration management of hosts
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
+  - You have [created an Instance](/compute/instances/how-to/create-an-instance/) which is running Ubuntu Focal Fossa (20.04) or later
+  - You have root access to all of the servers you want to manage
+  - Port 8140 on the Puppet primary Instance must be reachable
+  - It is recommended to run Foreman on a machine with at least 8GB of RAM for optimal performances
+  - Foreman requires a working Puppet installation to perform the configuration management of hosts
 </Message>
 
 ## Creating your Foreman server
@@ -178,13 +178,13 @@ Puppet requires accurate time-keeping, therefore the [NTP service](https://en.wi
 
   The module requires to be added to Foreman before being usable.
 2. When connected to the Foreman web UI, click **Configure**> **Puppet**> **Classes**:
-   <Lightbox src="scaleway-configure_classes.webp" alt="" />
+    <Lightbox src="scaleway-configure_classes.webp" alt="" />
 3. Click the `Import environments from foreman.example.com` button.
-  <Lightbox src="scaleway-import.webp" alt="" />
+    <Lightbox src="scaleway-import.webp" alt="" />
 
-  This imports the environment and displays the **Changed environments** panel.
+    This imports the environment and displays the **Changed environments** panel.
 4. Tick the ntp checkbox next to the item and click **Update** to import the ntp module.
-  <Lightbox src="scaleway-ntp_prod.webp" alt="" />
+    <Lightbox src="scaleway-ntp_prod.webp" alt="" />
 
 ## Overriding Default NTP Pool
 
@@ -193,11 +193,11 @@ Update the settings and configure the NTP module to use the [French NTP pool](ht
 1. In the **Puppet Classes** screen, click **ntp** class to edit it.
 2. Click the **Smart Class Parameter** tab.
 3. Scroll down to find the **servers** item in the left sidebar, and select it
-<Lightbox src="scaleway-ntp_servers.webp" alt="" />
+    <Lightbox src="scaleway-ntp_servers.webp" alt="" />
 4. Tick the **Override** checkbox. In the **Parameter type** menu, choose **array** and change the **Default value** from the default NTP pool to the desired one:
-  ```
-  ["0.fr.pool.ntp.org","1.fr.pool.ntp.org","2.fr.pool.ntp.org","3.fr.pool.ntp.org"]
-  ```
+    ```
+    ["0.fr.pool.ntp.org","1.fr.pool.ntp.org","2.fr.pool.ntp.org","3.fr.pool.ntp.org"]
+    ```
 5. Click **Submit** to update the configuration and to use the French NTP pool as default.
 
 ## Configuring Foreman Host to Use NTP Module
@@ -206,9 +206,9 @@ Configure the NTP module to manage NTP on the Foreman host.
 
 1. Click **Hosts** on the side menu and select **All hosts**
 2. Click **Edit** on the far right of your Foreman host.
-  <Lightbox src="scaleway-hosts.webp" alt="" />
+    <Lightbox src="scaleway-hosts.webp" alt="" />
 3. Click the **Puppet Classes** tab. Within the Available Classes section, click the ntp class, then click the plus sign next to "ntp":
-  <Lightbox src="scaleway-ntp_add.webp" alt="" />
+    <Lightbox src="scaleway-ntp_add.webp" alt="" />
 
 The ntp class is being moved to the Included Classes section. The next time the Puppet agent checks in, it will have this module applied to it.
 

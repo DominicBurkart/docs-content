@@ -23,10 +23,10 @@ The protocol transports connection information including the originating IP addr
 This information can be useful for automatic delivery of localized contents, blacklisting of abusive users or for logging purposes.
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
-- You have [created and configured a Load Balancer](/network/load-balancer/how-to/create-load-balancer/) in front of your servers
-- You have sudo privileges or access to the root user.
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
+  - You have [created and configured a Load Balancer](/network/load-balancer/how-to/create-load-balancer/) in front of your servers
+  - You have sudo privileges or access to the root user.
 </Message>
 
 When using a [Load Balancer](/network/load-balancer/concepts) in front of your web servers, the load balancer's IP address is passed by default to your web servers. This result is visible in the access log files of the web server:
@@ -51,7 +51,7 @@ You can enable proxy for your Load Balancer in two ways through the Scaleway con
 1. - **Option 1**: Configure backend rules upon creating your Load Balancer.
   - **Option 2**: Click <Icon name="edit" />, in the **Backend tab** of an existing Load Balancer.
 2. Select a proxy option from the drop-down menu.
-  <Lightbox src="scaleway-proxy-options.webp" alt="" />
+    <Lightbox src="scaleway-proxy-options.webp" alt="" />
 
 ## Configuring Proxy Protocol in Nginx Web Server
 

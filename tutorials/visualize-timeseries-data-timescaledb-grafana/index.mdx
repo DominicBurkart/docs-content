@@ -22,10 +22,10 @@ Time-series data is everywhere around us and an important part of our everyday l
 In this tutorial, we use a [Database for PostgreSQL](https://www.scaleway.com/en/database/) with the TimescaleDB extension and a Dataset of the air quality at the [Franklin D. Roosevelt Metro station](<https://en.wikipedia.org/wiki/Franklin_D._Roosevelt_(Paris_M%C3%A9tro)>) in Paris, provided by [RATP](https://dataratp2.opendatasoft.com/explore/dataset/qualite-de-lair-mesuree-dans-la-station-franklin-d-roosevelt/information/), the Parisian transport authority. This kind of data is a perfect example for a time-series database as it monitors certain values over a period of time. Other usages could include data from a diverse backgrounds, such as weather data, economic information or productivity information of an assembly line.
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have created a [Database for PostgreSQL](/managed-databases/postgresql-and-mysql/how-to/create-a-database/)
-- You have an Instance running on Ubuntu Bionic Beaver (18.04) to host the Grafana interface
-- You have sudo privileges or access to the root user.
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have created a [Database for PostgreSQL](/managed-databases/postgresql-and-mysql/how-to/create-a-database/)
+  - You have an Instance running on Ubuntu Bionic Beaver (18.04) to host the Grafana interface
+  - You have sudo privileges or access to the root user.
 </Message>
 
 ## Creating a new database
@@ -243,7 +243,7 @@ You can visualize the time-series data by creating a dashboard using [Grafana](h
 
   </Message>
 9. The Grafana login screen displays. Log yourself into Grafana using the username and password `admin`:
-  <Lightbox src="scaleway-grafana_login.webp" alt="" />
+    <Lightbox src="scaleway-grafana_login.webp" alt="" />
 
   Upon the first connection, you will be asked to set a new password.
 

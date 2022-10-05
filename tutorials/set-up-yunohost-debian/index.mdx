@@ -19,10 +19,10 @@ dates:
 [Yunohost](https://yunohost.org/) is an open-source solution designed for the administration of a personal server. It helps manage users, domains, websites and comes with a full email stack. The tool is designed to be lightweight and intuitive and is designed to work with Debian 9 (Stretch).
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
-- You have an Instance running on Debian 11 (Bullseye)
-- You have a domain name pointed to your instance
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
+  - You have an Instance running on Debian 11 (Bullseye)
+  - You have a domain name pointed to your instance
 </Message>
 
 ## Installing Yunohost
@@ -65,7 +65,7 @@ dates:
 
   Once completed, can open a web browser and open the IP Address of the instance.
 9. A warning may appear in your browser, as the SSL certificate of Yunohost is self-signed:
-  <Lightbox src="scaleway-yunohost_01.webp" alt="" />
+    <Lightbox src="scaleway-yunohost_01.webp" alt="" />
 
   Click **Advanced** to proceed to the site, which will display the login prompt:
 
@@ -107,10 +107,10 @@ Yunohost comes with a bunch of pre-packaged Applications that can easily be inst
 Install a webmail application to write and read emails of the previously created user directly in a web browser:
 
 1. Go to the admin Interface of Yunohost and click **Applications** to land on the applications list:
-  <Lightbox src="scaleway-yunohost_10.webp" alt="" />
+    <Lightbox src="scaleway-yunohost_10.webp" alt="" />
 2. Scroll down to **Roundcube** and click **Install** to install a Webmail client. Fill in the required details for the application and click **Install** to launch the installation of the tool:
-  <Lightbox src="scaleway-yunohost_11.webp" alt="" />
+    <Lightbox src="scaleway-yunohost_11.webp" alt="" />
 3. Once installed go to `yourdomain.tld/webmail` to connect to the Webmail interface to read and write mails:
-  <Lightbox src="scaleway-yunohost_12.webp" alt="" />
+    <Lightbox src="scaleway-yunohost_12.webp" alt="" />
 
 The basic installation of Yunohost is done now, it is possible to install other Applications like a WordPress Blog, a Torrent application and much more to have a personal server.

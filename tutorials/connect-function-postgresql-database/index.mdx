@@ -25,10 +25,10 @@ To achieve this, we use a [Serverless Function](https://www.scaleway.com/en/beta
 - A [sample database](https://www.postgresqltutorial.com/postgresql-sample-database/)
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have created a [Functions namespace](/compute/functions/how-to/create-a-functions-namespace/)
-- You have a [managed PostgreSQL Database](https://www.scaleway.com/en/database/) and the connection information
-- You have NodeJS or Python3 (with `pip`) installed on your local computer
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have created a [Functions namespace](/compute/functions/how-to/create-a-functions-namespace/)
+  - You have a [managed PostgreSQL Database](https://www.scaleway.com/en/database/) and the connection information
+  - You have NodeJS or Python3 (with `pip`) installed on your local computer
 </Message>
 
 ## NodeJS
@@ -122,7 +122,7 @@ To achieve this, we use a [Serverless Function](https://www.scaleway.com/en/beta
 </Message>
 
 <Message type="note">
-    The Python libraries to connect to PostgreSQL require the postgresql Linux library. [You will need to use Docker to generate the dependencies.](/compute/functions/how-to/package-function-in-zip/#specific-libraries-(with-needs-for-specific-c-compiled-code))
+  The Python libraries to connect to PostgreSQL require the postgresql Linux library. [You will need to use Docker to generate the dependencies.](/compute/functions/how-to/package-function-in-zip/#specific-libraries-(with-needs-for-specific-c-compiled-code))
 </Message>
 
 1. Generate the dependencies for `psycopg2-binary` using our dedicated image (`psycopg2` needs the postgresql linux library to be compiled):

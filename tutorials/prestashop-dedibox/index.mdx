@@ -23,11 +23,11 @@ The application comes with several hundred built-in features for managing produc
 In this tutorial, you will learn how to install and configure PrestaShop on Ubuntu Focal Fossa 20.04 on a [Dedibox](https://www.scaleway.com/en/dedibox/).
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
-- You have a [Dedibox](https://www.scaleway.com/en/dedibox/) dedicated server running on Ubuntu 20.04 (Focal Fossa)
-- You have `sudo` privileges or access to the root user
-- You have configured an A-record pointing to your server's IP address
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
+  - You have a [Dedibox](https://www.scaleway.com/en/dedibox/) dedicated server running on Ubuntu 20.04 (Focal Fossa)
+  - You have `sudo` privileges or access to the root user
+  - You have configured an A-record pointing to your server's IP address
 </Message>
 
 ## Installing PrestaShop
@@ -241,17 +241,17 @@ Certbot is available in the _Universe_ repositories of Ubuntu.
 The basic installation of your PrestaShop is done now, and you can start the configuration of the application using the web-based configuration wizard.
 
 1. Open your web browser and point it to `http://eshop.example.com/install`. The configuration wizard displays. Choose the language you want to use for your e-commerce site and click **Next**.
-  <Lightbox src="scaleway-prestashop_install_1.webp" width="900" alt="" />
+    <Lightbox src="scaleway-prestashop_install_1.webp" width="900" alt="" />
 2. Read the license terms of PrestaShop and tick the box **I agree to the above terms and conditions**, then click **Next**.
-  <Lightbox src="scaleway-prestashop_install_2.webp" width="900" alt="" />
+    <Lightbox src="scaleway-prestashop_install_2.webp" width="900" alt="" />
 
   The configuration wizard checks the compatibility of your system.
 3. If all requirements are fulfilled you see a confirmation message, and you can click **Next** to proceed further with the configuration.
-  <Lightbox src="scaleway-prestashop_install_3.webp" width="900" alt="" />
+    <Lightbox src="scaleway-prestashop_install_3.webp" width="900" alt="" />
 4. Enter the information about your shop, your account credentials, and choose a secure password for your administrator account. Click **Next** to continue with the installation.
-  <Lightbox src="scaleway-prestashop_install_4.webp" width="900" alt="" />
+    <Lightbox src="scaleway-prestashop_install_4.webp" width="900" alt="" />
 5. Enter the connection details for your database. You have set the credentials for the database user in a previous step. If you want to use PrestaShop with a [Database for MySQL](https://www.scaleway.com/en/database/), you will find the credentials in your Scaleway console. Click **Test your database connection now!** to verify that the connection is successful. Once done, click **Next** to continue.
-  <Lightbox src="scaleway-prestashop_install_5.webp" width="900" alt="" />
+    <Lightbox src="scaleway-prestashop_install_5.webp" width="900" alt="" />
 
 The setup wizard will create the database structure for PrestaShop. This step may take a moment, and you are redirected to the next page once the task is completed.
 
@@ -270,7 +270,7 @@ Once the installation is finished, a summary of the installation displays:
 By default, Prestashop uses plain, unencrypted HTTP connections, which could be a security risk. As we have already obtained a TLS certificate for our site, we will configure our PrestaShop installation to use HTTPS.
 
 1. Go to `http://eshop.example.com/admin`. The administrator login displays. Connect yourself to the administrator area using the credentials set during the installation:
-  <Lightbox src="scaleway-prestashop_login.webp" width="900" alt="" />
+    <Lightbox src="scaleway-prestashop_login.webp" width="900" alt="" />
 
   <Message type="note">
   For security reasons, PrestaShop will rename the `/admin` directory to a random string. In case you experience 404 file not found errors in the admin area, add the following location block under other location blocks in your Nginx configuration file (`/etc/nginx/sites-available/eshop.example.com`). Remember to replace `yourAdminDirectory` with the name of your admin directory.
@@ -283,11 +283,11 @@ By default, Prestashop uses plain, unencrypted HTTP connections, which could be 
 
   </Message>
 2. Click **Shop Parameters** > **General** in the menu on the left.
-  <Lightbox src="scaleway-prestashop_config.webp" width="200" alt="" />
+    <Lightbox src="scaleway-prestashop_config.webp" width="200" alt="" />
 3. Click the link **Please click here to check if your shop supports HTTPS**. You are redirected to a secure HTTPS connection.
-  <Lightbox src="scaleway-prestashop_ssl_1.webp" width="900" alt="" />
+    <Lightbox src="scaleway-prestashop_ssl_1.webp" width="900" alt="" />
 4. Enable HTTPS connections by clicking on the corresponding button. By default, PrestaShop uses HTTPS only on the member and checkout section. If you want to use HTTPS on all pages, enable the option by clicking on the corresponding button. Then validate the configuration by clicking on **Save** at the bottom of the page.
-  <Lightbox src="scaleway-prestashop_ssl_2.webp" width="900" alt="" />
+    <Lightbox src="scaleway-prestashop_ssl_2.webp" width="900" alt="" />
 
 Your e-commerce site now uses secure HTTPS for connections, and you can start adding products to your online shop.
 

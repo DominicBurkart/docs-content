@@ -38,11 +38,11 @@ This tutorial guides you through the installation of pfSense on a [Scaleway Dedi
 2. Depending on the type of the KVM-over-IP device, you can either mount a locally downloaded [pfSense ISO Image](https://www.pfsense.org/download/) or mount a virtual media from a [network share](https://virtualmedia.online.net/pfsense/).
 3. Boot the server from the ISO file or the virtual CD ROM drive.
 4. The pfSense install wizard displays. Accept the copyright and distribution notice by pressing the Enter key on your keyboard:
-  <Lightbox src="scaleway-pfsense_install_01.webp" alt="" />
+    <Lightbox src="scaleway-pfsense_install_01.webp" alt="" />
 5. The pfSense welcome screen displays, select **Install** and confirm by pressing Enter to launch the setup wizard:
-  <Lightbox src="scaleway-pfsense_install_02.webp" alt="" />
+    <Lightbox src="scaleway-pfsense_install_02.webp" alt="" />
 6. Choose the Keymap for your pfSense installation. By default, the `US` keymap is preselected. Select the desired keymap from the list and confirm by pressing Enter:
-  <Lightbox src="scaleway-pfsense_install_03.webp" alt="" />
+    <Lightbox src="scaleway-pfsense_install_03.webp" alt="" />
 7. Choose the disk to install pfSense on. If your server has more than one disk, choose `ada0` as installation destination. Press Enter to confirm.
   <Message type="important">
   All data on the disk will be deleted during the installation of pfSense. Make sure to have a backup of data stored on the disk if you re-install your machine.
@@ -51,9 +51,9 @@ This tutorial guides you through the installation of pfSense on a [Scaleway Dedi
 
   <Lightbox src="scaleway-pfsense_install_04.webp" alt="" />
 8. Select the partition scheme for the volume. The default option is `MBR`. You can keep this value and confirm by pressing Enter:
-  <Lightbox src="scaleway-pfsense_install_05.webp" alt="" />
+    <Lightbox src="scaleway-pfsense_install_05.webp" alt="" />
 9. The setup wizard starts copying the data from the virtual CD ROM drive to the servers hard disk. This may take a while depending on the connection speeds:
-  <Lightbox src="scaleway-pfsense_install_06.webp" alt="" />
+    <Lightbox src="scaleway-pfsense_install_06.webp" alt="" />
 
 10. The automatic installation finishes. Choose **Yes** and confirm by pressing on Enter to open a shell in the newly installed system to run a manual configuration:
 
@@ -117,7 +117,7 @@ Once rebooted, the pfSense welcome screen displays:
 ### First Connection to the Web Interface
 
 1. Open a web browser and point it to `https://<server_public_ip>`. The pfSense Web Interface displays. Log in using the user **admin** and the password **pfsense**:
-  <Lightbox src="scaleway-pfsense_setup_01.webp" alt="" />
+    <Lightbox src="scaleway-pfsense_setup_01.webp" alt="" />
 
   <Message type="important">
   
@@ -125,23 +125,23 @@ Once rebooted, the pfSense welcome screen displays:
 
   </Message>
 2. Once logged in, the pfSense setup wizard displays:
-  <Lightbox src="scaleway-pfsense_setup_02.webp" alt="" />
+    <Lightbox src="scaleway-pfsense_setup_02.webp" alt="" />
 
   Click **Next** to move forward.
 3. In the second step, the wizard proposes different support options, proceed by clicking on **Next** if you do not need them.
 4. Enter general information about the pfSense server. These include the **Hostname** and the **Domain** of the server. Leave **Primary DNS Server** and **Secondary DNS Server** empty and the option **Override DNS** checked. Click **Next** to continue:
-  <Lightbox src="scaleway-pfsense_setup_04.webp" alt="" />
+    <Lightbox src="scaleway-pfsense_setup_04.webp" alt="" />
 5. Configure the [NTP Time Server](https://en.wikipedia.org/wiki/Network_Time_Protocol). You can leave the default value and set the **Timezone** to **Europe/Paris**, then click **Next** to continue:
-  <Lightbox src="scaleway-pfsense_setup_05.webp" alt="" />
+    <Lightbox src="scaleway-pfsense_setup_05.webp" alt="" />
 6. Set a [strong and secure](https://passwordsgenerator.net/) password, confirm it and click **Next**
-  <Lightbox src="scaleway-pfsense_setup_06.webp" alt="" />
+    <Lightbox src="scaleway-pfsense_setup_06.webp" alt="" />
 7. Setup is complete now. Click **Finish** to exit the wizard and start configuring rules.
-  <Lightbox src="scaleway-pfsense_setup_07.webp" alt="" />
+    <Lightbox src="scaleway-pfsense_setup_07.webp" alt="" />
 
 ### Configuring Remote Access to the Web Interface
 
 1. Click **Firewall** > **Rules** to display a list of the configured firewall rules:
-  <Lightbox src="scaleway-pfsense_firewall_rules.webp" alt="" />
+    <Lightbox src="scaleway-pfsense_firewall_rules.webp" alt="" />
 
   You can see the **Anti-Lockout Rule**, which allows the connection to the web interface in the current state of the firewall. This rule will be deleted once the LAN interface is set up.
 2. To avoid being locked out from the configuration interface, create a new rule by clicking on **Add**.
@@ -161,7 +161,7 @@ Once rebooted, the pfSense welcome screen displays:
 
   Save the rule once all settings are configured.
 3. Go to **System** > **Advanced** and change the **TCP port** in the **WebConfigurator** settings to `31337` to match the previously configured rules.
-  <Lightbox src="scaleway-pfsense_configure_tcp_port.webp" alt="" />
+    <Lightbox src="scaleway-pfsense_configure_tcp_port.webp" alt="" />
 4. Save the settings by clicking on **Save** at the bottom of the page.
 
 ### Configuring Interfaces

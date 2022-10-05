@@ -21,11 +21,11 @@ Nextcloud is an open source, self-hosted file share and communication platform.
 Combining [Nextcloud](https://www.nextcloud.com) with Object Storage gives you infinite storage space for your personal cloud.
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
-- You have an Instance running on Ubuntu Jammy Jellyfish (22.04)
-- You have [installed and configured](/tutorials/mariadb-ubuntu-bionic/) MariaDB on your Instance
-- You have sudo privileges or access to the root user.
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
+  - You have an Instance running on Ubuntu Jammy Jellyfish (22.04)
+  - You have [installed and configured](/tutorials/mariadb-ubuntu-bionic/) MariaDB on your Instance
+  - You have sudo privileges or access to the root user.
 </Message>
 
 ## Installing Nextcloud
@@ -197,7 +197,7 @@ Nextcloud can use Object Storage as primary storage. This gives you the possibil
   );
   ```
 4. Save the configuration file, close the text editor and open the Nextcloud web interface in a browser. Nextcloud uses Object Storage for storing files now:
-<Lightbox src="scaleway-nextcloud-obstorage.webp" alt="" />
+    <Lightbox src="scaleway-nextcloud-obstorage.webp" alt="" />
 
 <Message type="note">
   Accessing the web interface for the first time may take a moment, as Nextcloud configures the bucket in the background before displaying the interface.

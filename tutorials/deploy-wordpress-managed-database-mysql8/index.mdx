@@ -22,11 +22,10 @@ In this tutorial, you will learn how to set up your own [Wordpress](https://word
 WordPress is a widely used, free, and open-source content management system (CMS) written in PHP. It uses the MySQL relational database system to store its contents. The look and feel of WordPress is highly customizable, with different themes and plugins.
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have [configured your SSH key](/console/my-project/how-to/create-ssh-key/)
-- You have a Scaleway Instance running Ubuntu Bionic Beaver (18.04 LTS) or Ubuntu Focal Fossa (20.04 LTS)
-- You have a [Database](https://www.scaleway.com/en/database/) for MySQL v8
-
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key/)
+  - You have a Scaleway Instance running Ubuntu Bionic Beaver (18.04 LTS) or Ubuntu Focal Fossa (20.04 LTS)
+  - You have a [Database](https://www.scaleway.com/en/database/) for MySQL v8
 </Message>
 
 ## Preparing the managed database
@@ -45,7 +44,7 @@ WordPress is a widely used, free, and open-source content management system (CMS
 </Message>
 
 1. Click the **Allowed IPs** tab to see the list of allowed IPs:
-<Lightbox src="scaleway-db_allowed_ips.webp" alt="" />
+    <Lightbox src="scaleway-db_allowed_ips.webp" alt="" />
 2. Click **Delete** to delete the default rule (`0.0.0.0/0 Allow All`).
 3. Click **Add IP** and enter the IP of your Instance in CIDR notation (for example: `51.15.123.234/32`)
 4. Confirm by clicking the **Add IP** button.
@@ -92,7 +91,7 @@ To host Wordpress on our Instance, we need to install the required software on i
   cp wp-config-sample.php wp-config.php
   ```
 6. Open the configuration file in a text editor, for example `nano` and edit the MySQL server configuration as follows:
-<Lightbox src="scaleway-managed_database_wp_config.webp" alt="" />
+    <Lightbox src="scaleway-managed_database_wp_config.webp" alt="" />
 
   Edit the hostname for your Database in the form: `database_ip_address:database_port` for example: `51.15.151.53:6241`
 

@@ -21,10 +21,10 @@ The commands to be executed are stored in a table. This table is called Crontab,
 
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
-- You have [created an Instance](/compute/instances/how-to/create-an-instance/) which is running Ubuntu Focal Fossa (20.04).
-- You have sudo privileges or access to the root user.
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
+  - You have [created an Instance](/compute/instances/how-to/create-an-instance/) which is running Ubuntu Focal Fossa (20.04).
+  - You have sudo privileges or access to the root user.
 </Message>
 
 ## Installing Cron
@@ -62,9 +62,9 @@ Each crontab uses the following structure:
 | *                	| *                            	| *             	            | *               	| *                                   	| e.g. /var/www/websites/backup.sh          	|
 
 <Message type="tip">
-You can also use the following notation for:
-* Months: `JAN-DEC`
-* Day of the week: `SUN-SAT`
+  You can also use the following notation for:
+  * Months: `JAN-DEC`
+  * Day of the week: `SUN-SAT`
 </Message>
 
 Below is an example that runs a backup every night at 4:30: 
@@ -153,7 +153,7 @@ Once you have decided when you want to run your cronjobs, provide the info in yo
     Once done, press `CTRL` and `O` to save your modifications, then  `CTRL` and `X` to quit the text editor. 
 
 <Message type="tip">
-`crontab` will remember your choice of editor. When you run `crontab -e` in the future, it will open the file automatically in the same text editor. 
+  `crontab` will remember your choice of editor. When you run `crontab -e` in the future, it will open the file automatically in the same text editor. 
 </Message>
 
 ### Displaying your cronjobs

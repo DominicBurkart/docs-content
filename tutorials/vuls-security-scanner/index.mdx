@@ -19,9 +19,9 @@ dates:
 [Vuls](https://vuls.io/) is an open-source vulnerability scanner written in [Go](https://www.scaleway.com/docs/installation-golang-on-ubuntu/). It automates security vulnerability checks on the software installed on a system, which can be a demanding task in a system administrators daily life. Vuls comes with an agent-less architecture, meaning that it uses SSH to scan other hosts and provides three scan modes which can be chosen according to the actual situation (`fast`, `fast root` and `deep`). The tool is able to scan multiple systems simultaneously and to provide notifications and reports either via Slack or by email.
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
-- You have an Instance running on Ubuntu Bionic Beaver (18.04)
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
+  - You have an Instance running on Ubuntu Bionic Beaver (18.04)
 </Message>
 
 ## Installing the dependencies and pre-work
@@ -347,7 +347,7 @@ Vuls is able to send notifications on [Slack](https://www.slack.com) channels, b
 
 1. When logged into Slack, create a [new app](https://api.slack.com/apps?new_app=1).
 2. In the APP parameters enable **Incoming Webhooks** and generate a new Webhook URL:
-  <Lightbox src="scaleway-vuls_webhook.webp" alt="" />
+    <Lightbox src="scaleway-vuls_webhook.webp" alt="" />
 3. Edit the file `/usr/share/vuls/config.toml` and add a Slack block to it:
   ```
   [slack]
@@ -408,5 +408,5 @@ Vuls provides a graphical web based interface, called [VulsRepo](https://github.
   /usr/share/vuls/vulsrepo/vulsrepo-server
   ```
 8. Open a web browser and point it to `http://YOUR_SERVER_IP:5111` to visualize the Vuls reports:
-  <Lightbox src="scaleway-vuls_reports.webp" alt="" />
+    <Lightbox src="scaleway-vuls_reports.webp" alt="" />
 9. (Optionally) Configure a [Nginx reverse proxy](/tutorials/nginx-reverse-proxy/) to restrict the access to the reports.

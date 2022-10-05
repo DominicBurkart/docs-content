@@ -24,9 +24,9 @@ You can find all reports on a dashboard which makes it easy to triage the proble
 This tutorial details how to setup a [Sentry](https://sentry.io/welcome/) server on a Scaleway compute Instance to start error tracking in your applications.
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
-- You have a [Instance](https://www.scaleway.com/en/virtual-instances/) running on Ubuntu Focal Fossa (20.04 LTS)
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
+  - You have a [Instance](https://www.scaleway.com/en/virtual-instances/) running on Ubuntu Focal Fossa (20.04 LTS)
 </Message>
 
 <Message type="note">
@@ -108,7 +108,7 @@ In this tutorial, we will install Sentry on an [Ubuntu Focal Fossa (20.04 LTS)](
   docker-compose up -d
   ```
 8. Test the installation by pointing your web browser to `http://<your_instance_ip>:9000`. The Sentry login displays.
-  <Lightbox src="scaleway-sentry_login.webp" alt="" />
+    <Lightbox src="scaleway-sentry_login.webp" alt="" />
 
 ## Configuring a reverse proxy
 
@@ -246,10 +246,10 @@ We disable direct access to the Sentry application, running on port `9000` for s
 1. Connect from a browser: `https://sentry.example.com/` once the installation completes. 
 2. Log in with the user created during the installation.
 3. Provide additional information and parameters. The Sentry Dashboard displays:
-  <Lightbox src="scaleway-sentry_dashboard.webp" alt="" />
-4. Click **Projects** > **New Project** to create a new project. 
-5. Select your environment and provide some more details about it. Sentry displays instructions on how to implement it in your project.
-  <Lightbox src="scaleway-sentry_project.webp" alt="" />
+    <Lightbox src="scaleway-sentry_dashboard.webp" alt="" />
+4. Click **Projects** > **New Project** to create a new project. 3. Provide additional information and parameters. The Sentry Dashboard displays:
+    <Lightbox src="scaleway-sentry_dashboard.webp" alt="" />
+4. Click **Projects** > **New Project** to create a new project.   <Lightbox src="scaleway-sentry_project.webp" alt="" />
 
 Your Sentry server is running now, and you can integrate it with your applications. You can also add additional features by adding different [Plugins](https://docs.sentry.io/server/plugins/) into Sentry. 
 

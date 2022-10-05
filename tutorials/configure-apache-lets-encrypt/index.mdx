@@ -21,10 +21,10 @@ dates:
 In this tutorial you will learn how to secure the Apache web server on Ubuntu Bionic Beaver with a Let's Encrypt certificate using certbot.
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have [created an Instance](/compute/instances/how-to/create-an-instance/)
-- You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
-- You have sudo privileges or access to the root user.
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have [created an Instance](/compute/instances/how-to/create-an-instance/)
+  - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
+  - You have sudo privileges or access to the root user.
 </Message> 
 
 ## Installing Apache
@@ -122,6 +122,6 @@ Install Certbot via apt:
     https://www.ssllabs.com/ssltest/analyze.html?d=myweb.example.com
     ```
 2. Verify the certificate by opening your site in a web browser:
-  <Lightbox src="scaleway-ssl_enabled.webp" alt="" />
+    <Lightbox src="scaleway-ssl_enabled.webp" alt="" />
 
 You notice the small padlock icon indicating that the connection to your instance is encrypted now.

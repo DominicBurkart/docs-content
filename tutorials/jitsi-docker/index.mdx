@@ -90,18 +90,18 @@ This tutorial explains how to install the Jitsi Meet solution on a virtual cloud
     - 4443/tcp for RTP media over TCP
     - 10000/udp for RTP media over UDP
 8. Run `docker-compose up -d` to download and launch the application.
-<Message type="note">
-  If you want to use the Etherpad option with Jisi Meet, configure the Etherpad section in the `.env` file and start the docker container as following: `docker-compose -f docker-compose.yml -f etherpad.yml up`.
-  
-</Message> 
+    <Message type="note">
+      If you want to use the Etherpad option with Jisi Meet, configure the Etherpad section in the `.env` file and start the docker container as following: `docker-compose -f docker-compose.yml -f etherpad.yml up`.
+    
+    </Message> 
 
 ## Connecting to the Instance
 
 1. Open a web browser on your local computer and access the web UI at `https://<public_instance_ip>/`. The Jitsi Meet login screen displays:
-  <Lightbox src="scaleway-jitsi_login.webp" alt="" />
+    <Lightbox src="scaleway-jitsi_login.webp" alt="" />
 
 Enter a name for your conference and press `Go` to enter the conference room. It is now possible to share the link, to set a password, configure the audio and video quality and more for the conference.
 2. Happy conferencing :)
-  <Lightbox src="scaleway-jitsi-meet-conf-call.webp" alt="" />
+    <Lightbox src="scaleway-jitsi-meet-conf-call.webp" alt="" />
 
 For more information concerning the Jitsi Meet Docker image, refer to the [official documentation](https://github.com/jitsi/docker-jitsi-meet).

@@ -27,8 +27,8 @@ It is possible to configure:
 It is also possible to configure SSL on Load Balancers directly by [using the API](#-Configuring-SSL-Offloading-via-the-API).
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have [created a Load Balancer](/network/load-balancer/how-to/create-load-balancer/) 
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have [created a Load Balancer](/network/load-balancer/how-to/create-load-balancer/) 
 </Message>
 
 ## Configuring SSL Passthrough
@@ -50,9 +50,9 @@ SSL offloading means that all HTTPS traffic is decrypted on the Load Balancer an
 1. In the [Scaleway Management Console](https://console.scaleway.com) click **Load Balancer** in the menu on the left.
 2. The list of your Load Balancers displays. Click **_..._** next to the Load Balancer you want to configure and click **More info**.
 3. The Load Balancer information displays. Click the **SSL Certificates** tab:
-  <Lightbox src="scaleway-lb_ssl_menu.webp" alt="" />
+    <Lightbox src="scaleway-lb_ssl_menu.webp" alt="" />
 4. Click **Create a SSL certificate**.
-  <Lightbox src="scaleway-lb_create_ssl.webp" alt="" />
+    <Lightbox src="scaleway-lb_create_ssl.webp" alt="" />
 5. Enter the required details for the SSL certificate:
     - **SSL Certificate Name**: a friendly name upon your choice to faciliate certificate management
     - **SSL Certificate Type**: The type for the SSL certificate, select _Let's Encrypt_ from the drop-down list.
@@ -74,9 +74,9 @@ Scaleway Load Balancer supports also third party SSL Certificates. These are cer
 1. In the [Scaleway Management Console](https://console.scaleway.com) click **Load Balancer** in the menu on the left.
 2. The list of your Load Balancers displays. Click **_..._** next to the Load Balancer you want to configure and click **More info**.
 3. The Load Balancer information displays. Click the **SSL Certificates** tab:
-  <Lightbox src="scaleway-lb_ssl_menu.webp" alt="" />
+    <Lightbox src="scaleway-lb_ssl_menu.webp" alt="" />
 4. Click **Create a SSL certificate**.
-  <Lightbox src="scaleway-lb_create_ssl.webp" alt="" />
+    <Lightbox src="scaleway-lb_create_ssl.webp" alt="" />
 5. Enter the required details for the SSL certificate:
     - **SSL Certificate Name**: a friendly name upon your choice to faciliate certificate management
     - **SSL Certificate Type**: The type for the SSL certificate, select _Importe certificate_ from the drop-down list.
@@ -94,7 +94,7 @@ Scaleway Load Balancer supports also third party SSL Certificates. These are cer
 
 1. Enter the frontend section of the Load Balancer by clicking on the **Frontend** tab. Click **Add Frontend** to create a new frontend for SSL offloading.
 2. Enter the frontend details and configure the backend:
-  <Lightbox src="scaleway-lb_new_ssl_frontend.webp" alt="" />
+    <Lightbox src="scaleway-lb_new_ssl_frontend.webp" alt="" />
 
     - For the frontend enter:
 
@@ -113,7 +113,7 @@ Scaleway Load Balancer supports also third party SSL Certificates. These are cer
       - **Server IP(s)**: Enter the IP address of the server(s) running the backend application.
 3. Click **Add Frontend** to setup the new frontend (and backend).
 4. Open a web browser and point it to `https://common_name` (replace `common_name` with the main domain configured in the SSL certificate). The connection is now encrypted with SSL:
-  <Lightbox src="scaleway-lb_ssl_connection.webp" alt="" />
+    <Lightbox src="scaleway-lb_ssl_connection.webp" alt="" />
 
 ## Configuring SSL Offloading via the API
 

@@ -21,10 +21,10 @@ Loki is a log aggregation system inspired by [Prometheus](https://prometheus.io/
 
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have [created a Kapsule cluster](/compute/kubernetes/how-to/create-cluster/)
-- [kubectl](/compute/kubernetes/how-to/connect-cluster-kubectl/) is configured and working on your machine
-- `helm`, the Kubernetes [packet manager](https://helm.sh/), is installed on your local machine (version 3.2+)
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have [created a Kapsule cluster](/compute/kubernetes/how-to/create-cluster/)
+  - [kubectl](/compute/kubernetes/how-to/connect-cluster-kubectl/) is configured and working on your machine
+  - `helm`, the Kubernetes [packet manager](https://helm.sh/), is installed on your local machine (version 3.2+)
 </Message>
 
 <Message type="important">
@@ -114,7 +114,7 @@ Loki is a log aggregation system inspired by [Prometheus](https://prometheus.io/
   Forwarding from [::1]:3000 -> 3000
   ```
 7. Access `http://localhost:3000` to reach the Grafana interface. Log in using the admin user and the password you got above.
-  <Lightbox src="scaleway-loki1.webp" alt="" />
+    <Lightbox src="scaleway-loki1.webp" alt="" />
 8. Click **Configuration** > **Data Sources** in the side menu.
 9. Click **+ Add Data Source**.
 10. Select Loki.

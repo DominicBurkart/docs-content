@@ -29,22 +29,22 @@ To reach the goal of this tutorial, you will use four Instances running on **Ubu
 - A Private Network between these Instances
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
-- You have [created four Instances](/compute/instances/how-to/create-an-instance) running on Ubuntu 20.04 Focal Fossa or later
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have [configured your SSH key](/console/my-project/how-to/create-ssh-key)
+  - You have [created four Instances](/compute/instances/how-to/create-an-instance) running on Ubuntu 20.04 Focal Fossa or later
 </Message>
 
 ## Configuring the Private Network
 
 1. Log in to your [Scaleway Console](https://console.scaleway.com/) and enter the **Instances** section from the **Compute** group on the side menu.
 2. Click **Private Networks** to display a list of your Private Networks. Click **+Create a Private Network** to create a new one.
-  <Lightbox src="scaleway-create_private_network.webp" alt="" />
+    <Lightbox src="scaleway-create_private_network.webp" alt="" />
 3. Enter the details of the Private Network. Make sure to create the Private Network in the same geographical region as your Instances:
-  <Lightbox src="scaleway-new_private_network.webp" alt="" />
+    <Lightbox src="scaleway-new_private_network.webp" alt="" />
 4. Select the newly created Private Network from your networks list. From the drop-down list, click the **Instances** tab to add your Instances:
-  <Lightbox src="scaleway-pvn_add_instance.webp" alt="" />
+    <Lightbox src="scaleway-pvn_add_instance.webp" alt="" />
 5. Add all Instances for your Rocket.Chat setup to the Private Network. Once added, they are listed on the network overview page together with their corresponding virtual MAC address:
-  <Lightbox src="scaleway-pvn_add_instance.webp" alt="" />
+    <Lightbox src="scaleway-pvn_add_instance.webp" alt="" />
 6. Log into each of your Instances using [SSH](/compute/instances/how-to/connect-to-instance/) to configure the Private Network interface. Use the `ip link show` command to identify the automatically assigned name of the interface:
   ```
   root@virtual-instance:~# ip link show
@@ -411,17 +411,17 @@ An output like the following example displays:
 
 1. Point your web browser to your configured DNS hostname (i.e., `https://rocketchat.example.com`).
 2. The Rocket.Chat setup wizard displays. Enter your information for the admin account and click **Continue** to go to the next step:
-  <Lightbox src="scaleway-rc_setup_1.webp" alt="" />
+    <Lightbox src="scaleway-rc_setup_1.webp" alt="" />
 3. Provide the required information about your organization and click **Continue** to proceed with the configuration:
-  <Lightbox src="scaleway-rc_setup_2.webp" alt="" />
+    <Lightbox src="scaleway-rc_setup_2.webp" alt="" />
 4. Enter the details for your Rocket.Chat installation and confirm by clicking on **Continue**:
-  <Lightbox src="scaleway-rc_setup_3.webp" alt="" />
+    <Lightbox src="scaleway-rc_setup_3.webp" alt="" />
 5. You can either register your server with Rocket.Chat to have access to additional services or keep it as a standalone solution:
-  <Lightbox src="scaleway-rc_setup_4.webp" alt="" />
+    <Lightbox src="scaleway-rc_setup_4.webp" alt="" />
 6. Once you completed all steps, you are automatically logged into your Rocket.Chat application. You can start chatting now and invite other users to your community:
-  <Lightbox src="scaleway-rc_chat.webp" alt="" />
+    <Lightbox src="scaleway-rc_chat.webp" alt="" />
 7. Check the number of running Instances from the Rocket.Chat administration interface.
-  <Lightbox src="scaleway-rc_admin.webp" alt="" />
+    <Lightbox src="scaleway-rc_admin.webp" alt="" />
 
 Once everything is set up and working, you can remove the public flexible IP addresses from both Rocket.Chat Instances, as well as from the MongoDB instance. They will be able to communicate securely using the Private Network.
 

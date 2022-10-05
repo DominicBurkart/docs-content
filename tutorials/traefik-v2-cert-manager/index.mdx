@@ -46,9 +46,9 @@ This tutorial is divided in two parts:
 1. Click the **Easy Deploy** tab on your clusters overview page. The Easy Deploy feature displays.
 2. Click **Deploy an Application**. The application deployment wizard displays.
 3. Select **Application Library**, type **Traefik** in the search bar and select the **Traefik 2 Ingress** application. 
-<Lightbox src="scaleway_choose_application.webp" alt="" />
+    <Lightbox src="scaleway_choose_application.webp" alt="" />
 4. Enter the name `traefik` for the application and type the `kube-system` namespace name.
-<Lightbox src="scaleway_application_name.webp" alt="" />
+    <Lightbox src="scaleway_application_name.webp" alt="" />
 5. Click **Deploy an application** to deploy the Load Balancer on your cluster.
 
 ## Creating a service to deploy a LoadBalancer in front of Traefik 2
@@ -406,7 +406,7 @@ In this step you will create the Let's Encrypt certificate by specifying:
   $ kubectl port-forward -n kube-system $(kubectl get pods -n kube-system --selector "app.kubernetes.io/name=traefik" --output=name | head -n 1) 9000:9000
   ```
 7. You can then access the Traefik 2 dashboard with this address: `http://127.0.0.1:9000/dashboard/` (Note the trailing `/`.)
-  <Lightbox src="scaleway-traefik_dashboard1.webp" alt="" />
+    <Lightbox src="scaleway-traefik_dashboard1.webp" alt="" />
 
   <Lightbox src="scaleway-traefik_dashboard2.webp" alt="" />
 

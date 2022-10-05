@@ -22,9 +22,9 @@ SSH bastion is a server dedicated to managing connections to the infrastructure 
 
 1. Click **Public Gateways** in the **VPC** section of the Scaleway console side menu.
 2. Click the Public Gateway for which you want to activate SSH bastion. You are taken to the **Overview** page for that Public Gateway.
-  <Lightbox src="scaleway-ssh-bastion-activate.webp" alt="" />
+    <Lightbox src="scaleway-ssh-bastion-activate.webp" alt="" />
 3. Under **SSH Bastion** click the **Activate** button. A pop-up displays:
-  <Lightbox src="scaleway-activate-ssh-bastion-popup.webp" alt="" />
+    <Lightbox src="scaleway-activate-ssh-bastion-popup.webp" alt="" />
 4. Enter the port that you want your SSH bastion to listen on (or leave the default port in place).
   <Message type="tip">
     The default port is 61000. When setting your own port, you must choose a port number between 1024 and 59999. The port that the SSH bastion listens on must not be a port already in use by a [NAT rule](/network/vpc/concepts/#nat).
@@ -40,7 +40,7 @@ If you add new SSH keys to your [Project credentials](/console/my-project/concep
 1. Click **Public Gateways** in the **VPC** section of the Scaleway console side menu.
 2. Click the Public Gateway for which you want to update the SSH bastion. You are taken to the **Overview** page for that Public Gateway.
 3. Under **SSH Bastion** click the **Reimport SSH keys** button.
-  <Lightbox src="scaleway-ssh-bastion-reimport.webp" alt="" />
+    <Lightbox src="scaleway-ssh-bastion-reimport.webp" alt="" />
 
   Your SSH bastion is updated with the new SSH keys.
 
@@ -63,7 +63,7 @@ ssh -J bastion@PUBLIC_IP_OF_PUBLIC_GATEWAY:61000 user@instance-name.private-netw
 The following steps must be repeated on all local machines that want to connect to a resource behind the SSH bastion.
 
 1. Copy the SSH configuration code for your SSH bastion to your clipboard. If you did not copy it when activating your SSH bastion, return to the Public Gateway's **Overview** tab and click **Copy code** under the **SSH configuration** section of the SSH bastion panel:
-  <Lightbox src="scaleway-ssh-bastion-reimport.webp" alt="" />
+    <Lightbox src="scaleway-ssh-bastion-reimport.webp" alt="" />
 2. To configure at user/local level, open your user SSH configuration file on your local machine with a text-editor such as `nano`: 
   ```bash
   nano ~/.ssh/config

@@ -116,10 +116,10 @@ This command will run `pip install` with the given `requirements.txt` file insid
 The Handler name is a path to the handler file, suffixed with the function name to use as a handler. In the following example, we use two handlers `hello.js` and `world.js` inside the `src/handlers` folder.
 
 <Message type="note">
-Currently, a function handler must be a named exported component:
-``` javascript 
-module.exports.myHandler = (event, context, callback) => {}
-``` 
+  Currently, a function handler must be a named exported component:
+  ``` javascript 
+  module.exports.myHandler = (event, context, callback) => {}
+  ``` 
 </Message>
 
 1. Make sure to provide the right handler name, namely `src/handlers/hello.sayHello` and `src/handlers/world.toTheWorld`.

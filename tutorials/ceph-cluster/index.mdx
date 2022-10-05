@@ -22,9 +22,9 @@ Ceph is an open-source, software-defined storage solution designed to address ob
 In this tutorial, you will learn how to deploy a three-node [Ceph](https://www.ceph.com) cluster using [Dedibox dedicated servers](https://www.scaleway.com/en/dedibox/) running on Ubuntu Focal Fossa (20.04 LTS). 
 
 <Message type="requirement">
-- You have an account and are logged into [the Dedibox console](https://console.online.net)
-- You have three Dedibox servers running on Ubuntu Focal Fossa 20.04 LTS or later
-- You have an additional admin machine available to install `ceph-deploy`
+  - You have an account and are logged into [the Dedibox console](https://console.online.net)
+  - You have three Dedibox servers running on Ubuntu Focal Fossa 20.04 LTS or later
+  - You have an additional admin machine available to install `ceph-deploy`
 </Message>
 
 ## Installing ceph-deploy on the admin machine
@@ -103,8 +103,8 @@ Ceph deploy will be able to connect as any user, including the `root` user, howe
 In the following section, you will generate an SSH key and distribute the public key to each Ceph node to enable passwordless authentication on the nodes.
 
 <Message type="note">
-- Make sure not to use `sudo`. 
-- Make sure you are not logged as the `root` user when generating the SSH keys.
+  - Make sure not to use `sudo`. 
+  - Make sure you are not logged as the `root` user when generating the SSH keys.
 </Message>
 
 1. Type the following command to generate a public or a private key-pair using the `ssh-keygen` application on the **admin node**:

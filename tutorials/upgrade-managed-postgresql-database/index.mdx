@@ -33,10 +33,10 @@ In this tutorial, you will learn how to migrate your PostgreSQL databases from v
 There are three steps to completing a manual migration: creating a new PostgreSQL 13 instance, backing up your existing database using the Scaleway API, and finally restoring your backup on your new PostgreSQL 13 Instance. We walk you through these three steps below.
 
 <Message type="requirement">
-- You have an account and are logged into [console.scaleway.com](https://console.scaleway.com)
-- You have generated your [API key](/console/my-project/how-to/generate-api-key/)
-- You have a PostgreSQL database running on version 9.6
-- You have installed `curl` on your local computer
+  - You have an account and are logged into [console.scaleway.com](https://console.scaleway.com)
+  - You have generated your [API key](/console/my-project/how-to/generate-api-key/)
+  - You have a PostgreSQL database running on version 9.6
+  - You have installed `curl` on your local computer
 </Message>
 
 ### Creating a PostgreSQL 13 Instance
@@ -57,8 +57,8 @@ There are three steps to completing a manual migration: creating a new PostgreSQ
 ### Backing up your existing database using the Scaleway API
 
 <Message type="requirement">
-- You have generated your [API key](/console/my-project/how-to/generate-api-key/)
-- You have installed `curl` on your local computer
+  - You have generated your [API key](/console/my-project/how-to/generate-api-key/)
+  - You have installed `curl` on your local computer
 </Message>
 
 1. Retrieve the database ID of your **old** Database Instance. You can find it on the **Database Instance Information** page of your Instance: 
@@ -168,9 +168,9 @@ There are three steps to completing a manual migration: creating a new PostgreSQ
 This solution enables you to migrate your database(s) automatically, with a bash script using the Scaleway CLI v2. The script will walk you through the migration process.
 
 <Message type="requirement">
-- You have a PostgreSQL database running on version 9.6
-- You have installed the [Scaleway CLI v2](https://github.com/scaleway/scaleway-cli) on your machine
-- You have installed the relevant [PostgreSQL binaries](https://www.postgresql.org/download/) on your machine
+  - You have a PostgreSQL database running on version 9.6
+  - You have installed the [Scaleway CLI v2](https://github.com/scaleway/scaleway-cli) on your machine
+  - You have installed the relevant [PostgreSQL binaries](https://www.postgresql.org/download/) on your machine
 </Message>
 
 1. Copy and paste the following script into a text file, and save it as `db_mig_script.sh`

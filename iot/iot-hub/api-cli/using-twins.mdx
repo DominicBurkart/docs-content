@@ -19,11 +19,11 @@ This page shows you how to use [Cloud Twins](/iot/iot-hub/concepts#twins) throug
   - how the Device can send requests to read the 'desired' documents in its Cloud Twin, compute new states for itself based on the information it receives and the information from its own sensors, and write new updated data to the 'current' Cloud Twin document.
 
 <Message type="requirement">
-- You have an account and are logged into [the Scaleway console](https://console.scaleway.com)
-- You have installed [curl](https://curl.se/) and [`jq` (json parsing tool)](https://stedolan.github.io/jq/) on your local computer
-- You have [created an IoT Hub](/iot/iot-hub/how-to/create-hub)
-- You have [added a device](/iot/iot-hub/how-to/add-device)
-- Your device allows insecure connections
+  - You have an account and are logged into [the Scaleway console](https://console.scaleway.com)
+  - You have installed [curl](https://curl.se/) and [`jq` (json parsing tool)](https://stedolan.github.io/jq/) on your local computer
+  - You have [created an IoT Hub](/iot/iot-hub/how-to/create-hub)
+  - You have [added a device](/iot/iot-hub/how-to/add-device)
+  - Your device allows insecure connections
 </Message>
 
 <Message type="note">
@@ -117,9 +117,9 @@ The device will perform the following tasks:
 	}
 	```
 7. Repeating the process.
-<Message type="note">
-  This is a minimalistic description, some steps could be done asynchronously.
-</Message>
+    <Message type="note">
+      This is a minimalistic description, some steps could be done asynchronously.
+    </Message>
 
 <Message type="tip">
   To manually test this you can use our [webclient](https://webclient.iot.fr-par.scw.cloud/?host=websocket.iot.fr-par.scw.cloud). Use the link on your device page and it will connect you directly. The device must accept insecure connections to use the webclient.

@@ -108,9 +108,9 @@ The device can communicate with its twin through inband MQTT API.
 The general use of the inband MQTT API is similar for all methods (get, put, patch):
 1. Subscribe to the response topic.
 2. Publish a request.
-<Message type="note">
-  Inband API MQTT messages are not dispatched to other devices. A response is only sent to the connection issuing the request.
-</Message>
+    <Message type="note">
+      Inband API MQTT messages are not dispatched to other devices. A response is only sent to the connection issuing the request.
+    </Message>
 
 #### Response Topics
 
@@ -154,9 +154,9 @@ To implement a put:
 1. Subscribe to the `put` response topics.
 2. Publish a valid document JSON on `$SCW/twins/<twin_id>/<document_name>/put`.
 3. You should receive the document on the `$SCW/twins/<twin_id>/<document_name>/put/response/success` topic (or an error on the ...`/error` topic).
-<Message type="note">
-  See the [version handling section](#simplified-version-handling) above.
-</Message>
+    <Message type="note">
+      See the [version handling section](#simplified-version-handling) above.
+    </Message>
 
 #### The patch method
 
@@ -164,9 +164,9 @@ To implement a patch:
 1. Subscribe to the `patch` response topics.
 2. Publish a patch formatted document on `$SCW/twins/<twin_id>/<document_name>/patch`.
 3. You should receive the document on the `$SCW/twins/<twin_id>/<document_name>/patch/response/success` topic (or an error on the ...`/error` topic).
-<Message type="note">
-  See the [version handling](#simplified-version-handling) and [patch format](#document-patch-format) sections above.
-</Message>
+    <Message type="note">
+      See the [version handling](#simplified-version-handling) and [patch format](#document-patch-format) sections above.
+    </Message>
 
 ## Twins configuration
 

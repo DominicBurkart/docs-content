@@ -22,9 +22,9 @@ dates:
 In this tutorial you will learn how to deploy Strapi on a [Scaleway Instance](/compute/instances/how-to/create-an-instance/).
 
 <Message type="requirement">
-- You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
-- You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
-- You have a [Instance running on Ubuntu Bionic Beaver (18.04)](/compute/instances/how-to/create-an-instance/).
+  - You have an account and are logged into the [Scaleway console](https://console.scaleway.com)
+  - You have [configured your SSH Key](/console/my-project/how-to/create-ssh-key/)
+  - You have a [Instance running on Ubuntu Bionic Beaver (18.04)](/compute/instances/how-to/create-an-instance/).
 </Message>
 
 ## Installing dependencies
@@ -109,7 +109,7 @@ In this step, we will use the Strapi dashboard to configure Strapi for a very si
 
   <Lightbox src="scaleway-create-admin.webp" alt="" />
 2. Complete the form with your desired information in order to create an admin user, then click `Let's Start`:
-  <Lightbox src="scaleway-create-admin-completed.webp" alt="" />
+    <Lightbox src="scaleway-create-admin-completed.webp" alt="" />
 
   The following screen displays:
 
@@ -121,7 +121,7 @@ In this step, we will use the Strapi dashboard to configure Strapi for a very si
 
   <Lightbox src="scaleway-create-collection-type.webp" alt="" />
 4. Enter `Blog` as the display name (UID will auto-complete), and click `Continue`:
-  <Lightbox src="scaleway-create-blog.webp" alt="" />
+    <Lightbox src="scaleway-create-blog.webp" alt="" />
 
   The following screen displays:
 
@@ -129,19 +129,19 @@ In this step, we will use the Strapi dashboard to configure Strapi for a very si
 
   Next, we will define the fields for our Blog database. We'll add two text fields, one to hold the title of each blog post, and one to hold the content of each post:
 5. Click `Text`. The following screen displays:
-  <Lightbox src="scaleway-add-text-field.webp" alt="" />
+    <Lightbox src="scaleway-add-text-field.webp" alt="" />
 6. Enter `Title` in the name field, and click `Add another field`:
-  <Lightbox src="scaleway-add-title.webp" alt="" />
+    <Lightbox src="scaleway-add-title.webp" alt="" />
 
   You are taken back to the list of possible field types:
 
   <Lightbox src="scaleway-select_collection_fields.webp" alt="" />
 7. Click `Text`. The following screen displays:
-  <Lightbox src="scaleway-add-text-field.webp" alt="" />
+    <Lightbox src="scaleway-add-text-field.webp" alt="" />
 8. Enter `Content` in the name field, and select `Long text` underneath, then click `Finish`:
-  <Lightbox src="scaleway-add-content.webp" alt="" />
+    <Lightbox src="scaleway-add-content.webp" alt="" />
 9. A summary of the Blog collection that you have just created displays. Cick `Save`:
-  <Lightbox src="scaleway-blog-created.webp" alt="" />
+    <Lightbox src="scaleway-blog-created.webp" alt="" />
 
   Strapi will restart and refresh your dashboard.
 
